@@ -2,7 +2,6 @@ package Application.View;
 
 
 import Application.Geometry.Size;
-import Application.Model.AnimatedSpriteSheet;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
