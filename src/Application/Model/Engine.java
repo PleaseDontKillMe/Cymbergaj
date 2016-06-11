@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Engine implements GameEventListener {
 
-    private final static int FPS = 64;
+    private final static int TPS = 150;
 
     private final List<GameEventListener> listeners = new ArrayList<>();
     private boolean shouldStop = false;
@@ -29,9 +29,9 @@ public class Engine implements GameEventListener {
             previous = current;
             lag += elapsed / 1000000;
 
-            while (lag >= (1000 / FPS)) {
+            while (lag >= (1000 / TPS)) {
                 updateAll();
-                lag -= (1000 / FPS);
+                lag -= (1000 / TPS);
             }
             double p = System.nanoTime();
             renderAll();
