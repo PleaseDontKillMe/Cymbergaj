@@ -14,7 +14,6 @@ public class Application {
 
     private final Engine engine = new Engine();
     private final Window window;
-    private final World world;
 
     private Application() {
         Settings settings = new Settings();
@@ -24,7 +23,7 @@ public class Application {
         Images images = new Images();
         images.load();
 
-        world = new World();
+        World world = new World();
         window = new Window(settings, images, new WindowClosingListener(engine), world);
 
         engine.addGameEventListener(world);
