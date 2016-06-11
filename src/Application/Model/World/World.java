@@ -22,7 +22,7 @@ public class World implements GameEventListener {
     }
 
     public int backgroundX() {
-        return (int)backgroundSlide;
+        return (int) backgroundSlide;
     }
 
     @Override
