@@ -18,7 +18,7 @@ public class Application {
 
     private Application() {
         Settings settings = new Settings();
-        settings.windowTitle = "Tadeosz | Best 2D game jk";
+        settings.windowTitle = "Cymbergaj | Best 2D game jk";
         settings.size = new Size(1080, 620);
 
         Images images = new Images();
