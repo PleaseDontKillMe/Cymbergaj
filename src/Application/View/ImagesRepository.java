@@ -21,7 +21,7 @@ public class ImagesRepository {
         background = loadImage("space-background1.png");
         background2 = loadImage("space-background2.png");
         fireball = loadImage("fireball.png");
-        spaceship = loadAnimatedImage("spaceship.png", new Size(64, 64), 22);
+        spaceship = loadAnimatedImage("spaceship.png", new Size(64, 64), 32);
     }
 
     private BufferedImage loadImage(String filename) {
