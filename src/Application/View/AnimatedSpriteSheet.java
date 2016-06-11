@@ -2,6 +2,8 @@ package Application.View;
 
 import Application.Geometry.Size;
 
+import Application.Geometry.Point;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -22,11 +24,13 @@ public class AnimatedSpriteSheet {
         this.currentSpriteIndex = currentSpriteIndex;
     }
 
-    public void drawOn(Graphics2D canvas, Application.Geometry.Point position) {
+    public void drawOn(Graphics2D canvas, Point position) {
         canvas.drawImage(spriteSheet,
-                0, currentSpriteIndex * spriteSheet.getWidth(), spriteSheet.getWidth(), spriteSheet.getHeight(),
-                position.getX(), position.getY(), spriteSheet.getWidth(), spriteSheet.getHeight(),
-                null);
+                position.getX(), position.getY(),
+                position.getX() + spriteSize.getWidth(), position.getY() + spriteSize.getHeight(),
+                currentSpriteIndex * spriteSize.getWidth(), 0,
+                currentSpriteIndex * spriteSize.getWidth() + spriteSize.getWidth(), spriteSize.getHeight(),
+        null);
     }
 
     public AnimatedSpriteSheet next() {
