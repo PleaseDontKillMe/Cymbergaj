@@ -10,9 +10,7 @@ import java.awt.event.KeyListener;
 public class SpaceshipControl implements GameEventListener, Control, KeyListener {
 
     private final Spaceship spaceship;
-
     private boolean goDown = false, goUp = false;
-    boolean alreadyShot;
 
     public SpaceshipControl(Spaceship spaceship) {
         this.spaceship = spaceship;
@@ -27,7 +25,6 @@ public class SpaceshipControl implements GameEventListener, Control, KeyListener
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override

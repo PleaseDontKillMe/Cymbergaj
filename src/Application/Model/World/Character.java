@@ -6,7 +6,6 @@ import Application.View.ImagesRepository;
 import Application.View.Renderer;
 
 public abstract class Character {
-
     private final Point position;
     private final Size size;
 

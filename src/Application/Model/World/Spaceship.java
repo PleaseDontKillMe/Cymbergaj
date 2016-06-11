@@ -14,11 +14,6 @@ public class Spaceship extends Character {
     }
 
     @Override
-    public int getMaxHealthPoints() {
-        return 20;
-    }
-
-    @Override
     public Control getControl() {
         return new SpaceshipControl(this);
     }
