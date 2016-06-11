@@ -2,7 +2,7 @@ package Application.Model.World;
 
 import Application.Geometry.Point;
 import Application.Geometry.Size;
-import Application.View.Images;
+import Application.View.ImagesRepository;
 import Application.View.Renderer;
 
 public abstract class Character {
@@ -37,5 +37,5 @@ public abstract class Character {
 
     public abstract Control getControl();
 
-    public abstract Renderer getRenderer(Images images);
+    public abstract Renderer getRenderer(ImagesRepository images);
 }

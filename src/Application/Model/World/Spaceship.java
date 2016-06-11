@@ -2,7 +2,7 @@ package Application.Model.World;
 
 import Application.Geometry.Point;
 import Application.Geometry.Size;
-import Application.View.Images;
+import Application.View.ImagesRepository;
 import Application.View.Renderer;
 import Application.View.SpaceshipRenderer;
 
@@ -24,7 +24,7 @@ public class Spaceship extends Character {
     }
 
     @Override
-    public Renderer getRenderer(Images images) {
+    public Renderer getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
     }
 }

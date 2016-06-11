@@ -20,13 +20,13 @@ public class Window implements GameEventListener {
 
     private final BufferedImage backBuffer;
     private final Graphics2D canvas;
-    private final Images images;
+    private final ImagesRepository images;
     private final World world;
     private Graphics windowGraphics;
 
     private List<Renderer> renderers = new LinkedList<>();
 
-    public Window(Settings settings, Images images, WindowClosingListener listener, World world) {
+    public Window(Settings settings, ImagesRepository images, WindowClosingListener listener, World world) {
         this.images = images;
         this.world = world;
         this.frame = JFrameFactory.create(settings, listener);

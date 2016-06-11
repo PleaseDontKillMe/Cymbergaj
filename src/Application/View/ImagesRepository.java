@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Images {
+public class ImagesRepository {
 
     BufferedImage plane;
     BufferedImage background;

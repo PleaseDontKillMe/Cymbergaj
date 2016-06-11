@@ -10,9 +10,9 @@ import java.awt.*;
 public class SpaceshipRenderer implements Renderer {
 
     private final Spaceship spaceship;
-    private Images images;
+    private ImagesRepository images;
 
-    public SpaceshipRenderer(Spaceship spaceship, Images images) {
+    public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         this.spaceship = spaceship;
         this.images = images;
     }

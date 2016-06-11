@@ -7,7 +7,7 @@ import Application.Model.WindowClosingListener;
 import Application.Model.World.Control;
 import Application.Model.World.Spaceship;
 import Application.Model.World.World;
-import Application.View.Images;
+import Application.View.ImagesRepository;
 import Application.View.Window;
 
 public class Application {
@@ -20,7 +20,7 @@ public class Application {
         settings.windowTitle = "Cymbergaj | Best 2D game jk";
         settings.size = new Size(1080, 620);
 
-        Images images = new Images();
+        ImagesRepository images = new ImagesRepository();
         images.load();
 
         World world = new World();
