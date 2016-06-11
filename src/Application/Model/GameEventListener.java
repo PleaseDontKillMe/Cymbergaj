@@ -2,6 +2,7 @@ package Application.Model;
 
 
 public interface GameEventListener {
+
     default void render() {
     }
 
