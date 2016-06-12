@@ -59,6 +59,7 @@ public class Window implements GameEventListener {
         canvas.drawImage(images.background2, -(x - 1200), 0, null);
 
         renderers.forEach(renderer -> renderer.renderOn(canvas));
+        renderers.removeIf(Renderer::isFinished);
 
         flip();
     }

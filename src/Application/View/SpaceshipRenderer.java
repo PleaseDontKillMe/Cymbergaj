@@ -24,6 +24,6 @@ public class SpaceshipRenderer implements Renderer {
 
     @Override
     public boolean isFinished() {
-        return spriteSheet.isLast();
+        return false;
     }
 }
