@@ -17,7 +17,7 @@ public class AnimatedSpriteSheet {
         this(spriteSheet, spriteSize, spritesAmount, 0);
     }
 
-    protected AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int currentSpriteIndex) {
+    private AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int currentSpriteIndex) {
         this.spriteSheet = spriteSheet;
         this.spriteSize = spriteSize;
         this.spritesAmount = spritesAmount;
@@ -32,8 +32,8 @@ public class AnimatedSpriteSheet {
                 position.getX(), position.getY(),
                 position.getX() + spriteSize.getWidth(), position.getY() + spriteSize.getHeight(),
                 column * spriteSize.getWidth(), row * spriteSize.getHeight(),
-                (column+1) * spriteSize.getWidth(), (row+1) * spriteSize.getHeight(),
-        null);
+                (column + 1) * spriteSize.getWidth(), (row + 1) * spriteSize.getHeight(),
+                null);
     }
 
     public AnimatedSpriteSheet next() {

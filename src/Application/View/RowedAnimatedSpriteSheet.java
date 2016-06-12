@@ -5,7 +5,7 @@ import Application.Geometry.Size;
 
 import java.awt.image.BufferedImage;
 
-class RowedAnimatedSpriteSheet extends AnimatedSpriteSheet {
+public class RowedAnimatedSpriteSheet extends AnimatedSpriteSheet {
 
     private final int columnsCount;
 
