@@ -29,10 +29,10 @@ public class Application {
 
         World world = new World(new Bounds(new Point(100, 70), new Size(880, 500)));
 
-        Spaceship leftShip = new Spaceship(new Point(50, 200), new WsadControlKeys());
+        Spaceship leftShip = new Spaceship(new Point(110, 200), new WsadControlKeys());
         Control leftControl = leftShip.getControl();
 
-        Spaceship rightShip = new Spaceship(new Point(settings.size.getWidth() - 114, 200), new ArrowsControlKeys());
+        Spaceship rightShip = new Spaceship(new Point(settings.size.getWidth() - 122, 200), new ArrowsControlKeys());
         Control rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
