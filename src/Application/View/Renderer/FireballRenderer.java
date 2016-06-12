@@ -1,5 +1,6 @@
 package Application.View.Renderer;
 
+import Application.Geometry.Angle;
 import Application.Geometry.Point;
 import Application.Geometry.Rotation;
 import Application.Model.World.Character.Fireball;
@@ -19,7 +20,8 @@ public class FireballRenderer implements Renderer {
 
     @Override
     public void renderOn(Graphics2D canvas) {
-        Rotation rotation = new Rotation(fireball.getAngle(), new Point(8, 32));
+        Angle newAngle = Angle.fromDegrees(180 + fireball.getAngle().toDegrees());
+        Rotation rotation = new Rotation(newAngle, new Point(8, 32));
         spriteSheet.drawOn(canvas, fireball.getPosition(), rotation);
         refreshesToNextFrame++;
         if (refreshesToNextFrame == 3) {
