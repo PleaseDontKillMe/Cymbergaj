@@ -11,6 +11,7 @@ import Application.View.Renderer.Renderer;
 public class Fireball {
     private final Point position;
     private final Angle direction;
+    private int velocity = 1;
 
     public Fireball(Point position, Angle direction) {
         this.position = position;
@@ -23,6 +24,10 @@ public class Fireball {
 
     public Angle getAngle() {
         return direction;
+    }
+
+    public int getVelocity() {
+        return velocity;
     }
 
     public Control getControl() {

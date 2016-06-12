@@ -19,7 +19,7 @@ public class FireballRenderer implements Renderer {
     public void renderOn(Graphics2D canvas) {
         spriteSheet.drawOn(canvas, fireball.getPosition());
         refreshesToNextFrame++;
-        if (refreshesToNextFrame == 4){
+        if (refreshesToNextFrame == 3){
             refreshesToNextFrame = 0;
             spriteSheet.next();
         }
