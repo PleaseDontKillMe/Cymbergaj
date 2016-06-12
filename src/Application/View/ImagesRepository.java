@@ -16,6 +16,7 @@ public class ImagesRepository {
     BufferedImage fireball;
     AnimatedSpriteSheet spaceship;
     AnimatedSpriteSheet explosion;
+    AnimatedSpriteSheet bigExplosion;
 
     public void load() {
         plane = loadImage("plane.png");
@@ -24,6 +25,7 @@ public class ImagesRepository {
         fireball = loadImage("fireball.png");
         spaceship = loadAnimatedImage("spaceship.png", new Size(64, 64), 32);
         explosion = loadAnimatedImage("explosion.png", new Size(64, 64), 25, 5);
+        bigExplosion = loadAnimatedImage("big-explosion.png", new Size(100,100), 73, 9);
     }
 
     private BufferedImage loadImage(String filename) {
