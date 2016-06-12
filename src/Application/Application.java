@@ -1,5 +1,6 @@
 package Application;
 
+import Application.Geometry.Angle;
 import Application.Geometry.Point;
 import Application.Geometry.Size;
 import Application.Model.Engine;
@@ -34,7 +35,7 @@ public class Application {
         Control rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
-        Fireball fireball = new Fireball(new Point(400, 200));
+        Fireball fireball = new Fireball(new Point(400, 200), new Angle());
 
         window = new Window(settings, images, new WindowClosingListener(engine), world);
         window.addKeyListener(leftControl);
