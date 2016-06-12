@@ -43,6 +43,10 @@ public final class Angle {
         this.value += radians;
     }
 
+    public void flipHorizontal() {
+        value = -value;
+    }
+
     public Angle copy() {
         return new Angle(value);
     }

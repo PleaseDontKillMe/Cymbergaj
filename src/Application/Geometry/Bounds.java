@@ -27,6 +27,11 @@ public class Bounds {
         return (float)position.y + size.getHeight();
     }
 
+    public Point getCenter() {
+        Point point = new Point(position);
+        return point.add(size.getWidth()/2, size.getHeight()/2);
+    }
+
     public Shape asAwtShape() {
         return new Rectangle(position.getX(), position.getY(), size.getWidth(), size.getHeight());
     }
