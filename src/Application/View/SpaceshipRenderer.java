@@ -21,7 +21,7 @@ public class SpaceshipRenderer implements Renderer {
     public void renderOn(Graphics2D canvas) {
         spriteSheet.drawOn(canvas, spaceship.getPosition());
         refreshesToNextFrame++;
-        if (refreshesToNextFrame == 6) {
+        if (refreshesToNextFrame == 2) {
             refreshesToNextFrame = 0;
             spriteSheet = spriteSheet.next();
         }
