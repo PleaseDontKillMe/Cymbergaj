@@ -4,10 +4,7 @@ import Application.Geometry.Point;
 import Application.Geometry.Size;
 import Application.Model.Engine;
 import Application.Model.WindowClosingListener;
-import Application.Model.World.Control;
-import Application.Model.World.Explosion;
-import Application.Model.World.Spaceship;
-import Application.Model.World.World;
+import Application.Model.World.*;
 import Application.View.ImagesRepository;
 import Application.View.Window;
 
@@ -32,7 +29,7 @@ public class Application {
 
 
         Spaceship ship = new Spaceship(new Point(50, 200));
-        Explosion explosion = new Explosion(new Point(100, 300));
+        Explosion explosion = new BigExplosion(new Point(100, 300));
 
         Control control = ship.getControl();
         window.addKeyListener(control);

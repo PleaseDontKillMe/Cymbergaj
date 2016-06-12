@@ -10,7 +10,6 @@ public class SpaceshipRenderer implements Renderer {
 
     private final Spaceship spaceship;
     private AnimatedSpriteSheet spriteSheet;
-    private int refreshesToNextFrame = 0;
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         this.spaceship = spaceship;
@@ -20,10 +19,6 @@ public class SpaceshipRenderer implements Renderer {
     @Override
     public void renderOn(Graphics2D canvas) {
         spriteSheet.drawOn(canvas, spaceship.getPosition());
-        refreshesToNextFrame++;
-        if (refreshesToNextFrame == 2) {
-            refreshesToNextFrame = 0;
-            spriteSheet = spriteSheet.next();
-        }
+        spriteSheet = spriteSheet.next();
     }
 }
