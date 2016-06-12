@@ -21,7 +21,7 @@ public class Application {
         ImagesRepository images = new ImagesRepository();
         images.load();
 
-        World world = new World();
+        World world = new World(new Size(800, 500));
 
         Spaceship leftShip = new Spaceship(new Point(50, 200), new WsadControlKeys());
         Control leftControl = leftShip.getControl();
@@ -34,6 +34,7 @@ public class Application {
         window = new Window(settings, images, new WindowClosingListener(engine), world);
         window.addKeyListener(leftControl);
         window.addKeyListener(rightControl);
+        window.addRenderer(world.getRenderer(images));
         window.addRenderer(leftShip.getRenderer(images));
         window.addRenderer(rightShip.getRenderer(images));
         window.addRenderer(explosion.getRenderer(images));
