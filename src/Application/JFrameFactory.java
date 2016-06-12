@@ -14,6 +14,7 @@ public class JFrameFactory {
 
         frame.setSize(new Dimension(settings.size.getWidth(), settings.size.getHeight()));
         frame.setTitle(settings.windowTitle);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
