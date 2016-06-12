@@ -30,6 +30,10 @@ public class World implements GameEventListener {
         return (int) backgroundSlide;
     }
 
+    public Size getSize() {
+        return size;
+    }
+
     public Renderer getRenderer(ImagesRepository images) {
         return new WorldRenderer(this, images);
     }
