@@ -39,6 +39,10 @@ public class Application {
         Fireball fireball = new Fireball(new Point(400, 200), Angle.fromDegrees(180));
         Control fireballControl = fireball.getControl();
 
+        world.addBody(leftShip);
+        world.addBody(rightShip);
+        world.addBody(fireball);
+
         window = new Window(settings, images, new WindowClosingListener(engine), world);
         window.addKeyListener(leftControl);
         window.addKeyListener(rightControl);
