@@ -7,8 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class WorldRenderer implements Renderer {
-    private World world;
-    private BufferedImage background;
+    private final World world;
+    private final BufferedImage background;
 
     final static float dash1[] = {10.0f};
     final static BasicStroke dashed = new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, dash1, 0.0f);

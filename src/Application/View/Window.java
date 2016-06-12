@@ -7,6 +7,7 @@ import Application.Model.WindowClosingListener;
 import Application.Model.World.World;
 import Application.Settings;
 import Application.View.Renderer.ImagesRepository;
+import Application.View.Renderer.Renderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,7 +55,7 @@ public class Window implements GameEventListener {
     @Override
     public void render() {
         renderers.forEach(renderer -> renderer.renderOn(canvas));
-        renderers.removeIf(Application.View.Renderer.Renderer::isFinished);
+        renderers.removeIf(Renderer::isFinished);
 
         flip();
     }
