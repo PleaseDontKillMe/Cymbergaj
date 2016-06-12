@@ -52,12 +52,6 @@ public class Window implements GameEventListener {
 
     @Override
     public void render() {
-        int x = world.backgroundX() % 600;
-
-        canvas.drawImage(images.background2, -(x), 0, null);
-        canvas.drawImage(images.background2, -(x - 600), 0, null);
-        canvas.drawImage(images.background2, -(x - 1200), 0, null);
-
         renderers.forEach(renderer -> renderer.renderOn(canvas));
         renderers.removeIf(Renderer::isFinished);
 
