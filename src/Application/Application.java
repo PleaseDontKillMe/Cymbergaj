@@ -23,7 +23,7 @@ public class Application {
 
         World world = new World();
 
-        Spaceship ship = new Spaceship(new Point(50, 200));
+        Spaceship ship = new Spaceship(new Point(50, 200), new WsadControlKeys());
         Control control = ship.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));

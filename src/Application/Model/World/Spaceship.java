@@ -9,13 +9,16 @@ import Application.View.SpaceshipRenderer;
 
 public class Spaceship extends Character {
 
-    public Spaceship(Point position) {
+    private final ControlKeys keys;
+
+    public Spaceship(Point position, ControlKeys keys) {
         super(position, new Size(150, 100));
+        this.keys = keys;
     }
 
     @Override
     public Control getControl() {
-        return new SpaceshipControl(this);
+        return new SpaceshipControl(this, keys);
     }
 
     @Override
