@@ -42,6 +42,6 @@ public class World implements GameEventListener {
     @Override
     public void update() {
         backgroundSlide += backgroundSlideSpeed;
-
+        bodies.forEach(body -> body.getControl().reactToBounds(bounds));
     }
 }
