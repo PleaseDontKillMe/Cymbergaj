@@ -43,6 +43,7 @@ public class AnimatedSpriteSheet {
 
     protected int getColumnBasedOnIndex(int index) {
         return index;
+
     }
 
     protected int getRowBasedOnIndex(int index) {
