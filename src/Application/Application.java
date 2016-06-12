@@ -23,19 +23,25 @@ public class Application {
 
         World world = new World();
 
-        Spaceship ship = new Spaceship(new Point(50, 200), new WsadControlKeys());
-        Control control = ship.getControl();
+        Spaceship leftShip = new Spaceship(new Point(50, 200), new WsadControlKeys());
+        Control leftControl = leftShip.getControl();
+
+        Spaceship rightShip = new Spaceship(new Point(settings.size.getWidth() - 114, 200), new ArrowsControlKeys());
+        Control rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
 
         window = new Window(settings, images, new WindowClosingListener(engine), world);
-        window.addKeyListener(control);
-        window.addRenderer(ship.getRenderer(images));
+        window.addKeyListener(leftControl);
+        window.addKeyListener(rightControl);
+        window.addRenderer(leftShip.getRenderer(images));
+        window.addRenderer(rightShip.getRenderer(images));
         window.addRenderer(explosion.getRenderer(images));
 
         engine.addGameEventListener(world);
         engine.addGameEventListener(window);
-        engine.addGameEventListener(control);
+        engine.addGameEventListener(leftControl);
+        engine.addGameEventListener(rightControl);
     }
 
     private void start() {
