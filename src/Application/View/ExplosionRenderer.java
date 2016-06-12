@@ -20,7 +20,7 @@ public class ExplosionRenderer implements Renderer {
     public void renderOn(Graphics2D canvas) {
         spriteSheet.drawOn(canvas, explosion.getPosition());
         refreshesToNextFrame++;
-        if (refreshesToNextFrame == 2) {
+        if (refreshesToNextFrame == 1) {
             refreshesToNextFrame = 0;
             spriteSheet = spriteSheet.next();
         }
