@@ -1,6 +1,5 @@
 package Application.View.Renderer;
 
-import Application.Geometry.Size;
 import Application.Model.World.World;
 
 import java.awt.*;
@@ -27,8 +26,7 @@ public class WorldRenderer implements Renderer {
         canvas.drawImage(background, -(x - width), 0, null);
         canvas.drawImage(background, -(x - width*2), 0, null);
 
-        Size size = world.getSize();
         canvas.setStroke(dashed);
-        canvas.drawRect(0, 0, size.getWidth(), size.getHeight());
+        canvas.draw(world.getBounds().asAwtShape());
     }
 }

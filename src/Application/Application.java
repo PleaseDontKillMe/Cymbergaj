@@ -1,6 +1,7 @@
 package Application;
 
 import Application.Geometry.Angle;
+import Application.Geometry.Bounds;
 import Application.Geometry.Point;
 import Application.Geometry.Size;
 import Application.Model.Engine;
@@ -26,7 +27,7 @@ public class Application {
         ImagesRepository images = new ImagesRepository();
         images.load();
 
-        World world = new World(new Size(800, 500));
+        World world = new World(new Bounds(new Point(100, 70), new Size(880, 500)));
 
         Spaceship leftShip = new Spaceship(new Point(50, 200), new WsadControlKeys());
         KeyedControl leftControl = leftShip.getControl();
