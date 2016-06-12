@@ -19,6 +19,14 @@ public class Bounds {
         return size;
     }
 
+    public float getTop() {
+        return (float)position.y;
+    }
+
+    public float getBottom() {
+        return (float)position.y + size.getHeight();
+    }
+
     public Shape asAwtShape() {
         return new Rectangle(position.getX(), position.getY(), size.getWidth(), size.getHeight());
     }

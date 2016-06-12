@@ -1,6 +1,7 @@
 package Application.Model.World;
 
 
+import Application.Geometry.Bounds;
 import Application.Geometry.Point;
 import Application.Model.World.Character.Spaceship;
 
@@ -25,7 +26,10 @@ public class SpaceshipControl implements Control {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void reactToBounds(Bounds bounds) {
+        Point position = spaceship.getPosition();
+        position.y = Math.max(position.y, bounds.getTop());
+        position.y = Math.min(position.y, bounds.getBottom());
     }
 
     @Override
