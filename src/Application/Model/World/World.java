@@ -3,6 +3,7 @@ package Application.Model.World;
 
 import Application.Geometry.Bounds;
 import Application.Model.GameEventListener;
+import Application.Model.World.Character.Body;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 import Application.View.Renderer.WorldRenderer;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class World implements GameEventListener {
 
-    private final List<Character> characters = new ArrayList<>();
+    private final List<Body> bodies = new ArrayList<>();
     private final Bounds bounds;
 
     private double backgroundSlide = 0.0;
@@ -22,8 +23,8 @@ public class World implements GameEventListener {
         this.bounds = bounds;
     }
 
-    public void addCharacter(Character character) {
-        characters.add(character);
+    public void addBody(Body body) {
+        bodies.add(body);
     }
 
     public int backgroundX() {
@@ -41,5 +42,6 @@ public class World implements GameEventListener {
     @Override
     public void update() {
         backgroundSlide += backgroundSlideSpeed;
+
     }
 }
