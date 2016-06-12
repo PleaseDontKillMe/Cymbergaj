@@ -9,16 +9,11 @@ import Application.View.Renderer.Renderer;
 import Application.View.Renderer.SpaceshipRenderer;
 
 
-public class Spaceship {
-    private final Point position;
-    public Point getPosition() {
-        return position;
-    }
-
+public class Spaceship extends Body {
     private final ControlKeys keys;
 
     public Spaceship(Point position, ControlKeys keys) {
-        this.position = position;
+        super(position);
         this.keys = keys;
     }
 

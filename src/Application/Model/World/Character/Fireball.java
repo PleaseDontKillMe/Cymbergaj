@@ -8,18 +8,13 @@ import Application.View.Renderer.FireballRenderer;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 
-public class Fireball {
-    private final Point position;
+public class Fireball extends Body {
     private final Angle direction;
     private int velocity = 1;
 
     public Fireball(Point position, Angle direction) {
-        this.position = position;
+        super(position);
         this.direction = direction;
-    }
-
-    public Point getPosition() {
-        return position;
     }
 
     public Angle getAngle() {
