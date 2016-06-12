@@ -10,10 +10,12 @@ import java.awt.event.KeyListener;
 public class SpaceshipControl implements GameEventListener, Control, KeyListener {
 
     private final Spaceship spaceship;
+    private final ControlKeys keys;
     private boolean goDown = false, goUp = false;
 
-    public SpaceshipControl(Spaceship spaceship) {
+    public SpaceshipControl(Spaceship spaceship, ControlKeys keys) {
         this.spaceship = spaceship;
+        this.keys = keys;
     }
 
     @Override
@@ -29,25 +31,21 @@ public class SpaceshipControl implements GameEventListener, Control, KeyListener
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'w':
-                goUp = true;
-                break;
-            case 's':
-                goDown = true;
-                break;
+        if (keys.verifyUp(e)) {
+            goUp = true;
+        }
+        if (keys.verifyDown(e)) {
+            goDown = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyChar()) {
-            case 'w':
-                goUp = false;
-                break;
-            case 's':
-                goDown = false;
-                break;
+        if (keys.verifyUp(e)) {
+            goUp = false;
+        }
+        if (keys.verifyDown(e)) {
+            goDown = false;
         }
     }
 }
