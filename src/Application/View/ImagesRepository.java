@@ -19,16 +19,16 @@ public class ImagesRepository {
     AnimatedSpriteSheet bigExplosion;
 
     public void load() {
-        plane = loadImage("plane.png");
-        background = loadImage("space-background1.png");
-        background2 = loadImage("space-background2.png");
-        fireball = loadImage("fireball.png");
-        spaceship = loadAnimatedImage("spaceship.png", new Size(64, 64), 32);
-        explosion = loadAnimatedImage("explosion.png", new Size(64, 64), 25, 5);
-        bigExplosion = loadAnimatedImage("big-explosion.png", new Size(100,100), 73, 9);
+        plane = image("plane.png");
+        background = image("space-background1.png");
+        background2 = image("space-background2.png");
+        fireball = image("fireball.png");
+        spaceship = animatedImage("spaceship.png", 32, new Size(64, 64));
+        explosion = animatedImage("explosion.png", 25, new Size(64, 64), 5);
+        bigExplosion = animatedImage("big-explosion.png", 73, new Size(100,100), 9);
     }
 
-    private BufferedImage loadImage(String filename) {
+    private BufferedImage image(String filename) {
         try {
             return ImageIO.read(new File("res/" + filename));
         } catch (IOException ignored) {
@@ -36,13 +36,12 @@ public class ImagesRepository {
         }
     }
 
-    private AnimatedSpriteSheet loadAnimatedImage(String filename, Size spriteSize, int spritesAmount) {
-        BufferedImage image = loadImage(filename);
-        return new AnimatedSpriteSheet(image, spriteSize, spritesAmount);
+    private AnimatedSpriteSheet animatedImage(String filename, int spritesAmount, Size spriteSize) {
+        return animatedImage(filename, spritesAmount, spriteSize, spritesAmount);
     }
 
-    private AnimatedSpriteSheet loadAnimatedImage(String filename, Size spriteSize, int spritesAmount, int columnsCount) {
-        BufferedImage image = loadImage(filename);
-        return new RowedAnimatedSpriteSheet(image, spriteSize, spritesAmount, columnsCount);
+    private AnimatedSpriteSheet animatedImage(String filename, int spritesAmount, Size spriteSize, int columnsCount) {
+        BufferedImage image = image(filename);
+        return new AnimatedSpriteSheet(image, spriteSize, spritesAmount, columnsCount);
     }
 }
