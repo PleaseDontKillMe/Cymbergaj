@@ -7,6 +7,7 @@ import Application.Model.WindowClosingListener;
 import Application.Model.World.*;
 import Application.Model.World.Character.BigExplosion;
 import Application.Model.World.Character.Explosion;
+import Application.Model.World.Character.Fireball;
 import Application.Model.World.Character.Spaceship;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Window;
@@ -33,6 +34,7 @@ public class Application {
         Control rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
+        Fireball fireball = new Fireball(new Point(400, 200));
 
         window = new Window(settings, images, new WindowClosingListener(engine), world);
         window.addKeyListener(leftControl);
@@ -41,6 +43,7 @@ public class Application {
         window.addRenderer(leftShip.getRenderer(images));
         window.addRenderer(rightShip.getRenderer(images));
         window.addRenderer(explosion.getRenderer(images));
+        window.addRenderer(fireball.getRenderer(images));
 
         engine.addGameEventListener(world);
         engine.addGameEventListener(window);
