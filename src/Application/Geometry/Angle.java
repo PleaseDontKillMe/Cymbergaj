@@ -13,8 +13,7 @@ public final class Angle {
         this.value = value;
     }
 
-    public static Angle fromDegrees(double value)
-    {
+    public static Angle fromDegrees(double value) {
         Angle angle = new Angle();
         angle.setDegreeValue(value);
         return angle;
