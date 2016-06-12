@@ -24,7 +24,7 @@ public class ImagesRepository {
         background = image("space-background1.png");
         background2 = image("space-background2.png");
         fireball = animatedImage("fireball.png", 8, new Size(64, 64), 8);
-        spaceship = animatedImage("spaceship.png", 32, new Size(64, 64));
+        spaceship = animatedImage("spaceship2.png", 32, new Size(64, 64));
         explosion = animatedImage("explosion.png", 25, new Size(64, 64), 5);
         bigExplosion = animatedImage("big-explosion.png", 73, new Size(100,100), 9);
     }
