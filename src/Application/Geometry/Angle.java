@@ -39,6 +39,10 @@ public final class Angle {
         this.value = value / 180 * Math.PI;
     }
 
+    public void clockwise(double radians) {
+        this.value += radians;
+    }
+
     public Angle copy() {
         return new Angle(value);
     }
