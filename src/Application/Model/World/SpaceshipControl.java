@@ -2,13 +2,11 @@ package Application.Model.World;
 
 
 import Application.Geometry.Point;
-import Application.Model.GameEventListener;
 import Application.Model.World.Character.Spaceship;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class SpaceshipControl implements GameEventListener, Control, KeyListener {
+public class SpaceshipControl implements Control {
 
     private final Spaceship spaceship;
     private final ControlKeys keys;
