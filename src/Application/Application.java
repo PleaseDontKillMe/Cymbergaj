@@ -5,6 +5,9 @@ import Application.Geometry.Size;
 import Application.Model.Engine;
 import Application.Model.WindowClosingListener;
 import Application.Model.World.*;
+import Application.Model.World.Character.BigExplosion;
+import Application.Model.World.Character.Explosion;
+import Application.Model.World.Character.Spaceship;
 import Application.View.ImagesRepository;
 import Application.View.Window;
 

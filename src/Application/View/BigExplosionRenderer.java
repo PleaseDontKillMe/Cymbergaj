@@ -1,6 +1,6 @@
 package Application.View;
 
-import Application.Model.World.BigExplosion;
+import Application.Model.World.Character.BigExplosion;
 
 import java.awt.*;
 

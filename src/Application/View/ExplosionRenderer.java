@@ -1,7 +1,7 @@
 package Application.View;
 
 
-import Application.Model.World.Explosion;
+import Application.Model.World.Character.Explosion;
 
 import java.awt.Graphics2D;
 

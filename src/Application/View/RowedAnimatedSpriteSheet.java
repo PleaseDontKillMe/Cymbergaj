@@ -5,22 +5,17 @@ import Application.Geometry.*;
 
 import java.awt.image.BufferedImage;
 
-public class RowedAnimatedSpriteSheet extends AnimatedSpriteSheet {
+public class RowedAnimatedSpriteSheet  {
 
-    private final int columnsCount;
+    /*
 
     public RowedAnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
         super(spriteSheet, spriteSize, spritesAmount);
         this.columnsCount = columnsCount;
     }
 
-    public RowedAnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount, int currentSpriteIndex) {
-        super(spriteSheet, spriteSize, spritesAmount, currentSpriteIndex);
-        this.columnsCount = columnsCount;
-    }
-
     @Override
-    public AnimatedSpriteSheet next() {
+    public void next() {
         int nextSpriteIndex = (currentSpriteIndex + 1) % this.spritesAmount;
         return new RowedAnimatedSpriteSheet(this.spriteSheet, this.spriteSize, spritesAmount, columnsCount, nextSpriteIndex);
     }
@@ -34,4 +29,5 @@ public class RowedAnimatedSpriteSheet extends AnimatedSpriteSheet {
     protected int getRowBasedOnIndex(int index) {
         return index / columnsCount;
     }
+    */
 }

@@ -1,7 +1,7 @@
 package Application.View;
 
 
-import Application.Model.World.Spaceship;
+import Application.Model.World.Character.Spaceship;
 
 import java.awt.*;
 

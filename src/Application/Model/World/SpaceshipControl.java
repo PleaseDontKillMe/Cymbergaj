@@ -3,6 +3,7 @@ package Application.Model.World;
 
 import Application.Geometry.Point;
 import Application.Model.GameEventListener;
+import Application.Model.World.Character.Spaceship;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

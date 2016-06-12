@@ -1,7 +1,8 @@
-package Application.Model.World;
+package Application.Model.World.Character;
 
 import Application.Geometry.Point;
 import Application.Geometry.Size;
+import Application.Model.World.Control;
 import Application.View.ImagesRepository;
 import Application.View.Renderer;
 

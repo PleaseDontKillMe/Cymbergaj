@@ -3,6 +3,7 @@ package Application.Model.World;
 
 import Application.Geometry.Size;
 import Application.Model.GameEventListener;
+import Application.Model.World.Character.Character;
 import Application.View.ImagesRepository;
 import Application.View.Renderer;
 import Application.View.WorldRenderer;

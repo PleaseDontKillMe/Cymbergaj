@@ -1,4 +1,4 @@
-package Application.Model.World;
+package Application.Model.World.Character;
 
 import Application.Geometry.Point;
 import Application.View.BigExplosionRenderer;
