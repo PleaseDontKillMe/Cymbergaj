@@ -36,7 +36,7 @@ public class Application {
         Control rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
-        Fireball fireball = new Fireball(new Point(400, 200), Angle.fromDegrees(180));
+        Fireball fireball = new Fireball(world.getBounds().getCenter(), Angle.fromDegrees(40));
         Control fireballControl = fireball.getControl();
 
         world.addBody(leftShip);
