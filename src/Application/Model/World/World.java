@@ -1,7 +1,7 @@
 package Application.Model.World;
 
 
-import Application.Geometry.Size;
+import Application.Geometry.Bounds;
 import Application.Model.GameEventListener;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
@@ -13,13 +13,13 @@ import java.util.List;
 public class World implements GameEventListener {
 
     private final List<Character> characters = new ArrayList<>();
-    private final Size size;
+    private final Bounds bounds;
 
     private double backgroundSlide = 0.0;
     private final static double backgroundSlideSpeed = 0.8;
 
-    public World(Size size) {
-        this.size = size;
+    public World(Bounds bounds) {
+        this.bounds = bounds;
     }
 
     public void addCharacter(Character character) {
@@ -30,8 +30,8 @@ public class World implements GameEventListener {
         return (int) backgroundSlide;
     }
 
-    public Size getSize() {
-        return size;
+    public Bounds getBounds() {
+        return bounds;
     }
 
     public Renderer getRenderer(ImagesRepository images) {
