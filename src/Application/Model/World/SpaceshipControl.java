@@ -6,7 +6,7 @@ import Application.Model.World.Character.Spaceship;
 
 import java.awt.event.KeyEvent;
 
-public class SpaceshipControl implements KeyedControl {
+public class SpaceshipControl implements Control {
 
     private final Spaceship spaceship;
     private final ControlKeys keys;

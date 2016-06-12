@@ -30,10 +30,10 @@ public class Application {
         World world = new World(new Bounds(new Point(100, 70), new Size(880, 500)));
 
         Spaceship leftShip = new Spaceship(new Point(50, 200), new WsadControlKeys());
-        KeyedControl leftControl = leftShip.getControl();
+        Control leftControl = leftShip.getControl();
 
         Spaceship rightShip = new Spaceship(new Point(settings.size.getWidth() - 114, 200), new ArrowsControlKeys());
-        KeyedControl rightControl = rightShip.getControl();
+        Control rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
         Fireball fireball = new Fireball(new Point(400, 200), Angle.fromDegrees(180));

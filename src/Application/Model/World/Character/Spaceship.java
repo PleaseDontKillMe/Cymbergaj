@@ -1,8 +1,8 @@
 package Application.Model.World.Character;
 
 import Application.Geometry.Point;
+import Application.Model.World.Control;
 import Application.Model.World.ControlKeys;
-import Application.Model.World.KeyedControl;
 import Application.Model.World.SpaceshipControl;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
@@ -22,7 +22,7 @@ public class Spaceship {
         this.keys = keys;
     }
 
-    public KeyedControl getControl() {
+    public Control getControl() {
         return new SpaceshipControl(this, keys);
     }
 
