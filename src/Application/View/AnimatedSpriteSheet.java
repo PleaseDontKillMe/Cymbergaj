@@ -8,16 +8,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class AnimatedSpriteSheet {
-    private final BufferedImage spriteSheet;
-    private final Size spriteSize;
-    private final int spritesAmount;
-    private final int currentSpriteIndex;
+    protected final BufferedImage spriteSheet;
+    protected final Size spriteSize;
+    protected final int spritesAmount;
+    protected final int currentSpriteIndex;
 
     public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount) {
         this(spriteSheet, spriteSize, spritesAmount, 0);
     }
 
-    private AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int currentSpriteIndex) {
+    protected AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int currentSpriteIndex) {
         this.spriteSheet = spriteSheet;
         this.spriteSize = spriteSize;
         this.spritesAmount = spritesAmount;
