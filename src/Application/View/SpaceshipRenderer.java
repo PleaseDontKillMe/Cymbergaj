@@ -21,4 +21,9 @@ public class SpaceshipRenderer implements Renderer {
         spriteSheet.drawOn(canvas, spaceship.getPosition());
         spriteSheet = spriteSheet.next();
     }
+
+    @Override
+    public boolean isFinished() {
+        return spriteSheet.isLast();
+    }
 }

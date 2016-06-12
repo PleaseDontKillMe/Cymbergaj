@@ -41,6 +41,10 @@ public class AnimatedSpriteSheet {
         return new AnimatedSpriteSheet(spriteSheet, spriteSize, spritesAmount, nextSpriteIndex);
     }
 
+    public boolean isLast() {
+        return currentSpriteIndex == (spritesAmount - 1);
+    }
+
     protected int getColumnBasedOnIndex(int index) {
         return index;
     }

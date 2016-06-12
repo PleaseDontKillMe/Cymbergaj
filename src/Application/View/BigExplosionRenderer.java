@@ -18,4 +18,9 @@ public class BigExplosionRenderer implements Renderer {
         spriteSheet.drawOn(canvas, explosion.getPosition());
         spriteSheet = spriteSheet.next();
     }
+
+    @Override
+    public boolean isFinished() {
+        return spriteSheet.isLast();
+    }
 }
