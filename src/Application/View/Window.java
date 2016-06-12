@@ -6,6 +6,7 @@ import Application.Model.GameEventListener;
 import Application.Model.WindowClosingListener;
 import Application.Model.World.World;
 import Application.Settings;
+import Application.View.Renderer.ImagesRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +26,7 @@ public class Window implements GameEventListener {
     private Graphics windowGraphics;
     double frames = 0;
 
-    private List<Renderer> renderers = new LinkedList<>();
+    private List<Application.View.Renderer.Renderer> renderers = new LinkedList<>();
 
     public Window(Settings settings, ImagesRepository images, WindowClosingListener listener, World world) {
         this.images = images;
@@ -41,7 +42,7 @@ public class Window implements GameEventListener {
         frame.addKeyListener(listener);
     }
 
-    public void addRenderer(Renderer renderer) {
+    public void addRenderer(Application.View.Renderer.Renderer renderer) {
         renderers.add(renderer);
     }
 
@@ -53,7 +54,7 @@ public class Window implements GameEventListener {
     @Override
     public void render() {
         renderers.forEach(renderer -> renderer.renderOn(canvas));
-        renderers.removeIf(Renderer::isFinished);
+        renderers.removeIf(Application.View.Renderer.Renderer::isFinished);
 
         flip();
     }

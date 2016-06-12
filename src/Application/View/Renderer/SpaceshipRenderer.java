@@ -1,7 +1,8 @@
-package Application.View;
+package Application.View.Renderer;
 
 
 import Application.Model.World.Character.Spaceship;
+import Application.View.AnimatedSpriteSheet;
 
 import java.awt.*;
 

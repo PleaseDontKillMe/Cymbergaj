@@ -1,4 +1,4 @@
-package Application.View;
+package Application.View.Renderer;
 
 
 import java.awt.*;

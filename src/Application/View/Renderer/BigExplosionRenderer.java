@@ -1,6 +1,7 @@
-package Application.View;
+package Application.View.Renderer;
 
 import Application.Model.World.Character.BigExplosion;
+import Application.View.AnimatedSpriteSheet;
 
 import java.awt.*;
 

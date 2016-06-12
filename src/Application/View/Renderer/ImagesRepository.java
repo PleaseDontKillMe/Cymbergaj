@@ -1,7 +1,8 @@
-package Application.View;
+package Application.View.Renderer;
 
 
 import Application.Geometry.Size;
+import Application.View.AnimatedSpriteSheet;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

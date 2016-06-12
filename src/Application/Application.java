@@ -8,7 +8,7 @@ import Application.Model.World.*;
 import Application.Model.World.Character.BigExplosion;
 import Application.Model.World.Character.Explosion;
 import Application.Model.World.Character.Spaceship;
-import Application.View.ImagesRepository;
+import Application.View.Renderer.ImagesRepository;
 import Application.View.Window;
 
 public class Application {

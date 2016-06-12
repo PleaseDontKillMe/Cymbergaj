@@ -3,8 +3,8 @@ package Application.Model.World.Character;
 import Application.Geometry.Point;
 import Application.Geometry.Size;
 import Application.Model.World.Control;
-import Application.View.ImagesRepository;
-import Application.View.Renderer;
+import Application.View.Renderer.ImagesRepository;
+import Application.View.Renderer.Renderer;
 
 public abstract class Character {
     private final Point position;

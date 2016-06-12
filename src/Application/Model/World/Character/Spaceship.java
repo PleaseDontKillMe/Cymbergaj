@@ -5,9 +5,9 @@ import Application.Geometry.Size;
 import Application.Model.World.Control;
 import Application.Model.World.ControlKeys;
 import Application.Model.World.SpaceshipControl;
-import Application.View.ImagesRepository;
-import Application.View.Renderer;
-import Application.View.SpaceshipRenderer;
+import Application.View.Renderer.ImagesRepository;
+import Application.View.Renderer.Renderer;
+import Application.View.Renderer.SpaceshipRenderer;
 
 
 public class Spaceship extends Character {

@@ -14,11 +14,7 @@ public class AnimatedSpriteSheet {
     private final int columnsCount;
     private int currentSpriteIndex = 0;
 
-    public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount) {
-        this(spriteSheet, spriteSize, spritesAmount, spritesAmount);
-    }
-
-    protected AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
+    public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
         this.spriteSheet = spriteSheet;
         this.spriteSize = spriteSize;
         this.spritesAmount = spritesAmount;
