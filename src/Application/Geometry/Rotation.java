@@ -4,8 +4,8 @@ public class Rotation {
     private final Angle angle;
     private final Point center;
 
-    public Rotation(Angle angle) {
-        this.angle = angle;
+    public Rotation() {
+        this.angle = new Angle();
         this.center = new Point();
     }
 
