@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 public class ExplosionRenderer implements Renderer {
     private final Explosion explosion;
     private AnimatedSpriteSheet spriteSheet;
-    private int refreshesToNextFrame = 0;
 
     public ExplosionRenderer(Explosion explosion, ImagesRepository images) {
         this.explosion = explosion;
@@ -19,10 +18,6 @@ public class ExplosionRenderer implements Renderer {
     @Override
     public void renderOn(Graphics2D canvas) {
         spriteSheet.drawOn(canvas, explosion.getPosition());
-        refreshesToNextFrame++;
-        if (refreshesToNextFrame == 1) {
-            refreshesToNextFrame = 0;
-            spriteSheet = spriteSheet.next();
-        }
+        spriteSheet = spriteSheet.next();
     }
 }
