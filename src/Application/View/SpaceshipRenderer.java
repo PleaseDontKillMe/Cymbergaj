@@ -14,7 +14,7 @@ public class SpaceshipRenderer implements Renderer {
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         this.spaceship = spaceship;
-        spriteSheet = images.spaceship;
+        this.spriteSheet = images.spaceship;
     }
 
     @Override
