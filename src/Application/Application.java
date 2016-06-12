@@ -5,6 +5,7 @@ import Application.Geometry.Size;
 import Application.Model.Engine;
 import Application.Model.WindowClosingListener;
 import Application.Model.World.Control;
+import Application.Model.World.Explosion;
 import Application.Model.World.Spaceship;
 import Application.Model.World.World;
 import Application.View.ImagesRepository;
@@ -31,10 +32,12 @@ public class Application {
 
 
         Spaceship ship = new Spaceship(new Point(50, 200));
+        Explosion explosion = new Explosion(new Point(100, 300));
 
         Control control = ship.getControl();
         window.addKeyListener(control);
         window.addRenderer(ship.getRenderer(images));
+        window.addRenderer(explosion.getRenderer(images));
 
         engine.addGameEventListener(control);
     }
