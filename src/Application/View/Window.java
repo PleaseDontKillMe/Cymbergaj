@@ -23,6 +23,7 @@ public class Window implements GameEventListener {
     private final ImagesRepository images;
     private final World world;
     private Graphics windowGraphics;
+    double frames = 0;
 
     private List<Renderer> renderers = new LinkedList<>();
 
@@ -48,8 +49,6 @@ public class Window implements GameEventListener {
         frame.setVisible(true);
         windowGraphics = frame.getGraphics();
     }
-
-    double frames = 0;
 
     @Override
     public void render() {

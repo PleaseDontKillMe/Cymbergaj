@@ -22,20 +22,19 @@ public class Application {
         images.load();
 
         World world = new World();
-        window = new Window(settings, images, new WindowClosingListener(engine), world);
-
-        engine.addGameEventListener(world);
-        engine.addGameEventListener(window);
-
 
         Spaceship ship = new Spaceship(new Point(50, 200));
+        Control control = ship.getControl();
+
         Explosion explosion = new BigExplosion(new Point(100, 300));
 
-        Control control = ship.getControl();
+        window = new Window(settings, images, new WindowClosingListener(engine), world);
         window.addKeyListener(control);
         window.addRenderer(ship.getRenderer(images));
         window.addRenderer(explosion.getRenderer(images));
 
+        engine.addGameEventListener(world);
+        engine.addGameEventListener(window);
         engine.addGameEventListener(control);
     }
 
