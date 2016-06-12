@@ -1,5 +1,6 @@
 package Application.View;
 
+import Application.Geometry.Angle;
 import Application.Geometry.Size;
 
 import Application.Geometry.Point;
@@ -22,15 +23,24 @@ public class AnimatedSpriteSheet {
     }
 
     public void drawOn(Graphics2D canvas, Point position) {
+        drawOn(canvas, position, new Angle());
+    }
+
+    public void drawOn(Graphics2D canvas, Point position, Angle rotation) {
         int column = getColumnBasedOnIndex(currentSpriteIndex);
         int row = getRowBasedOnIndex(currentSpriteIndex);
 
+        canvas.translate(position.x,position.y);
+        canvas.rotate(rotation.getValue());
+
         canvas.drawImage(spriteSheet,
-                position.getX(), position.getY(),
-                position.getX() + spriteSize.getWidth(), position.getY() + spriteSize.getHeight(),
+                0, 0, spriteSize.getWidth(),spriteSize.getHeight(),
                 column * spriteSize.getWidth(), row * spriteSize.getHeight(),
                 (column + 1) * spriteSize.getWidth(), (row + 1) * spriteSize.getHeight(),
                 null);
+
+        canvas.rotate(-rotation.getValue());
+        canvas.translate(-position.x, -position.y);
     }
 
     public void next() {
