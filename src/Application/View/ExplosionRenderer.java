@@ -18,7 +18,7 @@ public class ExplosionRenderer implements Renderer {
     @Override
     public void renderOn(Graphics2D canvas) {
         spriteSheet.drawOn(canvas, explosion.getPosition());
-        spriteSheet = spriteSheet.next();
+        spriteSheet.next();
     }
 
     @Override

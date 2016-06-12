@@ -8,20 +8,21 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class AnimatedSpriteSheet {
-    protected final BufferedImage spriteSheet;
-    protected final Size spriteSize;
-    protected final int spritesAmount;
-    protected final int currentSpriteIndex;
+    private final BufferedImage spriteSheet;
+    private final Size spriteSize;
+    private final int spritesAmount;
+    private final int columnsCount;
+    private int currentSpriteIndex = 0;
 
     public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount) {
-        this(spriteSheet, spriteSize, spritesAmount, 0);
+        this(spriteSheet, spriteSize, spritesAmount, spritesAmount);
     }
 
-    protected AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int currentSpriteIndex) {
+    protected AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
         this.spriteSheet = spriteSheet;
         this.spriteSize = spriteSize;
         this.spritesAmount = spritesAmount;
-        this.currentSpriteIndex = currentSpriteIndex;
+        this.columnsCount = columnsCount;
     }
 
     public void drawOn(Graphics2D canvas, Point position) {
@@ -36,9 +37,8 @@ public class AnimatedSpriteSheet {
                 null);
     }
 
-    public AnimatedSpriteSheet next() {
-        int nextSpriteIndex = (currentSpriteIndex + 1) % spritesAmount;
-        return new AnimatedSpriteSheet(spriteSheet, spriteSize, spritesAmount, nextSpriteIndex);
+    public void next() {
+        currentSpriteIndex = (currentSpriteIndex + 1) % spritesAmount;
     }
 
     public boolean isLast() {
@@ -46,10 +46,10 @@ public class AnimatedSpriteSheet {
     }
 
     protected int getColumnBasedOnIndex(int index) {
-        return index;
+        return index % columnsCount;
     }
 
     protected int getRowBasedOnIndex(int index) {
-        return 0;
+        return index / columnsCount;
     }
 }
