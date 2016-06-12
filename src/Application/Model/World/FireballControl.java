@@ -1,5 +1,6 @@
 package Application.Model.World;
 
+import Application.Geometry.Point;
 import Application.Model.World.Character.Fireball;
 
 public class FireballControl implements Control {
@@ -12,6 +13,8 @@ public class FireballControl implements Control {
 
     @Override
     public void update() {
-        // TODO implement fireball movement
+        Point position = fireball.getPosition();
+        Point newPosition = position.find(fireball.getVelocity(), fireball.getAngle());
+        position.setSize(newPosition);
     }
 }

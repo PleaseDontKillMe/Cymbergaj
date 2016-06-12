@@ -35,7 +35,8 @@ public class Application {
         KeyedControl rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
-        Fireball fireball = new Fireball(new Point(400, 200), new Angle());
+        Fireball fireball = new Fireball(new Point(400, 200), Angle.fromDegrees(180));
+        Control fireballControl = fireball.getControl();
 
         window = new Window(settings, images, new WindowClosingListener(engine), world);
         window.addKeyListener(leftControl);
@@ -50,6 +51,7 @@ public class Application {
         engine.addGameEventListener(window);
         engine.addGameEventListener(leftControl);
         engine.addGameEventListener(rightControl);
+        engine.addGameEventListener(fireballControl);
     }
 
     private void start() {
