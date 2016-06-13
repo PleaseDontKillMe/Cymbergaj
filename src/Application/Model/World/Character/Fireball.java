@@ -25,6 +25,11 @@ public class Fireball extends Body {
         return velocity;
     }
 
+    @Override
+    public int getRadius() {
+        return 7;
+    }
+
     public Control getControl() {
         return new FireballControl(this);
     }

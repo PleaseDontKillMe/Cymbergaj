@@ -17,6 +17,8 @@ public abstract class Body {
         return position;
     }
 
+    public abstract int getRadius();
+
     public abstract Control getControl();
 
     public abstract Renderer getRenderer(ImagesRepository images);
