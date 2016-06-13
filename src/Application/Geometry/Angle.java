@@ -49,6 +49,9 @@ public final class Angle {
 
     public void flipOf(Angle angle) {
         value += angle.getValue() * 2;
+        while (value > 2 * Math.PI) {
+            value -= 2 * Math.PI;
+        }
     }
 
     public Angle diff(Angle angle) {
