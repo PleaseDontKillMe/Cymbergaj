@@ -10,7 +10,7 @@ import Application.View.Renderer.Renderer;
 
 public class Fireball extends Body {
     private final Angle direction;
-    private int velocity = 1;
+    private float velocity = 2.5f;
 
     public Fireball(Point position, Angle direction) {
         super(position);
@@ -21,7 +21,7 @@ public class Fireball extends Body {
         return direction;
     }
 
-    public int getVelocity() {
+    public float getVelocity() {
         return velocity;
     }
 
