@@ -23,7 +23,7 @@ public class Fireball extends Body {
 
     public float getVelocity() {
         return VELOCITY;
-    })
+    }
 
     @Override
     public int getRadius() {
