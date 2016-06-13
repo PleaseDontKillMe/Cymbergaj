@@ -55,6 +55,22 @@ public final class Angle {
         value += angle.getValue() * 2;
     }
 
+    public Angle diff(Angle angle) {
+        double difference = Math.abs(this.value - angle.getValue());
+
+        double newValue;
+        if (difference <= Math.PI) {
+            newValue = difference;
+        } else {
+            newValue = Math.abs(difference - 2 * Math.PI);
+        }
+
+        while (newValue > 2 * Math.PI) {
+            newValue -= 2 * Math.PI;
+        }
+        return new Angle(newValue);
+    }
+
     public boolean equals(Angle angle) {
         return new Application.Utility.ForAngle(this).performEqualsSimilar(angle);
     }
