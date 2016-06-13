@@ -21,7 +21,7 @@ public class CircleBounce {
     public BounceResult bounce() {
         for (Body body : allBodies) {
             if (body == bodyToBounce) continue;
-            if (bodiesOverlap(bodyToBounce, body)) {
+            if (bodiesOverlap(bodyToBounce, body) && bodiesHeadTowards(body)) {
                 return bounceWithBodies(body);
             }
         }
@@ -31,6 +31,11 @@ public class CircleBounce {
     private boolean bodiesOverlap(Body first, Body second) {
         double distance = first.getPosition().distanceTo(second.getPosition());
         return first.getRadius() + second.getRadius() >= distance;
+    }
+
+    private boolean bodiesHeadTowards(Body body) {
+        Angle bodiesAngle = bodyToBounce.getPosition().angle(body.getPosition());
+        return bodyToBounce.getDirection().diff(bodiesAngle).getValue() <= Math.PI;
     }
 
     private BounceResult bounceWithBodies(Body body) {
