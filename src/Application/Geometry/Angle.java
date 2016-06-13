@@ -35,10 +35,6 @@ public final class Angle {
         return value / Math.PI * 180;
     }
 
-    public double toDec() {
-        return value / (Math.PI * 2);
-    }
-
     public void setDegreeValue(double value) {
         this.value = value / 180 * Math.PI;
     }
