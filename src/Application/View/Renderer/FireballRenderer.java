@@ -20,7 +20,7 @@ public class FireballRenderer implements Renderer {
 
     @Override
     public void renderOn(Graphics2D canvas) {
-        Angle newAngle = Angle.fromDegrees(180 + fireball.getAngle().toDegrees());
+        Angle newAngle = Angle.fromDegrees(180 + fireball.getDirection().toDegrees());
         Rotation rotation = new Rotation(newAngle, new Point(8, 32));
         spriteSheet.drawOn(canvas, fireball.getPosition(), rotation);
         refreshesToNextFrame++;

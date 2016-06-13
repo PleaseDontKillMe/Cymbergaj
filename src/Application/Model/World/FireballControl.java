@@ -16,14 +16,14 @@ public class FireballControl implements Control {
     @Override
     public void update() {
         Point position = fireball.getPosition();
-        Point newPosition = position.find(fireball.getVelocity(), fireball.getAngle());
+        Point newPosition = position.find(fireball.getVelocity(), fireball.getDirection());
         position.setSize(newPosition);
     }
 
     @Override
     public void reactToBounds(Bounds bounds) {
         Point position = fireball.getPosition();
-        Angle angle = fireball.getAngle();
+        Angle angle = fireball.getDirection();
         bounceTop(bounds, position, angle);
         bounceBottom(bounds, position, angle);
     }
@@ -45,6 +45,6 @@ public class FireballControl implements Control {
     }
 
     public void bounceAngle(Angle angle) {
-        fireball.getAngle().flipOf(angle);
+        fireball.getDirection().flipOf(angle);
     }
 }

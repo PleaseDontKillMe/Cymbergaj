@@ -10,18 +10,20 @@ import Application.View.Renderer.Renderer;
 public class Fireball extends Body {
     private final Angle direction;
 
+    public static float VELOCITY = 0.5f;
+
     public Fireball(Point position, Angle direction) {
         super(position);
         this.direction = direction;
     }
 
-    public Angle getAngle() {
+    public Angle getDirection() {
         return direction;
     }
 
     public float getVelocity() {
-        return 0.5f;
-    }
+        return VELOCITY;
+    })
 
     @Override
     public int getRadius() {
