@@ -52,11 +52,11 @@ public class Application {
         window.addRenderer(explosion.getRenderer(images));
         window.addRenderer(fireball.getRenderer(images));
 
-        engine.addGameEventListener(world);
         engine.addGameEventListener(window);
         engine.addGameEventListener(leftControl);
         engine.addGameEventListener(rightControl);
         engine.addGameEventListener(fireballControl);
+        engine.addGameEventListener(world);
     }
 
     private void start() {
