@@ -13,6 +13,10 @@ public final class Angle {
         this.value = value;
     }
 
+    public Angle(Angle angle) {
+        this.value = angle.getValue();
+    }
+
     public static Angle fromDegrees(double value) {
         Angle angle = new Angle();
         angle.setDegreeValue(value);
@@ -47,8 +51,8 @@ public final class Angle {
         value = -value;
     }
 
-    public Angle copy() {
-        return new Angle(value);
+    public void flipOf(Angle angle) {
+        value += angle.getValue() * 2;
     }
 
     public boolean equals(Angle angle) {
