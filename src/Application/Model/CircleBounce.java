@@ -1,24 +1,28 @@
 package Application.Model;
 
 
+import Application.Geometry.Angle;
 import Application.Geometry.Point;
 import Application.Model.World.Character.Body;
+import Application.Model.World.Character.Fireball;
+import Application.Model.World.FireballControl;
 
 import java.util.List;
 
 public class CircleBounce {
-    private final Body bodyToBounce;
+    private final Fireball bodyToBounce;
     private final List<Body> allBodies;
 
-    public CircleBounce(Body bodyToBounce, List<Body> allBodies) {
+    public CircleBounce(Fireball bodyToBounce, List<Body> allBodies) {
         this.bodyToBounce = bodyToBounce;
         this.allBodies = allBodies;
     }
 
     public BounceResult bounce() {
         for (Body body : allBodies) {
+            if (body == bodyToBounce) continue;
             if (bodiesOverlap(bodyToBounce, body)) {
-                return bounceBodies(bodyToBounce, body);
+                return bounceWithBodies(body);
             }
         }
         return new BounceResult(false);
@@ -26,21 +30,19 @@ public class CircleBounce {
 
     private boolean bodiesOverlap(Body first, Body second) {
         double distance = first.getPosition().distanceTo(second.getPosition());
-        return first.getRadius() + second.getRadius() > distance;
+        return first.getRadius() + second.getRadius() >= distance;
     }
 
-    private BounceResult bounceBodies(Body bodyToBounce, Body body) {
-
+    private BounceResult bounceWithBodies(Body body) {
         BounceResult result = new BounceResult(true, body);
-
-        bodyToBounce.getPosition().angle(body.getPosition());
-
+        Angle angle = bodyToBounce.getPosition().angle(body.getPosition());
+        FireballControl control = bodyToBounce.getControl();
+        control.bounceAngle(angle);
         return result;
     }
 }
 
 class BounceResult {
-
     private boolean didBounce;
     private Body bouncedBody;
     private Point bouncePoint;

@@ -2,8 +2,10 @@ package Application.Model.World;
 
 
 import Application.Geometry.Bounds;
+import Application.Model.CircleBounce;
 import Application.Model.GameEventListener;
 import Application.Model.World.Character.Body;
+import Application.Model.World.Character.Fireball;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 import Application.View.Renderer.WorldRenderer;
@@ -43,5 +45,8 @@ public class World implements GameEventListener {
     public void update() {
         backgroundSlide += backgroundSlideSpeed;
         bodies.forEach(body -> body.getControl().reactToBounds(bounds));
+        bodies.stream()
+                .filter(body -> body instanceof Fireball)
+                .forEach(body -> new CircleBounce((Fireball) body, bodies).bounce());
     }
 }
