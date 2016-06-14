@@ -13,7 +13,7 @@ import java.awt.*;
 public class SpaceshipRenderer implements Renderer {
 
     private final Spaceship spaceship;
-    private AnimatedSpriteSheet spriteSheet;
+    private final AnimatedSpriteSheet spriteSheet;
     private int refreshesToNextFrame = 0;
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {

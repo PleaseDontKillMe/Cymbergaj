@@ -11,10 +11,8 @@ public class ForPoint {
     }
 
     public boolean performEquals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return this == o || !(o == null || getClass() != o.getClass()) && performEqualsSimilar((Point) o);
 
-        return performEqualsSimilar((Point) o);
     }
 
     public boolean performEqualsSimilar(Point point) {

@@ -11,14 +11,6 @@ public class Bounds {
         this.size = size;
     }
 
-    public Point getPosition() {
-        return position;
-    }
-
-    public Size getSize() {
-        return size;
-    }
-
     public float getTop() {
         return (float)position.y;
     }

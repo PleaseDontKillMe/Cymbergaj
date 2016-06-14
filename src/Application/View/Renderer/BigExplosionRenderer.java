@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class BigExplosionRenderer implements Renderer {
     private final BigExplosion explosion;
-    private AnimatedSpriteSheet spriteSheet;
+    private final AnimatedSpriteSheet spriteSheet;
 
     public BigExplosionRenderer(BigExplosion explosion, ImagesRepository images) {
         this.explosion = explosion;

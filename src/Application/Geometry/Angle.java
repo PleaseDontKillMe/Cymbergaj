@@ -13,10 +13,6 @@ public final class Angle {
         this.value = value;
     }
 
-    public Angle(Angle angle) {
-        this.value = angle.getValue();
-    }
-
     public static Angle fromDegrees(double value) {
         return new Angle(value / 180 * Math.PI);
     }

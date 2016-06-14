@@ -61,7 +61,7 @@ public class Point {
         return angle;
     }
 
-    public boolean equals(Point point) {
+    private boolean equals(Point point) {
         return new Application.Utility.ForPoint(this).performEqualsSimilar(point);
     }
 

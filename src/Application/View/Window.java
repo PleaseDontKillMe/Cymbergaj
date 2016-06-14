@@ -21,7 +21,7 @@ public class Window implements GameEventListener {
     private final Graphics2D canvas;
     private Graphics windowGraphics;
 
-    private List<Application.View.Renderer.Renderer> renderers = new LinkedList<>();
+    private final List<Renderer> renderers = new LinkedList<>();
 
     public Window(Settings settings, WindowClosingListener listener) {
         this.frame = JFrameFactory.create(settings, listener);

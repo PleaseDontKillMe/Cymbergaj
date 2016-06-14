@@ -1,9 +1,6 @@
 package Application.View;
 
 
-import Application.Geometry.*;
-
-import java.awt.image.BufferedImage;
 
 public class RowedAnimatedSpriteSheet  {
 

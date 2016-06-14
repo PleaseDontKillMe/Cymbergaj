@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 
 public class ExplosionRenderer implements Renderer {
     private final Explosion explosion;
-    private AnimatedSpriteSheet spriteSheet;
+    private final AnimatedSpriteSheet spriteSheet;
 
     public ExplosionRenderer(Explosion explosion, ImagesRepository images) {
         this.explosion = explosion;

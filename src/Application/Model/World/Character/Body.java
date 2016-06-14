@@ -5,9 +5,9 @@ import Application.Model.World.Control.Control;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 
-public abstract class Body {
+abstract class Body {
 
-    private Point position;
+    private final Point position;
 
     public Body(Point position) {
         this.position = position;

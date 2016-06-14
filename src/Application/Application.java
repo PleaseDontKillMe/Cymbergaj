@@ -17,7 +17,7 @@ import Application.Model.World.Control.WsadControlKeys;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Window;
 
-public class Application {
+class Application {
 
     private final Engine engine = new Engine();
     private final Window window;

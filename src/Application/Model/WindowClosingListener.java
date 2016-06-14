@@ -5,7 +5,7 @@ import java.awt.event.WindowEvent;
 
 public class WindowClosingListener extends WindowAdapter {
 
-    private GameEventListener listener;
+    private final GameEventListener listener;
 
     public WindowClosingListener(GameEventListener listener) {
         this.listener = listener;
