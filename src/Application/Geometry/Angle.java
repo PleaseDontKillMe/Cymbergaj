@@ -70,6 +70,14 @@ public final class Angle {
         return new Angle(newValue);
     }
 
+    public Angle getNormalized() {
+        return new Angle(this.value + Math.ceil(-this.toFraction()) * Math.PI*2);
+    }
+
+    public double toFraction() {
+        return value / (Math.PI * 2);
+    }
+
     public boolean equals(Angle angle) {
         return new Application.Utility.ForAngle(this).performEqualsSimilar(angle);
     }
