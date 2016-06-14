@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 @RunWith(Parameterized.class)
-public class AngleDiffTest {
+public class AngleBetweenTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -39,7 +39,7 @@ public class AngleDiffTest {
     private Angle angle2;
     private Angle expectedDiff;
 
-    public AngleDiffTest(float degrees1, float degrees2, float diff) {
+    public AngleBetweenTest(float degrees1, float degrees2, float diff) {
         this.angle1 = Angle.fromDegrees(degrees1);
         this.angle2 = Angle.fromDegrees(degrees2);
         this.expectedDiff = Angle.fromDegrees(diff);
