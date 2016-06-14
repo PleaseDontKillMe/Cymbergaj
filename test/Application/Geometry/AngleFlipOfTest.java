@@ -49,6 +49,6 @@ public class AngleFlipOfTest {
         Angle result = givenAngle.flipOf(flipOfAngle);
 
         // then
-        Assert.assertTrue(result.getNormalized().equals(expectedAngle.getNormalized()));
+        Assert.assertEquals(result.getNormalized().toDegrees(), expectedAngle.getNormalized().toDegrees(), Angle.DELTA);
     }
 }
