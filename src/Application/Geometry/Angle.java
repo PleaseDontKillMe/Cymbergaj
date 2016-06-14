@@ -47,11 +47,8 @@ public final class Angle {
         value = -value;
     }
 
-    public void flipOf(Angle angle) {
-        value += angle.getValue() * 2;
-        while (value > 2 * Math.PI) {
-            value -= 2 * Math.PI;
-        }
+    public Angle flipOf(Angle angle) {
+        return new Angle(2 * angle.getValue() - value);
     }
 
     public Angle between(Angle angle) {

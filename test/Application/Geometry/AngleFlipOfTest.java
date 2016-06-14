@@ -25,7 +25,7 @@ public class AngleFlipOfTest {
 
         collection.add(new Object[]{45, 45, 45});
         collection.add(new Object[]{90, 90, 90});
-        collection.add(new Object[]{90, 0, 180});
+        collection.add(new Object[]{0, 90, 180});
         collection.add(new Object[]{90, 0, 180});
 
         collection.add(new Object[]{15, 90+15, -15});
@@ -46,9 +46,9 @@ public class AngleFlipOfTest {
     @Test
     public void testFlipOf() throws Exception {
         // when
-        givenAngle.flipOf(flipOfAngle);
+        Angle result = givenAngle.flipOf(flipOfAngle);
 
         // then
-        Assert.assertTrue(givenAngle.getNormalized().equals(expectedAngle.getNormalized()));
+        Assert.assertTrue(result.getNormalized().equals(expectedAngle.getNormalized()));
     }
 }
