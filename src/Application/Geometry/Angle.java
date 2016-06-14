@@ -61,20 +61,4 @@ public final class Angle {
     public boolean equals(Angle angle) {
         return new Application.Utility.ForAngle(this).performEqualsSimilar(angle);
     }
-
-    @Override
-    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-    public boolean equals(Object object) {
-        return new Application.Utility.ForAngle(this).performEquals(object);
-    }
-
-    @Override
-    public int hashCode() {
-        return new Application.Utility.ForAngle(this).generateHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return new Application.Utility.ForAngle(this).performToString();
-    }
 }

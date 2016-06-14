@@ -19,7 +19,7 @@ public class Spaceship extends Body {
 
     @Override
     public int getRadius() {
-        return 31;
+        return 32;
     }
 
     public Control getControl() {

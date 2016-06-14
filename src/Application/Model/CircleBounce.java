@@ -21,12 +21,12 @@ public class CircleBounce {
                 .filter(body -> body != bodyToBounce)
                 .filter(this::bodiesOverlap)
                 .filter(this::bodiesHeadTowards)
-                .forEach(this::bounceWithBodies);
+                .forEach(this::bounceWithBody);
     }
 
     private boolean bodiesOverlap(Body second) {
         double distance = bodyToBounce.getPosition().distanceTo(second.getPosition());
-        return distance < bodyToBounce.getRadius() + second.getRadius();
+        return distance <= bodyToBounce.getRadius() + second.getRadius();
     }
 
     private boolean bodiesHeadTowards(Body body) {
@@ -34,7 +34,7 @@ public class CircleBounce {
         return bodyToBounce.getDirection().between(bodiesAngle).getValue() <= Math.PI / 2;
     }
 
-    private void bounceWithBodies(Body body) {
+    private void bounceWithBody(Body body) {
         Angle angle = bodyToBounce.getPosition().angleTo(body.getPosition());
         bodyToBounce.getControl().bounceAngle(angle.plus(Math.PI / 2));
     }
