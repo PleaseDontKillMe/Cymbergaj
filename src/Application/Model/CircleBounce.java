@@ -18,60 +18,26 @@ public class CircleBounce {
         this.allBodies = allBodies;
     }
 
-    public BounceResult bounce() {
-        for (Body body : allBodies) {
-            if (body == bodyToBounce) continue;
-            if (bodiesOverlap(bodyToBounce, body) && bodiesHeadTowards(body)) {
-                return bounceWithBodies(body);
-            }
-        }
-        return new BounceResult(false);
+    public void bounce() {
+        allBodies.stream()
+                .filter(body -> body != bodyToBounce)
+                .filter(this::bodiesOverlap)
+                .filter(this::bodiesHeadTowards)
+                .forEach(this::bounceWithBodies);
     }
 
-    private boolean bodiesOverlap(Body first, Body second) {
-        double distance = first.getPosition().distanceTo(second.getPosition());
-        return distance < first.getRadius() + second.getRadius();
+    private boolean bodiesOverlap( Body second) {
+        double distance = bodyToBounce.getPosition().distanceTo(second.getPosition());
+        return distance < bodyToBounce.getRadius() + second.getRadius();
     }
 
     private boolean bodiesHeadTowards(Body body) {
         Angle bodiesAngle = bodyToBounce.getPosition().angle(body.getPosition());
-        return bodyToBounce.getDirection().between(bodiesAngle).getValue() <= Math.PI/2;
+        return bodyToBounce.getDirection().between(bodiesAngle).getValue() <= Math.PI / 2;
     }
 
-    private BounceResult bounceWithBodies(Body body) {
+    private void bounceWithBodies(Body body) {
         Angle angle = bodyToBounce.getPosition().angle(body.getPosition());
-        bodyToBounce.getControl().bounceAngle(angle.plus(Math.PI/2));
-        return new BounceResult(true, body);
-    }
-}
-
-class BounceResult {
-    private boolean didBounce;
-    private Body bouncedBody;
-    private Point bouncePoint;
-
-    public BounceResult(boolean didBounce) {
-        this.didBounce = didBounce;
-    }
-
-    public BounceResult(boolean didBounce, Body bouncedBody) {
-        this.didBounce = didBounce;
-        this.bouncedBody = bouncedBody;
-    }
-
-    public void setBouncePoint(Point bouncePoint) {
-        this.bouncePoint = bouncePoint;
-    }
-
-    public Point getBouncePoint() {
-        return bouncePoint;
-    }
-
-    public Body getBouncedBody() {
-        return bouncedBody;
-    }
-
-    public boolean didBounce() {
-        return didBounce;
+        bodyToBounce.getControl().bounceAngle(angle.plus(Math.PI / 2));
     }
 }
