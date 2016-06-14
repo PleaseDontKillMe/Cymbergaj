@@ -40,7 +40,7 @@ public class CircleBounce {
 
     private BounceResult bounceWithBodies(Body body) {
         Angle angle = bodyToBounce.getPosition().angle(body.getPosition());
-        bodyToBounce.getControl().bounceAngle(angle);
+        bodyToBounce.getControl().bounceAngle(angle.plus(Math.PI/2));
         return new BounceResult(true, body);
     }
 }

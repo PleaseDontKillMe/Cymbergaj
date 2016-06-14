@@ -31,6 +31,10 @@ public final class Angle {
         value = Value;
     }
 
+    public Angle plus(double value) {
+        return new Angle(this.value + value);
+    }
+
     public double toDegrees() {
         return value / Math.PI * 180;
     }
