@@ -9,7 +9,7 @@ public abstract class Body {
 
     private final Point position;
 
-    public Body(Point position) {
+    Body(Point position) {
         this.position = position;
     }
 

@@ -8,7 +8,7 @@ import Application.View.Renderer.Renderer;
 public class Explosion {
     private final Point position;
 
-    public Explosion(Point position) {
+    Explosion(Point position) {
         this.position = position;
     }
 
