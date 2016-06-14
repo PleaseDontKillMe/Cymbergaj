@@ -23,9 +23,11 @@ public class AngleBetweenTest {
         collection.add(new Object[]{350, 10, 20});
         collection.add(new Object[]{10, 350, 20});
         collection.add(new Object[]{90, 180, 90});
+        collection.add(new Object[]{180, 90, 90});
         collection.add(new Object[]{180, 0, 180});
         collection.add(new Object[]{270, 90, 180});
         collection.add(new Object[]{360, 0, 0});
+        collection.add(new Object[]{-360, 0, 0});
         collection.add(new Object[]{0, 360, 0});
         collection.add(new Object[]{45, -45, 90});
         collection.add(new Object[]{-45, 45, 90});
