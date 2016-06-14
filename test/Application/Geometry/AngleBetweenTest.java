@@ -53,6 +53,6 @@ public class AngleBetweenTest {
         Angle diff = angle1.between(angle2);
 
         // then
-        Assert.assertTrue(diff.equals(expectedDiff.getNormalized()));
+        Assert.assertEquals(diff.getValue(), expectedDiff.getNormalized().getValue(), Angle.DELTA);
     }
 }

@@ -59,8 +59,4 @@ public final class Angle {
     public Angle getNormalized() {
         return new Angle(this.value + Math.ceil(-value / (Math.PI * 2)) * (Math.PI * 2));
     }
-
-    public boolean equals(Angle angle) {
-        return Compare.doublesEqual(angle.getValue(), value, DELTA);
-    }
 }

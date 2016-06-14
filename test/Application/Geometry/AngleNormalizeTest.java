@@ -46,6 +46,6 @@ public class AngleNormalizeTest {
         Angle result = givenAngle.getNormalized();
 
         // then
-        Assert.assertTrue(result.equals(expectedAngle));
+        Assert.assertEquals(result.getValue(), expectedAngle.getValue(), Angle.DELTA);
     }
 }
