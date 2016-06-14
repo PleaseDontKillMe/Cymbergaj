@@ -30,7 +30,7 @@ public class CircleBounce {
 
     private boolean bodiesOverlap(Body first, Body second) {
         double distance = first.getPosition().distanceTo(second.getPosition());
-        return first.getRadius() + second.getRadius() >= distance;
+        return distance <= first.getRadius() + second.getRadius();
     }
 
     private boolean bodiesHeadTowards(Body body) {
