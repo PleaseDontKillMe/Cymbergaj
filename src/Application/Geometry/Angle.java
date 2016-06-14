@@ -47,14 +47,11 @@ public final class Angle {
         value = -value;
     }
 
-    public void flipOf(Angle angle) {
-        value += angle.getValue() * 2;
-        while (value > 2 * Math.PI) {
-            value -= 2 * Math.PI;
-        }
+    public Angle flipOf(Angle angle) {
+        return new Angle(2 * angle.getValue() - value);
     }
 
-    public Angle diff(Angle angle) {
+    public Angle between(Angle angle) {
         double difference = Math.abs(this.value - angle.getValue());
 
         double newValue;
@@ -68,6 +65,14 @@ public final class Angle {
             newValue -= 2 * Math.PI;
         }
         return new Angle(newValue);
+    }
+
+    public Angle getNormalized() {
+        return new Angle(this.value + Math.ceil(-this.toFraction()) * Math.PI*2);
+    }
+
+    public double toFraction() {
+        return value / (Math.PI * 2);
     }
 
     public boolean equals(Angle angle) {
