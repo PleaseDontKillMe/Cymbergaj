@@ -1,5 +1,8 @@
 package Application.Geometry;
 
+
+import Application.Utility.Compare;
+
 public class Point {
     public static final double DELTA = 1e-5;
 
@@ -62,22 +65,6 @@ public class Point {
     }
 
     private boolean equals(Point point) {
-        return new Application.Utility.ForPoint(this).performEqualsSimilar(point);
-    }
-
-    @Override
-    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-    public boolean equals(Object o) {
-        return new Application.Utility.ForPoint(this).performEquals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return new Application.Utility.ForPoint(this).generateHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return new Application.Utility.ForPoint(this).performToString();
+        return Compare.doublesEqual(point.x, x, DELTA) && Compare.doublesEqual(point.y, y, DELTA);
     }
 }

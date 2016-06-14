@@ -1,5 +1,7 @@
 package Application.Geometry;
 
+import Application.Utility.Compare;
+
 public final class Angle {
     public static final double DELTA = 1e-5;
 
@@ -59,6 +61,6 @@ public final class Angle {
     }
 
     public boolean equals(Angle angle) {
-        return new Application.Utility.ForAngle(this).performEqualsSimilar(angle);
+        return Compare.doublesEqual(angle.getValue(), value, DELTA);
     }
 }
