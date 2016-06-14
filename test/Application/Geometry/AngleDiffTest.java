@@ -48,9 +48,9 @@ public class AngleDiffTest {
     @Test
     public void testDiff() throws Exception {
         // when
-        Angle diff = angle1.diff(angle2);
+        Angle diff = angle1.between(angle2);
 
         // then
-        Assert.assertTrue(diff.equals(expectedDiff));
+        Assert.assertTrue(diff.equals(expectedDiff.getNormalized()));
     }
 }

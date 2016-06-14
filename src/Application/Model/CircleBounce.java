@@ -35,7 +35,7 @@ public class CircleBounce {
 
     private boolean bodiesHeadTowards(Body body) {
         Angle bodiesAngle = bodyToBounce.getPosition().angle(body.getPosition());
-        return bodyToBounce.getDirection().diff(bodiesAngle).getValue() <= Math.PI;
+        return bodyToBounce.getDirection().between(bodiesAngle).getValue() <= Math.PI;
     }
 
     private BounceResult bounceWithBodies(Body body) {

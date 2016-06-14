@@ -54,7 +54,7 @@ public final class Angle {
         }
     }
 
-    public Angle diff(Angle angle) {
+    public Angle between(Angle angle) {
         double difference = Math.abs(this.value - angle.getValue());
 
         double newValue;
