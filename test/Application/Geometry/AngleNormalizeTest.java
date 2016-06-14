@@ -27,6 +27,7 @@ public class AngleNormalizeTest {
 
         collection.add(new Object[]{405, 45});
         collection.add(new Object[]{-90, 270});
+        collection.add(new Object[]{-15, 345});
 
         return collection;
     }
