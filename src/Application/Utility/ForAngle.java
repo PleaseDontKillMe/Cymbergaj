@@ -15,10 +15,8 @@ public class ForAngle {
     }
 
     public boolean performEquals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return this == o || !(o == null || getClass() != o.getClass()) && performEqualsSimilar((Angle) o);
 
-        return performEqualsSimilar((Angle) o);
     }
 
     public int generateHashCode() {
@@ -27,6 +25,6 @@ public class ForAngle {
     }
 
     public String performToString() {
-        return "Angle[angle:" + instance.getValue() + "]";
+        return "Angle[angleTo:" + instance.getValue() + "]";
     }
 }

@@ -39,13 +39,13 @@ public class PointAngleToTest {
     @Test(expected=RuntimeException.class)
     public void testValidInput() throws Exception {
         // when
-        new Point(2, 1).angle(new Point(2, 1));
+        new Point(2, 1).angleTo(new Point(2, 1));
     }
 
     @Test
     public void testAngle() throws Exception {
         // when
-        Angle result = startPoint.angle(endPoint);
+        Angle result = startPoint.angleTo(endPoint);
 
         // then
         Assert.assertEquals(expectedAngle.toDegrees(), result.getNormalized().toDegrees(), Angle.DELTA);
