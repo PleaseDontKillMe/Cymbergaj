@@ -24,7 +24,7 @@ public class CircleBounce {
                 .forEach(this::bounceWithBodies);
     }
 
-    private boolean bodiesOverlap( Body second) {
+    private boolean bodiesOverlap(Body second) {
         double distance = bodyToBounce.getPosition().distanceTo(second.getPosition());
         return distance < bodyToBounce.getRadius() + second.getRadius();
     }
