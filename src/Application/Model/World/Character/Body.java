@@ -5,7 +5,7 @@ import Application.Model.World.Control.Control;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 
-abstract class Body {
+public abstract class Body {
 
     private final Point position;
 
