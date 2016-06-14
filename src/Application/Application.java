@@ -11,6 +11,9 @@ import Application.Model.World.Character.BigExplosion;
 import Application.Model.World.Character.Explosion;
 import Application.Model.World.Character.Fireball;
 import Application.Model.World.Character.Spaceship;
+import Application.Model.World.Control.ArrowsControlKeys;
+import Application.Model.World.Control.Control;
+import Application.Model.World.Control.WsadControlKeys;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Window;
 

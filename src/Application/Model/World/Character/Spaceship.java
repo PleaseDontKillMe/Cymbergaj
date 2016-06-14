@@ -1,9 +1,9 @@
 package Application.Model.World.Character;
 
 import Application.Geometry.Point;
-import Application.Model.World.Control;
-import Application.Model.World.ControlKeys;
-import Application.Model.World.SpaceshipControl;
+import Application.Model.World.Control.Control;
+import Application.Model.World.Control.ControlKeys;
+import Application.Model.World.Control.SpaceshipControl;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 import Application.View.Renderer.SpaceshipRenderer;

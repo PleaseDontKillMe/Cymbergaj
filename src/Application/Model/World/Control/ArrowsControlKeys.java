@@ -1,4 +1,4 @@
-package Application.Model.World;
+package Application.Model.World.Control;
 
 
 import java.awt.event.KeyEvent;

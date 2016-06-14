@@ -2,7 +2,7 @@ package Application.Model.World.Character;
 
 import Application.Geometry.Angle;
 import Application.Geometry.Point;
-import Application.Model.World.FireballControl;
+import Application.Model.World.Control.FireballControl;
 import Application.View.Renderer.FireballRenderer;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
