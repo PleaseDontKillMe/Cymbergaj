@@ -42,7 +42,7 @@ public class SpaceshipControl implements Control {
             goDown = true;
         }
         if (e.getKeyChar() == 32) {
-            Fireball.VELOCITY = 4;
+            Fireball.VELOCITY = 5;
         }
     }
 
@@ -55,7 +55,7 @@ public class SpaceshipControl implements Control {
             goDown = false;
         }
         if (e.getKeyChar() == 32) {
-            Fireball.VELOCITY = 0.2f;
+            Fireball.VELOCITY = 2f;
         }
     }
 }

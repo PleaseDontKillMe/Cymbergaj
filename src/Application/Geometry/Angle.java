@@ -23,6 +23,10 @@ public final class Angle {
         return angle;
     }
 
+    public double toDegrees() {
+        return value / Math.PI * 180;
+    }
+
     public double getValue() {
         return value;
     }
@@ -35,16 +39,8 @@ public final class Angle {
         return new Angle(this.value + value);
     }
 
-    public double toDegrees() {
-        return value / Math.PI * 180;
-    }
-
     public void setDegreeValue(double value) {
         this.value = value / 180 * Math.PI;
-    }
-
-    public void clockwise(double radians) {
-        this.value += radians;
     }
 
     public void flipHorizontal() {
@@ -69,7 +65,7 @@ public final class Angle {
     }
 
     public Angle getNormalized() {
-        return new Angle(this.value + Math.ceil(-this.toFraction()) * Math.PI*2);
+        return new Angle(this.value + Math.ceil(-this.toFraction()) * Math.PI * 2);
     }
 
     public double toFraction() {
