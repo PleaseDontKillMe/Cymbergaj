@@ -61,10 +61,7 @@ public final class Angle {
             newValue = Math.abs(difference - 2 * Math.PI);
         }
 
-        while (newValue > 2 * Math.PI) {
-            newValue -= 2 * Math.PI;
-        }
-        return new Angle(newValue);
+        return new Angle(newValue).getNormalized();
     }
 
     public Angle getNormalized() {

@@ -39,11 +39,9 @@ public class CircleBounce {
     }
 
     private BounceResult bounceWithBodies(Body body) {
-        BounceResult result = new BounceResult(true, body);
         Angle angle = bodyToBounce.getPosition().angle(body.getPosition());
-        FireballControl control = bodyToBounce.getControl();
-        control.bounceAngle(angle);
-        return result;
+        bodyToBounce.getControl().bounceAngle(angle);
+        return new BounceResult(true, body);
     }
 }
 
