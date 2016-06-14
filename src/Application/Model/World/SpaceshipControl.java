@@ -3,6 +3,7 @@ package Application.Model.World;
 
 import Application.Geometry.Bounds;
 import Application.Geometry.Point;
+import Application.Model.World.Character.Fireball;
 import Application.Model.World.Character.Spaceship;
 
 import java.awt.event.KeyEvent;
@@ -40,6 +41,9 @@ public class SpaceshipControl implements Control {
         if (keys.verifyDown(e)) {
             goDown = true;
         }
+        if (e.getKeyChar() == 32) {
+            Fireball.VELOCITY = 4;
+        }
     }
 
     @Override
@@ -49,6 +53,9 @@ public class SpaceshipControl implements Control {
         }
         if (keys.verifyDown(e)) {
             goDown = false;
+        }
+        if (e.getKeyChar() == 32) {
+            Fireball.VELOCITY = 0.2f;
         }
     }
 }
