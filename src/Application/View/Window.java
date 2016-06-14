@@ -1,12 +1,9 @@
 package Application.View;
 
-import Application.Geometry.Size;
 import Application.JFrameFactory;
 import Application.Model.GameEventListener;
 import Application.Model.WindowClosingListener;
-import Application.Model.World.World;
 import Application.Settings;
-import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 
 import javax.swing.*;
@@ -22,20 +19,14 @@ public class Window implements GameEventListener {
 
     private final BufferedImage backBuffer;
     private final Graphics2D canvas;
-    private final ImagesRepository images;
-    private final World world;
     private Graphics windowGraphics;
-    double frames = 0;
 
     private List<Application.View.Renderer.Renderer> renderers = new LinkedList<>();
 
-    public Window(Settings settings, ImagesRepository images, WindowClosingListener listener, World world) {
-        this.images = images;
-        this.world = world;
+    public Window(Settings settings, WindowClosingListener listener) {
         this.frame = JFrameFactory.create(settings, listener);
 
-        Size size = settings.size;
-        backBuffer = new BufferedImage(size.getWidth(), size.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        backBuffer = new BufferedImage(settings.size.getWidth(), settings.size.getHeight(), BufferedImage.TYPE_INT_ARGB);
         canvas = backBuffer.createGraphics();
     }
 
@@ -43,7 +34,7 @@ public class Window implements GameEventListener {
         frame.addKeyListener(listener);
     }
 
-    public void addRenderer(Application.View.Renderer.Renderer renderer) {
+    public void addRenderer(Renderer renderer) {
         renderers.add(renderer);
     }
 
@@ -58,11 +49,6 @@ public class Window implements GameEventListener {
         renderers.removeIf(Renderer::isFinished);
 
         flip();
-    }
-
-    @Override
-    public void update() {
-        frames -= 0.5;
     }
 
     private void flip() {

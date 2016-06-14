@@ -46,7 +46,7 @@ public class Application {
         world.addBody(rightShip);
         world.addBody(fireball);
 
-        window = new Window(settings, images, new WindowClosingListener(engine), world);
+        window = new Window(settings, new WindowClosingListener(engine));
         window.addKeyListener(leftControl);
         window.addKeyListener(rightControl);
         window.addRenderer(world.getRenderer(images));
