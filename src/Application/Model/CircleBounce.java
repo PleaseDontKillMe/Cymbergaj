@@ -2,10 +2,8 @@ package Application.Model;
 
 
 import Application.Geometry.Angle;
-import Application.Geometry.Point;
 import Application.Model.World.Character.Body;
 import Application.Model.World.Character.Fireball;
-import Application.Model.World.FireballControl;
 
 import java.util.List;
 
