@@ -1,6 +1,5 @@
 package Application.Geometry;
 
-import Application.Utility.Compare;
 
 public final class Angle {
     public static final double DELTA = 1e-5;
