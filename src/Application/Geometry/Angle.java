@@ -18,9 +18,7 @@ public final class Angle {
     }
 
     public static Angle fromDegrees(double value) {
-        Angle angle = new Angle();
-        angle.setDegreeValue(value);
-        return angle;
+        return new Angle(value / 180 * Math.PI);
     }
 
     public double toDegrees() {
@@ -37,10 +35,6 @@ public final class Angle {
 
     public Angle plus(double value) {
         return new Angle(this.value + value);
-    }
-
-    public void setDegreeValue(double value) {
-        this.value = value / 180 * Math.PI;
     }
 
     public void flipHorizontal() {
@@ -65,11 +59,7 @@ public final class Angle {
     }
 
     public Angle getNormalized() {
-        return new Angle(this.value + Math.ceil(-this.toFraction()) * Math.PI * 2);
-    }
-
-    public double toFraction() {
-        return value / (Math.PI * 2);
+        return new Angle(this.value + Math.ceil(-value / (Math.PI * 2)) * (Math.PI * 2));
     }
 
     public boolean equals(Angle angle) {
