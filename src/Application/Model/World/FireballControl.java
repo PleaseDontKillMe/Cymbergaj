@@ -45,6 +45,7 @@ public class FireballControl implements Control {
     }
 
     public void bounceAngle(Angle angle) {
-        fireball.getDirection().flipOf(angle);
+        Angle newDirection = fireball.getDirection().flipOf(angle);
+        fireball.getDirection().setValue(newDirection.getValue());
     }
 }
