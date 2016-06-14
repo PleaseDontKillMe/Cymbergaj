@@ -89,9 +89,7 @@ public class Point {
     }
 
     public double distanceTo(Point A) {
-        return Math.sqrt(
-                Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2)
-        );
+        return Math.sqrt(Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2));
     }
 
     public Angle angle(Point point) {
@@ -99,14 +97,12 @@ public class Point {
             throw new RuntimeException("Cannot calculate angle of the same points");
         }
 
-        Angle angle = new Angle(
-                Math.acos((this.y - point.y) / this.distanceTo(point))
-        );
+        Angle angle = new Angle(Math.asin((point.y - this.y) / this.distanceTo(point)));
 
         if (point.x < this.x) {
-            angle.setValue(-angle.getValue());
+            angle.setValue(Math.PI - angle.getValue());
         }
-        angle.setValue(Math.PI - angle.getValue());
+
         return angle;
     }
 
