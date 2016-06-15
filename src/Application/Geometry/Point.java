@@ -64,7 +64,7 @@ public class Point {
         return angle;
     }
 
-    private boolean equals(Point point) {
+    public boolean equals(Point point) {
         return Compare.doublesEqual(point.x, x, DELTA) && Compare.doublesEqual(point.y, y, DELTA);
     }
 

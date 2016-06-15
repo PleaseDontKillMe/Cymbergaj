@@ -24,7 +24,7 @@ public class FireballRenderer implements Renderer {
         Rotation rotation = new Rotation(newAngle, new Point(8, 32));
         Point position = fireball.getPosition();
         spriteSheet.drawOn(canvas, position, rotation);
-        canvas.drawString(position.toString(), position.getX(), position.getY());
+        canvas.drawString(position.toString() + "  " + fireball.getDirection().toDegrees(), position.getX(), position.getY());
     }
 
     @Override

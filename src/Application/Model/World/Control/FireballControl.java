@@ -5,6 +5,8 @@ import Application.Geometry.Bounds;
 import Application.Geometry.Point;
 import Application.Model.World.Character.Fireball;
 
+import java.awt.event.KeyEvent;
+
 public class FireballControl implements Control {
 
     private final Fireball fireball;
@@ -47,5 +49,13 @@ public class FireballControl implements Control {
     public void bounceAngle(Angle angle) {
         Angle newDirection = fireball.getDirection().flipOf(angle);
         fireball.getDirection().setValue(newDirection.getValue());
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyChar() == 8) {
+            fireball.getDirection().flip();
+            System.out.println("yes");
+        }
     }
 }

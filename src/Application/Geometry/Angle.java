@@ -26,8 +26,8 @@ public final class Angle {
         return value;
     }
 
-    public void setValue(double Value) {
-        value = Value;
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public Angle plus(double value) {
@@ -57,5 +57,9 @@ public final class Angle {
 
     public Angle getNormalized() {
         return new Angle(this.value + Math.ceil(-value / (Math.PI * 2)) * (Math.PI * 2));
+    }
+
+    public void flip() {
+        this.value = Math.PI + this.value;
     }
 }

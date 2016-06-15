@@ -49,6 +49,7 @@ class Application {
         window = new Window(settings, new WindowClosingListener(engine));
         window.addKeyListener(leftControl);
         window.addKeyListener(rightControl);
+        window.addKeyListener(fireballControl);
         window.addRenderer(world.getRenderer(images));
         window.addRenderer(leftShip.getRenderer(images));
         window.addRenderer(rightShip.getRenderer(images));
