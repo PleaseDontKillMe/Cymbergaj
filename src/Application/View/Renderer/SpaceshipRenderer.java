@@ -24,15 +24,14 @@ public class SpaceshipRenderer implements Renderer {
     @Override
     public void renderOn(Graphics2D canvas) {
         spriteSheet.drawOn(canvas, spaceship.getPosition(), new Rotation(new Angle(), new Point(32, 32)));
-        if (refreshesToNextFrame == 2) {
-            refreshesToNextFrame = 0;
-            spriteSheet.next();
-        }
-        refreshesToNextFrame++;
     }
 
     @Override
-    public boolean isFinished() {
-        return false;
+    public void update() {
+        refreshesToNextFrame++;
+        if (refreshesToNextFrame == 5) {
+            refreshesToNextFrame = 0;
+            spriteSheet.next();
+        }
     }
 }

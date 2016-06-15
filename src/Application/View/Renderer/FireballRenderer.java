@@ -23,8 +23,12 @@ public class FireballRenderer implements Renderer {
         Angle newAngle = Angle.fromDegrees(180 + fireball.getDirection().toDegrees());
         Rotation rotation = new Rotation(newAngle, new Point(8, 32));
         spriteSheet.drawOn(canvas, fireball.getPosition(), rotation);
+    }
+
+    @Override
+    public void update() {
         refreshesToNextFrame++;
-        if (refreshesToNextFrame == 3) {
+        if (refreshesToNextFrame == 8) {
             refreshesToNextFrame = 0;
             spriteSheet.next();
         }
