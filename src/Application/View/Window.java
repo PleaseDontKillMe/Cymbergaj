@@ -46,9 +46,13 @@ public class Window implements GameEventListener {
     @Override
     public void render() {
         renderers.forEach(renderer -> renderer.renderOn(canvas));
-        renderers.removeIf(Renderer::isFinished);
-
         flip();
+    }
+
+    @Override
+    public void update() {
+        renderers.forEach(Renderer::update);
+        renderers.removeIf(Renderer::isFinished);
     }
 
     private void flip() {
