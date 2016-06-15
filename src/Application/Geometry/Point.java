@@ -67,4 +67,9 @@ public class Point {
     private boolean equals(Point point) {
         return Compare.doublesEqual(point.x, x, DELTA) && Compare.doublesEqual(point.y, y, DELTA);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf((int)this.x) + '/' + String.valueOf((int)this.y);
+    }
 }
