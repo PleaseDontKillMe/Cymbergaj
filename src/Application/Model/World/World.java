@@ -2,7 +2,6 @@ package Application.Model.World;
 
 
 import Application.Geometry.Bounds;
-import Application.Model.CircleBounce;
 import Application.Model.GameEventListener;
 import Application.Model.World.Character.Body;
 import Application.Model.World.Character.Fireball;
@@ -47,6 +46,6 @@ public class World implements GameEventListener {
         bodies.forEach(body -> body.getControl().reactToBounds(bounds));
         bodies.stream()
                 .filter(body -> body instanceof Fireball)
-                .forEach(body -> new CircleBounce((Fireball) body, bodies).bounce());
+                .forEach(body -> new FireballBounce((Fireball) body, bodies).bounce());
     }
 }
