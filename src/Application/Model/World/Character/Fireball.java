@@ -25,11 +25,6 @@ public class Fireball extends Body {
         return VELOCITY;
     }
 
-    @Override
-    public int getRadius() {
-        return 7;
-    }
-
     public FireballControl getControl() {
         return new FireballControl(this);
     }

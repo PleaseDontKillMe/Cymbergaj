@@ -17,11 +17,6 @@ public class Spaceship extends Body {
         this.keys = keys;
     }
 
-    @Override
-    public int getRadius() {
-        return 32;
-    }
-
     public Control getControl() {
         return new SpaceshipControl(this, keys);
     }
