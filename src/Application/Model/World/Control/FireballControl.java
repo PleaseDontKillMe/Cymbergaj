@@ -55,7 +55,6 @@ public class FireballControl implements Control {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyChar() == 8) {
             fireball.getDirection().flip();
-            System.out.println("yes");
         }
     }
 }
