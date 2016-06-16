@@ -14,6 +14,8 @@ public class SpaceshipControl implements Control {
     private final ControlKeys keys;
     private boolean goDown = false, goUp = false;
 
+    private final int height = 158;
+
     public SpaceshipControl(Spaceship spaceship, ControlKeys keys) {
         this.spaceship = spaceship;
         this.keys = keys;
@@ -30,7 +32,7 @@ public class SpaceshipControl implements Control {
     public void reactToBounds(Bounds bounds) {
         Point position = spaceship.getPosition();
         position.y = Math.max(position.y, bounds.getTop());
-        position.y = Math.min(position.y, bounds.getBottom());
+        position.y = Math.min(position.y, bounds.getBottom() -  height);
     }
 
     @Override

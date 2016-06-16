@@ -14,6 +14,7 @@ public class ImagesRepository {
     BufferedImage plane;
     BufferedImage background;
     BufferedImage background2;
+    AnimatedSpriteSheet paddle;
     AnimatedSpriteSheet fireball;
     AnimatedSpriteSheet spaceship;
     AnimatedSpriteSheet explosion;
@@ -23,6 +24,7 @@ public class ImagesRepository {
         plane = image("plane.png");
         background = image("space-background1.png");
         background2 = image("space-background2.png");
+        paddle = animatedImage("paddle.png", 1, new Size(48, 158), 1);
         fireball = animatedImage("fireball.png", 8, new Size(64, 64), 8);
         spaceship = animatedImage("spaceship2.png", 32, new Size(64, 64));
         explosion = animatedImage("explosion.png", 25, new Size(64, 64), 5);

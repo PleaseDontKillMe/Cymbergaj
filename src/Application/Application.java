@@ -32,7 +32,7 @@ class Application {
 
         World world = new World(new Bounds(new Point(100, 70), new Size(880, 500)));
 
-        Spaceship leftShip = new Spaceship(new Point(110, 200), new WsadControlKeys());
+        Spaceship leftShip = new Spaceship(new Point(70, 200), new WsadControlKeys());
         Control leftControl = leftShip.getControl();
 
         Spaceship rightShip = new Spaceship(new Point(settings.size.getWidth() - 122, 200), new ArrowsControlKeys());
