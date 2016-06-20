@@ -14,6 +14,8 @@ public class SpaceshipControl implements Control {
     private final ControlKeys keys;
     private boolean goDown = false, goUp = false;
 
+    public static double VELOCITY = 2;
+
     public SpaceshipControl(Spaceship spaceship, ControlKeys keys) {
         this.spaceship = spaceship;
         this.keys = keys;
@@ -22,8 +24,8 @@ public class SpaceshipControl implements Control {
     @Override
     public void update() {
         Point position = spaceship.getPosition();
-        if (goDown) position.y += 5;
-        if (goUp) position.y -= 5;
+        if (goDown) position.y += VELOCITY;
+        if (goUp) position.y -= VELOCITY;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class SpaceshipControl implements Control {
             goDown = true;
         }
         if (e.getKeyChar() == 32) {
-            Fireball.VELOCITY = 5;
+            Fireball.VELOCITY = 2.9f;
         }
     }
 
