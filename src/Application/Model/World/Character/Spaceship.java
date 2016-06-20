@@ -21,6 +21,11 @@ public class Spaceship extends Body {
         return new SpaceshipControl(this, keys);
     }
 
+    @Override
+    public int getRadius() {
+        return 32;
+    }
+
     public Renderer getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
     }

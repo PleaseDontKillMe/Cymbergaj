@@ -29,6 +29,11 @@ public class Fireball extends Body {
         return new FireballControl(this);
     }
 
+    @Override
+    public int getRadius() {
+        return 8;
+    }
+
     public Renderer getRenderer(ImagesRepository images) {
         return new FireballRenderer(this, images);
     }
