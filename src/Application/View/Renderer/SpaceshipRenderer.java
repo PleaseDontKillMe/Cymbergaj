@@ -1,6 +1,9 @@
 package Application.View.Renderer;
 
 
+import Application.Geometry.Angle;
+import Application.Geometry.Point;
+import Application.Geometry.Rotation;
 import Application.Model.World.Character.Spaceship;
 import Application.View.AnimatedSpriteSheet;
 
@@ -14,11 +17,13 @@ public class SpaceshipRenderer implements Renderer {
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         this.spaceship = spaceship;
-        this.spriteSheet = images.paddle;
+        this.spriteSheet = images.spaceship;
     }
 
     @Override
     public void renderOn(Graphics2D canvas) {
-        spriteSheet.drawOn(canvas, spaceship.getPosition());
+        spriteSheet.drawOn(canvas, spaceship.getPosition(), new Rotation(new Angle(), new Point(32, 32)));
+        Point p = spaceship.getPosition();
+        canvas.fillOval(p.getX() - 3, p.getY() - 3, 6, 6);
     }
 }
