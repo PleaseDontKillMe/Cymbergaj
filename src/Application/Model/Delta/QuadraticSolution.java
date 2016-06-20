@@ -1,5 +1,7 @@
 package Application.Model.Delta;
 
+import java.util.Arrays;
+
 public class QuadraticSolution {
     private double[] solutions;
 
@@ -33,5 +35,20 @@ public class QuadraticSolution {
 
     public boolean hasTwo() {
         return solutions.length == 2;
+    }
+
+    public double getFirst() {
+        return solutions[0];
+    }
+
+    public double getSecond() {
+        return solutions[1];
+    }
+
+    @Override
+    public String toString() {
+        return "QuadraticSolution{" +
+                "solutions=" + Arrays.toString(solutions) +
+                '}';
     }
 }

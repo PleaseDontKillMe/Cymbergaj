@@ -46,7 +46,49 @@ public class QuadraticSolverTest {
         Assert.assertArrayEquals(solution.getSolutions(), expectedSolutions, Angle.DELTA);
     }
 
-    static double[] sol(double... solution) {
+    @Test
+    public void shouldGetNone() throws Exception {
+        // given
+        QuadraticSolution solution = new QuadraticSolution();
+
+        // when
+        boolean hasNone = solution.hasNone();
+
+        // then
+        Assert.assertTrue(hasNone);
+    }
+
+    @Test
+    public void shouldGetFirst() throws Exception {
+        // given
+        QuadraticSolution solution = new QuadraticSolution(2);
+
+        // when
+        boolean hasOne = solution.hasOne();
+        double first = solution.getFirst();
+
+        // then
+        Assert.assertTrue(hasOne);
+        Assert.assertEquals(2, first, Angle.DELTA);
+    }
+
+    @Test
+    public void shouldGetFirstAndSecond() throws Exception {
+        // given
+        QuadraticSolution solution = new QuadraticSolution(2, 3);
+
+        // when
+        boolean hasTwo = solution.hasTwo();
+        double first = solution.getFirst();
+        double second = solution.getSecond();
+
+        // then
+        Assert.assertTrue(hasTwo);
+        Assert.assertEquals(2, first, Angle.DELTA);
+        Assert.assertEquals(3, second, Angle.DELTA);
+    }
+
+    private static double[] sol(double... solution) {
         return solution;
     }
 }
