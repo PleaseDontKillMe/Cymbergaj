@@ -50,6 +50,10 @@ public class Point {
         return Math.sqrt(Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2));
     }
 
+    public double distancePowTo(Point A) {
+        return Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2);
+    }
+
     public Angle angleTo(Point point) {
         if (this.equals(point)) {
             throw new RuntimeException("Cannot calculate angleTo of the same points");

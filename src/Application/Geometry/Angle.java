@@ -55,6 +55,14 @@ public final class Angle {
         return new Angle(newValue).getNormalized();
     }
 
+    public double cos() {
+        return Math.cos(value);
+    }
+
+    public double sin() {
+        return Math.sin(value);
+    }
+
     public Angle getNormalized() {
         return new Angle(this.value + Math.ceil(-value / (Math.PI * 2)) * (Math.PI * 2));
     }
