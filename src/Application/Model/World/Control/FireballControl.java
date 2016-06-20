@@ -17,8 +17,12 @@ public class FireballControl implements Control {
 
     @Override
     public void update() {
+        moveAlong(fireball.getVelocity());
+    }
+
+    public void moveAlong(double moveAmount) {
         Point position = fireball.getPosition();
-        Point newPosition = position.find(fireball.getVelocity(), fireball.getDirection());
+        Point newPosition = position.find(moveAmount, fireball.getDirection());
         position.setSize(newPosition);
     }
 
