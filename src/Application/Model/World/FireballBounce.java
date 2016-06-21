@@ -35,7 +35,7 @@ public class FireballBounce {
         Angle direction = bodyToBounce.getDirection();
 
         double a1 = 1;
-        double b1 = 2 * (direction.sin() * (a.y - c.y) + direction.cos() * (a.x - c.x));
+        double b1 = 2 * direction.sin() * (a.y - c.y) + 2 * direction.cos() * (a.x - c.x);
         double c1 = a.distancePowTo(c) - Math.pow(body.getRadius(), 2);
 
         QuadraticSolution solution = new QuadraticSolver(a1, b1, c1).solve();

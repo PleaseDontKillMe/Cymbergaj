@@ -12,16 +12,24 @@ public class Bounds {
     }
 
     public float getTop() {
-        return (float)position.y;
+        return (float) position.y;
     }
 
     public float getBottom() {
-        return (float)position.y + size.getHeight();
+        return (float) position.y + size.getHeight();
+    }
+
+    public float getLeft() {
+        return (float) position.x;
+    }
+
+    public float getRight() {
+        return (float) position.x + size.getWidth();
     }
 
     public Point getCenter() {
         Point point = new Point(position);
-        return point.add(size.getWidth()/2, size.getHeight()/2);
+        return point.add(size.getWidth() / 2, size.getHeight() / 2);
     }
 
     public Shape asAwtShape() {
