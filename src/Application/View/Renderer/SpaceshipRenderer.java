@@ -17,7 +17,14 @@ public class SpaceshipRenderer implements Renderer {
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         this.spaceship = spaceship;
-        this.spriteSheet = images.spaceship;
+        this.spriteSheet = images.spaceship.getSpriteSheet();
+    }
+
+    @Override
+    public void update() {
+        double traveled = spaceship.getTraveledDistance();
+        int frame = (int) Math.round(traveled / 4.0);
+        spriteSheet.setFrame(frame);
     }
 
     @Override
