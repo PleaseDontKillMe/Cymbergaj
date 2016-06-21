@@ -9,12 +9,11 @@ import Application.Model.World.Character.Spaceship;
 import java.awt.event.KeyEvent;
 
 public class SpaceshipControl implements Control {
-
     private final Spaceship spaceship;
     private final ControlKeys keys;
     private boolean goDown = false, goUp = false, goLeft = false, goRight = false;
 
-    public static double VELOCITY = 2;
+    public static double VELOCITY = 2f;
 
     public SpaceshipControl(Spaceship spaceship, ControlKeys keys) {
         this.spaceship = spaceship;
