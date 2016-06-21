@@ -2,8 +2,8 @@ package Application.View;
 
 import Application.Geometry.Rotation;
 import Application.Geometry.Size;
-
 import Application.Geometry.Point;
+import Application.View.Renderer.SpriteSheetDefinition;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,6 +14,10 @@ public class AnimatedSpriteSheet {
     private final int spritesAmount;
     private final int columnsCount;
     private int currentSpriteIndex = 0;
+
+    public AnimatedSpriteSheet(SpriteSheetDefinition definition) {
+        this(definition.spriteSheet, definition.spriteSize, definition.spritesAmount, definition.columnsCount);
+    }
 
     public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
         this.spriteSheet = spriteSheet;
@@ -37,8 +41,8 @@ public class AnimatedSpriteSheet {
 
         canvas.drawImage(spriteSheet,
                 -rot.getX(), -rot.getY(),
-                spriteSize.getWidth()-rot.getX(),
-                spriteSize.getHeight()-rot.getY(),
+                spriteSize.getWidth() - rot.getX(),
+                spriteSize.getHeight() - rot.getY(),
                 column * spriteSize.getWidth(), row * spriteSize.getHeight(),
                 (column + 1) * spriteSize.getWidth(), (row + 1) * spriteSize.getHeight(),
                 null);
@@ -53,6 +57,10 @@ public class AnimatedSpriteSheet {
 
     public boolean isLast() {
         return currentSpriteIndex == (spritesAmount - 1);
+    }
+
+    public void setFrame(int index) {
+        currentSpriteIndex = index % spritesAmount;
     }
 
     protected int getColumnBasedOnIndex(int index) {

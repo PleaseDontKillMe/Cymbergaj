@@ -2,7 +2,6 @@ package Application.View.Renderer;
 
 
 import Application.Geometry.Size;
-import Application.View.AnimatedSpriteSheet;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -14,22 +13,41 @@ public class ImagesRepository {
     BufferedImage plane;
     BufferedImage background;
     BufferedImage background2;
-    AnimatedSpriteSheet fireball;
-    AnimatedSpriteSheet spaceship;
-    AnimatedSpriteSheet explosion;
-    AnimatedSpriteSheet bigExplosion;
+    SpriteSheetDefinition fireball;
+    SpriteSheetDefinition spaceship;
+    SpriteSheetDefinition explosion;
+    SpriteSheetDefinition bigExplosion;
 
     public void load() {
-        plane = image("plane.png");
-        background = image("space-background1.png");
-        background2 = image("space-background2.png");
-        fireball = animatedImage("fireball.png", 8, new Size(64, 64), 8);
-        spaceship = animatedImage("spaceship2.png", 32, new Size(64, 64));
-        explosion = animatedImage("explosion.png", 25, new Size(64, 64), 5);
-        bigExplosion = animatedImage("big-explosion.png", 73, new Size(100,100), 9);
+        plane = loadImage("plane.png");
+        background = loadImage("space-background1.png");
+        background2 = loadImage("space-background2.png");
+
+        fireball = image("fireball.png")
+                .amount(8)
+                .size(new Size(64, 64))
+                .columns(8)
+                .buildDefinition();
+
+        spaceship = image("spaceship2.png")
+                .amount(32)
+                .size(new Size(64, 64))
+                .buildDefinition();
+
+        explosion = image("explosion.png")
+                .amount(25)
+                .size(new Size(64, 64))
+                .columns(5)
+                .buildDefinition();
+
+        bigExplosion = image("big-explosion.png")
+                .amount(73)
+                .size(new Size(100, 100))
+                .columns(9)
+                .buildDefinition();
     }
 
-    private BufferedImage image(String filename) {
+    private BufferedImage loadImage(String filename) {
         try {
             return ImageIO.read(new File("res/" + filename));
         } catch (IOException ignored) {
@@ -37,12 +55,7 @@ public class ImagesRepository {
         }
     }
 
-    private AnimatedSpriteSheet animatedImage(String filename, int spritesAmount, Size spriteSize) {
-        return animatedImage(filename, spritesAmount, spriteSize, spritesAmount);
-    }
-
-    private AnimatedSpriteSheet animatedImage(String filename, int spritesAmount, Size spriteSize, int columnsCount) {
-        BufferedImage image = image(filename);
-        return new AnimatedSpriteSheet(image, spriteSize, spritesAmount, columnsCount);
+    private SpriteSheetDefinitionBuilder image(String filename) {
+        return new SpriteSheetDefinitionBuilder().image(loadImage(filename));
     }
 }
