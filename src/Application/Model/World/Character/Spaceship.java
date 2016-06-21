@@ -11,6 +11,7 @@ import Application.View.Renderer.SpaceshipRenderer;
 
 public class Spaceship extends Body {
     private final ControlKeys keys;
+    private double traveledDistance = 0;
 
     public Spaceship(Point position, ControlKeys keys) {
         super(position);
@@ -28,5 +29,13 @@ public class Spaceship extends Body {
 
     public Renderer getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
+    }
+
+    public double getTraveledDistance() {
+        return traveledDistance;
+    }
+
+    public void incTraveledDistance(double velocity) {
+        this.traveledDistance += velocity;
     }
 }
