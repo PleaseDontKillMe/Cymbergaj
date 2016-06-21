@@ -60,7 +60,7 @@ public class AnimatedSpriteSheet {
     }
 
     public void setFrame(int index) {
-        currentSpriteIndex = index % spritesAmount;
+        currentSpriteIndex = (index+spritesAmount) % spritesAmount;
     }
 
     protected int getColumnBasedOnIndex(int index) {
