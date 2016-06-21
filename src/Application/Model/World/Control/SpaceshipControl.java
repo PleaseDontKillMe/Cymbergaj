@@ -32,6 +32,14 @@ public class SpaceshipControl implements Control {
             position.y -= VELOCITY;
             spaceship.incTraveledDistance(-VELOCITY);
         }
+        if (goLeft) {
+            position.x -= VELOCITY;
+            spaceship.incTraveledDistance(-VELOCITY);
+        }
+        if (goRight) {
+            position.x += VELOCITY;
+            spaceship.incTraveledDistance(VELOCITY);
+        }
     }
 
     @Override
@@ -49,8 +57,14 @@ public class SpaceshipControl implements Control {
         if (keys.verifyDown(e)) {
             goDown = true;
         }
+        if (keys.verifyLeft(e)) {
+            goLeft = true;
+        }
+        if (keys.verifyRight(e)) {
+            goRight = true;
+        }
         if (e.getKeyChar() == 32) {
-            Fireball.VELOCITY = 2.1f;
+            Fireball.VELOCITY = .3f;
         }
     }
 
@@ -62,8 +76,14 @@ public class SpaceshipControl implements Control {
         if (keys.verifyDown(e)) {
             goDown = false;
         }
+        if (keys.verifyLeft(e)) {
+            goLeft = false;
+        }
+        if (keys.verifyRight(e)) {
+            goRight = false;
+        }
         if (e.getKeyChar() == 32) {
-            Fireball.VELOCITY = .3f;
+            Fireball.VELOCITY = 2.1f;
         }
     }
 }
