@@ -11,7 +11,7 @@ public class BigExplosionRenderer implements Renderer {
 
     public BigExplosionRenderer(BigExplosion explosion, ImagesRepository images) {
         this.explosion = explosion;
-        this.spriteSheet = images.bigExplosion;
+        this.spriteSheet = images.bigExplosion.getSpriteSheet();
     }
 
     @Override

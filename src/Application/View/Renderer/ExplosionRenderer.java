@@ -13,7 +13,7 @@ public class ExplosionRenderer implements Renderer {
 
     public ExplosionRenderer(Explosion explosion, ImagesRepository images) {
         this.explosion = explosion;
-        this.spriteSheet = images.explosion;
+        this.spriteSheet = images.explosion.getSpriteSheet();
     }
 
     @Override

@@ -15,7 +15,7 @@ public class FireballRenderer implements Renderer {
 
     public FireballRenderer(Fireball fireball, ImagesRepository images) {
         this.fireball = fireball;
-        this.spriteSheet = images.fireball;
+        this.spriteSheet = images.fireball.getSpriteSheet();
     }
 
     @Override
