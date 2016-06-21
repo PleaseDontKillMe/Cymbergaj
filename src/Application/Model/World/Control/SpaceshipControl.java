@@ -24,8 +24,14 @@ public class SpaceshipControl implements Control {
     @Override
     public void update() {
         Point position = spaceship.getPosition();
-        if (goDown) position.y += VELOCITY;
-        if (goUp) position.y -= VELOCITY;
+        if (goDown) {
+            position.y += VELOCITY;
+            spaceship.incTraveledDistance(VELOCITY);
+        }
+        if (goUp) {
+            position.y -= VELOCITY;
+            spaceship.incTraveledDistance(-VELOCITY);
+        }
     }
 
     @Override
@@ -44,7 +50,7 @@ public class SpaceshipControl implements Control {
             goDown = true;
         }
         if (e.getKeyChar() == 32) {
-            Fireball.VELOCITY = 2.9f;
+            Fireball.VELOCITY = 2.1f;
         }
     }
 
@@ -57,7 +63,7 @@ public class SpaceshipControl implements Control {
             goDown = false;
         }
         if (e.getKeyChar() == 32) {
-            Fireball.VELOCITY = .1f;
+            Fireball.VELOCITY = .3f;
         }
     }
 }
