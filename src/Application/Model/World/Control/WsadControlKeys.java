@@ -15,12 +15,12 @@ public class WsadControlKeys extends ControlKeys {
     }
 
     @Override
-    boolean verifyLeft(KeyEvent event) {
+    public boolean verifyLeft(KeyEvent event) {
         return event.getKeyChar() == 'a';
     }
 
     @Override
-    boolean verifyRight(KeyEvent event) {
+    public boolean verifyRight(KeyEvent event) {
         return event.getKeyChar() == 'd';
     }
 }

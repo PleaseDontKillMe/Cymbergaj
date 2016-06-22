@@ -16,12 +16,12 @@ public class ArrowsControlKeys extends ControlKeys {
     }
 
     @Override
-    boolean verifyLeft(KeyEvent event) {
+    public boolean verifyLeft(KeyEvent event) {
         return event.getKeyCode() == 37;
     }
 
     @Override
-    boolean verifyRight(KeyEvent event) {
+    public boolean verifyRight(KeyEvent event) {
         return event.getKeyCode() == 39;
     }
 }
