@@ -5,6 +5,7 @@ import Application.Geometry.Bounds;
 import Application.Model.GameEventListener;
 import Application.Model.World.Character.Body;
 import Application.Model.World.Character.Fireball;
+import Application.Model.World.Character.Spaceship;
 import Application.View.Renderer.ImagesRepository;
 import Application.View.Renderer.Renderer;
 import Application.View.Renderer.WorldRenderer;
@@ -49,10 +50,14 @@ public class World implements GameEventListener {
     @Override
     public void update() {
         FireballBounce fireballBounce = new FireballBounce(bodies, export);
+        InteruptiveShipMove interuptiveMove = new InteruptiveShipMove(bodies);
         backgroundSlide += backgroundSlideSpeed;
         bodies.forEach(body -> body.getControl().reactToBounds(bounds));
         bodies.stream()
                 .filter(body -> body instanceof Fireball)
                 .forEach(body -> fireballBounce.bounce((Fireball) body));
+        bodies.stream()
+                .filter(body -> body instanceof Spaceship)
+                .forEach(body -> interuptiveMove.move((Spaceship)body));
     }
 }
