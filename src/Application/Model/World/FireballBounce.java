@@ -9,6 +9,14 @@ import Application.Model.World.Character.Fireball;
 
 import java.util.List;
 
+// co się powinno dziać
+
+// 1. kiedy obiekt nie ma miejsc zerowych - nic
+// 2. kiedy obiekt ma wszystkie miejsca zerowe ujemne - nic
+// 3. Kiedy są dwa miejsca dodatnie, sprawdzić czy dystans jest mniejszy niż velocity:
+//  3.1 Tak? Przesuń o ten dystans
+//  3.2 Nie? Oblicz odległość do odbicia, przesuń o tyle, odbij, przesuń dalej tyle ile było
+
 public class FireballBounce {
     private Fireball fireball;
     private final List<Body> allBodies;
@@ -115,7 +123,7 @@ public class FireballBounce {
         double remain = fireball.getVelocity() - distance;
         Point b = a.find(distance, direction);
         fireball.getControl().bounceAngle(b.angleTo(ship).plus(Math.PI / 2));
-        fireball.getPosition().setSize(b);
+        fireball.getPosition().setSize(b.add(fireball.getPosition().diff(a)));
         fireball.getControl().moveAlong(remain);
     }
 }
