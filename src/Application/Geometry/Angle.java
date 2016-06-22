@@ -34,6 +34,10 @@ public final class Angle {
         return new Angle(this.value + value);
     }
 
+    public void inc(double value) {
+        this.value += value;
+    }
+
     public void flipHorizontal() {
         value = -value;
     }
