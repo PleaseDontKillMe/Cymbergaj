@@ -10,15 +10,24 @@ import Application.Model.World.Character.Fireball;
 import java.util.List;
 
 public class FireballBounce {
-    private final Fireball bodyToBounce;
+    private Fireball fireball;
     private final List<Body> allBodies;
+    private final DebugExportInterface export;
 
-    public FireballBounce(Fireball body, List<Body> bodies) {
-        this.bodyToBounce = body;
+    public FireballBounce(List<Body> bodies, DebugExportInterface export) {
         this.allBodies = bodies;
+        this.export = export;
     }
 
-    public void bounce() {
+    public FireballBounce(List<Body> bodies) {
+        this.allBodies = bodies;
+        this.export = new IgnoreDebugExport();
+    }
+
+    public void bounce(Fireball bodyToBounce) {
+        export.clear();
+        this.fireball = bodyToBounce;
+        export.setFireball(fireball);
         allBodies.stream()
                 .filter(body -> body != bodyToBounce)
                 .filter(this::bodiesHeadTowards)
@@ -30,37 +39,40 @@ public class FireballBounce {
     }
 
     private void bounceWithBody(Body body) {
-        Point a = bodyToBounce.getPosition().find(bodyToBounce.getRadius(), bodyToBounce.getDirection());
-        Point c = body.getPosition();
-        Angle direction = bodyToBounce.getDirection();
+        Point ship = body.getPosition();
+        Point a = fireball.getPosition().find(fireball.getRadius(), fireball.getPosition().angleTo(ship));
+        Angle direction = fireball.getDirection();
 
         double a1 = 1;
-        double b1 = 2 * direction.sin() * (a.y - c.y) + 2 * direction.cos() * (a.x - c.x);
-        double c1 = a.distancePowTo(c) - Math.pow(body.getRadius(), 2);
+        double b1 = 2 * direction.sin() * (a.y - ship.y) + 2 * direction.cos() * (a.x - ship.x);
+        double c1 = a.distancePowTo(ship) - Math.pow(body.getRadius(), 2);
 
         QuadraticSolution solution = new QuadraticSolver(a1, b1, c1).solve();
 
+        if (solution.hasNone()) {
+            export.hasNoDistance();
+        }
+
         if (solution.hasOne()) {
             double distance = solution.getFirst();
-            if (0 < distance && distance <= bodyToBounce.getVelocity()) {
-                doStuffWithDistance(a, c, direction, distance);
+            export.singleDistance(distance);
+            if (0 < distance && distance <= fireball.getVelocity()) {
+                doStuffWithDistance(a, ship, direction, distance);
             }
-            System.out.println(solution);
         }
 
         if (solution.hasTwo()) {
             double distance1 = solution.getFirst();
             double distance2 = solution.getSecond();
+            export.doubleDistance(distance1, distance2);
             double distance;
             if (distance1 > 0) {
                 if (distance2 >= 0) {
                     distance = Math.min(distance1, distance2);
-                }
-                else {
+                } else {
                     distance = distance1;
                 }
-            }
-            else {
+            } else {
                 if (distance2 >= 0) {
                     distance = distance2;
                 } else {
@@ -68,28 +80,18 @@ public class FireballBounce {
                 }
             }
 
-            if (0 < distance && distance <= bodyToBounce.getVelocity()) {
-                doStuffWithDistance(a, c, direction, distance);
+            if (0 < distance && distance <= fireball.getVelocity()*8) {
+                doStuffWithDistance(a, ship, direction, distance);
             }
-            print(distance);
         }
     }
 
-    static double previous = 0;
-    private void print(double distance) {
-        if (distance - previous > 1) {
-            System.out.println(distance);
-            previous = distance;
-        }
-    }
-
-    private void doStuffWithDistance(Point a, Point c, Angle direction, double distance) {
-        double remain = bodyToBounce.getVelocity() - distance;
+    private void doStuffWithDistance(Point a, Point ship, Angle direction, double distance) {
+        export.doStuffWith(a, ship, direction, distance);
+       /* double remain = fireball.getVelocity() - distance;
         Point b = a.find(distance, direction);
-        bodyToBounce.getControl().bounceAngle(b.angleTo(c).plus(Math.PI/2));
-        bodyToBounce.getPosition().setSize(b);
-        bodyToBounce.getControl().moveAlong(remain);
+        fireball.getControl().bounceAngle(b.angleTo(ship).plus(Math.PI/2));
+        fireball.getPosition().setSize(b);
+        fireball.getControl().moveAlong(remain); */
     }
-
-
 }
