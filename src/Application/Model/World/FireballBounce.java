@@ -38,6 +38,42 @@ public class FireballBounce {
         return true;
     }
 
+    /**
+     * Za tą metodą stoi silna matematyka. Wchodzisz na własną odpowiedzialność.
+     * Zobacz demo, uruchamiając metodę main w Application.Debug.DebugRunner
+     * <p>
+     * Ta metoda rozumuje tak: mają się odbić dwa okrągłe ciała. Znajdujemy na okręgu piłki taki punkt (a),
+     * który, jeżeli poprowadzić od niego linię równoległą do kierunku piłki, utworzy najbliższy dystans do
+     * okręgu drugiej piłki. Czyli po prostu obliczamy punkt w którym dwie piłki się odbiją (c). Obliczamy teraz
+     * tylko odległość (dystans) od tych dwóch punktów, i mamy dystans który ma przebyć piłka. Następnie zmieniamy jej
+     * kierunek (odbijamy ją). Piłka nie wchodzi w gracza bo ma już zmieniony kierunek.
+     * <p>
+     * <p>
+     * Korzystamy z: <p>
+     * 1) faktu że pierwszy punkt (a) musi być na okręgu koła (odległość od środka ma być równa promieniowi) <p>
+     * 2) wyznaczenia punktu pod pewnym kątem i odległością od innego punkty <p>
+     * (c.x - a.x)^2 + (c.y - a.y)^2 = r^2 <p>
+     * c.x = a.x + dystans * sin(angle) <p>
+     * c.y = a.y + dystans * sin(kąt) <p>
+     * <p>
+     * Po uproszczeniu wychodzi nam: <p>
+     * r^2 = dystans^2 * sin(kąt)^2 + 2*dystans*sin(kąt) *(a.y–c.y) + (a.y – c.y)^2 <p>
+     * + dystans^2 * cos(kąt)^2 + 2*dystans*cos(kąt)*(a.x–c.x)) + (a.x – c.x))^2 <p>
+     * <p>
+     * A po jeszcze większym, równanie kwadratowe (dystans to nasz x do znalezienia) <p>
+     * 0 = dystans^2 * (sin(kąt)^2 cos(kąt)^2) + 2*dystans*sin(kąt) *(cos(kąt)*(a.x–c.x) + (a.y–c.y)) + (a.y – c.y)^2 (a.x – c.x))^2 - r^2
+     * <p>
+     * <p>
+     * PS: Ta metoda jest tak zajebista, że działa nawet kiedy te koła się przecinają ale są w sobie.
+     * <p>
+     * 1) Oba x1 oraz x2 są dodatnie:                       koła się nie stykają (tutaj odbijamy)<p>
+     * 2) Jedno x1 albo x2 jest dodatnie, a drugie ujemne:  koła się przecinają<p>
+     * 3) Oba są ujemne:                                    jedno koło zjada całę inne koło, albo drugie koło jest za pierwszym i i tak się nigdy nie zderzą<p>
+     * 4) Nie ma miejsc zerowych:                           Jedno koło, zachowując swoją prędkość nigdy nie spotka<p>
+     * drugiego (nie zderzą się nigdy)
+     *
+     * @param body Jedno ciało od którego ma odbić się piłka.
+     */
     private void bounceWithBody(Body body) {
         Point ship = body.getPosition();
         Point a = fireball.getPosition().find(fireball.getRadius(), fireball.getPosition().angleTo(ship));
@@ -80,7 +116,7 @@ public class FireballBounce {
                 }
             }
 
-            if (0 < distance && distance <= fireball.getVelocity()*8) {
+            if (0 < distance && distance <= fireball.getVelocity() * 8) {
                 doStuffWithDistance(a, ship, direction, distance);
             }
         }
