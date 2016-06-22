@@ -45,7 +45,7 @@ public class FireballBounce {
      * Ta metoda rozumuje tak: mają się odbić dwa okrągłe ciała. Znajdujemy na okręgu piłki taki punkt (a),
      * który, jeżeli poprowadzić od niego linię równoległą do kierunku piłki, utworzy najbliższy dystans do
      * okręgu drugiej piłki. Czyli po prostu obliczamy punkt w którym dwie piłki się odbiją (c). Obliczamy teraz
-     * tylko odległość (dystans) od tych dwóch punktów, i mamy dystans który ma przebyć piłka. Następnie zmieniamy jej
+     * tylko odległość (dystans) tych dwóch punktów od siebie, i mamy dystans który ma przebyć piłka. Następnie zmieniamy jej
      * kierunek (odbijamy ją). Piłka nie wchodzi w gracza bo ma już zmieniony kierunek.
      * <p>
      * <p>
@@ -60,11 +60,11 @@ public class FireballBounce {
      * r^2 = dystans^2 * sin(kąt)^2 + 2*dystans*sin(kąt) *(a.y–c.y) + (a.y – c.y)^2 <p>
      * + dystans^2 * cos(kąt)^2 + 2*dystans*cos(kąt)*(a.x–c.x)) + (a.x – c.x))^2 <p>
      * <p>
-     * A po jeszcze większym, równanie kwadratowe (dystans to nasz x do znalezienia) <p>
+     * A po jeszcze większym uproszczeniu, równanie kwadratowe (dystans to nasz x do znalezienia) <p>
      * 0 = dystans^2 * (sin(kąt)^2 cos(kąt)^2) + 2*dystans*sin(kąt) *(cos(kąt)*(a.x–c.x) + (a.y–c.y)) + (a.y – c.y)^2 (a.x – c.x))^2 - r^2
      * <p>
      * <p>
-     * PS: Ta metoda jest tak zajebista, że działa nawet kiedy te koła się przecinają ale są w sobie.
+     * PS: Ta metoda jest tak zajebista, że działa nawet kiedy te koła się przecinają albo są w sobie.
      * <p>
      * 1) Oba x1 oraz x2 są dodatnie:                       koła się nie stykają (tutaj odbijamy)<p>
      * 2) Jedno x1 albo x2 jest dodatnie, a drugie ujemne:  koła się przecinają<p>
