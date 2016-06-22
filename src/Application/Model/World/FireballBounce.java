@@ -101,33 +101,21 @@ public class FireballBounce {
             double distance1 = solution.getFirst();
             double distance2 = solution.getSecond();
             export.doubleDistance(distance1, distance2);
-            double distance;
-            if (distance1 > 0) {
-                if (distance2 >= 0) {
-                    distance = Math.min(distance1, distance2);
-                } else {
-                    distance = distance1;
+            if (distance1 >= 0 && distance2 >= 0) {
+                double distance = Math.min(distance1, distance2);
+                if (distance <= fireball.getVelocity()) {
+                    doStuffWithDistance(a, ship, direction, distance);
                 }
-            } else {
-                if (distance2 >= 0) {
-                    distance = distance2;
-                } else {
-                    distance = -1;
-                }
-            }
-
-            if (0 < distance && distance <= fireball.getVelocity() * 8) {
-                doStuffWithDistance(a, ship, direction, distance);
             }
         }
     }
 
     private void doStuffWithDistance(Point a, Point ship, Angle direction, double distance) {
         export.doStuffWith(a, ship, direction, distance);
-       /* double remain = fireball.getVelocity() - distance;
+        double remain = fireball.getVelocity() - distance;
         Point b = a.find(distance, direction);
-        fireball.getControl().bounceAngle(b.angleTo(ship).plus(Math.PI/2));
+        fireball.getControl().bounceAngle(b.angleTo(ship).plus(Math.PI / 2));
         fireball.getPosition().setSize(b);
-        fireball.getControl().moveAlong(remain); */
+        fireball.getControl().moveAlong(remain);
     }
 }
