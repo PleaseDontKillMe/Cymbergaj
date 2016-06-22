@@ -13,16 +13,15 @@ public class QuadraticSolver {
     }
 
     public QuadraticSolution solve() {
-        double delta = b*b - 4*a*c;
+        double delta = b * b - 4 * a * c;
         if (delta < 0) {
             return new QuadraticSolution();
         }
         if (delta == 0) {
-            return new QuadraticSolution(-b / (2*a));
+            return new QuadraticSolution(-b / (2 * a));
         }
-
         double deltaSqrt = Math.sqrt(delta);
-        return new QuadraticSolution((- b - deltaSqrt)/ (2*a), (- b + deltaSqrt)/ (2*a));
+        return new QuadraticSolution((-b - deltaSqrt) / (2 * a), (-b + deltaSqrt) / (2 * a));
     }
 }
 
