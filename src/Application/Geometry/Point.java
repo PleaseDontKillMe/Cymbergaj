@@ -35,6 +35,14 @@ public class Point {
         this.y = p.y;
     }
 
+    public Point diff(Point point) {
+        return new Point(x - point.x, y - point.y);
+    }
+
+    public Point add(Point addition) {
+        return new Point(x + addition.x, y + addition.y);
+    }
+
     public Point add(double x, double y) {
         return new Point(this.x + x, this.y + y);
     }
