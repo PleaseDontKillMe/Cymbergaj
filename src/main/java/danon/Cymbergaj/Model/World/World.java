@@ -48,7 +48,7 @@ public class World implements GameEventListener {
     }
 
     @Override
-    public void update() {
+    public void update(double elapsedTime) {
         FireballBounce fireballBounce = new FireballBounce(bodies, export);
         InteruptiveShipMove interuptiveMove = new InteruptiveShipMove(bodies);
         backgroundSlide += backgroundSlideSpeed;

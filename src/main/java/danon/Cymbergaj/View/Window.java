@@ -49,7 +49,7 @@ public class Window implements GameEventListener {
     }
 
     @Override
-    public void update() {
+    public void update(double elapsedTime) {
         renderers.forEach(danon.Cymbergaj.View.Renderer.Renderer::update);
         renderers.removeIf(danon.Cymbergaj.View.Renderer.Renderer::isFinished);
     }

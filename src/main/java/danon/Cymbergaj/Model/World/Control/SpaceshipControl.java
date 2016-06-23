@@ -21,7 +21,7 @@ public class SpaceshipControl implements Control {
     }
 
     @Override
-    public void update() {
+    public void update(double elapsedTime) {
         Point position = spaceship.getPosition();
         if (goDown) {
             position.y += VELOCITY;

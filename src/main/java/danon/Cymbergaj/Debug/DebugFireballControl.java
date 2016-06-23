@@ -19,7 +19,7 @@ public class DebugFireballControl extends FireballControl {
     }
 
     @Override
-    public void update() {
+    public void update(double elapsedTime) {
         if (goClockwise) {
             fireball.getDirection().inc(Math.PI/30);
         }

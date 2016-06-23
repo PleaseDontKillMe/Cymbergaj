@@ -30,7 +30,7 @@ public class Engine implements GameEventListener {
             lag += elapsed / 1000000;
 
             while (lag >= (1000 / TPS)) {
-                updateAll();
+                updateAll(elapsed/1000);
                 lag -= (1000 / TPS);
             }
             double p = System.nanoTime();
@@ -42,8 +42,8 @@ public class Engine implements GameEventListener {
         System.out.println("Finishing...");
     }
 
-    private void updateAll() {
-        listeners.forEach(GameEventListener::update);
+    private void updateAll(double elapsedSeconds) {
+        listeners.forEach(listener -> listener.update(elapsedSeconds));
     }
 
     private void renderAll() {

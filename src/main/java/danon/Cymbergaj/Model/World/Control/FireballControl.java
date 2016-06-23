@@ -16,7 +16,7 @@ public class FireballControl implements Control {
     }
 
     @Override
-    public void update() {
+    public void update(double elapsedTime) {
         moveAlong(fireball.getVelocity());
     }
 
