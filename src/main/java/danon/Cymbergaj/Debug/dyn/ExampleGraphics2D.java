@@ -19,14 +19,14 @@ public class ExampleGraphics2D extends JFrame {
     public static final double SCALE = 45.0; //  The scale 45 pixels per meter
     public static final double NANO_TO_BASE = 1.0e9;
 
-    protected Canvas canvas;
+    protected Canvas canvas = new Canvas();
     protected World world;
-    protected boolean stopped;
+    protected boolean stopped = false;
     protected long last;
 
     public ExampleGraphics2D() {
         super("Graphics2D Example");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -38,17 +38,16 @@ public class ExampleGraphics2D extends JFrame {
 
         Dimension size = new Dimension(800, 600);
 
-        this.canvas = new Canvas();
-        this.canvas.setPreferredSize(size);
-        this.canvas.setMinimumSize(size);
-        this.canvas.setMaximumSize(size);
+        canvas.setPreferredSize(size);
+        canvas.setMinimumSize(size);
+        canvas.setMaximumSize(size);
 
-        this.add(this.canvas);
-        this.setResizable(false);
-        this.pack();
-        this.stopped = false;
+        add(this.canvas);
+        setResizable(false);
+        pack();
+        setLocationRelativeTo(null);
 
-        this.initializeWorld();
+        initializeWorld();
     }
 
     protected void initializeWorld() {
@@ -155,9 +154,9 @@ public class ExampleGraphics2D extends JFrame {
 
 
     public void start() {
-        this.last = System.nanoTime();
-        this.canvas.setIgnoreRepaint(true);
-        this.canvas.createBufferStrategy(2);
+        last = System.nanoTime();
+        canvas.setIgnoreRepaint(true);
+        canvas.createBufferStrategy(2);
         Thread thread = new Thread() {
             public void run() {
                 while (!isStopped()) {
@@ -170,7 +169,7 @@ public class ExampleGraphics2D extends JFrame {
     }
 
     protected void gameLoop() {
-        Graphics2D g = (Graphics2D) this.canvas.getBufferStrategy().getDrawGraphics();
+        Graphics2D g = (Graphics2D) canvas.getBufferStrategy().getDrawGraphics();
 
         // before we render everything im going to flip the y axis and move the
         // origin to the center (instead of it being in the top left corner)
@@ -182,7 +181,7 @@ public class ExampleGraphics2D extends JFrame {
         this.render(g);
         g.dispose();
 
-        BufferStrategy strategy = this.canvas.getBufferStrategy();
+        BufferStrategy strategy = canvas.getBufferStrategy();
         if (!strategy.contentsLost()) {
             strategy.show();
         }
@@ -191,8 +190,6 @@ public class ExampleGraphics2D extends JFrame {
         // (on Linux, this fixes event queue problems)
         Toolkit.getDefaultToolkit().sync();
 
-        // update the World
-
         long time = System.nanoTime();
         long elapsed = time - this.last;
         this.last = time;
@@ -200,16 +197,16 @@ public class ExampleGraphics2D extends JFrame {
         this.world.update(elapsedTimeInSeconds);
     }
 
-    protected void render(Graphics2D g) {
-        g.setColor(Color.WHITE);
-        g.fillRect(-400, -300, 800, 600);
+    protected void render(Graphics2D canvas) {
+        canvas.setColor(Color.WHITE);
+        canvas.fillRect(-400, -300, 800, 600);
 
         // lets move the view up some
-        g.translate(0.0, -1.0 * SCALE);
+        canvas.translate(0.0, -1.0 * SCALE);
 
         for (int i = 0; i < this.world.getBodyCount(); i++) {
             GameObject go = (GameObject) this.world.getBody(i);
-            go.render(g);
+            go.render(canvas);
         }
     }
 

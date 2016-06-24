@@ -26,7 +26,6 @@ public class GameObject extends Body {
         localTransform.translate(this.transform.getTranslationX() * ExampleGraphics2D.SCALE, this.transform.getTranslationY() * ExampleGraphics2D.SCALE);
         localTransform.rotate(this.transform.getRotation());
 
-        // apply the transform
         canvas.transform(localTransform);
 
         for (BodyFixture fixture : this.fixtures) {
@@ -34,7 +33,6 @@ public class GameObject extends Body {
             Graphics2DRenderer.render(canvas, convex, ExampleGraphics2D.SCALE, color);
         }
 
-        // set the original transform
         canvas.setTransform(originalTransform);
     }
 }
