@@ -9,9 +9,6 @@ public interface GameEventListener {
     default void update(double elapsedSeconds) {
     }
 
-    default void fps(double fps) {
-    }
-
     default void gameEnd() {
     }
 }

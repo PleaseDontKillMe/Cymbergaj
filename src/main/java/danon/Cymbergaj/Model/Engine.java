@@ -35,11 +35,7 @@ public class Engine implements GameEventListener {
             }
             double p = System.nanoTime();
             renderAll();
-            double time = (System.nanoTime() - p) / 1000000;
-
-            fpsAll(1000 / time);
         }
-        System.out.println("Finishing...");
     }
 
     private void updateAll(double elapsedSeconds) {
@@ -48,10 +44,6 @@ public class Engine implements GameEventListener {
 
     private void renderAll() {
         listeners.forEach(GameEventListener::render);
-    }
-
-    private void fpsAll(double fps) {
-        listeners.forEach(listener -> listener.fps(fps));
     }
 
     @Override
