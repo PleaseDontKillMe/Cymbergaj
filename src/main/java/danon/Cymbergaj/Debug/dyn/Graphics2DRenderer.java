@@ -1,45 +1,22 @@
 package danon.Cymbergaj.Debug.dyn;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Arc2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Path2D;
-
-import org.dyn4j.geometry.Capsule;
-import org.dyn4j.geometry.Circle;
-import org.dyn4j.geometry.Ellipse;
-import org.dyn4j.geometry.HalfEllipse;
+import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Polygon;
-import org.dyn4j.geometry.Segment;
 import org.dyn4j.geometry.Shape;
-import org.dyn4j.geometry.Slice;
-import org.dyn4j.geometry.Vector2;
 
-/**
- * Graphics2D renderer for dyn4j shape types.
- *
- * @author William Bittle
- * @version 3.1.7
- * @since 3.1.5
- */
-public final class Graphics2DRenderer {
-    /**
-     * Renders the given shape to the given graphics context using the given scale and color.
-     *
-     * @param g     the graphics context
-     * @param shape the shape to render
-     * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color the color
-     */
-    public static final void render(Graphics2D g, Shape shape, double scale, Color color) {
-        // no-op
-        if (shape == null) return;
+import java.awt.*;
+import java.awt.geom.*;
 
-        // just default the color
-        if (color == null) color = Color.ORANGE;
+public class Graphics2DRenderer {
+
+    public static void render(Graphics2D g, Shape shape, double scale, Color color) {
+        if (shape == null) {
+            return;
+        }
+
+        if (color == null)  {
+            color = Color.ORANGE;
+        }
 
         if (shape instanceof Circle) {
             Graphics2DRenderer.render(g, (Circle) shape, scale, color);
@@ -55,20 +32,10 @@ public final class Graphics2DRenderer {
             Graphics2DRenderer.render(g, (Slice) shape, scale, color);
         } else if (shape instanceof HalfEllipse) {
             Graphics2DRenderer.render(g, (HalfEllipse) shape, scale, color);
-        } else {
-            // unknown shape
         }
     }
 
-    /**
-     * Renders the given {@link Circle} to the given graphics context using the given scale and color.
-     *
-     * @param g      the graphics context
-     * @param circle the circle to render
-     * @param scale  the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color  the color
-     */
-    public static final void render(Graphics2D g, Circle circle, double scale, Color color) {
+    public static void render(Graphics2D g, Circle circle, double scale, Color color) {
         double radius = circle.getRadius();
         Vector2 center = circle.getCenter();
 
@@ -95,15 +62,7 @@ public final class Graphics2DRenderer {
         g.draw(l);
     }
 
-    /**
-     * Renders the given {@link Polygon} to the given graphics context using the given scale and color.
-     *
-     * @param g       the graphics context
-     * @param polygon the polygon to render
-     * @param scale   the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color   the color
-     */
-    public static final void render(Graphics2D g, Polygon polygon, double scale, Color color) {
+    public static void render(Graphics2D g, Polygon polygon, double scale, Color color) {
         Vector2[] vertices = polygon.getVertices();
         int l = vertices.length;
 
@@ -123,15 +82,7 @@ public final class Graphics2DRenderer {
         g.draw(p);
     }
 
-    /**
-     * Renders the given {@link Segment} to the given graphics context using the given scale and color.
-     *
-     * @param g       the graphics context
-     * @param segment the segment to render
-     * @param scale   the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color   the color
-     */
-    public static final void render(Graphics2D g, Segment segment, double scale, Color color) {
+    public static void render(Graphics2D g, Segment segment, double scale, Color color) {
         Vector2[] vertices = segment.getVertices();
 
         Line2D.Double l = new Line2D.Double(
@@ -145,15 +96,7 @@ public final class Graphics2DRenderer {
         g.draw(l);
     }
 
-    /**
-     * Renders the given {@link Capsule} to the given graphics context using the given scale and color.
-     *
-     * @param g       the graphics context
-     * @param capsule the capsule to render
-     * @param scale   the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color   the color
-     */
-    public static final void render(Graphics2D g, Capsule capsule, double scale, Color color) {
+    public static void render(Graphics2D g, Capsule capsule, double scale, Color color) {
         // get the local rotation and translation
         double rotation = capsule.getRotation();
         Vector2 center = capsule.getCenter();
@@ -205,15 +148,7 @@ public final class Graphics2DRenderer {
         g.setTransform(oTransform);
     }
 
-    /**
-     * Renders the given {@link Ellipse} to the given graphics context using the given scale and color.
-     *
-     * @param g       the graphics context
-     * @param ellipse the ellipse to render
-     * @param scale   the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color   the color
-     */
-    public static final void render(Graphics2D g, Ellipse ellipse, double scale, Color color) {
+    public static void render(Graphics2D g, Ellipse ellipse, double scale, Color color) {
         // get the local rotation and translation
         double rotation = ellipse.getRotation();
         Vector2 center = ellipse.getCenter();
@@ -242,15 +177,7 @@ public final class Graphics2DRenderer {
         g.setTransform(oTransform);
     }
 
-    /**
-     * Renders the given {@link Slice} to the given graphics context using the given scale and color.
-     *
-     * @param g     the graphics context
-     * @param slice the slice to render
-     * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color the color
-     */
-    public static final void render(Graphics2D g, Slice slice, double scale, Color color) {
+    public static void render(Graphics2D g, Slice slice, double scale, Color color) {
         double radius = slice.getSliceRadius();
         double theta2 = slice.getTheta() * 0.5;
 
@@ -285,15 +212,7 @@ public final class Graphics2DRenderer {
         g.setTransform(oTransform);
     }
 
-    /**
-     * Renders the given {@link HalfEllipse} to the given graphics context using the given scale and color.
-     *
-     * @param g           the graphics context
-     * @param halfEllipse the halfEllipse to render
-     * @param scale       the scale to render the shape (pixels per dyn4j unit (typically meter))
-     * @param color       the color
-     */
-    public static final void render(Graphics2D g, HalfEllipse halfEllipse, double scale, Color color) {
+    public static void render(Graphics2D g, HalfEllipse halfEllipse, double scale, Color color) {
         double width = halfEllipse.getWidth();
         double height = halfEllipse.getHeight();
 
@@ -329,14 +248,8 @@ public final class Graphics2DRenderer {
         g.setTransform(oTransform);
     }
 
-    /**
-     * Returns the outline color for the given color.
-     *
-     * @param color the fill color
-     * @return Color
-     */
-    private static final Color getOutlineColor(Color color) {
-        Color oc = color.darker();
-        return new Color(oc.getRed(), oc.getGreen(), oc.getBlue(), color.getAlpha());
+    private static Color getOutlineColor(Color color) {
+        Color darker = color.darker();
+        return new Color(darker.getRed(), darker.getGreen(), darker.getBlue(), color.getAlpha());
     }
 }
