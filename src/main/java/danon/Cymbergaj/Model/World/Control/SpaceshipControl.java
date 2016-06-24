@@ -42,15 +42,6 @@ public class SpaceshipControl implements Control {
     }
 
     @Override
-    public void reactToBounds(Bounds bounds) {
-        Point position = spaceship.getPosition();
-        position.y = Math.max(position.y, bounds.getTop());
-        position.y = Math.min(position.y, bounds.getBottom());
-        position.x = Math.max(position.x, bounds.getLeft());
-        position.x = Math.min(position.x, bounds.getRight());
-    }
-
-    @Override
     public void keyPressed(KeyEvent e) {
         if (keys.verifyUp(e)) {
             goUp = true;

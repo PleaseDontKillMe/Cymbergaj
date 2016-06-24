@@ -27,6 +27,5 @@ public class WorldRenderer implements Renderable {
         canvas.drawImage(background, -(x - width * 2), 0, null);
 
         canvas.setStroke(dashed);
-        canvas.draw(world.getBounds().asAwtShape());
     }
 }

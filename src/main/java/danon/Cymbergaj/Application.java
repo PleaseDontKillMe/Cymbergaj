@@ -30,7 +30,7 @@ class Application {
         ImagesRepository images = new ImagesRepository();
         images.load();
 
-        World world = new World(new Bounds(new Point(100, 70), new Size(880, 500)));
+        World world = new World();
 
         Spaceship leftShip = new Spaceship(new Point(70, 200), new WsadControlKeys());
         Control leftControl = leftShip.getControl();
@@ -39,12 +39,8 @@ class Application {
         Control rightControl = rightShip.getControl();
 
         Explosion explosion = new BigExplosion(new Point(100, 300));
-        Fireball fireball = new Fireball(world.getBounds().getCenter(), Angle.fromDegrees(40));
+        Fireball fireball = new Fireball(new Point(500, 300), Angle.fromDegrees(40));
         Control fireballControl = fireball.getControl();
-
-        world.addBody(leftShip);
-        world.addBody(rightShip);
-        world.addBody(fireball);
 
         window = new Window(settings, new WindowClosingListener(engine));
         window.addKeyListener(leftControl);
