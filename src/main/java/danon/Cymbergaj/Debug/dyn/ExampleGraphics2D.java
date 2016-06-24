@@ -1,88 +1,23 @@
 package danon.Cymbergaj.Debug.dyn;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
+import org.dyn4j.dynamics.BodyFixture;
+import org.dyn4j.dynamics.World;
+import org.dyn4j.geometry.*;
+import org.dyn4j.geometry.Polygon;
+import org.dyn4j.geometry.Rectangle;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
-import org.dyn4j.dynamics.Body;
-import org.dyn4j.dynamics.BodyFixture;
-import org.dyn4j.dynamics.World;
-import org.dyn4j.geometry.Capsule;
-import org.dyn4j.geometry.Circle;
-import org.dyn4j.geometry.Convex;
-import org.dyn4j.geometry.Geometry;
-import org.dyn4j.geometry.MassType;
-import org.dyn4j.geometry.Polygon;
-import org.dyn4j.geometry.Rectangle;
-import org.dyn4j.geometry.Slice;
-import org.dyn4j.geometry.Triangle;
-import org.dyn4j.geometry.Vector2;
-
-/**
- * Class used to show a simple example of using the dyn4j project using
- * Java2D for rendering.
- * <p>
- * This class can be used as a starting point for projects.
- * @author William Bittle
- * @version 3.2.0
- * @since 3.0.0
- */
 public class ExampleGraphics2D extends JFrame {
-    /** The serial version id */
-    private static final long serialVersionUID = 5663760293144882635L;
 
-    /** The scale 45 pixels per meter */
-    public static final double SCALE = 45.0;
+    public static final double SCALE = 45.0; //  The scale 45 pixels per meter
     public static final double NANO_TO_BASE = 1.0e9;
-
-    public static class GameObject extends Body {
-        /** The color of the object */
-        protected Color color;
-
-        /**
-         * Default constructor.
-         */
-        public GameObject() {
-            // randomly generate the color
-            this.color = new Color(
-                    (float)Math.random() * 0.5f + 0.5f,
-                    (float)Math.random() * 0.5f + 0.5f,
-                    (float)Math.random() * 0.5f + 0.5f);
-        }
-
-        public void render(Graphics2D g) {
-            // save the original transform
-            AffineTransform ot = g.getTransform();
-
-            // transform the coordinate system from world coordinates to local coordinates
-            AffineTransform lt = new AffineTransform();
-            lt.translate(this.transform.getTranslationX() * SCALE, this.transform.getTranslationY() * SCALE);
-            lt.rotate(this.transform.getRotation());
-
-            // apply the transform
-            g.transform(lt);
-
-            // loop over all the body fixtures for this body
-            for (BodyFixture fixture : this.fixtures) {
-                // get the shape on the fixture
-                Convex convex = fixture.getShape();
-                Graphics2DRenderer.render(g, convex, SCALE, color);
-            }
-
-            // set the original transform
-            g.setTransform(ot);
-        }
-    }
 
     protected Canvas canvas;
     protected World world;
@@ -238,7 +173,7 @@ public class ExampleGraphics2D extends JFrame {
     }
 
     protected void gameLoop() {
-        Graphics2D g = (Graphics2D)this.canvas.getBufferStrategy().getDrawGraphics();
+        Graphics2D g = (Graphics2D) this.canvas.getBufferStrategy().getDrawGraphics();
 
         // before we render everything im going to flip the y axis and move the
         // origin to the center (instead of it being in the top left corner)
@@ -279,7 +214,6 @@ public class ExampleGraphics2D extends JFrame {
     }
 
     protected void render(Graphics2D g) {
-        // lets draw over everything with a white background
         g.setColor(Color.WHITE);
         g.fillRect(-400, -300, 800, 600);
 
@@ -304,20 +238,8 @@ public class ExampleGraphics2D extends JFrame {
     }
 
     public static void main(String[] args) throws IllegalAccessException {
-        // set the look and feel to the system look and feel
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-
-        // create the example JFrame
         ExampleGraphics2D window = new ExampleGraphics2D();
-
-        // show it
         window.setVisible(true);
-
-        // start it
         window.start();
     }
 }
