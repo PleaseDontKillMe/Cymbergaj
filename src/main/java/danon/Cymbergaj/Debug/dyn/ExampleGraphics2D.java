@@ -52,7 +52,7 @@ public class ExampleGraphics2D extends JFrame {
 
     protected void initializeWorld() {
         this.world = new World();
-        world.setGravity(new Vector2(0,0));
+        world.setGravity(World.ZERO_GRAVITY);
 
         // create the floor
         GameObject floor1 = new GameObject(), floor2 = new GameObject();
