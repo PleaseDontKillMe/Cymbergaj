@@ -3,7 +3,6 @@ package danon.Cymbergaj.Debug.dyn;
 
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
-import org.dyn4j.geometry.Convex;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -23,7 +22,7 @@ abstract public class GameObject extends Body {
         canvas.transform(getLocalTransform());
 
         for (BodyFixture fixture : this.fixtures) {
-            Graphics2DRenderer.render(canvas, fixture.getShape(), ExampleGraphics2D.SCALE, color);
+            Graphics2DRenderer.render(canvas, fixture.getShape(), DebugApplication.SCALE, color);
             renderMe(canvas);
         }
 
@@ -32,7 +31,7 @@ abstract public class GameObject extends Body {
 
     private AffineTransform getLocalTransform() {
         AffineTransform localTransform = new AffineTransform();
-        localTransform.translate(transform.getTranslationX() * ExampleGraphics2D.SCALE, transform.getTranslationY() * ExampleGraphics2D.SCALE);
+        localTransform.translate(transform.getTranslationX() * DebugApplication.SCALE, transform.getTranslationY() * DebugApplication.SCALE);
         localTransform.rotate(transform.getRotation());
         return localTransform;
     }
