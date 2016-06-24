@@ -64,10 +64,7 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(floor);
 
         // create a triangle object
-        Triangle triShape = new Triangle(
-                new Vector2(0.0, 0.5),
-                new Vector2(-0.5, -0.5),
-                new Vector2(0.5, -0.5));
+        Triangle triShape = new Triangle(new Vector2(0.0, 0.5), new Vector2(-0.5, -0.5), new Vector2(0.5, -0.5));
         GameObject triangle = new GameObject();
         triangle.addFixture(triShape);
         triangle.setMass(MassType.NORMAL);
@@ -182,12 +179,7 @@ public class ExampleGraphics2D extends JFrame {
         g.transform(yFlip);
         g.transform(move);
 
-        // now (0, 0) is in the center of the screen with the positive x axis
-        // pointing right and the positive y axis pointing up
-
-        // render anything about the Example (will render the World objects)
         this.render(g);
-
         g.dispose();
 
         BufferStrategy strategy = this.canvas.getBufferStrategy();
@@ -201,16 +193,11 @@ public class ExampleGraphics2D extends JFrame {
 
         // update the World
 
-        // get the current time
         long time = System.nanoTime();
-        // get the elapsed time from the last iteration
-        long diff = time - this.last;
-        // set the last time
+        long elapsed = time - this.last;
         this.last = time;
-        // convert from nanoseconds to seconds
-        double elapsedTime = diff / NANO_TO_BASE;
-        // update the world with the elapsed time
-        this.world.update(elapsedTime);
+        double elapsedTimeInSeconds = elapsed / NANO_TO_BASE;
+        this.world.update(elapsedTimeInSeconds);
     }
 
     protected void render(Graphics2D g) {
@@ -220,11 +207,8 @@ public class ExampleGraphics2D extends JFrame {
         // lets move the view up some
         g.translate(0.0, -1.0 * SCALE);
 
-        // draw all the objects in the world
         for (int i = 0; i < this.world.getBodyCount(); i++) {
-            // get the object
             GameObject go = (GameObject) this.world.getBody(i);
-            // draw the object
             go.render(g);
         }
     }
