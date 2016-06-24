@@ -82,7 +82,6 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(wall1);
         this.world.addBody(wall2);
 
-
         // ball
         GameObject ball = new GameObject();
         BodyFixture ballFixture = new BodyFixture(new Circle(0.3));
@@ -104,7 +103,6 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(player1);
         this.world.addBody(player2);
     }
-
 
     public void start() {
         last = System.nanoTime();
