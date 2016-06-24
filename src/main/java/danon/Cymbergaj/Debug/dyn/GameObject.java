@@ -23,8 +23,8 @@ abstract public class GameObject extends Body {
         canvas.transform(getLocalTransform());
 
         for (BodyFixture fixture : this.fixtures) {
-            Convex convex = fixture.getShape();
-            Graphics2DRenderer.render(canvas, convex, ExampleGraphics2D.SCALE, color);
+            Graphics2DRenderer.render(canvas, fixture.getShape(), ExampleGraphics2D.SCALE, color);
+            renderMe(canvas);
         }
 
         canvas.setTransform(originalTransform);
@@ -38,6 +38,4 @@ abstract public class GameObject extends Body {
     }
 
     abstract public void renderMe(Graphics2D canvas);
-
-    abstract public void updateMe(double elapsedTime);
 }
