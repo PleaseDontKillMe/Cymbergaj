@@ -8,7 +8,7 @@ import org.dyn4j.geometry.Convex;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class GameObject extends Body {
+abstract public class GameObject extends Body {
     private Color color;
 
     public GameObject() {
@@ -36,4 +36,8 @@ public class GameObject extends Body {
         localTransform.rotate(transform.getRotation());
         return localTransform;
     }
+
+    abstract public void renderMe(Graphics2D canvas);
+
+    abstract public void updateMe(double elapsedTime);
 }
