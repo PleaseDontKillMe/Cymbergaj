@@ -3,7 +3,6 @@ package danon.Cymbergaj.Debug.dyn;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.*;
-import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Rectangle;
 
 import javax.swing.*;

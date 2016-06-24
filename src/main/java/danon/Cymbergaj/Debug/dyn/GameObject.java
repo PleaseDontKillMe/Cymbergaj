@@ -20,13 +20,7 @@ public class GameObject extends Body {
 
     public void render(Graphics2D canvas) {
         AffineTransform originalTransform = canvas.getTransform();
-
-        // transform the coordinate system from world coordinates to local coordinates
-        AffineTransform localTransform = new AffineTransform();
-        localTransform.translate(this.transform.getTranslationX() * ExampleGraphics2D.SCALE, this.transform.getTranslationY() * ExampleGraphics2D.SCALE);
-        localTransform.rotate(this.transform.getRotation());
-
-        canvas.transform(localTransform);
+        canvas.transform(getLocalTransform());
 
         for (BodyFixture fixture : this.fixtures) {
             Convex convex = fixture.getShape();
@@ -34,5 +28,12 @@ public class GameObject extends Body {
         }
 
         canvas.setTransform(originalTransform);
+    }
+
+    private AffineTransform getLocalTransform() {
+        AffineTransform localTransform = new AffineTransform();
+        localTransform.translate(transform.getTranslationX() * ExampleGraphics2D.SCALE, transform.getTranslationY() * ExampleGraphics2D.SCALE);
+        localTransform.rotate(transform.getRotation());
+        return localTransform;
     }
 }
