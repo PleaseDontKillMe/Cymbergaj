@@ -3,7 +3,7 @@ package danon.Cymbergaj.View.Renderer;
 
 import java.awt.*;
 
-public interface Renderer {
+public interface Renderable {
 
     void renderOn(Graphics2D canvas);
     default void update() {}

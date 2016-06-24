@@ -1,10 +1,10 @@
 package danon.Cymbergaj.Debug;
 
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 import java.awt.*;
 
-public class ClearScreenRenderer implements Renderer {
+public class ClearScreenRenderer implements Renderable {
 
     @Override
     public void renderOn(Graphics2D canvas) {

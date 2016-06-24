@@ -7,7 +7,7 @@ import danon.Cymbergaj.Model.World.Character.Body;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.WorldRenderer;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class World implements GameEventListener {
         return bounds;
     }
 
-    public Renderer getRenderer(ImagesRepository images) {
+    public Renderable getRenderer(ImagesRepository images) {
         return new WorldRenderer(this, images);
     }
 

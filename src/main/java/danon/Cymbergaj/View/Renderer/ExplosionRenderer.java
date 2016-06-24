@@ -7,7 +7,7 @@ import danon.Cymbergaj.View.AnimatedSpriteSheet;
 import java.awt.Graphics2D;
 
 
-public class ExplosionRenderer implements Renderer {
+public class ExplosionRenderer implements Renderable {
     private final Explosion explosion;
     private final AnimatedSpriteSheet spriteSheet;
 

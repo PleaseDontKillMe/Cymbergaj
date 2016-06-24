@@ -5,7 +5,7 @@ import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Model.World.Control.FireballControl;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 public class Fireball extends Body {
     private final Angle direction;
@@ -34,7 +34,7 @@ public class Fireball extends Body {
         return 8;
     }
 
-    public Renderer getRenderer(ImagesRepository images) {
+    public Renderable getRenderer(ImagesRepository images) {
         return new FireballRenderer(this, images);
     }
 }

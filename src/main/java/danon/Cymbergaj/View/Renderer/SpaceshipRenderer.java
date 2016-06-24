@@ -9,7 +9,7 @@ import danon.Cymbergaj.View.AnimatedSpriteSheet;
 import java.awt.*;
 
 
-public class SpaceshipRenderer implements Renderer {
+public class SpaceshipRenderer implements Renderable {
 
     private final Spaceship spaceship;
     private final AnimatedSpriteSheet spriteSheet;

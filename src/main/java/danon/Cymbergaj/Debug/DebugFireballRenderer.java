@@ -2,11 +2,11 @@ package danon.Cymbergaj.Debug;
 
 import danon.Cymbergaj.Geometry.Angle;
 import danon.Cymbergaj.Model.World.Character.Fireball;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 import java.awt.*;
 
-public class DebugFireballRenderer implements Renderer {
+public class DebugFireballRenderer implements Renderable {
 
     private Fireball fireball;
 

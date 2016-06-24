@@ -1,11 +1,11 @@
 package danon.Cymbergaj.Debug;
 
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 import java.awt.*;
 
 
-public class DebugRenderer implements Renderer {
+public class DebugRenderer implements Renderable {
     private DebugExport export;
 
     public DebugRenderer(DebugExport export) {

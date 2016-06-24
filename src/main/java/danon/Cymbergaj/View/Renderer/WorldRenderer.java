@@ -5,7 +5,7 @@ import danon.Cymbergaj.Model.World.World;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class WorldRenderer implements Renderer {
+public class WorldRenderer implements Renderable {
     private final World world;
     private final BufferedImage background;
 

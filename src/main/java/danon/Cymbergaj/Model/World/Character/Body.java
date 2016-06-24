@@ -3,7 +3,7 @@ package danon.Cymbergaj.Model.World.Character;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Model.World.Control.Control;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 public abstract class Body {
 
@@ -21,5 +21,5 @@ public abstract class Body {
 
     public abstract int getRadius();
 
-    public abstract Renderer getRenderer(ImagesRepository images);
+    public abstract Renderable getRenderer(ImagesRepository images);
 }

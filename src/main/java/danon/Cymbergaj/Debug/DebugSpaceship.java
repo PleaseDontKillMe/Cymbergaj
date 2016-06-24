@@ -4,7 +4,7 @@ import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.ControlKeys;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 public class DebugSpaceship extends Spaceship {
 
@@ -21,7 +21,7 @@ public class DebugSpaceship extends Spaceship {
     }
 
     @Override
-    public Renderer getRenderer(ImagesRepository images) {
+    public Renderable getRenderer(ImagesRepository images) {
         return new DebugSpaceshipRenderer(this);
     }
 }

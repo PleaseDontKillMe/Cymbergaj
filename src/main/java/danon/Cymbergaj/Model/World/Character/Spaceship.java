@@ -5,7 +5,7 @@ import danon.Cymbergaj.Model.World.Control.Control;
 import danon.Cymbergaj.Model.World.Control.ControlKeys;
 import danon.Cymbergaj.Model.World.Control.SpaceshipControl;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
 
 
@@ -27,7 +27,7 @@ public class Spaceship extends Body {
         return 32;
     }
 
-    public Renderer getRenderer(ImagesRepository images) {
+    public Renderable getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
     }
 

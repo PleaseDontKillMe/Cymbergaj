@@ -5,7 +5,7 @@ import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import java.awt.*;
 
-public class BigExplosionRenderer implements Renderer {
+public class BigExplosionRenderer implements Renderable {
     private final BigExplosion explosion;
     private final AnimatedSpriteSheet spriteSheet;
 

@@ -1,12 +1,12 @@
 package danon.Cymbergaj.Debug;
 
 import danon.Cymbergaj.Model.World.Character.Spaceship;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 import java.awt.*;
 
 
-public class DebugSpaceshipRenderer implements Renderer {
+public class DebugSpaceshipRenderer implements Renderable {
 
     private final Spaceship spaceship;
 

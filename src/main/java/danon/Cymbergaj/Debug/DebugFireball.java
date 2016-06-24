@@ -6,7 +6,7 @@ import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.FireballControl;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 public class DebugFireball extends Fireball {
 
@@ -25,7 +25,7 @@ public class DebugFireball extends Fireball {
     }
 
     @Override
-    public Renderer getRenderer(ImagesRepository images) {
+    public Renderable getRenderer(ImagesRepository images) {
         return new DebugFireballRenderer(this);
     }
 }

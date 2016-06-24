@@ -4,7 +4,7 @@ import danon.Cymbergaj.Geometry.Angle;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.DebugExportInterface;
-import danon.Cymbergaj.View.Renderer.Renderer;
+import danon.Cymbergaj.View.Renderer.Renderable;
 
 public class DebugExport implements DebugExportInterface {
 
@@ -14,7 +14,7 @@ public class DebugExport implements DebugExportInterface {
     public Point a = new Point(), b = new Point(), ship = new Point();
     public Angle direction = new Angle();
 
-    public Renderer getRenderer() {
+    public Renderable getRenderer() {
         return new DebugRenderer(this);
     }
 
