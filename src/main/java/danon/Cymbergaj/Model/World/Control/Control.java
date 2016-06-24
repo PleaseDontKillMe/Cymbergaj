@@ -8,8 +8,6 @@ import java.awt.event.KeyListener;
 
 public interface Control extends GameEventListener, KeyListener {
 
-    void reactToBounds(Bounds bounds);
-
     default void keyTyped(KeyEvent e) {}
     default void keyPressed(KeyEvent e) {}
     default void keyReleased(KeyEvent e) {}

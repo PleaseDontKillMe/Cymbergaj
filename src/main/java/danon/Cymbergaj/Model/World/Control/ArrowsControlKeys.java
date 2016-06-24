@@ -6,12 +6,12 @@ import java.awt.event.KeyEvent;
 public class ArrowsControlKeys extends ControlKeys {
 
     @Override
-    boolean verifyUp(KeyEvent event) {
+    public boolean verifyUp(KeyEvent event) {
         return event.getKeyCode() == 38;
     }
 
     @Override
-    boolean verifyDown(KeyEvent event) {
+    public boolean verifyDown(KeyEvent event) {
         return event.getKeyCode() == 40;
     }
 

@@ -1,5 +1,7 @@
 package danon.Cymbergaj.Debug.dyn;
 
+import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
+import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.*;
@@ -55,7 +57,7 @@ public class ExampleGraphics2D extends JFrame {
         world.setGravity(World.ZERO_GRAVITY);
 
         // create the floor
-        GameObject floor1 = new GameObject(), floor2 = new GameObject();
+        GameObject floor1 = new Wall(), floor2 = new Wall();
 
         Rectangle horizontalRectangle = new Rectangle(20.0, 0.2);
         floor1.addFixture(new BodyFixture(horizontalRectangle));
@@ -68,7 +70,7 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(floor1);
         this.world.addBody(floor2);
 
-        GameObject wall1 = new GameObject(), wall2 = new GameObject();
+        GameObject wall1 = new Wall(), wall2 = new Wall();
 
         BodyFixture fixture = new BodyFixture(new Rectangle(0.2, 14.0));
         wall1.addFixture(fixture);
@@ -82,7 +84,7 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(wall2);
 
         // ball
-        GameObject ball = new GameObject();
+        GameObject ball = new Ball();
         BodyFixture ballFixture = new BodyFixture(new Circle(0.3));
         ballFixture.setRestitution(1.0);
         ball.addFixture(ballFixture);
@@ -92,7 +94,7 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(ball);
 
         // players
-        GameObject player1 = new GameObject(), player2 = new GameObject();
+        Player player1 = new Player(new WsadControlKeys()), player2 = new Player(new ArrowsControlKeys());
         player1.addFixture(new Circle(0.7));
         player1.setMass(MassType.NORMAL);
         player1.translate(-9.0, 0.0);
@@ -101,6 +103,9 @@ public class ExampleGraphics2D extends JFrame {
         player2.setMass(MassType.NORMAL);
         this.world.addBody(player1);
         this.world.addBody(player2);
+
+        this.addKeyListener(player1);
+        this.addKeyListener(player2);
     }
 
     public void start() {
