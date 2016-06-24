@@ -1,5 +1,6 @@
 package danon.Cymbergaj.Debug.dyn;
 
+import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import org.dyn4j.dynamics.BodyFixture;
@@ -15,20 +16,21 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 
 
-public class ExampleGraphics2D extends JFrame {
+public class DebugApplication extends JFrame {
 
     public static final double SCALE = 45.0; //  The scale 45 pixels per meter
     public static final double NANO_TO_BASE = 1.0e9;
 
+    private final Dimension size;
     protected Canvas canvas = new Canvas();
     protected World world;
     protected boolean stopped = false;
     protected long last;
-    private Dimension size;
 
-    public ExampleGraphics2D() {
+    public DebugApplication() {
         super("Graphics2D Example");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -45,7 +47,6 @@ public class ExampleGraphics2D extends JFrame {
         canvas.setMaximumSize(size);
 
         add(this.canvas);
-        setResizable(false);
         pack();
         setLocationRelativeTo(null);
 
@@ -84,7 +85,7 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(wall2);
 
         // ball
-        GameObject ball = new Ball();
+        GameObject ball = new Fireball();
         BodyFixture ballFixture = new BodyFixture(new Circle(0.3));
         ballFixture.setRestitution(1.0);
         ball.addFixture(ballFixture);
@@ -94,7 +95,7 @@ public class ExampleGraphics2D extends JFrame {
         this.world.addBody(ball);
 
         // players
-        Player player1 = new Player(new WsadControlKeys()), player2 = new Player(new ArrowsControlKeys());
+        Spaceship player1 = new Spaceship(new WsadControlKeys()), player2 = new Spaceship(new ArrowsControlKeys());
         player1.addFixture(new Circle(0.7));
         player1.setMass(MassType.NORMAL);
         player1.translate(-9.0, 0.0);
@@ -171,7 +172,7 @@ public class ExampleGraphics2D extends JFrame {
     }
 
     public static void main(String[] args) throws IllegalAccessException {
-        ExampleGraphics2D window = new ExampleGraphics2D();
+        DebugApplication window = new DebugApplication();
         window.setVisible(true);
         window.start();
     }
