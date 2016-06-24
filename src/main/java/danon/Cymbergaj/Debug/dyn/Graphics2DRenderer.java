@@ -7,31 +7,23 @@ import org.dyn4j.geometry.Shape;
 import java.awt.*;
 import java.awt.geom.*;
 
-public class Graphics2DRenderer {
+class Graphics2DRenderer {
 
     public static void render(Graphics2D g, Shape shape, double scale, Color color) {
-        if (shape == null) {
-            return;
-        }
-
-        if (color == null)  {
-            color = Color.ORANGE;
-        }
-
         if (shape instanceof Circle) {
-            Graphics2DRenderer.render(g, (Circle) shape, scale, color);
+            render(g, (Circle) shape, scale, color);
         } else if (shape instanceof Polygon) {
-            Graphics2DRenderer.render(g, (Polygon) shape, scale, color);
+            render(g, (Polygon) shape, scale, color);
         } else if (shape instanceof Segment) {
-            Graphics2DRenderer.render(g, (Segment) shape, scale, color);
+            render(g, (Segment) shape, scale, color);
         } else if (shape instanceof Capsule) {
-            Graphics2DRenderer.render(g, (Capsule) shape, scale, color);
+            render(g, (Capsule) shape, scale, color);
         } else if (shape instanceof Ellipse) {
-            Graphics2DRenderer.render(g, (Ellipse) shape, scale, color);
+            render(g, (Ellipse) shape, scale, color);
         } else if (shape instanceof Slice) {
-            Graphics2DRenderer.render(g, (Slice) shape, scale, color);
+            render(g, (Slice) shape, scale, color);
         } else if (shape instanceof HalfEllipse) {
-            Graphics2DRenderer.render(g, (HalfEllipse) shape, scale, color);
+            render(g, (HalfEllipse) shape, scale, color);
         }
     }
 
