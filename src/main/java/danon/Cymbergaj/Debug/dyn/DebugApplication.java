@@ -16,18 +16,19 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 
 
-public class DebugApplication extends JFrame {
+public final class DebugApplication extends JFrame {
 
-    public static final double SCALE = 45.0; //  The scale 45 pixels per meter
-    public static final double NANO_TO_BASE = 1.0e9;
+    static final double SCALE = 45.0; //  The scale 45 pixels per meter
+    private static final double NANO_TO_BASE = 1.0e9;
 
     private final Dimension size;
-    protected Canvas canvas = new Canvas();
+    protected final Canvas canvas = new Canvas();
     protected World world;
-    protected boolean stopped = false;
-    protected long last;
 
-    public DebugApplication() {
+    private boolean stopped = false;
+    private long last;
+
+    private DebugApplication() {
         super("Graphics2D Example");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
