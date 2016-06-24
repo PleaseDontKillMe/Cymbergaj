@@ -13,6 +13,9 @@ import java.awt.event.WindowEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 
+import static javax.swing.JFrame.*;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 
 public class ExampleGraphics2D extends JFrame {
 
@@ -26,7 +29,7 @@ public class ExampleGraphics2D extends JFrame {
 
     public ExampleGraphics2D() {
         super("Graphics2D Example");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -159,7 +162,7 @@ public class ExampleGraphics2D extends JFrame {
         canvas.createBufferStrategy(2);
         Thread thread = new Thread() {
             public void run() {
-                while (!isStopped()) {
+                while (isStarted()) {
                     gameLoop();
                 }
             }
@@ -211,11 +214,11 @@ public class ExampleGraphics2D extends JFrame {
     }
 
     public synchronized void stop() {
-        this.stopped = true;
+        stopped = true;
     }
 
-    public synchronized boolean isStopped() {
-        return this.stopped;
+    public synchronized boolean isStarted() {
+        return !stopped;
     }
 
     public static void main(String[] args) throws IllegalAccessException {

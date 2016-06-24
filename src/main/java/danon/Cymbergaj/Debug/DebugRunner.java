@@ -26,9 +26,7 @@ public class DebugRunner implements GameEventListener {
         settings.windowTitle = "Cymbergaj | Debug Mode";
         settings.size = new Size(1080, 620);
 
-        DebugExport export = new DebugExport();
-
-        World world = new World(new Bounds(new Point(100, 70), new Size(880, 500)), export);
+        World world = new World(new Bounds(new Point(100, 70), new Size(880, 500)));
 
         Spaceship leftShip = new DebugSpaceship(new Point(70, 200), new WsadControlKeys());
         Control leftControl = leftShip.getControl();
@@ -43,7 +41,6 @@ public class DebugRunner implements GameEventListener {
         window.addKeyListener(leftControl);
         window.addKeyListener(fireballControl);
         window.addRenderer(new ClearScreenRenderer());
-        window.addRenderer(export.getRenderer());
         window.addRenderer(leftShip.getRenderer(null));
         window.addRenderer(fireball.getRenderer(null));
 

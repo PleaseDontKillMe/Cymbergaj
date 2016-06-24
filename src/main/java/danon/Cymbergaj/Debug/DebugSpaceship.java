@@ -8,11 +8,8 @@ import danon.Cymbergaj.View.Renderer.Renderable;
 
 public class DebugSpaceship extends Spaceship {
 
-    private final ControlKeys controlKeys;
-
     public DebugSpaceship(Point point, ControlKeys controlKeys) {
         super(point, controlKeys);
-        this.controlKeys = controlKeys;
     }
 
     @Override
