@@ -33,7 +33,6 @@ public class Engine implements GameEventListener {
                 updateAll(elapsed/1000);
                 lag -= (1000 / TPS);
             }
-            double p = System.nanoTime();
             renderAll();
         }
     }
