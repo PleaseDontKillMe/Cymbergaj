@@ -12,14 +12,14 @@ public class Engine implements GameEventListener {
     private boolean shouldStop = false;
 
     public void start() {
-        variableTimeStepLoop();
+        fixedTimeStepLoop();
     }
 
     public void addGameEventListener(GameEventListener listener) {
         listeners.add(listener);
     }
 
-    private void variableTimeStepLoop() {
+    private void fixedTimeStepLoop() {
         double previous = System.nanoTime();
         double lag = 0.0;
 
