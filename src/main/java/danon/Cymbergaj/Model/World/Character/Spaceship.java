@@ -27,8 +27,8 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
 
         BodyFixture fixture = new BodyFixture(new Circle(0.7));
         fixture.setFriction(0.0);
-        addFixture(fixture);
-        setMass(MassType.NORMAL);
+        this.addFixture(fixture);
+        this.setMass(MassType.NORMAL);
     }
 
     public SpaceshipRenderer getRenderer(ImagesRepository images) {

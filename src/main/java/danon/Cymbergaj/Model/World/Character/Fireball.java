@@ -11,10 +11,10 @@ public class Fireball extends GameObject  {
     public Fireball() {
         BodyFixture ballFixture = new BodyFixture(new Circle(0.4));
         ballFixture.setRestitution(1.0);
-        addFixture(ballFixture);
-        setMass(MassType.NORMAL);
-        setLinearDamping(0.05);
-        setUserData("ball");
+        this.addFixture(ballFixture);
+        this.setMass(MassType.NORMAL);
+        this.setLinearDamping(0.05);
+        this.setUserData("ball");
     }
 
     public FireballRenderer getRenderer(ImagesRepository images) {

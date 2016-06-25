@@ -12,9 +12,8 @@ public class Floor extends GameObject {
     public Floor() {
         BodyFixture floorFixture = new BodyFixture(new Rectangle(20.0, 0.2));
         floorFixture.setRestitution(0.0);
-        addFixture(floorFixture);
-        addFixture(floorFixture);
-        setMass(MassType.INFINITE);
+        this.addFixture(floorFixture);
+        this.setMass(MassType.INFINITE);
     }
 
     @Override

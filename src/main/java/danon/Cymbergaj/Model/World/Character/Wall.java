@@ -12,9 +12,9 @@ public class Wall extends GameObject {
     public Wall(String userData) {
         BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 12.0));
         wallFixture.setRestitution(0.0);
-        addFixture(wallFixture);
-        setMass(MassType.INFINITE);
-        setUserData(userData);
+        this.addFixture(wallFixture);
+        this.setMass(MassType.INFINITE);
+        this.setUserData(userData);
     }
 
     @Override
