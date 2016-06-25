@@ -23,7 +23,7 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
         this.controlKeys.useKeys(this.keys);
     }
 
-    public Renderer getRenderer(ImagesRepository images) {
+    public SpaceshipRenderer getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
     }
 

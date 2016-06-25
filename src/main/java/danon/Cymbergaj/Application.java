@@ -9,6 +9,7 @@ import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import danon.Cymbergaj.View.Renderer.ClearScreenRenderer;
+import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
@@ -29,14 +30,26 @@ public final class Application {
     private final World world = new World();
     private final Game game;
     private final SoundsRepository sounds = new SoundsRepository();
+    private final ImagesRepository images = new ImagesRepository();
 
     private Application() {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 600));
 
         this.window = new Window(settings, closeEvent -> engine.stop());
         this.game = new Game(settings.getSize());
+    }
+
+    private void start() {
+        sounds.load();
+        images.load();
 
         initializeWorld();
+
+        engine.addUpdateListener(world::update);
+        engine.addRenderListener(window::render);
+
+        window.show();
+        engine.start();
     }
 
     private void initializeWorld() {
@@ -131,7 +144,7 @@ public final class Application {
         });
 
         // ball
-        GameObject ball = new Fireball();
+        Fireball ball = new Fireball();
         BodyFixture ballFixture = new BodyFixture(new Circle(0.4));
         ballFixture.setRestitution(1.0);
         ball.addFixture(ballFixture);
@@ -161,8 +174,6 @@ public final class Application {
         window.addKeyListener(player1);
         window.addKeyListener(player2);
 
-        ImagesRepository images = new ImagesRepository();
-        images.load();
 
         window.addRenderer(new ClearScreenRenderer(window.getDimension()));
         window.addRenderer(game.getRenderer(images));
@@ -176,21 +187,13 @@ public final class Application {
         window.addRenderer(stopper4.getRenderer(images));
         window.addRenderer(player1.getRenderer(images));
         window.addRenderer(player2.getRenderer(images));
-        window.addRenderer(ball.getRenderer(images));
+        FireballRenderer renderer = ball.getRenderer(images);
+        window.addRenderer(renderer);
 
         engine.addUpdateListener(player1);
         engine.addUpdateListener(player2);
         engine.addUpdateListener(game);
-    }
-
-    private void start() {
-        sounds.load();
-
-        engine.addUpdateListener(world::update);
-        engine.addRenderListener(window::render);
-
-        window.show();
-        engine.start();
+        engine.addUpdateListener(renderer);
     }
 
     public static void main(String[] args) {

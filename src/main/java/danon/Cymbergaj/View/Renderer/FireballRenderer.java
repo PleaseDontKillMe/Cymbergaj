@@ -11,7 +11,7 @@ import org.dyn4j.geometry.Vector2;
 import java.awt.*;
 
 
-public class FireballRenderer extends BodyRenderer {
+public class FireballRenderer extends BodyRenderer implements Updatable {
 
     private final Fireball fireball;
     private final AnimatedSpriteSheet spriteSheet;
@@ -36,7 +36,7 @@ public class FireballRenderer extends BodyRenderer {
     }
 
     @Override
-    public void update(double elapsedTime) {
+    public void updateMe(double elapsedTime) {
         refreshesToNextFrame++;
         if (refreshesToNextFrame == 8) {
             refreshesToNextFrame = 0;

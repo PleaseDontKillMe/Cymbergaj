@@ -9,7 +9,7 @@ import danon.Cymbergaj.View.AnimatedSpriteSheet;
 import java.awt.*;
 
 
-public class SpaceshipRenderer extends BodyRenderer {
+public class SpaceshipRenderer extends BodyRenderer implements Updatable {
 
     private final Spaceship spaceship;
     private final AnimatedSpriteSheet spriteSheet;
@@ -23,7 +23,7 @@ public class SpaceshipRenderer extends BodyRenderer {
     double totalElapsedTime = 0;
 
     @Override
-    public void update(double elapsedTime) {
+    public void updateMe(double elapsedTime) {
         totalElapsedTime += elapsedTime;
         int frame = (int) Math.round(totalElapsedTime * 40.0);
         spriteSheet.setFrame(frame);
