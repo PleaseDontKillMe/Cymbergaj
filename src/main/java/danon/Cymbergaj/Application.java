@@ -189,17 +189,6 @@ public final class Application {
     }
 
     public static void main(String[] args) {
-
-        try {
-            File file = new File("res/LookAtMyHorse.wav");
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-            clip.open(ais);
-          //  clip.start();
-        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        }
-
         new Application().start();
     }
 }
