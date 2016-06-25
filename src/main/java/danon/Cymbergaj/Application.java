@@ -26,7 +26,6 @@ import java.util.Objects;
 public final class Application {
 
     public static final double SCALE = 45.0; //  The scale 45 pixels per meter
-    public static final double NANO_TO_BASE = 1.0e9;
 
     private final Engine engine = new Engine();
     private final Window window;

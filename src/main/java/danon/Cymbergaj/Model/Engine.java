@@ -20,7 +20,7 @@ public class Engine {
             double current = System.nanoTime();
             double elapsed = current - previous;
             previous = current;
-            updateAll(elapsed / Application.NANO_TO_BASE);
+            updateAll(elapsed / 1.0e9);
             renderAll();
         }
     }
