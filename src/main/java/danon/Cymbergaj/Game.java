@@ -1,19 +1,18 @@
 package danon.Cymbergaj;
 
+import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.View.Renderer.GameRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;
 import danon.Cymbergaj.View.Renderer.Updatable;
 
-import java.awt.*;
-
 public class Game implements Updatable {
     private int points1 = 0, points2 = 0;
     private int backgroundXSlide = 0;
-    private final Dimension dimension;
+    private final Size size;
 
-    public Game(Dimension dimension) {
-        this.dimension = dimension;
+    public Game(Size size) {
+        this.size = size;
     }
 
     public void pointForLeft() {
@@ -42,7 +41,7 @@ public class Game implements Updatable {
         return new GameRenderer(this, images);
     }
 
-    public Dimension getDimension() {
-        return dimension;
+    public Size getSize() {
+        return size;
     }
 }
