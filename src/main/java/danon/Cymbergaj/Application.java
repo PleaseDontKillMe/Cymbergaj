@@ -32,13 +32,13 @@ public final class Application {
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
-    private final Game game = new Game();
+    private final Game game;
 
     private Application() {
-        Settings settings = new Settings();
-        settings.windowTitle = "Cymbergaj | Best 2D game jk";
-        settings.size = new Size(1080, 720);
+        Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 720));
+
         window = new Window(settings, event -> engine.stop());
+        game = new Game(settings.getSize());
 
         initializeWorld();
     }
