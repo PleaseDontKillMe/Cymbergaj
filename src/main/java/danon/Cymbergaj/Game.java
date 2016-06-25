@@ -1,5 +1,8 @@
 package danon.Cymbergaj;
 
+import danon.Cymbergaj.View.Renderer.GameRenderer;
+import danon.Cymbergaj.View.Renderer.ImagesRepository;
+import danon.Cymbergaj.View.Renderer.Renderer;
 import danon.Cymbergaj.View.Renderer.Updatable;
 
 public class Game implements Updatable {
@@ -28,5 +31,7 @@ public class Game implements Updatable {
         return backgroundXSlide;
     }
 
-
+    public Renderer getRenderer(ImagesRepository images) {
+        return new GameRenderer(this, images);
+    }
 }
