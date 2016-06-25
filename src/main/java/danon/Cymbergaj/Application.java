@@ -16,7 +16,6 @@ import org.dyn4j.dynamics.World;
 import org.dyn4j.dynamics.contact.ContactAdapter;
 import org.dyn4j.dynamics.contact.ContactPoint;
 import org.dyn4j.geometry.*;
-import org.dyn4j.geometry.Rectangle;
 
 import javax.sound.sampled.*;
 import java.io.File;

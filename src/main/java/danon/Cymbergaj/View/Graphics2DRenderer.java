@@ -1,5 +1,6 @@
 package danon.Cymbergaj.View;
 
+import danon.Cymbergaj.Application;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Shape;
@@ -9,26 +10,26 @@ import java.awt.geom.*;
 
 public class Graphics2DRenderer {
 
-    public static void render(Graphics2D g, Shape shape, double scale, Color color) {
+    public static void render(Graphics2D g, Shape shape, Color color) {
         if (shape instanceof Circle) {
-            render(g, (Circle) shape, scale, color);
+            render(g, (Circle) shape, color);
         } else if (shape instanceof Polygon) {
-            render(g, (Polygon) shape, scale, color);
+            render(g, (Polygon) shape, color);
         } else {
             throw new RuntimeException("Nie ma");
         }
     }
 
-    public static void render(Graphics2D g, Circle circle, double scale, Color color) {
+    public static void render(Graphics2D g, Circle circle, Color color) {
         double radius = circle.getRadius();
         Vector2 center = circle.getCenter();
 
         double radius2 = 2.0 * radius;
         Ellipse2D.Double c = new Ellipse2D.Double(
-                (center.x - radius) * scale,
-                (center.y - radius) * scale,
-                radius2 * scale,
-                radius2 * scale);
+                (center.x - radius) * Application.SCALE,
+                (center.y - radius) * Application.SCALE,
+                radius2 * Application.SCALE,
+                radius2 * Application.SCALE);
 
         // fill the shape
         g.setColor(color);
@@ -39,22 +40,22 @@ public class Graphics2DRenderer {
 
         // draw a line so that rotation is visible
         Line2D.Double l = new Line2D.Double(
-                center.x * scale,
-                center.y * scale,
-                (center.x + radius) * scale,
-                center.y * scale);
+                center.x * Application.SCALE,
+                center.y * Application.SCALE,
+                (center.x + radius) * Application.SCALE,
+                center.y * Application.SCALE);
         g.draw(l);
     }
 
-    public static void render(Graphics2D g, Polygon polygon, double scale, Color color) {
+    public static void render(Graphics2D g, Polygon polygon, Color color) {
         Vector2[] vertices = polygon.getVertices();
         int l = vertices.length;
 
         // create the awt polygon
         Path2D.Double p = new Path2D.Double();
-        p.moveTo(vertices[0].x * scale, vertices[0].y * scale);
+        p.moveTo(vertices[0].x * Application.SCALE, vertices[0].y * Application.SCALE);
         for (int i = 1; i < l; i++) {
-            p.lineTo(vertices[i].x * scale, vertices[i].y * scale);
+            p.lineTo(vertices[i].x * Application.SCALE, vertices[i].y * Application.SCALE);
         }
         p.closePath();
 
