@@ -1,17 +1,15 @@
-package danon.Cymbergaj;
+package danon.Cymbergaj.Model;
 
-import danon.Cymbergaj.Model.Game;
-import danon.Cymbergaj.Model.SoundsRepository;
 import org.dyn4j.dynamics.contact.ContactAdapter;
 import org.dyn4j.dynamics.contact.ContactPoint;
 
 import java.util.Objects;
 
-class GamePointsCounter extends ContactAdapter {
+public class GamePointsCounter extends ContactAdapter {
     private final Game game;
     private final SoundsRepository soundsRepository;
 
-    GamePointsCounter(Game game, SoundsRepository soundsRepository) {
+    public GamePointsCounter(Game game, SoundsRepository soundsRepository) {
         this.game = game;
         this.soundsRepository = soundsRepository;
     }

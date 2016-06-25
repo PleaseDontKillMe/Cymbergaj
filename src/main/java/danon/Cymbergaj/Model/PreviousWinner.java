@@ -1,5 +1,5 @@
 package danon.Cymbergaj.Model;
 
-enum PreviousWinner {
+public enum PreviousWinner {
     None, WsadPlayer, ArrowsPlayer, Tie
 }
