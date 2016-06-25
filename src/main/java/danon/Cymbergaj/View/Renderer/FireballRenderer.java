@@ -1,13 +1,11 @@
 package danon.Cymbergaj.View.Renderer;
 
-import danon.Cymbergaj.Application;
 import danon.Cymbergaj.Geometry.Angle;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
-import org.dyn4j.geometry.Circle;
 import org.dyn4j.geometry.Vector2;
 
 import java.awt.*;
@@ -35,12 +33,6 @@ public class FireballRenderer extends BodyRenderer {
         }
 
         spriteSheet.drawOn(canvas, new Point(-size.getWidth()/2 + 32, -size.getHeight()/2 + 32), new Rotation(direction, new Point(10,32)));
-
-        canvas.setColor(Color.black);
-        Circle circle = (Circle) fireball.getFixture(0).getShape();
-        int radius = (int) (circle.getRadius() * Application.SCALE);
-        int radius2 = (int) (circle.getRadius() / 2 * Application.SCALE);
-        canvas.drawOval(-radius2, -radius2, radius, radius);
     }
 
     @Override

@@ -15,7 +15,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Window {
-
     private final JFrame frame;
 
     private final BufferedImage backBuffer;
@@ -44,17 +43,17 @@ public class Window {
         windowGraphics = frame.getGraphics();
 
         Dimension size = getDimension();
-        AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth()/2, size.getHeight()/2);
+        AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth() / 2, size.getHeight() / 2);
         canvas.transform(move);
     }
 
     public void render() {
         renderers.forEach(renderer -> renderer.renderOn(canvas));
         renderers.removeIf(Renderer::isFinished);
-        flip();
+        drawToWindow();
     }
 
-    private void flip() {
+    private void drawToWindow() {
         windowGraphics.drawImage(backBuffer, 0, 0, null);
     }
 

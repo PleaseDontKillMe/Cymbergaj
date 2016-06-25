@@ -37,8 +37,8 @@ public final class Application {
     private Application() {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 720));
 
-        window = new Window(settings, event -> engine.stop());
-        game = new Game(settings.getSize());
+        this.window = new Window(settings, closeEvent -> engine.stop());
+        this.game = new Game(settings.getSize());
 
         initializeWorld();
     }
