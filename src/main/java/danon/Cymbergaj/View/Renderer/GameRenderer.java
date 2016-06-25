@@ -1,6 +1,6 @@
 package danon.Cymbergaj.View.Renderer;
 
-import danon.Cymbergaj.Game;
+import danon.Cymbergaj.Model.Game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

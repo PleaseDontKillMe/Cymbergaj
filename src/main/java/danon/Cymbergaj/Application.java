@@ -2,7 +2,9 @@ package danon.Cymbergaj;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Engine;
+import danon.Cymbergaj.Model.Game;
 import danon.Cymbergaj.Model.GameObject;
+import danon.Cymbergaj.Model.SoundsRepository;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.Character.Wall;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
@@ -47,7 +49,7 @@ public final class Application {
 
         initializeWorld();
 
-        sounds.addOnEndListener(sounds.lookAtMyHorse, game::restartGame);
+        sounds.addStopListener(sounds.lookAtMyHorse, game::restartGame);
         game.onGameStart(() -> {
             sounds.lookAtMyHorse.setFramePosition(0);
             sounds.lookAtMyHorse.start();

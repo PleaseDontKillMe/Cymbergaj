@@ -1,6 +1,6 @@
 package danon.Cymbergaj.View;
 
-import danon.Cymbergaj.Game;
+import danon.Cymbergaj.Model.Game;
 import danon.Cymbergaj.View.Renderer.Renderer;
 
 import java.awt.*;

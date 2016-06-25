@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Cymbergaj.Model;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.View.Renderer.GameRenderer;

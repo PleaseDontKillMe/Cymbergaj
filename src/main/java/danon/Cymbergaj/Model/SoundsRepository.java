@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Cymbergaj.Model;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -6,15 +6,15 @@ import java.io.IOException;
 
 public class SoundsRepository {
 
-    Clip lookAtMyHorse;
-    Clip bell;
+    public Clip lookAtMyHorse;
+    public Clip bell;
 
-    void load() {
+    public void load() {
         lookAtMyHorse = loadClip("res/LookAtMyHorse.wav");
         bell = loadClip("res/bell.wav");
     }
 
-    void addOnEndListener(Clip clip, Runnable onStop) {
+    public void addStopListener(Clip clip, Runnable onStop) {
         clip.addLineListener(event -> {
             if (event.getType().toString().equals("Stop")) {
                 onStop.run();
@@ -22,7 +22,7 @@ public class SoundsRepository {
         });
     }
 
-    void play(Clip clip) {
+    public void play(Clip clip) {
         clip.start();
     }
 
