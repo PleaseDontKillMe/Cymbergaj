@@ -89,15 +89,7 @@ public final class DebugApplication {
         window.addKeyListener(player1);
         window.addKeyListener(player2);
 
-        window.addRenderable(canvas -> {
-            Dimension size = window.getDimension();
-            AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
-            AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth()/2, -size.getHeight()/2);
-            canvas.transform(yFlip);
-            canvas.transform(move);
-
-            render(canvas);
-        });
+        window.addRenderable(this::render);
     }
 
     public void start() {

@@ -9,6 +9,7 @@ import danon.Cymbergaj.View.Renderer.Renderable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,6 +42,12 @@ public class Window implements GameEventListener {
     public void show() {
         frame.setVisible(true);
         windowGraphics = frame.getGraphics();
+
+        Dimension size = getDimension();
+        AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
+        AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth()/2, -size.getHeight()/2);
+        canvas.transform(yFlip);
+        canvas.transform(move);
     }
 
     @Override
