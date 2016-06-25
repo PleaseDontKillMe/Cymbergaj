@@ -22,7 +22,7 @@ public class FireballRenderer extends BodyRenderer implements Updatable {
     public FireballRenderer(Fireball fireball, ImagesRepository images) {
         super(fireball);
         this.fireball = fireball;
-        this.spriteSheet = images.fireball.getSpriteSheet();
+        this.spriteSheet = images.fireball;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class SpaceshipRenderer extends BodyRenderer implements Updatable {
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         super(spaceship);
-        this.spriteSheet = images.spaceship.getSpriteSheet();
+        this.spriteSheet = images.spaceship;
     }
 
     private double totalElapsedTime = 0;

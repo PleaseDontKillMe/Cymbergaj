@@ -1,5 +1,6 @@
 package danon.Cymbergaj.View;
 
+import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Geometry.Size;
 
@@ -11,29 +12,20 @@ public class AnimatedSpriteSheet {
     private final BufferedImage spriteSheet;
     private final Size spriteSize;
     private final int spritesAmount;
-    private final int columnsCount;
     private int currentSpriteIndex = 0;
 
-    public AnimatedSpriteSheet(SpriteSheetDefinition definition) {
-        this(definition.spriteSheet, definition.spriteSize, definition.spritesAmount, definition.columnsCount);
-    }
-
-    private AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
+    public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount) {
         this.spriteSheet = spriteSheet;
         this.spriteSize = spriteSize;
         this.spritesAmount = spritesAmount;
-        this.columnsCount = columnsCount;
     }
 
-    public void drawOn(Graphics2D canvas, danon.Cymbergaj.Geometry.Point position) {
+    public void drawOn(Graphics2D canvas, Point position) {
         drawOn(canvas, position, new Rotation());
     }
 
-    public void drawOn(Graphics2D canvas, danon.Cymbergaj.Geometry.Point position, Rotation rotation) {
-        int column = currentSpriteIndex % columnsCount;
-        int row = currentSpriteIndex / columnsCount;
-
-        danon.Cymbergaj.Geometry.Point rot = rotation.getCenter();
+    public void drawOn(Graphics2D canvas, Point position, Rotation rotation) {
+        Point rot = rotation.getCenter();
 
         canvas.translate(position.x, position.y);
         canvas.rotate(rotation.getAngle().getValue());
@@ -42,8 +34,8 @@ public class AnimatedSpriteSheet {
                 -rot.getX(), -rot.getY(),
                 spriteSize.getWidth() - rot.getX(),
                 spriteSize.getHeight() - rot.getY(),
-                column * spriteSize.getWidth(), row * spriteSize.getHeight(),
-                (column + 1) * spriteSize.getWidth(), (row + 1) * spriteSize.getHeight(),
+                currentSpriteIndex * spriteSize.getWidth(), 0,
+                (currentSpriteIndex + 1) * spriteSize.getWidth(),  spriteSize.getHeight(),
                 null);
 
         canvas.rotate(-rotation.getAngle().getValue());

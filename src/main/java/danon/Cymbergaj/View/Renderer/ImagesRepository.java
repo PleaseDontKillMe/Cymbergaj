@@ -2,8 +2,7 @@ package danon.Cymbergaj.View.Renderer;
 
 
 import danon.Cymbergaj.Geometry.Size;
-import danon.Cymbergaj.View.SpriteSheetDefinition;
-import danon.Cymbergaj.View.SpriteSheetDefinitionBuilder;
+import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,22 +12,13 @@ import java.io.IOException;
 public class ImagesRepository {
 
     BufferedImage background;
-    SpriteSheetDefinition fireball;
-    SpriteSheetDefinition spaceship;
+    AnimatedSpriteSheet fireball;
+    AnimatedSpriteSheet spaceship;
 
     public void load() {
         background = loadImage("space-background.png");
-
-        fireball = sprites("fireball.png")
-                .amount(8)
-                .size(new Size(64, 64))
-                .columns(8)
-                .buildDefinition();
-
-        spaceship = sprites("spaceship2.png")
-                .amount(32)
-                .size(new Size(64, 64))
-                .buildDefinition();
+        fireball = new AnimatedSpriteSheet(loadImage("fireball.png"), new Size(64, 64), 8);
+        spaceship = new AnimatedSpriteSheet(loadImage("spaceship2.png"), new Size(64, 64), 32);
     }
 
     private BufferedImage loadImage(String filename) {
@@ -37,9 +27,5 @@ public class ImagesRepository {
         } catch (IOException ignored) {
             throw new RuntimeException("File " + filename + " not found");
         }
-    }
-
-    private SpriteSheetDefinitionBuilder sprites(String filename) {
-        return new SpriteSheetDefinitionBuilder().image(loadImage(filename));
     }
 }
