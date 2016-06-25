@@ -1,13 +1,13 @@
 package danon.Cymbergaj.Model.World.Character;
 
 import danon.Cymbergaj.Model.GameObject;
-
-import java.awt.*;
+import danon.Cymbergaj.View.Renderer.ImagesRepository;
+import danon.Cymbergaj.View.Renderer.Renderer;
 
 public class Wall extends GameObject {
 
     @Override
-    public void renderMe(Graphics2D canvas) {
-
+    public Renderer getRenderer(ImagesRepository images) {
+        return new BasicRenderer(this);
     }
 }
