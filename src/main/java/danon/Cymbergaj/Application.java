@@ -15,11 +15,7 @@ import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
-import org.dyn4j.dynamics.contact.ContactAdapter;
-import org.dyn4j.dynamics.contact.ContactPoint;
 import org.dyn4j.geometry.*;
-
-import java.util.Objects;
 
 
 public final class Application {
@@ -118,38 +114,6 @@ public final class Application {
         this.world.addBody(wall1);
         this.world.addBody(wall2);
 
-        world.addListener(new ContactAdapter() {
-            @Override
-            public void end(ContactPoint point) {
-                String user1 = (String) point.getBody1().getUserData();
-                String user2 = (String) point.getBody2().getUserData();
-                if (user1 != null && user2 != null) {
-                    if (user1.equals("ball") || user2.equals("ball")) {
-                        boolean didLeftScore = true;
-                        if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
-                            game.pointForRight();
-                            sounds.bell.setFramePosition(0);
-                            sounds.bell.start();
-                            didLeftScore = true;
-                        }
-                        if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
-                            game.pointForLeft();
-                            sounds.bell.setFramePosition(0);
-                            sounds.bell.start();
-                            didLeftScore = false;
-                        }
-                        int power = 75;
-                        if (user1.equals("ball")) {
-                            point.getBody1().applyForce(new Vector2(didLeftScore ? power : -power, 0));
-                        }
-                        if (user2.equals("ball")) {
-                            point.getBody2().applyForce(new Vector2(didLeftScore ? power : -power, 0));
-                        }
-                    }
-                }
-                super.end(point);
-            }
-        });
 
         // ball
         Fireball ball = new Fireball();
@@ -207,6 +171,8 @@ public final class Application {
         engine.addUpdateListener(fireballrenderer);
         engine.addUpdateListener(player1renderer);
         engine.addUpdateListener(player2renderer);
+
+        world.addListener(new GamePointsCounter(game, sounds));
     }
 
     public static void main(String[] args) {
