@@ -1,6 +1,9 @@
 package danon.Cymbergaj.Model;
 
 
+import danon.Cymbergaj.View.Renderer.Renderable;
+import danon.Cymbergaj.View.Renderer.Updatable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,15 +11,24 @@ public class Engine implements GameEventListener {
 
     private final static int TPS = 150;
 
-    private final List<GameEventListener> listeners = new ArrayList<>();
+    private final List<Updatable> updatables = new ArrayList<>();
+    private final List<Renderable> renderables = new ArrayList<>();
     private boolean shouldStop = false;
 
     public void start() {
         fixedTimeStepLoop();
     }
 
-    public void addGameEventListener(GameEventListener listener) {
-        listeners.add(listener);
+    public void stop() {
+        this.shouldStop = true;
+    }
+
+    public void addUpdatable(Updatable updatable) {
+        this.updatables.add(updatable);
+    }
+
+    public void addRenderable(Renderable renderable) {
+        this.renderables.add(renderable);
     }
 
     private void fixedTimeStepLoop() {
@@ -38,18 +50,10 @@ public class Engine implements GameEventListener {
     }
 
     private void updateAll(double elapsedSeconds) {
-        listeners.forEach(listener -> listener.update(elapsedSeconds));
+        updatables.forEach(listener -> listener.updateMe(elapsedSeconds));
     }
 
     private void renderAll() {
-        listeners.forEach(GameEventListener::render);
-    }
-
-    @Override
-    public void gameEnd() {
-        listeners.forEach(listener -> {
-            if (this != listener) listener.gameEnd();
-        });
-        shouldStop = true;
+        renderables.forEach(listener -> listener.renderOn(null));
     }
 }
