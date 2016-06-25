@@ -54,7 +54,7 @@ public final class DebugApplication {
 
         GameObject wall1 = new Wall(), wall2 = new Wall();
         BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 14.0));
-        wallFixture.setRestitution(0.01);
+        wallFixture.setRestitution(0.0);
         wall1.addFixture(wallFixture);
         wall1.setMass(MassType.INFINITE);
         wall2.addFixture(wallFixture);
@@ -77,12 +77,15 @@ public final class DebugApplication {
 
         // players
         Spaceship player1 = new Spaceship(new WsadControlKeys()), player2 = new Spaceship(new ArrowsControlKeys());
-        player1.addFixture(new Circle(0.7));
-        player1.setMass(MassType.FIXED_LINEAR_VELOCITY);
+        BodyFixture fixture = new BodyFixture(new Circle(0.7));
+        fixture.setFriction(0.0);
+        player1.addFixture(fixture);
+        player1.setMass(MassType.NORMAL);
         player1.translate(-9.0, 0.0);
-        player2.addFixture(new Circle(0.7));
+        player2.addFixture(fixture);
         player2.translate(9.0, 0.0);
-        player2.setMass(MassType.FIXED_LINEAR_VELOCITY);
+        player2.setMass(MassType.NORMAL);
+
         this.world.addBody(player1);
         this.world.addBody(player2);
 
