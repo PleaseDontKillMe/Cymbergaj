@@ -1,6 +1,5 @@
 package danon.Cymbergaj.View.Renderer;
 
-import danon.Cymbergaj.Model.World.Character.BigExplosion;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import java.awt.*;

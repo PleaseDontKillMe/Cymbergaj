@@ -3,7 +3,8 @@ package danon.Cymbergaj.View.Renderer;
 
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Size;
-import danon.Cymbergaj.Model.World.Control.Spaceship;
+import danon.Cymbergaj.Model.Updatable;
+import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import java.awt.*;

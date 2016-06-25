@@ -2,6 +2,8 @@ package danon.Cymbergaj.View.Renderer;
 
 
 import danon.Cymbergaj.Geometry.Size;
+import danon.Cymbergaj.View.SpriteSheetDefinition;
+import danon.Cymbergaj.View.SpriteSheetDefinitionBuilder;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -1,4 +1,4 @@
-package danon.Cymbergaj.View.Renderer;
+package danon.Cymbergaj.Model;
 
 public interface Updatable {
     void updateMe(double elapsedTime);

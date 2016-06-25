@@ -1,24 +1,24 @@
 package danon.Cymbergaj.Model.World.Control;
 
-class Keys {
+public class Keys {
     private boolean isUp = false;
     private boolean isDown = false;
     private boolean isLeft = false;
     private boolean isRight = false;
 
-    boolean isUp() {
+    public boolean isUp() {
         return isUp;
     }
 
-    boolean isDown() {
+    public boolean isDown() {
         return isDown;
     }
 
-    boolean isLeft() {
+    public boolean isLeft() {
         return isLeft;
     }
 
-    boolean isRight() {
+    public boolean isRight() {
         return isRight;
     }
 
@@ -38,7 +38,7 @@ class Keys {
         isRight = right;
     }
 
-    boolean playerMoves() {
+    public boolean playerMoves() {
         return (isUp != isDown) || (isLeft != isRight);
     }
 }

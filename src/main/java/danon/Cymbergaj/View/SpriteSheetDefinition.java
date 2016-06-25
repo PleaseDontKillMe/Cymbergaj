@@ -1,4 +1,4 @@
-package danon.Cymbergaj.View.Renderer;
+package danon.Cymbergaj.View;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;

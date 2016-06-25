@@ -2,7 +2,6 @@ package danon.Cymbergaj.View;
 
 import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Geometry.Size;
-import danon.Cymbergaj.View.Renderer.SpriteSheetDefinition;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -4,6 +4,7 @@ import danon.Cymbergaj.Geometry.Angle;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Geometry.Size;
+import danon.Cymbergaj.Model.Updatable;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
 import org.dyn4j.geometry.Vector2;

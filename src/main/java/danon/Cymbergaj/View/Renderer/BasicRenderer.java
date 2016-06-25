@@ -1,8 +1,7 @@
-package danon.Cymbergaj.Model.World.Character;
+package danon.Cymbergaj.View.Renderer;
 
-import danon.Cymbergaj.Model.GameObject;
+import danon.Cymbergaj.Model.World.Character.GameObject;
 import danon.Cymbergaj.View.Graphics2DRenderer;
-import danon.Cymbergaj.View.Renderer.BodyRenderer;
 import org.dyn4j.collision.Fixture;
 
 import java.awt.*;

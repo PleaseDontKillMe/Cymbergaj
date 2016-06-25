@@ -1,4 +1,4 @@
-package danon.Cymbergaj.Model;
+package danon.Cymbergaj.Model.World.Character;
 
 
 import danon.Cymbergaj.View.Renderer.ImagesRepository;

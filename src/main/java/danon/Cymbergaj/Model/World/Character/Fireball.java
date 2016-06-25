@@ -1,6 +1,5 @@
 package danon.Cymbergaj.Model.World.Character;
 
-import danon.Cymbergaj.Model.GameObject;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 
