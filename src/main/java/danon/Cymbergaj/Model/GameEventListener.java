@@ -8,7 +8,4 @@ public interface GameEventListener {
 
     default void update(double elapsedSeconds) {
     }
-
-    default void gameEnd() {
-    }
 }
