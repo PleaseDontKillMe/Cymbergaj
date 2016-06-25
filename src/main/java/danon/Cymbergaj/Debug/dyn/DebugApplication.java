@@ -88,6 +88,9 @@ public final class DebugApplication {
         window.addKeyListener(player2);
 
         window.addRenderable(this::render);
+
+        engine.addUpdatable(player1);
+        engine.addUpdatable(player2);
     }
 
     public void start() {
