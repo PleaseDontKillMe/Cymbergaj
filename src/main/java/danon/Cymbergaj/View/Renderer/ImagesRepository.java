@@ -23,7 +23,7 @@ public class ImagesRepository {
 
     private BufferedImage loadImage(String filename) {
         try {
-            return ImageIO.read(new File("res/" + filename));
+            return ImageIO.read(getClass().getClassLoader().getResource(filename));
         } catch (IOException ignored) {
             throw new RuntimeException("File " + filename + " not found");
         }
