@@ -1,4 +1,4 @@
-package danon.Cymbergaj.Debug.dyn;
+package danon.Cymbergaj.View;
 
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.*;
@@ -8,7 +8,7 @@ import org.dyn4j.geometry.Shape;
 import java.awt.*;
 import java.awt.geom.*;
 
-class Graphics2DRenderer {
+public class Graphics2DRenderer {
 
     public static void render(Graphics2D g, Shape shape, double scale, Color color, Body body) {
         if (body.isAsleep() || !body.isActive()) {

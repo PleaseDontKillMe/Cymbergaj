@@ -1,6 +1,8 @@
-package danon.Cymbergaj.Debug.dyn;
+package danon.Cymbergaj.Model;
 
 
+import danon.Cymbergaj.Application;
+import danon.Cymbergaj.View.Graphics2DRenderer;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
 
@@ -22,7 +24,7 @@ abstract public class GameObject extends Body {
         canvas.transform(getLocalTransform());
 
         for (BodyFixture fixture : this.fixtures) {
-            Graphics2DRenderer.render(canvas, fixture.getShape(), DebugApplication.SCALE, color, this);
+            Graphics2DRenderer.render(canvas, fixture.getShape(), Application.SCALE, color, this);
             renderMe(canvas);
         }
 
@@ -31,7 +33,7 @@ abstract public class GameObject extends Body {
 
     private AffineTransform getLocalTransform() {
         AffineTransform localTransform = new AffineTransform();
-        localTransform.translate(transform.getTranslationX() * DebugApplication.SCALE, transform.getTranslationY() * DebugApplication.SCALE);
+        localTransform.translate(transform.getTranslationX() * Application.SCALE, transform.getTranslationY() * Application.SCALE);
         localTransform.rotate(transform.getRotation());
         return localTransform;
     }

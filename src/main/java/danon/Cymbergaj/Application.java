@@ -1,12 +1,13 @@
-package danon.Cymbergaj.Debug.dyn;
+package danon.Cymbergaj;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Engine;
+import danon.Cymbergaj.Model.GameObject;
 import danon.Cymbergaj.Model.World.Character.Fireball;
+import danon.Cymbergaj.Model.World.Character.Wall;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
-import danon.Cymbergaj.Settings;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
@@ -16,16 +17,16 @@ import org.dyn4j.geometry.Rectangle;
 import java.awt.*;
 
 
-public final class DebugApplication {
+public final class Application {
 
-    static final double SCALE = 45.0; //  The scale 45 pixels per meter
+    public static final double SCALE = 45.0; //  The scale 45 pixels per meter
     public static final double NANO_TO_BASE = 1.0e9;
 
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
 
-    private DebugApplication() {
+    private Application() {
         Settings settings = new Settings();
         settings.windowTitle = "Cymbergaj | Best 2D game jk";
         settings.size = new Size(1080, 720);
@@ -121,6 +122,6 @@ public final class DebugApplication {
     }
 
     public static void main(String[] args) {
-        new DebugApplication().start();
+        new Application().start();
     }
 }

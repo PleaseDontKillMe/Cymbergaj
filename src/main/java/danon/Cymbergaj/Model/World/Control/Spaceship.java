@@ -1,6 +1,6 @@
 package danon.Cymbergaj.Model.World.Control;
 
-import danon.Cymbergaj.Debug.dyn.GameObject;
+import danon.Cymbergaj.Model.GameObject;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;

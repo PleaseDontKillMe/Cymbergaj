@@ -1,7 +1,7 @@
 package danon.Cymbergaj.Model;
 
 
-import danon.Cymbergaj.Debug.dyn.DebugApplication;
+import danon.Cymbergaj.Application;
 import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.Updatable;
 
@@ -21,7 +21,7 @@ public class Engine implements GameEventListener {
             double current = System.nanoTime();
             double elapsed = current - previous;
             previous = current;
-            updateAll(elapsed / DebugApplication.NANO_TO_BASE);
+            updateAll(elapsed / Application.NANO_TO_BASE);
             renderAll();
         }
     }
