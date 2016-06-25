@@ -11,10 +11,13 @@ import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
+import org.dyn4j.dynamics.contact.ContactAdapter;
+import org.dyn4j.dynamics.contact.ContactPoint;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Rectangle;
 
 import java.awt.*;
+import java.util.Objects;
 
 
 public final class Application {
@@ -25,6 +28,8 @@ public final class Application {
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
+
+    int points1 = 0, points2 = 0;
 
     private Application() {
         Settings settings = new Settings();
@@ -53,6 +58,31 @@ public final class Application {
         this.world.addBody(floor1);
         this.world.addBody(floor2);
 
+
+        GameObject stopper1 = new Wall(), stopper2 = new Wall(), stopper3 = new Wall(), stopper4 = new Wall();
+        BodyFixture stopperFixture = new BodyFixture(new Rectangle(0.6, 4.5));
+        stopperFixture.setRestitution(0.0);
+        stopper1.addFixture(stopperFixture);
+        stopper2.addFixture(stopperFixture);
+        stopper3.addFixture(stopperFixture);
+        stopper4.addFixture(stopperFixture);
+        stopper1.setMass(MassType.INFINITE);
+        stopper2.setMass(MassType.INFINITE);
+        stopper3.setMass(MassType.INFINITE);
+        stopper4.setMass(MassType.INFINITE);
+
+        double v = 9.7;
+        double v1 = 4.76;
+        stopper1.translate(-v, -v1);
+        stopper2.translate(v, -v1);
+        stopper3.translate(-v, v1);
+        stopper4.translate(v, v1);
+        this.world.addBody(stopper1);
+        this.world.addBody(stopper2);
+        this.world.addBody(stopper3);
+        this.world.addBody(stopper4);
+
+
         GameObject wall1 = new Wall(), wall2 = new Wall();
         BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 14.0));
         wallFixture.setRestitution(0.0);
@@ -60,11 +90,28 @@ public final class Application {
         wall1.setMass(MassType.INFINITE);
         wall2.addFixture(wallFixture);
         wall2.setMass(MassType.INFINITE);
+        wall1.setUserData("left");
+        wall2.setUserData("right");
 
         wall1.translate(-10.0, 0);
         wall2.translate(10.0, 0.0);
         this.world.addBody(wall1);
         this.world.addBody(wall2);
+
+        world.addListener(new ContactAdapter() {
+            @Override
+            public void end(ContactPoint point) {
+                String user1 = (String) point.getBody1().getUserData();
+                String user2 = (String) point.getBody2().getUserData();
+                if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
+                    points1++;
+                }
+                if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
+                    points2++;
+                }
+                super.sensed(point);
+            }
+        });
 
         // ball
         GameObject ball = new Fireball();
@@ -97,6 +144,11 @@ public final class Application {
         window.addKeyListener(player2);
 
         window.addRenderable(this::render);
+        window.addRenderable(canvas -> {
+            canvas.setColor(Color.black);
+            canvas.setFont(new Font("Arial", 0, 15));
+            canvas.drawString(points1 + ":" + points2, 20, 50);
+        });
 
         engine.addUpdatable(player1);
         engine.addUpdatable(player2);

@@ -9,8 +9,6 @@ import java.awt.*;
 
 public class Fireball extends GameObject {
 
-    public static float VELOCITY = 0.5f;
-
     @Override
     public void renderMe(Graphics2D canvas) {
 
