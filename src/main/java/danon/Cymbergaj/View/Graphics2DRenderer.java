@@ -10,17 +10,17 @@ import java.awt.geom.*;
 
 public class Graphics2DRenderer {
 
-    public static void render(Graphics2D g, Shape shape, Color color) {
+    public static void render(Graphics2D g, Shape shape) {
         if (shape instanceof Circle) {
-            render(g, (Circle) shape, color);
+            render(g, (Circle) shape);
         } else if (shape instanceof Polygon) {
-            render(g, (Polygon) shape, color);
+            render(g, (Polygon) shape);
         } else {
             throw new RuntimeException("Nie ma");
         }
     }
 
-    public static void render(Graphics2D g, Circle circle, Color color) {
+    private static void render(Graphics2D g, Circle circle) {
         double radius = circle.getRadius();
         Vector2 center = circle.getCenter();
 
@@ -32,10 +32,10 @@ public class Graphics2DRenderer {
                 radius2 * Application.SCALE);
 
         // fill the shape
-        g.setColor(color);
+        g.setColor(Color.CYAN);
         g.fill(c);
         // draw the outline
-        g.setColor(getOutlineColor(color));
+        g.setColor(getOutlineColor(Color.CYAN));
         g.draw(c);
 
         // draw a line so that rotation is visible
@@ -47,7 +47,7 @@ public class Graphics2DRenderer {
         g.draw(l);
     }
 
-    public static void render(Graphics2D g, Polygon polygon, Color color) {
+    private static void render(Graphics2D g, Polygon polygon) {
         Vector2[] vertices = polygon.getVertices();
         int l = vertices.length;
 
@@ -60,10 +60,10 @@ public class Graphics2DRenderer {
         p.closePath();
 
         // fill the shape
-        g.setColor(color);
+        g.setColor(Color.CYAN);
         g.fill(p);
         // draw the outline
-        g.setColor(getOutlineColor(color));
+        g.setColor(getOutlineColor(Color.CYAN));
         g.draw(p);
     }
 

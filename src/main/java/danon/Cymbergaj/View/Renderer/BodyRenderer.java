@@ -11,11 +11,11 @@ public abstract class BodyRenderer implements Renderer {
 
     protected final GameObject gameObject;
 
-    public BodyRenderer(GameObject gameObject) {
+    protected BodyRenderer(GameObject gameObject) {
         this.gameObject = gameObject;
     }
 
-    public abstract void renderBody(Graphics2D canvas);
+    protected abstract void renderBody(Graphics2D canvas);
 
     @Override
     public void renderOn(Graphics2D canvas) {

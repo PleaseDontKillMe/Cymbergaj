@@ -7,9 +7,9 @@ import danon.Cymbergaj.Model.Settings;
 import javax.swing.*;
 import java.awt.*;
 
-public class JFrameFactory {
+class JFrameFactory {
 
-    public static JFrame create(Settings settings, WindowClosingListener listener)
+    static JFrame create(Settings settings, WindowClosingListener listener)
     {
         JFrame frame = new JFrame();
         Size size = settings.getSize();

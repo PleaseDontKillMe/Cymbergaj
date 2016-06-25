@@ -1,7 +1,6 @@
 package danon.Cymbergaj.Geometry;
 
 
-import danon.Cymbergaj.Utility.Compare;
 import org.dyn4j.geometry.Vector2;
 
 public class Point {
@@ -50,11 +49,18 @@ public class Point {
     }
 
     private boolean equals(Point point) {
-        return Compare.doublesEqual(point.x, x, DELTA) && Compare.doublesEqual(point.y, y, DELTA);
+        return Compare.doublesEqual(point.x, x) && Compare.doublesEqual(point.y, y);
     }
 
     @Override
     public String toString() {
-        return String.valueOf((int)this.x) + '/' + String.valueOf((int)this.y);
+        return String.valueOf((int) this.x) + '/' + String.valueOf((int) this.y);
     }
+
+    private static class Compare {
+        private static boolean doublesEqual(double d1, double d2) {
+            return Double.compare(d1, d2) == 0 || Math.abs(d1 - d2) <= DELTA;
+        }
+    }
+
 }

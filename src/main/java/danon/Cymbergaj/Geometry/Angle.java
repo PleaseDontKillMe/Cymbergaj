@@ -2,8 +2,6 @@ package danon.Cymbergaj.Geometry;
 
 
 public final class Angle {
-    public static final double DELTA = 1e-5;
-
     private double value;
 
     public Angle() {
