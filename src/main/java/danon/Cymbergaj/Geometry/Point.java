@@ -2,6 +2,7 @@ package danon.Cymbergaj.Geometry;
 
 
 import danon.Cymbergaj.Utility.Compare;
+import org.dyn4j.geometry.Vector2;
 
 public class Point {
     public static final double DELTA = 1e-5;
@@ -16,6 +17,10 @@ public class Point {
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Point(Vector2 vector) {
+        this(vector.x, vector.y);
     }
 
     public int getX() {
