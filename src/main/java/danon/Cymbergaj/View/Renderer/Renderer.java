@@ -3,10 +3,14 @@ package danon.Cymbergaj.View.Renderer;
 
 import java.awt.*;
 
-@FunctionalInterface
-public interface Renderable {
+public interface Renderer {
+
     void renderOn(Graphics2D canvas);
-    default void update() {}
+
+    default void update(double elapsedTime) {
+
+    }
+
     default boolean isFinished() {
         return false;
     }

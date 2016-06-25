@@ -5,7 +5,7 @@ import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import java.awt.*;
 
-public class FireballRenderer implements Renderable {
+public class FireballRenderer implements Renderer {
     private final Fireball fireball;
     private final AnimatedSpriteSheet spriteSheet;
     private int refreshesToNextFrame = 0;
@@ -21,7 +21,7 @@ public class FireballRenderer implements Renderable {
     }
 
     @Override
-    public void update() {
+    public void update(double elapsedTime) {
         refreshesToNextFrame++;
         if (refreshesToNextFrame == 8) {
             refreshesToNextFrame = 0;

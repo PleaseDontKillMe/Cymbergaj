@@ -7,7 +7,7 @@ import danon.Cymbergaj.View.AnimatedSpriteSheet;
 import java.awt.*;
 
 
-public class SpaceshipRenderer implements Renderable {
+public class SpaceshipRenderer implements Renderer {
 
     private final Spaceship spaceship;
     private final AnimatedSpriteSheet spriteSheet;
@@ -18,7 +18,7 @@ public class SpaceshipRenderer implements Renderable {
     }
 
     @Override
-    public void update() {
+    public void update(double elapsedTime) {
         double traveled = spaceship.getTraveledDistance();
         int frame = (int) Math.round(traveled / 4.0);
         spriteSheet.setFrame(frame);

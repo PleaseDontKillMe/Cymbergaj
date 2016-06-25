@@ -1,10 +1,9 @@
 package danon.Cymbergaj.View;
 
 import danon.Cymbergaj.JFrameFactory;
-import danon.Cymbergaj.Model.GameEventListener;
+import danon.Cymbergaj.View.Renderer.Renderer;
 import danon.Cymbergaj.WindowClosingListener;
 import danon.Cymbergaj.Settings;
-import danon.Cymbergaj.View.Renderer.Renderable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Window implements GameEventListener {
+public class Window {
 
     private final JFrame frame;
 
@@ -22,7 +21,7 @@ public class Window implements GameEventListener {
     private final Graphics2D canvas;
     private Graphics windowGraphics;
 
-    private final List<Renderable> renderables = new LinkedList<>();
+    private final List<Renderer> renderers = new LinkedList<>();
 
     public Window(Settings settings, WindowClosingListener listener) {
         this.frame = JFrameFactory.create(settings, listener);
@@ -35,8 +34,8 @@ public class Window implements GameEventListener {
         frame.addKeyListener(listener);
     }
 
-    public void addRenderable(Renderable renderable) {
-        renderables.add(renderable);
+    public void addRenderer(Renderer renderer) {
+        renderers.add(renderer);
     }
 
     public void show() {
@@ -48,16 +47,10 @@ public class Window implements GameEventListener {
         canvas.transform(move);
     }
 
-    @Override
     public void render() {
-        renderables.forEach(renderer -> renderer.renderOn(canvas));
+        renderers.forEach(renderer -> renderer.renderOn(canvas));
+        renderers.removeIf(Renderer::isFinished);
         flip();
-    }
-
-    @Override
-    public void update(double elapsedTime) {
-        renderables.forEach(Renderable::update);
-        renderables.removeIf(Renderable::isFinished);
     }
 
     private void flip() {
