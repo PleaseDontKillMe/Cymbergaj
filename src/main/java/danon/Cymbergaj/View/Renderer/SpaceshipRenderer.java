@@ -22,7 +22,7 @@ public class SpaceshipRenderer extends BodyRenderer implements Updatable {
     private double totalElapsedTime = 0;
 
     @Override
-    public void updateMe(double elapsedTime) {
+    public void update(double elapsedTime) {
         totalElapsedTime += elapsedTime;
         int frame = (int) Math.round(totalElapsedTime * 40.0);
         spriteSheet.setFrame(frame);

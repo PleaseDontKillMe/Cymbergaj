@@ -35,7 +35,7 @@ public class Engine {
     }
 
     private void updateAll(double elapsedSeconds) {
-        onUpdate.forEach(updatable -> updatable.updateMe(elapsedSeconds));
+        onUpdate.forEach(updatable -> updatable.update(elapsedSeconds));
     }
 
     private void renderAll() {

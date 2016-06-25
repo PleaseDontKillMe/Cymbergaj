@@ -47,7 +47,7 @@ public class Game implements Updatable {
     }
 
     @Override
-    public void updateMe(double elapsedTime) {
+    public void update(double elapsedTime) {
         backgroundXSlide += elapsedTime*50.0;
     }
 

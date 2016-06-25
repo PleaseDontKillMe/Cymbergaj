@@ -37,7 +37,7 @@ public class FireballRenderer extends BodyRenderer implements Updatable {
     }
 
     @Override
-    public void updateMe(double elapsedTime) {
+    public void update(double elapsedTime) {
         refreshesToNextFrame++;
         if (refreshesToNextFrame == 8) {
             refreshesToNextFrame = 0;
