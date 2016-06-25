@@ -50,6 +50,10 @@ public class AnimatedSpriteSheet {
         canvas.translate(-position.x, -position.y);
     }
 
+    public Size getSpriteSize() {
+        return spriteSize;
+    }
+
     public void next() {
         currentSpriteIndex = (currentSpriteIndex + 1) % spritesAmount;
     }

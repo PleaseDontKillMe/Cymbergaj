@@ -2,6 +2,7 @@ package danon.Cymbergaj.View.Renderer;
 
 
 import danon.Cymbergaj.Geometry.Point;
+import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
@@ -28,6 +29,7 @@ public class SpaceshipRenderer extends BodyRenderer {
 
     @Override
     public void renderBody(Graphics2D canvas) {
-        spriteSheet.drawOn(canvas, new Point(0,0));
+        Size size = spriteSheet.getSpriteSize();
+        spriteSheet.drawOn(canvas, new Point(-size.getWidth()/2, -size.getHeight()/2));
     }
 }
