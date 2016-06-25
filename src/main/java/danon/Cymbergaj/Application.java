@@ -51,6 +51,7 @@ public final class Application {
         engine.addRenderListener(window::render);
 
         window.show();
+        sounds.lookAtMyHorse.start();
         engine.start();
     }
 
