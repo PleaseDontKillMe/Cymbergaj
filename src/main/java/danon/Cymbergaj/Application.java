@@ -180,6 +180,7 @@ public final class Application {
 
         engine.addUpdateListener(player1);
         engine.addUpdateListener(player2);
+        engine.addUpdateListener(game);
     }
 
     private void start() {

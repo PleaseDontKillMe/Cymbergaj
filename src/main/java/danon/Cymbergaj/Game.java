@@ -9,7 +9,7 @@ import danon.Cymbergaj.View.Renderer.Updatable;
 public class Game implements Updatable {
 
     private int points1 = 0, points2 = 0;
-    private int backgroundXSlide = 0;
+    private double backgroundXSlide = 0;
     private final Size size;
 
     public Game(Size size) {
@@ -31,11 +31,11 @@ public class Game implements Updatable {
 
     @Override
     public void updateMe(double elapsedTime) {
-        backgroundXSlide -= elapsedTime*20;
+        backgroundXSlide += elapsedTime*50.0;
     }
 
     public int getBackgroundXSlide() {
-        return backgroundXSlide;
+        return (int) backgroundXSlide;
     }
 
     public Renderer getRenderer(ImagesRepository images) {
