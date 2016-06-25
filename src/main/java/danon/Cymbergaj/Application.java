@@ -121,13 +121,13 @@ public final class Application {
                     if (user1.equals("ball") || user2.equals("ball")) {
                         boolean didLeftScore = true;
                         if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
-                            game.pointForLeft();
+                            game.pointForRight();
                             sounds.bell.setFramePosition(0);
                             sounds.bell.start();
                             didLeftScore = true;
                         }
                         if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
-                            game.pointForRight();
+                            game.pointForLeft();
                             sounds.bell.setFramePosition(0);
                             sounds.bell.start();
                             didLeftScore = false;

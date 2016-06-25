@@ -8,7 +8,7 @@ import danon.Cymbergaj.View.Renderer.Updatable;
 
 public class Game implements Updatable {
 
-    private int points1 = 0, points2 = 0;
+    private int points1 = 1, points2 = 10;
     private double backgroundXSlide = 0;
     private final Size size;
 
@@ -46,11 +46,11 @@ public class Game implements Updatable {
         return size;
     }
 
-    public int getPoints1() {
+    public int getLeftPoints() {
         return points1;
     }
 
-    public int getPoints2() {
+    public int getRightPoints() {
         return points2;
     }
 }
