@@ -1,7 +1,7 @@
 package danon.Cymbergaj.View.Renderer;
 
 
-import danon.Cymbergaj.Debug.dyn.Spaceship;
+import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import java.awt.*;

@@ -1,6 +1,6 @@
 package danon.Cymbergaj;
 
-import danon.Cymbergaj.Debug.dyn.Spaceship;
+import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Engine;
