@@ -22,7 +22,7 @@ public abstract class BodyRenderer implements Renderer {
         AffineTransform originalTransform = canvas.getTransform();
 
         canvas.transform(getLocalTransform());
-        renderOn(canvas);
+        renderBody(canvas);
 
         canvas.setTransform(originalTransform);
     }
