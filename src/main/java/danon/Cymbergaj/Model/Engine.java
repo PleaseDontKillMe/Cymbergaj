@@ -10,8 +10,6 @@ import java.util.List;
 
 public class Engine implements GameEventListener {
 
-    private final static int TPS = 150;
-
     private final List<Updatable> updatables = new ArrayList<>();
     private final List<Renderable> renderables = new ArrayList<>();
     private boolean shouldStop = false;
@@ -33,21 +31,13 @@ public class Engine implements GameEventListener {
     }
 
     private void fixedTimeStepLoop() {
-        final int millisecondsPerTick = 1000 / TPS;
-
         double previous = System.nanoTime();
-        double lag = 0.0;
 
         while (!shouldStop) {
             double current = System.nanoTime();
             double elapsed = current - previous;
             previous = current;
-            lag += elapsed / 1000000;
-
-            while (lag >= millisecondsPerTick) {
-                updateAll(elapsed / DebugApplication.NANO_TO_BASE);
-                lag -= millisecondsPerTick;
-            }
+            updateAll(elapsed / DebugApplication.NANO_TO_BASE);
             renderAll();
         }
     }
