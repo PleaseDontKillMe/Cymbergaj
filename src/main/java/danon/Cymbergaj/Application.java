@@ -11,6 +11,7 @@ import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import danon.Cymbergaj.View.Renderer.ClearScreenRenderer;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
+import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
@@ -174,6 +175,9 @@ public final class Application {
         window.addKeyListener(player1);
         window.addKeyListener(player2);
 
+        SpaceshipRenderer player1renderer = player1.getRenderer(images);
+        FireballRenderer fireballrenderer = ball.getRenderer(images);
+        SpaceshipRenderer player2renderer = player2.getRenderer(images);
 
         window.addRenderer(new ClearScreenRenderer(window.getDimension()));
         window.addRenderer(game.getRenderer(images));
@@ -185,15 +189,16 @@ public final class Application {
         window.addRenderer(stopper2.getRenderer(images));
         window.addRenderer(stopper3.getRenderer(images));
         window.addRenderer(stopper4.getRenderer(images));
-        window.addRenderer(player1.getRenderer(images));
-        window.addRenderer(player2.getRenderer(images));
-        FireballRenderer renderer = ball.getRenderer(images);
-        window.addRenderer(renderer);
+        window.addRenderer(player1renderer);
+        window.addRenderer(player2renderer);
+        window.addRenderer(fireballrenderer);
 
         engine.addUpdateListener(player1);
         engine.addUpdateListener(player2);
         engine.addUpdateListener(game);
-        engine.addUpdateListener(renderer);
+        engine.addUpdateListener(fireballrenderer);
+        engine.addUpdateListener(player1renderer);
+        engine.addUpdateListener(player2renderer);
     }
 
     public static void main(String[] args) {

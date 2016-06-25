@@ -11,16 +11,14 @@ import java.awt.*;
 
 public class SpaceshipRenderer extends BodyRenderer implements Updatable {
 
-    private final Spaceship spaceship;
     private final AnimatedSpriteSheet spriteSheet;
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         super(spaceship);
-        this.spaceship = spaceship;
         this.spriteSheet = images.spaceship.getSpriteSheet();
     }
 
-    double totalElapsedTime = 0;
+    private double totalElapsedTime = 0;
 
     @Override
     public void updateMe(double elapsedTime) {
