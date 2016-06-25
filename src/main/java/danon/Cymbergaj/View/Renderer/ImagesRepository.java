@@ -15,33 +15,19 @@ public class ImagesRepository {
     BufferedImage background;
     SpriteSheetDefinition fireball;
     SpriteSheetDefinition spaceship;
-    SpriteSheetDefinition explosion;
-    SpriteSheetDefinition bigExplosion;
 
     public void load() {
         background = loadImage("space-background.png");
 
-        fireball = image("fireball.png")
+        fireball = sprites("fireball.png")
                 .amount(8)
                 .size(new Size(64, 64))
                 .columns(8)
                 .buildDefinition();
 
-        spaceship = image("spaceship2.png")
+        spaceship = sprites("spaceship2.png")
                 .amount(32)
                 .size(new Size(64, 64))
-                .buildDefinition();
-
-        explosion = image("explosion.png")
-                .amount(25)
-                .size(new Size(64, 64))
-                .columns(5)
-                .buildDefinition();
-
-        bigExplosion = image("big-explosion.png")
-                .amount(73)
-                .size(new Size(100, 100))
-                .columns(9)
                 .buildDefinition();
     }
 
@@ -53,7 +39,7 @@ public class ImagesRepository {
         }
     }
 
-    private SpriteSheetDefinitionBuilder image(String filename) {
+    private SpriteSheetDefinitionBuilder sprites(String filename) {
         return new SpriteSheetDefinitionBuilder().image(loadImage(filename));
     }
 }

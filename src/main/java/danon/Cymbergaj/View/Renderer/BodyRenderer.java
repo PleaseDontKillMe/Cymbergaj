@@ -9,9 +9,9 @@ import java.awt.geom.AffineTransform;
 
 public abstract class BodyRenderer implements Renderer {
 
-    protected final GameObject gameObject;
+    final GameObject gameObject;
 
-    protected BodyRenderer(GameObject gameObject) {
+    BodyRenderer(GameObject gameObject) {
         this.gameObject = gameObject;
     }
 

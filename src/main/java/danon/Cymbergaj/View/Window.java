@@ -48,7 +48,6 @@ public class Window {
 
     public void render() {
         renderers.forEach(renderer -> renderer.renderOn(canvas));
-        renderers.removeIf(Renderer::isFinished);
         drawToWindow();
     }
 
