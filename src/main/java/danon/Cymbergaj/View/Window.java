@@ -1,5 +1,6 @@
 package danon.Cymbergaj.View;
 
+import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.JFrameFactory;
 import danon.Cymbergaj.View.Renderer.Renderer;
 import danon.Cymbergaj.WindowClosingListener;
@@ -25,8 +26,8 @@ public class Window {
 
     public Window(Settings settings, WindowClosingListener listener) {
         this.frame = JFrameFactory.create(settings, listener);
-
-        backBuffer = new BufferedImage(settings.size.getWidth(), settings.size.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Size size = settings.getSize();
+        backBuffer = new BufferedImage(size.getWidth(), size.getHeight(), BufferedImage.TYPE_INT_ARGB);
         canvas = backBuffer.createGraphics();
     }
 
