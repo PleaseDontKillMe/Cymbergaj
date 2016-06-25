@@ -13,7 +13,6 @@ import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Rectangle;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 
 public final class DebugApplication {
