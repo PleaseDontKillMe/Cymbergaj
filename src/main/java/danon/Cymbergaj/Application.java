@@ -54,29 +54,18 @@ public final class Application {
     private void initializeWorld() {
         world.setGravity(World.ZERO_GRAVITY);
 
-        // create the floor
+        // create the floors
         GameObject topFloor = new Floor(), bottomFloor = new Floor();
         topFloor.translate(0.0, -6.0);
         bottomFloor.translate(0.0, 6.0);
 
-        GameObject stopper1 = new Wall(), stopper2 = new Wall(), stopper3 = new Wall(), stopper4 = new Wall();
-        BodyFixture stopperFixture = new BodyFixture(new Rectangle(0.6, 3.5));
-        stopperFixture.setRestitution(0.0);
-        stopper1.addFixture(stopperFixture);
-        stopper2.addFixture(stopperFixture);
-        stopper3.addFixture(stopperFixture);
-        stopper4.addFixture(stopperFixture);
-        stopper1.setMass(MassType.INFINITE);
-        stopper2.setMass(MassType.INFINITE);
-        stopper3.setMass(MassType.INFINITE);
-        stopper4.setMass(MassType.INFINITE);
-
-        double v = 9.7;
-        double v1 = 4.25;
-        stopper1.translate(-v, -v1);
-        stopper2.translate(v, -v1);
-        stopper3.translate(-v, v1);
-        stopper4.translate(v, v1);
+        // Stoppers blocking parts of gates
+        GameObject stopper1 = new Stopper(), stopper2 = new Stopper(), stopper3 = new Stopper(), stopper4 = new Stopper();
+        double x = 9.7, y = 4.25;
+        stopper1.translate(-x, -y);
+        stopper2.translate(x, -y);
+        stopper3.translate(-x, y);
+        stopper4.translate(x, y);
 
         // Vertical walls
         GameObject leftWall = new Wall("left"), rightWall = new Wall("right");
@@ -112,7 +101,7 @@ public final class Application {
         SpaceshipRenderer player2renderer = player2.getRenderer(images);
 
         window.addRenderer(game.getRenderer(images));
-        window.addRenderer(new PointsRenderer(game));
+        window.addRenderer(game.getPointsRenderer());
         window.addRenderer(leftWall.getRenderer(images));
         window.addRenderer(rightWall.getRenderer(images));
         window.addRenderer(topFloor.getRenderer(images));

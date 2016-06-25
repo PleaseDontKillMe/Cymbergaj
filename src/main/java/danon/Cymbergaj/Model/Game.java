@@ -1,6 +1,7 @@
 package danon.Cymbergaj.Model;
 
 import danon.Cymbergaj.Geometry.Size;
+import danon.Cymbergaj.View.PointsRenderer;
 import danon.Cymbergaj.View.Renderer.GameRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;
@@ -72,5 +73,9 @@ public class Game implements Updatable {
 
     public int getRightPoints() {
         return points2;
+    }
+
+    public PointsRenderer getPointsRenderer() {
+        return new PointsRenderer(this);
     }
 }
