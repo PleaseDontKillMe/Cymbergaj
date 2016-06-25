@@ -5,7 +5,7 @@ import danon.Cymbergaj.Utility.Compare;
 import org.dyn4j.geometry.Vector2;
 
 public class Point {
-    public static final double DELTA = 1e-5;
+    private static final double DELTA = 1e-5;
 
     public double x;
     public double y;
@@ -31,12 +31,7 @@ public class Point {
         return (int) y;
     }
 
-    public void setSize(Point p) {
-        this.x = p.x;
-        this.y = p.y;
-    }
-
-    public double distanceTo(Point A) {
+    private double distanceTo(Point A) {
         return Math.sqrt(Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2));
     }
 
@@ -54,7 +49,7 @@ public class Point {
         return angle;
     }
 
-    public boolean equals(Point point) {
+    private boolean equals(Point point) {
         return Compare.doublesEqual(point.x, x, DELTA) && Compare.doublesEqual(point.y, y, DELTA);
     }
 

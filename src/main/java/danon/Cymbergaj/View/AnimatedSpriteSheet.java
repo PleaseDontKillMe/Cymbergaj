@@ -19,7 +19,7 @@ public class AnimatedSpriteSheet {
         this(definition.spriteSheet, definition.spriteSize, definition.spritesAmount, definition.columnsCount);
     }
 
-    public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
+    private AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount, int columnsCount) {
         this.spriteSheet = spriteSheet;
         this.spriteSize = spriteSize;
         this.spritesAmount = spritesAmount;
@@ -31,8 +31,8 @@ public class AnimatedSpriteSheet {
     }
 
     public void drawOn(Graphics2D canvas, danon.Cymbergaj.Geometry.Point position, Rotation rotation) {
-        int column = getColumnBasedOnIndex(currentSpriteIndex);
-        int row = getRowBasedOnIndex(currentSpriteIndex);
+        int column = currentSpriteIndex % columnsCount;
+        int row = currentSpriteIndex / columnsCount;
 
         danon.Cymbergaj.Geometry.Point rot = rotation.getCenter();
 
@@ -65,13 +65,5 @@ public class AnimatedSpriteSheet {
 
     public void setFrame(int index) {
         currentSpriteIndex = (index+spritesAmount*10) % spritesAmount;
-    }
-
-    protected int getColumnBasedOnIndex(int index) {
-        return index % columnsCount;
-    }
-
-    protected int getRowBasedOnIndex(int index) {
-        return index / columnsCount;
     }
 }

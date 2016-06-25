@@ -12,9 +12,8 @@ import java.awt.event.KeyListener;
 
 public class Spaceship extends GameObject implements KeyListener, Updatable {
 
-    public final static double VELOCITY = 6.0;
+    private final static double VELOCITY = 6.0;
 
-    private double traveledDistance = 0;
     private final ControlKeys controlKeys;
     private final Keys keys;
 
@@ -31,14 +30,6 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
     @Override
     public boolean isAsleep() {
         return !keys.playerMoves();
-    }
-
-    public double getTraveledDistance() {
-        return traveledDistance;
-    }
-
-    public void incTraveledDistance(double velocity) {
-        this.traveledDistance += velocity;
     }
 
     public void updateMe(double elapsedTime) {

@@ -42,7 +42,7 @@ public final class Application {
         initializeWorld();
     }
 
-    protected void initializeWorld() {
+    private void initializeWorld() {
         world.setGravity(World.ZERO_GRAVITY);
 
         // create the floor
@@ -181,7 +181,7 @@ public final class Application {
         engine.addUpdateListener(player2);
     }
 
-    public void start() {
+    private void start() {
         engine.addUpdateListener(world::update);
         engine.addRenderListener(window::render);
 
