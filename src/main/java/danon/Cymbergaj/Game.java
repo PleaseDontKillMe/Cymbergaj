@@ -5,9 +5,16 @@ import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;
 import danon.Cymbergaj.View.Renderer.Updatable;
 
+import java.awt.*;
+
 public class Game implements Updatable {
     private int points1 = 0, points2 = 0;
     private int backgroundXSlide = 0;
+    private final Dimension dimension;
+
+    public Game(Dimension dimension) {
+        this.dimension = dimension;
+    }
 
     public void pointForLeft() {
         points1++;
@@ -33,5 +40,9 @@ public class Game implements Updatable {
 
     public Renderer getRenderer(ImagesRepository images) {
         return new GameRenderer(this, images);
+    }
+
+    public Dimension getDimension() {
+        return dimension;
     }
 }
