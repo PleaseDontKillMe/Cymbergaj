@@ -4,7 +4,7 @@ import danon.Cymbergaj.Geometry.Size;
 
 import java.awt.image.BufferedImage;
 
-class SpriteSheetDefinitionBuilder {
+public class SpriteSheetDefinitionBuilder {
     private BufferedImage spriteSheet;
     private Size spriteSize;
     private Integer spritesAmount;
