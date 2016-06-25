@@ -35,9 +35,7 @@ class Application {
         Explosion explosion = new BigExplosion(new Point(100, 300));
         Fireball fireball = new Fireball();
 
-        window = new Window(settings, e -> {
-            engine.stop();
-        });
+        window = new Window(settings, e -> engine.stop());
         window.addKeyListener(leftShip);
         window.addKeyListener(rightShip);
         window.addRenderable(world.getRenderer(images));
