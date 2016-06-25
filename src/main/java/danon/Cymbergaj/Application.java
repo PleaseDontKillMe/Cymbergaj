@@ -17,9 +17,6 @@ import org.dyn4j.dynamics.contact.ContactAdapter;
 import org.dyn4j.dynamics.contact.ContactPoint;
 import org.dyn4j.geometry.*;
 
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 
 
@@ -31,6 +28,7 @@ public final class Application {
     private final Window window;
     private final World world = new World();
     private final Game game;
+    private final SoundsRepository sounds = new SoundsRepository();
 
     private Application() {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 720));
@@ -109,13 +107,17 @@ public final class Application {
                         boolean didLeftScore = true;
                         if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
                             game.pointForLeft();
+                            sounds.bell.setFramePosition(0);
+                            sounds.bell.start();
                             didLeftScore = true;
                         }
                         if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
                             game.pointForRight();
+                            sounds.bell.setFramePosition(0);
+                            sounds.bell.start();
                             didLeftScore = false;
                         }
-                        int power = 120;
+                        int power = 75;
                         if (user1.equals("ball")) {
                             point.getBody1().applyForce(new Vector2(didLeftScore ? power : -power, 0));
                         }
@@ -181,6 +183,8 @@ public final class Application {
     }
 
     private void start() {
+        sounds.load();
+
         engine.addUpdateListener(world::update);
         engine.addRenderListener(window::render);
 

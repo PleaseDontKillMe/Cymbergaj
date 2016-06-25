@@ -20,10 +20,12 @@ public class SpaceshipRenderer extends BodyRenderer {
         this.spriteSheet = images.spaceship.getSpriteSheet();
     }
 
+    double totalElapsedTime = 0;
+
     @Override
     public void update(double elapsedTime) {
-        double traveled = spaceship.getTraveledDistance();
-        int frame = (int) Math.round(traveled / 4.0);
+        totalElapsedTime += elapsedTime;
+        int frame = (int) Math.round(totalElapsedTime * 40.0);
         spriteSheet.setFrame(frame);
     }
 
