@@ -107,12 +107,24 @@ public final class Application {
                 String user1 = (String) point.getBody1().getUserData();
                 String user2 = (String) point.getBody2().getUserData();
                 if (user1 != null && user2 != null) {
+                    System.out.print("Not null :) ");
                     if (user1.equals("ball") || user2.equals("ball")) {
+                        System.out.print("One is ball :) ");
+                        boolean didLeftScore = true;
                         if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
                             game.pointForLeft();
+                            didLeftScore = true;
                         }
                         if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
                             game.pointForRight();
+                            didLeftScore = false;
+                        }
+                        int power = 120;
+                        if (user1.equals("ball")) {
+                            point.getBody1().applyForce(new Vector2(didLeftScore ? power : -power, 0));
+                        }
+                        if (user2.equals("ball")) {
+                            point.getBody2().applyForce(new Vector2(didLeftScore ? power : -power, 0));
                         }
                     }
                 }
@@ -122,7 +134,7 @@ public final class Application {
 
         // ball
         GameObject ball = new Fireball();
-        BodyFixture ballFixture = new BodyFixture(new Circle(0.3));
+        BodyFixture ballFixture = new BodyFixture(new Circle(0.4));
         ballFixture.setRestitution(1.0);
         ball.addFixture(ballFixture);
         ball.setMass(MassType.NORMAL);
@@ -187,7 +199,7 @@ public final class Application {
             Clip clip = AudioSystem.getClip();
             AudioInputStream ais = AudioSystem.getAudioInputStream(file);
             clip.open(ais);
-            clip.start();
+          //  clip.start();
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
