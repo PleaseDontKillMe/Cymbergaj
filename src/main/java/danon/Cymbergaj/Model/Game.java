@@ -8,7 +8,7 @@ import danon.Cymbergaj.View.Renderer.Renderer;
 
 public class Game implements Updatable {
 
-    private int points1 = 0, points2 = 0;
+    private int pointsLeft = 0, pointsRight = 0;
     private PreviousWinner previousWinner = PreviousWinner.None;
     private double backgroundXSlide = 0;
     private final Size size;
@@ -23,26 +23,26 @@ public class Game implements Updatable {
     }
 
     public void pointForLeft() {
-        points1++;
+        pointsLeft++;
     }
 
     public void pointForRight() {
-        points2++;
+        pointsRight++;
     }
 
     public void restartGame() {
-        if (points1 == points2) {
+        if (pointsLeft == pointsRight) {
             previousWinner = PreviousWinner.Tie;
         }
         else {
-            if (points1 > points2) {
+            if (pointsLeft > pointsRight) {
                 previousWinner = PreviousWinner.WsadPlayer;
             } else {
                 previousWinner = PreviousWinner.ArrowsPlayer;
             }
         }
-        points1 = 0;
-        points2 = 0;
+        pointsLeft = 0;
+        pointsRight = 0;
         onGameStart.run();
     }
 
@@ -68,11 +68,11 @@ public class Game implements Updatable {
     }
 
     public int getLeftPoints() {
-        return points1;
+        return pointsLeft;
     }
 
     public int getRightPoints() {
-        return points2;
+        return pointsRight;
     }
 
     public PointsRenderer getPointsRenderer() {
