@@ -22,7 +22,7 @@ public class GameRenderer implements Renderer {
         int width = background.getWidth();
         int x = game.getBackgroundXSlide() % width;
 
-        int halfHeight = game.getSize().getHeight() / 2 - 50;
+        int halfHeight = game.getSize().getHeight() / 2;
         int halfWidth = game.getSize().getWidth() / 2;
 
         canvas.drawImage(background, -(x + halfWidth), -halfHeight, null);

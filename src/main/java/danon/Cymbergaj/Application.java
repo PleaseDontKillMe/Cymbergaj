@@ -31,7 +31,7 @@ public final class Application {
     private final SoundsRepository sounds = new SoundsRepository();
 
     private Application() {
-        Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 720));
+        Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 600));
 
         this.window = new Window(settings, closeEvent -> engine.stop());
         this.game = new Game(settings.getSize());
@@ -52,14 +52,14 @@ public final class Application {
         floor1.setMass(MassType.INFINITE);
         floor2.setMass(MassType.INFINITE);
 
-        floor1.translate(0.0, -7.0);
-        floor2.translate(0.0, 7.0);
+        floor1.translate(0.0, -6.0);
+        floor2.translate(0.0, 6.0);
         this.world.addBody(floor1);
         this.world.addBody(floor2);
 
 
         GameObject stopper1 = new Wall(), stopper2 = new Wall(), stopper3 = new Wall(), stopper4 = new Wall();
-        BodyFixture stopperFixture = new BodyFixture(new Rectangle(0.6, 4.5));
+        BodyFixture stopperFixture = new BodyFixture(new Rectangle(0.6, 3.5));
         stopperFixture.setRestitution(0.0);
         stopper1.addFixture(stopperFixture);
         stopper2.addFixture(stopperFixture);
@@ -71,7 +71,7 @@ public final class Application {
         stopper4.setMass(MassType.INFINITE);
 
         double v = 9.7;
-        double v1 = 4.76;
+        double v1 = 4.25;
         stopper1.translate(-v, -v1);
         stopper2.translate(v, -v1);
         stopper3.translate(-v, v1);
@@ -83,7 +83,7 @@ public final class Application {
 
 
         GameObject wall1 = new Wall(), wall2 = new Wall();
-        BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 14.0));
+        BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 12.0));
         wallFixture.setRestitution(0.0);
         wall1.addFixture(wallFixture);
         wall1.setMass(MassType.INFINITE);
