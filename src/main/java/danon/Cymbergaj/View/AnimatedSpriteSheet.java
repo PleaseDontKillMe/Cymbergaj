@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class AnimatedSpriteSheet {
+
     private final BufferedImage spriteSheet;
     private final Size spriteSize;
     private final int spritesAmount;
