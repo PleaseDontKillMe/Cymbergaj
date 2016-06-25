@@ -4,6 +4,7 @@ import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Engine;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
+import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import danon.Cymbergaj.Settings;
 import danon.Cymbergaj.View.Window;
