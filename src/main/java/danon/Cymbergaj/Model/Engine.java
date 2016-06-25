@@ -1,6 +1,7 @@
 package danon.Cymbergaj.Model;
 
 
+import danon.Cymbergaj.Debug.dyn.DebugApplication;
 import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.Updatable;
 
@@ -32,6 +33,8 @@ public class Engine implements GameEventListener {
     }
 
     private void fixedTimeStepLoop() {
+        final int millisecondsPerTick = 1000 / TPS;
+
         double previous = System.nanoTime();
         double lag = 0.0;
 
@@ -41,9 +44,9 @@ public class Engine implements GameEventListener {
             previous = current;
             lag += elapsed / 1000000;
 
-            while (lag >= (1000 / TPS)) {
-                updateAll(elapsed/1000000000);
-                lag -= (1000 / TPS);
+            while (lag >= millisecondsPerTick) {
+                updateAll(elapsed / DebugApplication.NANO_TO_BASE);
+                lag -= millisecondsPerTick;
             }
             renderAll();
         }
