@@ -5,14 +5,7 @@ import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;
 
-import java.awt.*;
-
 public class Fireball extends GameObject {
-
-    @Override
-    public void renderMe(Graphics2D canvas) {
-
-    }
 
     public Renderer getRenderer(ImagesRepository images) {
         return new FireballRenderer(this, images);
