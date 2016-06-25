@@ -26,5 +26,24 @@ public class GameRenderer implements Renderer {
         canvas.drawImage(background, -(x + halfWidth), -halfHeight, null);
         canvas.drawImage(background, -(x + halfWidth - width), -halfHeight, null);
         canvas.drawImage(background, -(x + halfWidth - width * 2), -halfHeight, null);
+
+        canvas.setColor(new Color(255,255,255, 120));
+        String text = getEndGameText();
+        canvas.setFont(new Font("Arial", 0, 80));
+        canvas.drawString(text, -400, -200);
+    }
+
+    private String getEndGameText() {
+        switch (game.getPreviousWinner()) {
+            case WsadPlayer:
+                return "WSAD Player won! :)";
+            case ArrowsPlayer:
+                return "Arrows Player won! :)";
+            case Tie:
+                return "Tie";
+            case None:
+            default:
+                return "";
+        }
     }
 }
