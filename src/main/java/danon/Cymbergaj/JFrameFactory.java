@@ -1,8 +1,6 @@
 package danon.Cymbergaj;
 
 
-import danon.Cymbergaj.Model.WindowClosingListener;
-
 import javax.swing.*;
 import java.awt.*;
 

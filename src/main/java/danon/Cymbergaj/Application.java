@@ -4,7 +4,6 @@ import danon.Cymbergaj.Debug.dyn.Spaceship;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Engine;
-import danon.Cymbergaj.Model.WindowClosingListener;
 import danon.Cymbergaj.Model.World.Character.BigExplosion;
 import danon.Cymbergaj.Model.World.Character.Explosion;
 import danon.Cymbergaj.Model.World.Character.Fireball;
@@ -36,19 +35,21 @@ class Application {
         Explosion explosion = new BigExplosion(new Point(100, 300));
         Fireball fireball = new Fireball();
 
-        window = new Window(settings, new WindowClosingListener(engine));
+        window = new Window(settings, e -> {
+            engine.stop();
+        });
         window.addKeyListener(leftShip);
         window.addKeyListener(rightShip);
-        window.addRenderer(world.getRenderer(images));
-        window.addRenderer(leftShip.getRenderer(images));
-        window.addRenderer(rightShip.getRenderer(images));
-        window.addRenderer(explosion.getRenderer(images));
-        window.addRenderer(fireball.getRenderer(images));
+        window.addRenderable(world.getRenderer(images));
+        window.addRenderable(leftShip.getRenderer(images));
+        window.addRenderable(rightShip.getRenderer(images));
+        window.addRenderable(explosion.getRenderer(images));
+        window.addRenderable(fireball.getRenderer(images));
 
-        engine.addGameEventListener(window);
+       // engine.addGameEventListener(window);
         //engine.addGameEventListener(leftShip);
        // engine.addGameEventListener(rightShip);
-        engine.addGameEventListener(world);
+        //engine.addGameEventListener(world);
     }
 
     private void start() {

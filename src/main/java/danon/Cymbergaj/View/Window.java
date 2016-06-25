@@ -2,7 +2,7 @@ package danon.Cymbergaj.View;
 
 import danon.Cymbergaj.JFrameFactory;
 import danon.Cymbergaj.Model.GameEventListener;
-import danon.Cymbergaj.Model.WindowClosingListener;
+import danon.Cymbergaj.WindowClosingListener;
 import danon.Cymbergaj.Settings;
 import danon.Cymbergaj.View.Renderer.Renderable;
 
@@ -34,7 +34,7 @@ public class Window implements GameEventListener {
         frame.addKeyListener(listener);
     }
 
-    public void addRenderer(Renderable renderable) {
+    public void addRenderable(Renderable renderable) {
         renderables.add(renderable);
     }
 
@@ -57,5 +57,9 @@ public class Window implements GameEventListener {
 
     private void flip() {
         windowGraphics.drawImage(backBuffer, 0, 0, null);
+    }
+
+    public Dimension getDimension() {
+        return frame.getSize();
     }
 }

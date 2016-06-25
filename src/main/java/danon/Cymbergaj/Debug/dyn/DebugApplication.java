@@ -1,55 +1,35 @@
 package danon.Cymbergaj.Debug.dyn;
 
+import danon.Cymbergaj.Geometry.Size;
+import danon.Cymbergaj.Model.Engine;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
+import danon.Cymbergaj.Settings;
+import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Rectangle;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferStrategy;
 
 
-public final class DebugApplication extends JFrame {
+public final class DebugApplication {
 
     static final double SCALE = 45.0; //  The scale 45 pixels per meter
     private static final double NANO_TO_BASE = 1.0e9;
 
-    private final Dimension size;
-    protected final Canvas canvas = new Canvas();
-    protected World world;
-
-    private boolean stopped = false;
-    private long last;
+    private final Engine engine = new Engine();
+    private final Window window;
+    private World world;
 
     private DebugApplication() {
-        super("Graphics2D Example");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                stop();
-                super.windowClosing(e);
-            }
-        });
-
-        size = new Dimension(1000, 800);
-
-        canvas.setPreferredSize(size);
-        canvas.setMinimumSize(size);
-        canvas.setMaximumSize(size);
-
-        add(this.canvas);
-        pack();
-        setLocationRelativeTo(null);
+        Settings settings = new Settings();
+        settings.windowTitle = "Cymbergaj | Best 2D game jk";
+        settings.size = new Size(1080, 620);
+        window = new Window(settings, event -> engine.stop());
 
         initializeWorld();
     }
@@ -98,64 +78,39 @@ public final class DebugApplication extends JFrame {
         // players
         Spaceship player1 = new Spaceship(new WsadControlKeys()), player2 = new Spaceship(new ArrowsControlKeys());
         player1.addFixture(new Circle(0.7));
-        player1.setMass(MassType.NORMAL);
+        player1.setMass(MassType.FIXED_LINEAR_VELOCITY);
         player1.translate(-9.0, 0.0);
         player2.addFixture(new Circle(0.7));
         player2.translate(9.0, 0.0);
-        player2.setMass(MassType.NORMAL);
+        player2.setMass(MassType.FIXED_LINEAR_VELOCITY);
         this.world.addBody(player1);
         this.world.addBody(player2);
 
-        this.addKeyListener(player1);
-        this.addKeyListener(player2);
+        window.addKeyListener(player1);
+        window.addKeyListener(player2);
+
+        window.addRenderable(canvas -> {
+            Dimension size = window.getDimension();
+            AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
+            AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth()/2, -size.getHeight()/2);
+            canvas.transform(yFlip);
+            canvas.transform(move);
+
+            render(canvas);
+        });
     }
 
     public void start() {
-        last = System.nanoTime();
-        canvas.setIgnoreRepaint(true);
-        canvas.createBufferStrategy(2);
-        Thread thread = new Thread() {
-            public void run() {
-                while (isStarted()) {
-                    gameLoop();
-                }
-            }
-        };
-        thread.setDaemon(true);
-        thread.start();
-    }
+        engine.addUpdatable(elapsedTime -> world.update(elapsedTime));
+        engine.addRenderable(canvas1 -> window.render());
 
-    protected void gameLoop() {
-        Graphics2D g = (Graphics2D) canvas.getBufferStrategy().getDrawGraphics();
-
-        // before we render everything im going to flip the y axis and move the
-        // origin to the center (instead of it being in the top left corner)
-        AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
-        AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth()/2, -size.getHeight()/2);
-        g.transform(yFlip);
-        g.transform(move);
-
-        this.render(g);
-        g.dispose();
-
-        BufferStrategy strategy = canvas.getBufferStrategy();
-        if (!strategy.contentsLost()) {
-            strategy.show();
-        }
-
-        // Sync the display on some systems.
-        // (on Linux, this fixes event queue problems)
-        Toolkit.getDefaultToolkit().sync();
-
-        long time = System.nanoTime();
-        long elapsed = time - this.last;
-        this.last = time;
-        double elapsedTimeInSeconds = elapsed / NANO_TO_BASE;
-        this.world.update(elapsedTimeInSeconds);
+        window.show();
+        engine.start();
     }
 
     protected void render(Graphics2D canvas) {
         canvas.setColor(Color.WHITE);
+        Dimension size = window.getDimension();
         canvas.fillRect((int)(-size.getWidth()/2), (int) (-size.getHeight()/2), (int)size.getWidth(), (int)size.getHeight());
 
         for (int i = 0; i < this.world.getBodyCount(); i++) {
@@ -164,17 +119,7 @@ public final class DebugApplication extends JFrame {
         }
     }
 
-    public synchronized void stop() {
-        stopped = true;
-    }
-
-    public synchronized boolean isStarted() {
-        return !stopped;
-    }
-
     public static void main(String[] args) throws IllegalAccessException {
-        DebugApplication window = new DebugApplication();
-        window.setVisible(true);
-        window.start();
+        new DebugApplication().start();
     }
 }
