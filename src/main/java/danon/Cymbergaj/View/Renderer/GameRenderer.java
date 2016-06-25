@@ -21,11 +21,12 @@ public class GameRenderer implements Renderer {
         int width = background.getWidth();
         int x = game.getBackgroundXSlide() % width;
 
+        int halfHeight = game.getSize().getHeight() / 2;
         int halfWidth = game.getSize().getWidth() / 2;
 
-        canvas.drawImage(background, -(x), -halfWidth, null);
-        canvas.drawImage(background, -(x - width), -halfWidth, null);
-        canvas.drawImage(background, -(x - width * 2), -halfWidth, null);
+        canvas.drawImage(background, -(x + halfWidth), -halfHeight, null);
+        canvas.drawImage(background, -(x + halfWidth - width), -halfHeight, null);
+        canvas.drawImage(background, -(x + halfWidth - width * 2), -halfHeight, null);
 
         canvas.setStroke(dashed);
     }

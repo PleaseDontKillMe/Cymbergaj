@@ -1,18 +1,20 @@
 package danon.Cymbergaj.View.Renderer;
 
 
+import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import java.awt.*;
 
 
-public class SpaceshipRenderer implements Renderer {
+public class SpaceshipRenderer extends BodyRenderer {
 
     private final Spaceship spaceship;
     private final AnimatedSpriteSheet spriteSheet;
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
+        super(spaceship);
         this.spaceship = spaceship;
         this.spriteSheet = images.spaceship.getSpriteSheet();
     }
@@ -25,7 +27,7 @@ public class SpaceshipRenderer implements Renderer {
     }
 
     @Override
-    public void renderOn(Graphics2D canvas) {
-
+    public void renderBody(Graphics2D canvas) {
+        spriteSheet.drawOn(canvas, new Point(0,0));
     }
 }

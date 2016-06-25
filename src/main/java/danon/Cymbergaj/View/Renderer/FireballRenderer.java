@@ -1,23 +1,24 @@
 package danon.Cymbergaj.View.Renderer;
 
+import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.View.AnimatedSpriteSheet;
 
 import java.awt.*;
 
-public class FireballRenderer implements Renderer {
-    private final Fireball fireball;
+
+public class FireballRenderer extends BodyRenderer {
     private final AnimatedSpriteSheet spriteSheet;
     private int refreshesToNextFrame = 0;
 
     public FireballRenderer(Fireball fireball, ImagesRepository images) {
-        this.fireball = fireball;
+        super(fireball);
         this.spriteSheet = images.fireball.getSpriteSheet();
     }
 
     @Override
-    public void renderOn(Graphics2D canvas) {
-
+    public void renderBody(Graphics2D canvas) {
+        spriteSheet.drawOn(canvas, new Point(0,0));
     }
 
     @Override
