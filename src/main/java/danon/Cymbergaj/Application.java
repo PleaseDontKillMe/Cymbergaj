@@ -22,6 +22,7 @@ public final class Application {
     private final ImagesRepository images = new ImagesRepository();
 
     public static void main(String[] args) {
+        System.out.println("Loading...");
         new Application().start();
     }
 
