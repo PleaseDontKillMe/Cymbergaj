@@ -26,11 +26,5 @@ public class GameRenderer implements Renderer {
         canvas.drawImage(background, -(x + halfWidth), -halfHeight, null);
         canvas.drawImage(background, -(x + halfWidth - width), -halfHeight, null);
         canvas.drawImage(background, -(x + halfWidth - width * 2), -halfHeight, null);
-
-        canvas.setFont(new Font("Arial", 0, 500));
-        canvas.setColor(new Color(255, 255, 255, 60));
-        canvas.drawString(game.getPoints1() + "", -360, 160);
-        canvas.drawString(":", -70, 160);
-        canvas.drawString(game.getPoints2() + "", 95, 160);
     }
 }

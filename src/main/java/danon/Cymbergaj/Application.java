@@ -8,6 +8,7 @@ import danon.Cymbergaj.Model.World.Character.Wall;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
+import danon.Cymbergaj.View.PointsRenderer;
 import danon.Cymbergaj.View.Renderer.ClearScreenRenderer;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
@@ -181,6 +182,7 @@ public final class Application {
 
         window.addRenderer(new ClearScreenRenderer(window.getDimension()));
         window.addRenderer(game.getRenderer(images));
+        window.addRenderer(new PointsRenderer(game));
         window.addRenderer(wall1.getRenderer(images));
         window.addRenderer(wall2.getRenderer(images));
         window.addRenderer(floor1.getRenderer(images));
