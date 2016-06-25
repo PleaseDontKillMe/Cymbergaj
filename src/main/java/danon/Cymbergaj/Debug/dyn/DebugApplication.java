@@ -27,7 +27,7 @@ public final class DebugApplication {
     private DebugApplication() {
         Settings settings = new Settings();
         settings.windowTitle = "Cymbergaj | Best 2D game jk";
-        settings.size = new Size(1080, 620);
+        settings.size = new Size(1080, 720);
         window = new Window(settings, event -> engine.stop());
 
         initializeWorld();
@@ -39,10 +39,11 @@ public final class DebugApplication {
         // create the floor
         GameObject floor1 = new Wall(), floor2 = new Wall();
 
-        Rectangle horizontalRectangle = new Rectangle(20.0, 0.2);
-        floor1.addFixture(new BodyFixture(horizontalRectangle));
+        BodyFixture floorFixture = new BodyFixture(new Rectangle(20.0, 0.2));
+        floorFixture.setRestitution(0.01);
+        floor1.addFixture(floorFixture);
+        floor2.addFixture(floorFixture);
         floor1.setMass(MassType.INFINITE);
-        floor2.addFixture(new BodyFixture(horizontalRectangle));
         floor2.setMass(MassType.INFINITE);
 
         floor1.translate(0.0, -7.0);
@@ -51,11 +52,11 @@ public final class DebugApplication {
         this.world.addBody(floor2);
 
         GameObject wall1 = new Wall(), wall2 = new Wall();
-
-        BodyFixture fixture = new BodyFixture(new Rectangle(0.2, 14.0));
-        wall1.addFixture(fixture);
+        BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 14.0));
+        wallFixture.setRestitution(0.01);
+        wall1.addFixture(wallFixture);
         wall1.setMass(MassType.INFINITE);
-        wall2.addFixture(fixture);
+        wall2.addFixture(wallFixture);
         wall2.setMass(MassType.INFINITE);
 
         wall1.translate(-10.0, 0);
@@ -84,6 +85,9 @@ public final class DebugApplication {
         this.world.addBody(player1);
         this.world.addBody(player2);
 
+        player1.setAsleep(false);
+        player2.setAsleep(false);
+
         window.addKeyListener(player1);
         window.addKeyListener(player2);
 
@@ -107,12 +111,12 @@ public final class DebugApplication {
         canvas.fillRect((int)(-size.getWidth()/2), (int) (-size.getHeight()/2), (int)size.getWidth(), (int)size.getHeight());
 
         for (int i = 0; i < this.world.getBodyCount(); i++) {
-            GameObject go = (GameObject) this.world.getBody(i);
-            go.render(canvas);
+            GameObject gameObject = (GameObject) this.world.getBody(i);
+            gameObject.render(canvas);
         }
     }
 
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) {
         new DebugApplication().start();
     }
 }
