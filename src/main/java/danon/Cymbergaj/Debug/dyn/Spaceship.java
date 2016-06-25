@@ -5,13 +5,14 @@ import danon.Cymbergaj.Model.World.Control.Keys;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
+import danon.Cymbergaj.View.Renderer.Updatable;
 import org.dyn4j.geometry.Vector2;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Spaceship extends GameObject implements KeyListener {
+public class Spaceship extends GameObject implements KeyListener, Updatable {
 
     public final static double VELOCITY = 6.0;
 
