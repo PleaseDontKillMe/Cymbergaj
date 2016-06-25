@@ -47,11 +47,17 @@ public final class Application {
 
         initializeWorld();
 
+        sounds.addOnEndListener(sounds.lookAtMyHorse, game::restartGame);
+        game.onGameStart(() -> {
+            sounds.lookAtMyHorse.setFramePosition(0);
+            sounds.lookAtMyHorse.start();
+        });
+
         engine.addUpdateListener(world::update);
         engine.addRenderListener(window::render);
 
         window.show();
-        sounds.lookAtMyHorse.start();
+        sounds.play(sounds.lookAtMyHorse);
         engine.start();
     }
 
