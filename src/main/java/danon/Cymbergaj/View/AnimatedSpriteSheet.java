@@ -58,10 +58,6 @@ public class AnimatedSpriteSheet {
         currentSpriteIndex = (currentSpriteIndex + 1) % spritesAmount;
     }
 
-    public boolean isLast() {
-        return currentSpriteIndex == (spritesAmount - 1);
-    }
-
     public void setFrame(int index) {
         currentSpriteIndex = (index+spritesAmount*10) % spritesAmount;
     }
