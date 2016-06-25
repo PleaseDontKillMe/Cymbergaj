@@ -2,7 +2,6 @@ package danon.Cymbergaj.Model.World.Control;
 
 import danon.Cymbergaj.Model.GameObject;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderer;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
 import danon.Cymbergaj.View.Renderer.Updatable;
 import org.dyn4j.geometry.Vector2;

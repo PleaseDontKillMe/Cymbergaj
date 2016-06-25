@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ClearScreenRenderer implements Renderer {
 
-    private Dimension dimension;
+    private final Dimension dimension;
 
     public ClearScreenRenderer(Dimension dimension) {
         this.dimension = dimension;

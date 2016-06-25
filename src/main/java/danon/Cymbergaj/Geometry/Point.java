@@ -7,8 +7,8 @@ import org.dyn4j.geometry.Vector2;
 public class Point {
     private static final double DELTA = 1e-5;
 
-    public double x;
-    public double y;
+    public final double x;
+    public final double y;
 
     public Point() {
         this(0, 0);

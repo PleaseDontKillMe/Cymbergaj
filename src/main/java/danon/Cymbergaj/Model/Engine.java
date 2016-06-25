@@ -1,7 +1,6 @@
 package danon.Cymbergaj.Model;
 
 
-import danon.Cymbergaj.Application;
 import danon.Cymbergaj.View.Renderer.Updatable;
 
 import java.util.ArrayList;

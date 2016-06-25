@@ -12,7 +12,7 @@ public class GameRenderer implements Renderer {
 
     public GameRenderer(Game game, ImagesRepository images) {
         this.game = game;
-        this.background = images.background2;
+        this.background = images.background;
     }
 
     @Override

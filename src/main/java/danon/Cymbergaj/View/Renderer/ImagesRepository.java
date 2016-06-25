@@ -11,15 +11,13 @@ import java.io.IOException;
 public class ImagesRepository {
 
     BufferedImage background;
-    BufferedImage background2;
     SpriteSheetDefinition fireball;
     SpriteSheetDefinition spaceship;
     SpriteSheetDefinition explosion;
     SpriteSheetDefinition bigExplosion;
 
     public void load() {
-        background = loadImage("space-background1.png");
-        background2 = loadImage("space-background2.png");
+        background = loadImage("space-background.png");
 
         fireball = image("fireball.png")
                 .amount(8)
