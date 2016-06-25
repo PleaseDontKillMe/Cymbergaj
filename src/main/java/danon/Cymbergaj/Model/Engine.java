@@ -2,16 +2,15 @@ package danon.Cymbergaj.Model;
 
 
 import danon.Cymbergaj.Application;
-import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.Updatable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Engine implements GameEventListener {
+public class Engine {
 
-    private final List<Updatable> updatables = new ArrayList<>();
-    private final List<Renderable> renderables = new ArrayList<>();
+    private final List<Updatable> onUpdate = new ArrayList<>();
+    private final List<Runnable> onRender = new ArrayList<>();
     private boolean shouldStop = false;
 
     public void start() {
@@ -30,19 +29,19 @@ public class Engine implements GameEventListener {
         this.shouldStop = true;
     }
 
-    public void addUpdatable(Updatable updatable) {
-        this.updatables.add(updatable);
+    public void addUpdateListener(Updatable updatable) {
+        this.onUpdate.add(updatable);
     }
 
-    public void addRenderable(Renderable renderable) {
-        this.renderables.add(renderable);
+    public void addRenderListener(Runnable runnable) {
+        this.onRender.add(runnable);
     }
 
     private void updateAll(double elapsedSeconds) {
-        updatables.forEach(listener -> listener.updateMe(elapsedSeconds));
+        onUpdate.forEach(updatable -> updatable.updateMe(elapsedSeconds));
     }
 
     private void renderAll() {
-        renderables.forEach(listener -> listener.renderOn(null));
+        onRender.forEach(Runnable::run);
     }
 }
