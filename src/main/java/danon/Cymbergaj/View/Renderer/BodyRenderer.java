@@ -9,13 +9,13 @@ import java.awt.geom.AffineTransform;
 
 public abstract class BodyRenderer implements Renderer {
 
-    private GameObject gameObject;
+    protected GameObject gameObject;
 
     public BodyRenderer(GameObject gameObject) {
         this.gameObject = gameObject;
     }
 
-    abstract void renderBody(Graphics2D canvas);
+    public abstract void renderBody(Graphics2D canvas);
 
     @Override
     public void renderOn(Graphics2D canvas) {
