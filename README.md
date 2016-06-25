@@ -1,6 +1,9 @@
 # The game
 Cymbergej game written entirely in Java. It's going to be super awesome :DD
 
+## Requirements
+Java 8
+
 ## Run
 Simplest way to run this game is to:
 
@@ -11,3 +14,6 @@ Simplest way to run this game is to:
    * In _Directory_ type _Cymbergaj_
 * Navigate to _Application.java_
 * Click _Shift + F10_
+
+# Download Jar
+Pobierz gotowy do uruchomienia plik: [Cymbergaj.jar](https://github.com/PleaseDontKillMe/Cymbergaj/raw/release/release/Cymbergaj.jar)
