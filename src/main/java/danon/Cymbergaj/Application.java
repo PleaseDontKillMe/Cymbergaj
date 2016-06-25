@@ -8,6 +8,7 @@ import danon.Cymbergaj.Model.World.Character.Wall;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
+import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
@@ -16,7 +17,10 @@ import org.dyn4j.dynamics.contact.ContactPoint;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Rectangle;
 
+import javax.sound.sampled.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 
@@ -28,8 +32,7 @@ public final class Application {
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
-
-    private int points1 = 0, points2 = 0;
+    private final Game game = new Game();
 
     private Application() {
         Settings settings = new Settings();
@@ -106,10 +109,10 @@ public final class Application {
                 if (user1 != null && user2 != null) {
                     if (user1.equals("ball") || user2.equals("ball")) {
                         if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
-                            points1++;
+                            game.pointForLeft();
                         }
                         if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
-                            points2++;
+                            game.pointForRight();
                         }
                     }
                 }
@@ -148,37 +151,41 @@ public final class Application {
         window.addKeyListener(player1);
         window.addKeyListener(player2);
 
-        window.addRenderable(this::render);
-        window.addRenderable(canvas -> {
-            canvas.setColor(Color.black);
-            canvas.setFont(new Font("Arial", 0, 15));
-            canvas.drawString(points1 + ":" + points2, 20, 50);
-        });
+        ImagesRepository images = new ImagesRepository();
+        images.load();
 
-        engine.addUpdatable(player1);
-        engine.addUpdatable(player2);
+        window.addRenderer(wall1.getRenderer(images));
+        window.addRenderer(wall2.getRenderer(images));
+        window.addRenderer(floor1.getRenderer(images));
+        window.addRenderer(floor2.getRenderer(images));
+        window.addRenderer(player1.getRenderer(images));
+        window.addRenderer(player2.getRenderer(images));
+        window.addRenderer(game.getRenderer(images));
+
+        engine.addUpdateListener(player1);
+        engine.addUpdateListener(player2);
     }
 
     public void start() {
-        engine.addUpdatable(world::update);
-        engine.addRenderable(canvas1 -> window.render());
+        engine.addUpdateListener(world::update);
+        engine.addRenderListener(window::render);
 
         window.show();
         engine.start();
     }
 
-    protected void render(Graphics2D canvas) {
-        canvas.setColor(Color.WHITE);
-        Dimension size = window.getDimension();
-        canvas.fillRect((int) (-size.getWidth() / 2), (int) (-size.getHeight() / 2), (int) size.getWidth(), (int) size.getHeight());
-
-        for (int i = 0; i < this.world.getBodyCount(); i++) {
-            GameObject gameObject = (GameObject) this.world.getBody(i);
-            gameObject.render(canvas);
-        }
-    }
-
     public static void main(String[] args) {
+
+        try {
+            File file = new File("res/LookAtMyHorse.wav");
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+            clip.open(ais);
+            clip.start();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        }
+
         new Application().start();
     }
 }
