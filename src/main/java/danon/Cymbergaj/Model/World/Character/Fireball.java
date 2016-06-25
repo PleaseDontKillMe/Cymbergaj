@@ -3,7 +3,7 @@ package danon.Cymbergaj.Model.World.Character;
 import danon.Cymbergaj.Model.GameObject;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderable;
+import danon.Cymbergaj.View.Renderer.Renderer;
 
 import java.awt.*;
 
@@ -14,7 +14,7 @@ public class Fireball extends GameObject {
 
     }
 
-    public Renderable getRenderer(ImagesRepository images) {
+    public Renderer getRenderer(ImagesRepository images) {
         return new FireballRenderer(this, images);
     }
 }

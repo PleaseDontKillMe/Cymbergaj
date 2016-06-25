@@ -2,12 +2,11 @@ package danon.Cymbergaj.Model.World.Control;
 
 import danon.Cymbergaj.Model.GameObject;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
-import danon.Cymbergaj.View.Renderer.Renderable;
+import danon.Cymbergaj.View.Renderer.Renderer;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
 import danon.Cymbergaj.View.Renderer.Updatable;
 import org.dyn4j.geometry.Vector2;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -25,12 +24,7 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
         this.controlKeys.useKeys(this.keys);
     }
 
-    @Override
-    public void renderMe(Graphics2D canvas) {
-
-    }
-
-    public Renderable getRenderer(ImagesRepository images) {
+    public Renderer getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
     }
 
