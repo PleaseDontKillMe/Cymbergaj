@@ -18,15 +18,15 @@ public class SoundsRepository {
 
     private Clip loadClip(String filename) {
         try {
-            File file = new File(filename);
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-            clip.open(ais);
-            return clip;
+            return tryLoadClip(filename);
         } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             throw new RuntimeException("Couldn't load file '" + filename + "'");
         }
     }
 
-
+    private Clip tryLoadClip(String filename) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+        Clip clip = AudioSystem.getClip();
+        clip.open(AudioSystem.getAudioInputStream(new File(filename)));
+        return clip;
+    }
 }
