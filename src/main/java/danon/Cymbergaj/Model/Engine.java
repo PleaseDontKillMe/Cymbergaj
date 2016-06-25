@@ -15,7 +15,15 @@ public class Engine implements GameEventListener {
     private boolean shouldStop = false;
 
     public void start() {
-        fixedTimeStepLoop();
+        double previous = System.nanoTime();
+
+        while (!shouldStop) {
+            double current = System.nanoTime();
+            double elapsed = current - previous;
+            previous = current;
+            updateAll(elapsed / DebugApplication.NANO_TO_BASE);
+            renderAll();
+        }
     }
 
     public void stop() {
@@ -28,18 +36,6 @@ public class Engine implements GameEventListener {
 
     public void addRenderable(Renderable renderable) {
         this.renderables.add(renderable);
-    }
-
-    private void fixedTimeStepLoop() {
-        double previous = System.nanoTime();
-
-        while (!shouldStop) {
-            double current = System.nanoTime();
-            double elapsed = current - previous;
-            previous = current;
-            updateAll(elapsed / DebugApplication.NANO_TO_BASE);
-            renderAll();
-        }
     }
 
     private void updateAll(double elapsedSeconds) {

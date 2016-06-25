@@ -1,6 +1,5 @@
 package danon.Cymbergaj.Model.World.Control;
 
-import danon.Cymbergaj.Geometry.Bounds;
 import danon.Cymbergaj.Model.GameEventListener;
 
 import java.awt.event.KeyEvent;
