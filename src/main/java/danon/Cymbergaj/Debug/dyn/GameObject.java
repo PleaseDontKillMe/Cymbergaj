@@ -22,7 +22,7 @@ abstract public class GameObject extends Body {
         canvas.transform(getLocalTransform());
 
         for (BodyFixture fixture : this.fixtures) {
-            Graphics2DRenderer.render(canvas, fixture.getShape(), DebugApplication.SCALE, color);
+            Graphics2DRenderer.render(canvas, fixture.getShape(), DebugApplication.SCALE, color, this);
             renderMe(canvas);
         }
 
