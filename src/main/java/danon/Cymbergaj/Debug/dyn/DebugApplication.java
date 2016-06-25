@@ -41,7 +41,7 @@ public final class DebugApplication {
         GameObject floor1 = new Wall(), floor2 = new Wall();
 
         BodyFixture floorFixture = new BodyFixture(new Rectangle(20.0, 0.2));
-        floorFixture.setRestitution(0.01);
+        floorFixture.setRestitution(0.0);
         floor1.addFixture(floorFixture);
         floor2.addFixture(floorFixture);
         floor1.setMass(MassType.INFINITE);
