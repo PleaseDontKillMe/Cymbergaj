@@ -37,4 +37,8 @@ public class Keys {
     void setRight(boolean right) {
         isRight = right;
     }
+
+    boolean playerMoves() {
+        return (isUp != isDown) || (isLeft != isRight);
+    }
 }

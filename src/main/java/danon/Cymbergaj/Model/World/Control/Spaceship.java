@@ -1,7 +1,6 @@
-package danon.Cymbergaj.Debug.dyn;
+package danon.Cymbergaj.Model.World.Control;
 
-import danon.Cymbergaj.Model.World.Control.ControlKeys;
-import danon.Cymbergaj.Model.World.Control.Keys;
+import danon.Cymbergaj.Debug.dyn.GameObject;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderable;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
@@ -33,6 +32,11 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
 
     public Renderable getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
+    }
+
+    @Override
+    public boolean isAsleep() {
+        return keys.playerMoves();
     }
 
     public double getTraveledDistance() {
