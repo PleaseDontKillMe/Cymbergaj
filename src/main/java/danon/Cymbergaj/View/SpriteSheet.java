@@ -7,14 +7,14 @@ import danon.Cymbergaj.Geometry.Size;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class AnimatedSpriteSheet {
+public class SpriteSheet {
 
     private final BufferedImage spriteSheet;
     private final Size spriteSize;
     private final int spritesAmount;
     private int currentSpriteIndex = 0;
 
-    public AnimatedSpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount) {
+    public SpriteSheet(BufferedImage spriteSheet, Size spriteSize, int spritesAmount) {
         this.spriteSheet = spriteSheet;
         this.spriteSize = spriteSize;
         this.spritesAmount = spritesAmount;

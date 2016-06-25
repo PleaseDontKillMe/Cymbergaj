@@ -6,7 +6,7 @@ import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Updatable;
 import danon.Cymbergaj.Model.World.Character.Fireball;
-import danon.Cymbergaj.View.AnimatedSpriteSheet;
+import danon.Cymbergaj.View.SpriteSheet;
 import org.dyn4j.geometry.Vector2;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ import java.awt.*;
 public class FireballRenderer extends BodyRenderer implements Updatable {
 
     private final Fireball fireball;
-    private final AnimatedSpriteSheet spriteSheet;
+    private final SpriteSheet spriteSheet;
     private int refreshesToNextFrame = 0;
     private Angle direction = Angle.fromDegrees(180);
 

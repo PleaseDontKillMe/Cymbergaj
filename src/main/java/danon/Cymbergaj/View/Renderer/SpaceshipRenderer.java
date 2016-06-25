@@ -5,14 +5,14 @@ import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Updatable;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
-import danon.Cymbergaj.View.AnimatedSpriteSheet;
+import danon.Cymbergaj.View.SpriteSheet;
 
 import java.awt.*;
 
 
 public class SpaceshipRenderer extends BodyRenderer implements Updatable {
 
-    private final AnimatedSpriteSheet spriteSheet;
+    private final SpriteSheet spriteSheet;
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         super(spaceship);
