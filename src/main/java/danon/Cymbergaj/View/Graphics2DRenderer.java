@@ -1,6 +1,5 @@
 package danon.Cymbergaj.View;
 
-import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Shape;
@@ -10,10 +9,7 @@ import java.awt.geom.*;
 
 public class Graphics2DRenderer {
 
-    public static void render(Graphics2D g, Shape shape, double scale, Color color, Body body) {
-        if (body.isAsleep() || !body.isActive()) {
-            color = Color.red;
-        }
+    public static void render(Graphics2D g, Shape shape, double scale, Color color) {
         if (shape instanceof Circle) {
             render(g, (Circle) shape, scale, color);
         } else if (shape instanceof Polygon) {
