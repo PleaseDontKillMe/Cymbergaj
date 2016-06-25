@@ -5,16 +5,13 @@ import danon.Cymbergaj.Model.*;
 import danon.Cymbergaj.Model.World.Character.*;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
-import danon.Cymbergaj.View.PointsRenderer;
 import danon.Cymbergaj.View.Renderer.*;
 import danon.Cymbergaj.View.Window;
-import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.*;
 
 
 public final class Application {
-
     public static final double SCALE = 45.0; //  The scale 45 pixels per meter
 
     private final Engine engine = new Engine();
@@ -23,6 +20,10 @@ public final class Application {
     private final Game game;
     private final SoundsRepository sounds = new SoundsRepository();
     private final ImagesRepository images = new ImagesRepository();
+
+    public static void main(String[] args) {
+        new Application().start();
+    }
 
     private Application() {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 600));
@@ -81,6 +82,7 @@ public final class Application {
         player1.translate(-9.0, 0.0);
         player2.translate(9.0, 0.0);
 
+        // Added bodies to the world
         world.addBody(topFloor);
         world.addBody(bottomFloor);
         world.addBody(stopper1);
@@ -122,9 +124,5 @@ public final class Application {
         engine.addUpdateListener(player2renderer);
 
         world.addListener(new GamePointsCounter(game, sounds));
-    }
-
-    public static void main(String[] args) {
-        new Application().start();
     }
 }
