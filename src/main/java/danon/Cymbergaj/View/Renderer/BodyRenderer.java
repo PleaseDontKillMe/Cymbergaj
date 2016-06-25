@@ -31,7 +31,7 @@ public abstract class BodyRenderer implements Renderer {
         Transform transform = gameObject.getTransform();
         AffineTransform localTransform = new AffineTransform();
         localTransform.translate(transform.getTranslationX() * Application.SCALE, transform.getTranslationY() * Application.SCALE);
-        localTransform.rotate(transform.getRotation());
+        // localTransform.rotate(transform.getRotation());
         return localTransform;
     }
 }

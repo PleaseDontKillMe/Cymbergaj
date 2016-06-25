@@ -155,11 +155,15 @@ public final class Application {
         images.load();
 
         window.addRenderer(new ClearScreenRenderer(window.getDimension()));
-        window.addRenderer(game.getRenderer(images));
+      //  window.addRenderer(game.getRenderer(images));
         window.addRenderer(wall1.getRenderer(images));
         window.addRenderer(wall2.getRenderer(images));
         window.addRenderer(floor1.getRenderer(images));
         window.addRenderer(floor2.getRenderer(images));
+        window.addRenderer(stopper1.getRenderer(images));
+        window.addRenderer(stopper2.getRenderer(images));
+        window.addRenderer(stopper3.getRenderer(images));
+        window.addRenderer(stopper4.getRenderer(images));
         window.addRenderer(player1.getRenderer(images));
         window.addRenderer(player2.getRenderer(images));
         window.addRenderer(ball.getRenderer(images));
