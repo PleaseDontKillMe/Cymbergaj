@@ -42,7 +42,7 @@ public class Engine implements GameEventListener {
             lag += elapsed / 1000000;
 
             while (lag >= (1000 / TPS)) {
-                updateAll(elapsed/1000);
+                updateAll(elapsed/1000000000);
                 lag -= (1000 / TPS);
             }
             renderAll();
