@@ -8,6 +8,7 @@ import danon.Cymbergaj.Model.World.Character.Wall;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.Spaceship;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
+import danon.Cymbergaj.View.Renderer.ClearScreenRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.BodyFixture;
@@ -18,7 +19,6 @@ import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Rectangle;
 
 import javax.sound.sampled.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -154,13 +154,15 @@ public final class Application {
         ImagesRepository images = new ImagesRepository();
         images.load();
 
+        window.addRenderer(new ClearScreenRenderer(window.getDimension()));
+        window.addRenderer(game.getRenderer(images));
         window.addRenderer(wall1.getRenderer(images));
         window.addRenderer(wall2.getRenderer(images));
         window.addRenderer(floor1.getRenderer(images));
         window.addRenderer(floor2.getRenderer(images));
         window.addRenderer(player1.getRenderer(images));
         window.addRenderer(player2.getRenderer(images));
-        window.addRenderer(game.getRenderer(images));
+        window.addRenderer(ball.getRenderer(images));
 
         engine.addUpdateListener(player1);
         engine.addUpdateListener(player2);
