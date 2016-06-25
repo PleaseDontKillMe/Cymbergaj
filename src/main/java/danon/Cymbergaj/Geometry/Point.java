@@ -31,31 +31,8 @@ public class Point {
         this.y = p.y;
     }
 
-    public Point diff(Point point) {
-        return new Point(x - point.x, y - point.y);
-    }
-
-    public Point add(Point addition) {
-        return new Point(x + addition.x, y + addition.y);
-    }
-
-    public Point add(double x, double y) {
-        return new Point(this.x + x, this.y + y);
-    }
-
-    public Point find(double distance, Angle angle) {
-        return new Point(
-                this.x + distance * Math.cos(angle.getValue()),
-                this.y + distance * Math.sin(angle.getValue())
-        );
-    }
-
     public double distanceTo(Point A) {
         return Math.sqrt(Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2));
-    }
-
-    public double distancePowTo(Point A) {
-        return Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2);
     }
 
     public Angle angleTo(Point point) {
