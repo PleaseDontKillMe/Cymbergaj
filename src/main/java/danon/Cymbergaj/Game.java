@@ -45,4 +45,12 @@ public class Game implements Updatable {
     public Size getSize() {
         return size;
     }
+
+    public int getPoints1() {
+        return points1;
+    }
+
+    public int getPoints2() {
+        return points2;
+    }
 }

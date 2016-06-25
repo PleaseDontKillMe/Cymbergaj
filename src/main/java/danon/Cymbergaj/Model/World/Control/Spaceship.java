@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 
 public class Spaceship extends GameObject implements KeyListener, Updatable {
 
-    private final static double VELOCITY = 6.0;
+    private final static double VELOCITY = 8.0;
 
     private final ControlKeys controlKeys;
     private final Keys keys;
