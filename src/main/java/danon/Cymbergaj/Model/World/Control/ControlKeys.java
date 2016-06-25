@@ -16,10 +16,10 @@ public abstract class ControlKeys {
         if (verifyRight(event)) {
             keys.setRight(true);
         }
-        if (verifyLeft(event)) {
+        if (verifyUp(event)) {
             keys.setUp(true);
         }
-        if (verifyLeft(event)) {
+        if (verifyDown(event)) {
             keys.setDown(true);
         }
     }
@@ -31,10 +31,10 @@ public abstract class ControlKeys {
         if (verifyRight(event)) {
             keys.setRight(false);
         }
-        if (verifyLeft(event)) {
+        if (verifyUp(event)) {
             keys.setUp(false);
         }
-        if (verifyLeft(event)) {
+        if (verifyDown(event)) {
             keys.setDown(false);
         }
     }
