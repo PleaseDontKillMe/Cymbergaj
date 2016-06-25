@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class ImagesRepository {
 
-    BufferedImage plane;
     BufferedImage background;
     BufferedImage background2;
     SpriteSheetDefinition fireball;
@@ -19,7 +18,6 @@ public class ImagesRepository {
     SpriteSheetDefinition bigExplosion;
 
     public void load() {
-        plane = loadImage("plane.png");
         background = loadImage("space-background1.png");
         background2 = loadImage("space-background2.png");
 
