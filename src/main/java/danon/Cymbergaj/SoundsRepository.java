@@ -6,22 +6,15 @@ import java.io.IOException;
 
 public class SoundsRepository {
 
-    public Clip lookAtMyHorse;
-    public Clip konRafal;
-    public Clip bell;
+    Clip lookAtMyHorse;
+    Clip bell;
 
-    public void load() {
+    void load() {
         lookAtMyHorse = loadClip("res/LookAtMyHorse.wav");
-        konRafal = loadClip("res/KonRafal.wav");
         bell = loadClip("res/bell.wav");
-        bell.addLineListener(event -> {
-            if (event.getType().toString().equals("Stop")) {
-                System.out.println("stopped");
-            }
-        });
     }
 
-    public void addOnEndListener(Clip clip, Runnable onStop) {
+    void addOnEndListener(Clip clip, Runnable onStop) {
         clip.addLineListener(event -> {
             if (event.getType().toString().equals("Stop")) {
                 onStop.run();
@@ -29,7 +22,7 @@ public class SoundsRepository {
         });
     }
 
-    public void play(Clip clip) {
+    void play(Clip clip) {
         clip.start();
     }
 
