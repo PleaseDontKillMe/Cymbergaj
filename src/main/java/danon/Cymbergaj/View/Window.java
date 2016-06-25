@@ -1,10 +1,8 @@
 package danon.Cymbergaj.View;
 
 import danon.Cymbergaj.Geometry.Size;
-import danon.Cymbergaj.JFrameFactory;
 import danon.Cymbergaj.View.Renderer.Renderer;
-import danon.Cymbergaj.WindowClosingListener;
-import danon.Cymbergaj.Settings;
+import danon.Cymbergaj.Model.Settings;
 
 import javax.swing.*;
 import java.awt.*;

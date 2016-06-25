@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Cymbergaj.View;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;

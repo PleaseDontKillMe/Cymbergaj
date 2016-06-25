@@ -1,7 +1,8 @@
-package danon.Cymbergaj;
+package danon.Cymbergaj.View;
 
 
 import danon.Cymbergaj.Geometry.Size;
+import danon.Cymbergaj.Model.Settings;
 
 import javax.swing.*;
 import java.awt.*;

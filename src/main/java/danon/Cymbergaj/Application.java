@@ -1,10 +1,7 @@
 package danon.Cymbergaj;
 
 import danon.Cymbergaj.Geometry.Size;
-import danon.Cymbergaj.Model.Engine;
-import danon.Cymbergaj.Model.Game;
-import danon.Cymbergaj.Model.GameObject;
-import danon.Cymbergaj.Model.SoundsRepository;
+import danon.Cymbergaj.Model.*;
 import danon.Cymbergaj.Model.World.Character.Fireball;
 import danon.Cymbergaj.Model.World.Character.Wall;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
