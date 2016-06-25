@@ -51,10 +51,10 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
         Vector2 velocity = new Vector2();
 
         if (keys.isUp()) {
-            velocity.add(0, VELOCITY);
+            velocity.add(0, -VELOCITY);
         }
         if (keys.isDown()) {
-            velocity.add(0, -VELOCITY);
+            velocity.add(0, VELOCITY);
         }
         if (keys.isLeft()) {
             velocity.add(-VELOCITY, 0);

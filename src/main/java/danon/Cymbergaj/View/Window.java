@@ -44,9 +44,7 @@ public class Window implements GameEventListener {
         windowGraphics = frame.getGraphics();
 
         Dimension size = getDimension();
-        AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
-        AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth()/2, -size.getHeight()/2);
-        canvas.transform(yFlip);
+        AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth()/2, size.getHeight()/2);
         canvas.transform(move);
     }
 

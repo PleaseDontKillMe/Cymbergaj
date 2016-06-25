@@ -29,7 +29,7 @@ public final class Application {
     private final Window window;
     private final World world = new World();
 
-    int points1 = 0, points2 = 0;
+    private int points1 = 0, points2 = 0;
 
     private Application() {
         Settings settings = new Settings();
@@ -103,13 +103,17 @@ public final class Application {
             public void end(ContactPoint point) {
                 String user1 = (String) point.getBody1().getUserData();
                 String user2 = (String) point.getBody2().getUserData();
-                if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
-                    points1++;
+                if (user1 != null && user2 != null) {
+                    if (user1.equals("ball") || user2.equals("ball")) {
+                        if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
+                            points1++;
+                        }
+                        if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
+                            points2++;
+                        }
+                    }
                 }
-                if (Objects.equals(user1, "right") || Objects.equals(user2, "right")) {
-                    points2++;
-                }
-                super.sensed(point);
+                super.end(point);
             }
         });
 
@@ -121,6 +125,7 @@ public final class Application {
         ball.setMass(MassType.NORMAL);
         ball.applyForce(new Vector2(-150.0, 0.0));
         ball.setLinearDamping(0.05);
+        ball.setUserData("ball");
         this.world.addBody(ball);
 
         // players
@@ -165,7 +170,7 @@ public final class Application {
     protected void render(Graphics2D canvas) {
         canvas.setColor(Color.WHITE);
         Dimension size = window.getDimension();
-        canvas.fillRect((int)(-size.getWidth()/2), (int) (-size.getHeight()/2), (int)size.getWidth(), (int)size.getHeight());
+        canvas.fillRect((int) (-size.getWidth() / 2), (int) (-size.getHeight() / 2), (int) size.getWidth(), (int) size.getHeight());
 
         for (int i = 0; i < this.world.getBodyCount(); i++) {
             GameObject gameObject = (GameObject) this.world.getBody(i);
