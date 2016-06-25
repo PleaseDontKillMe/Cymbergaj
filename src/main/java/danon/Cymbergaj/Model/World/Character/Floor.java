@@ -7,14 +7,14 @@ import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.MassType;
 import org.dyn4j.geometry.Rectangle;
 
-public class Wall extends GameObject {
+public class Floor extends GameObject {
 
-    public Wall(String userData) {
-        BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 12.0));
-        wallFixture.setRestitution(0.0);
-        addFixture(wallFixture);
+    public Floor() {
+        BodyFixture floorFixture = new BodyFixture(new Rectangle(20.0, 0.2));
+        floorFixture.setRestitution(0.0);
+        addFixture(floorFixture);
+        addFixture(floorFixture);
         setMass(MassType.INFINITE);
-        setUserData(userData);
     }
 
     @Override

@@ -2,11 +2,8 @@ package danon.Cymbergaj;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.*;
-import danon.Cymbergaj.Model.World.Character.Fireball;
-import danon.Cymbergaj.Model.World.Character.GameObject;
-import danon.Cymbergaj.Model.World.Character.Wall;
+import danon.Cymbergaj.Model.World.Character.*;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
-import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import danon.Cymbergaj.View.PointsRenderer;
 import danon.Cymbergaj.View.Renderer.*;
@@ -58,20 +55,9 @@ public final class Application {
         world.setGravity(World.ZERO_GRAVITY);
 
         // create the floor
-        GameObject floor1 = new Wall(), floor2 = new Wall();
-
-        BodyFixture floorFixture = new BodyFixture(new Rectangle(20.0, 0.2));
-        floorFixture.setRestitution(0.0);
-        floor1.addFixture(floorFixture);
-        floor2.addFixture(floorFixture);
-        floor1.setMass(MassType.INFINITE);
-        floor2.setMass(MassType.INFINITE);
-
-        floor1.translate(0.0, -6.0);
-        floor2.translate(0.0, 6.0);
-        this.world.addBody(floor1);
-        this.world.addBody(floor2);
-
+        GameObject topFloor = new Floor(), bottomFloor = new Floor();
+        topFloor.translate(0.0, -6.0);
+        bottomFloor.translate(0.0, 6.0);
 
         GameObject stopper1 = new Wall(), stopper2 = new Wall(), stopper3 = new Wall(), stopper4 = new Wall();
         BodyFixture stopperFixture = new BodyFixture(new Rectangle(0.6, 3.5));
@@ -91,55 +77,32 @@ public final class Application {
         stopper2.translate(v, -v1);
         stopper3.translate(-v, v1);
         stopper4.translate(v, v1);
-        this.world.addBody(stopper1);
-        this.world.addBody(stopper2);
-        this.world.addBody(stopper3);
-        this.world.addBody(stopper4);
 
+        // Vertical walls
+        GameObject leftWall = new Wall("left"), rightWall = new Wall("right");
+        leftWall.translate(-10.0, 0);
+        rightWall.translate(10.0, 0.0);
 
-        GameObject wall1 = new Wall(), wall2 = new Wall();
-        BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 12.0));
-        wallFixture.setRestitution(0.0);
-        wall1.addFixture(wallFixture);
-        wall1.setMass(MassType.INFINITE);
-        wall2.addFixture(wallFixture);
-        wall2.setMass(MassType.INFINITE);
-        wall1.setUserData("left");
-        wall2.setUserData("right");
-
-        wall1.translate(-10.0, 0);
-        wall2.translate(10.0, 0.0);
-        this.world.addBody(wall1);
-        this.world.addBody(wall2);
-
-
-        // ball
+        // Fireball
         Fireball ball = new Fireball();
-        BodyFixture ballFixture = new BodyFixture(new Circle(0.4));
-        ballFixture.setRestitution(1.0);
-        ball.addFixture(ballFixture);
-        ball.setMass(MassType.NORMAL);
         ball.applyForce(new Vector2(-150.0, 0.0));
-        ball.setLinearDamping(0.05);
-        ball.setUserData("ball");
-        this.world.addBody(ball);
 
         // players
         Spaceship player1 = new Spaceship(new WsadControlKeys()), player2 = new Spaceship(new ArrowsControlKeys());
-        BodyFixture fixture = new BodyFixture(new Circle(0.7));
-        fixture.setFriction(0.0);
-        player1.addFixture(fixture);
-        player1.setMass(MassType.NORMAL);
         player1.translate(-9.0, 0.0);
-        player2.addFixture(fixture);
         player2.translate(9.0, 0.0);
-        player2.setMass(MassType.NORMAL);
 
-        this.world.addBody(player1);
-        this.world.addBody(player2);
-
-        player1.setAsleep(false);
-        player2.setAsleep(false);
+        world.addBody(topFloor);
+        world.addBody(bottomFloor);
+        world.addBody(stopper1);
+        world.addBody(stopper2);
+        world.addBody(stopper3);
+        world.addBody(stopper4);
+        world.addBody(leftWall);
+        world.addBody(rightWall);
+        world.addBody(ball);
+        world.addBody(player1);
+        world.addBody(player2);
 
         window.addKeyListener(player1);
         window.addKeyListener(player2);
@@ -148,13 +111,12 @@ public final class Application {
         FireballRenderer fireballrenderer = ball.getRenderer(images);
         SpaceshipRenderer player2renderer = player2.getRenderer(images);
 
-        window.addRenderer(new ClearScreenRenderer(window.getDimension()));
         window.addRenderer(game.getRenderer(images));
         window.addRenderer(new PointsRenderer(game));
-        window.addRenderer(wall1.getRenderer(images));
-        window.addRenderer(wall2.getRenderer(images));
-        window.addRenderer(floor1.getRenderer(images));
-        window.addRenderer(floor2.getRenderer(images));
+        window.addRenderer(leftWall.getRenderer(images));
+        window.addRenderer(rightWall.getRenderer(images));
+        window.addRenderer(topFloor.getRenderer(images));
+        window.addRenderer(bottomFloor.getRenderer(images));
         window.addRenderer(stopper1.getRenderer(images));
         window.addRenderer(stopper2.getRenderer(images));
         window.addRenderer(stopper3.getRenderer(images));
