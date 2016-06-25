@@ -107,9 +107,7 @@ public final class Application {
                 String user1 = (String) point.getBody1().getUserData();
                 String user2 = (String) point.getBody2().getUserData();
                 if (user1 != null && user2 != null) {
-                    System.out.print("Not null :) ");
                     if (user1.equals("ball") || user2.equals("ball")) {
-                        System.out.print("One is ball :) ");
                         boolean didLeftScore = true;
                         if (Objects.equals(user1, "left") || Objects.equals(user2, "left")) {
                             game.pointForLeft();
@@ -167,7 +165,7 @@ public final class Application {
         images.load();
 
         window.addRenderer(new ClearScreenRenderer(window.getDimension()));
-      //  window.addRenderer(game.getRenderer(images));
+        window.addRenderer(game.getRenderer(images));
         window.addRenderer(wall1.getRenderer(images));
         window.addRenderer(wall2.getRenderer(images));
         window.addRenderer(floor1.getRenderer(images));
