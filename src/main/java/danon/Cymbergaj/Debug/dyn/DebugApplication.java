@@ -22,7 +22,7 @@ public final class DebugApplication {
 
     private final Engine engine = new Engine();
     private final Window window;
-    private World world;
+    private final World world = new World();
 
     private DebugApplication() {
         Settings settings = new Settings();
@@ -34,7 +34,6 @@ public final class DebugApplication {
     }
 
     protected void initializeWorld() {
-        this.world = new World();
         world.setGravity(World.ZERO_GRAVITY);
 
         // create the floor
@@ -92,7 +91,7 @@ public final class DebugApplication {
     }
 
     public void start() {
-        engine.addUpdatable(elapsedTime -> world.update(elapsedTime));
+        engine.addUpdatable(world::update);
         engine.addRenderable(canvas1 -> window.render());
 
         window.show();
