@@ -1,6 +1,9 @@
 package danon.Cymbergaj.Model;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,11 +34,11 @@ public class SoundsRepository {
         try {
             return tryLoadClip(filename);
         } catch (LineUnavailableException e) {
-            throw new RuntimeException("Line Couldn't load file '" + filename + "'" + e.getMessage());
+            throw new RuntimeException("Line Couldn't load file '" + filename + "'. " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException("IO Couldn't load file '" + filename + "'" + e.getMessage());
+            throw new RuntimeException("IO Couldn't load file '" + filename + "'. " + e.getMessage());
         } catch (UnsupportedAudioFileException e) {
-            throw new RuntimeException("Unsup Couldn't load file '" + filename + "'" + e.getMessage());
+            throw new RuntimeException("Unsup Couldn't load file '" + filename + "'. " + e.getMessage());
         }
     }
 

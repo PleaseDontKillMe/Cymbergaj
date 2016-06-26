@@ -6,7 +6,6 @@ import danon.Cymbergaj.View.SpriteSheet;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class ImagesRepository {
