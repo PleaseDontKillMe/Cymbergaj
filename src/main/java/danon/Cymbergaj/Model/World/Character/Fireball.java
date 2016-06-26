@@ -4,7 +4,7 @@ import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Circle;
-import org.dyn4j.geometry.MassType;
+import org.dyn4j.geometry.Mass;
 
 public class Fireball extends GameObject  {
 
@@ -12,7 +12,7 @@ public class Fireball extends GameObject  {
         BodyFixture ballFixture = new BodyFixture(new Circle(0.4));
         ballFixture.setRestitution(1.0);
         this.addFixture(ballFixture);
-        this.setMass(MassType.NORMAL);
+        this.setMass(Mass.Type.NORMAL);
         this.setLinearDamping(0.05);
         this.setUserData("ball");
     }

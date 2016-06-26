@@ -4,7 +4,7 @@ import danon.Cymbergaj.View.Renderer.BasicRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;
 import org.dyn4j.dynamics.BodyFixture;
-import org.dyn4j.geometry.MassType;
+import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Rectangle;
 
 public class Wall extends GameObject {
@@ -13,7 +13,7 @@ public class Wall extends GameObject {
         BodyFixture wallFixture = new BodyFixture(new Rectangle(0.2, 12.0));
         wallFixture.setRestitution(0.0);
         this.addFixture(wallFixture);
-        this.setMass(MassType.INFINITE);
+        this.setMass(Mass.Type.INFINITE);
         this.setUserData(userData);
     }
 

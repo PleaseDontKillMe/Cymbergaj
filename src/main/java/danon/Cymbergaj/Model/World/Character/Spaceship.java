@@ -1,13 +1,13 @@
 package danon.Cymbergaj.Model.World.Character;
 
+import danon.Cymbergaj.Model.Updatable;
 import danon.Cymbergaj.Model.World.Control.ControlKeys;
 import danon.Cymbergaj.Model.World.Control.Keys;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
-import danon.Cymbergaj.Model.Updatable;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Circle;
-import org.dyn4j.geometry.MassType;
+import org.dyn4j.geometry.Mass;
 import org.dyn4j.geometry.Vector2;
 
 import java.awt.event.KeyEvent;
@@ -28,7 +28,7 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
         BodyFixture fixture = new BodyFixture(new Circle(0.7));
         fixture.setFriction(0.0);
         this.addFixture(fixture);
-        this.setMass(MassType.NORMAL);
+        this.setMass(Mass.Type.NORMAL);
     }
 
     public SpaceshipRenderer getRenderer(ImagesRepository images) {

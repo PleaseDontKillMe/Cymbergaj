@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'org.dyn4j', name: 'dyn4j', version: '3.1.5'
+}
