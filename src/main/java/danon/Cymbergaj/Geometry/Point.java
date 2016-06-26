@@ -4,7 +4,7 @@ package danon.Cymbergaj.Geometry;
 import org.dyn4j.geometry.Vector2;
 
 public class Point {
-    private static final double DELTA = 1e-5;
+    private static final double DELTA = 1e-4;
 
     public final double x;
     public final double y;
