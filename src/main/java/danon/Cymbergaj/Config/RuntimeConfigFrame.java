@@ -34,6 +34,8 @@ public class RuntimeConfigFrame extends JFrame {
         JLabel userNameLabel = new JLabel("Username:");
         userName = new JTextField("Guest");
 
+        checkBox.addActionListener(event -> hostName.setEnabled(!checkBox.isSelected()));
+
         JButton okButton = new JButton("OK");
         okButton.addActionListener(event -> {
             listener.getConfig(makeRuntimeConfig());
