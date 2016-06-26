@@ -5,7 +5,8 @@ import java.awt.*;
 
 public class RuntimeConfigFrame extends JFrame {
 
-    private JCheckBox checkBox;
+    private JCheckBox serverCheckBox;
+    private JCheckBox networkCheckBox;
     private JTextField hostName;
     private JTextField userName;
     private GetConfigListener listener;
@@ -28,13 +29,20 @@ public class RuntimeConfigFrame extends JFrame {
     private void addComponents() {
         this.setLayout(new BorderLayout());
 
-        checkBox = new JCheckBox("I'm a server");
-        JLabel hostNameLabel = new JLabel("Hostname:");
-        hostName = new JTextField("localhost");
         JLabel userNameLabel = new JLabel("Username:");
         userName = new JTextField("Guest");
+        networkCheckBox = new JCheckBox("Network Game");
+        serverCheckBox = new JCheckBox("I'm a server");
+        JLabel hostNameLabel = new JLabel("Hostname:");
+        hostName = new JTextField("localhost");
+        serverCheckBox.setEnabled(false);
+        hostName.setEnabled(false);
 
-        checkBox.addActionListener(event -> hostName.setEnabled(!checkBox.isSelected()));
+        networkCheckBox.addActionListener(event -> {
+            serverCheckBox.setEnabled(networkCheckBox.isSelected());
+            hostName.setEnabled(networkCheckBox.isSelected());
+        });
+        serverCheckBox.addActionListener(event -> hostName.setEnabled(!serverCheckBox.isSelected()));
 
         JButton okButton = new JButton("OK");
         okButton.addActionListener(event -> {
@@ -44,14 +52,15 @@ public class RuntimeConfigFrame extends JFrame {
 
         JPanel fieldsPane = new JPanel(new GridLayout(6, 1));
         fieldsPane.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
-        fieldsPane.add(checkBox);
-        fieldsPane.add(hostNameLabel);
-        fieldsPane.add(hostName);
         fieldsPane.add(userNameLabel);
         fieldsPane.add(userName);
+        fieldsPane.add(networkCheckBox);
+        fieldsPane.add(serverCheckBox);
+        fieldsPane.add(hostNameLabel);
+        fieldsPane.add(hostName);
 
         JPanel buttonPane = new JPanel();
-        fieldsPane.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+        buttonPane.setBorder(BorderFactory.createEmptyBorder(10, 30, 20, 30));
         buttonPane.add(okButton);
 
         this.add(fieldsPane, BorderLayout.CENTER);
@@ -60,6 +69,7 @@ public class RuntimeConfigFrame extends JFrame {
     }
 
     private RuntimeConfig makeRuntimeConfig() {
-        return new RuntimeConfig(hostName.getText(), userName.getText(), ! checkBox.isSelected());
+        return new RuntimeConfig(userName.getText(), networkCheckBox.isSelected(),
+                hostName.getText(), !serverCheckBox.isSelected());
     }
 }

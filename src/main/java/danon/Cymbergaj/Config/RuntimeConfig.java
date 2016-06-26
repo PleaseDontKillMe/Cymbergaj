@@ -1,13 +1,15 @@
 package danon.Cymbergaj.Config;
 
 public class RuntimeConfig {
-    private final String host;
     private final String username;
+    private final boolean isNetwork;
+    private final String host;
     private final boolean isClient;
 
-    public RuntimeConfig(String host, String username, boolean isClient) {
-        this.host = host;
+    public RuntimeConfig(String username, boolean isNetwork, String host, boolean isClient) {
         this.username = username;
+        this.isNetwork = isNetwork;
+        this.host = host;
         this.isClient = isClient;
     }
 
@@ -21,5 +23,9 @@ public class RuntimeConfig {
 
     public boolean isClient() {
         return isClient;
+    }
+
+    public boolean isNetwork() {
+        return isNetwork;
     }
 }
