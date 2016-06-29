@@ -46,8 +46,8 @@ public class RuntimeConfigFrame extends JFrame {
 
         JButton okButton = new JButton("OK");
         okButton.addActionListener(event -> {
-            listener.getConfig(makeRuntimeConfig());
             this.dispose();
+            listener.getConfig(makeRuntimeConfig());
         });
 
         JPanel fieldsPane = new JPanel(new GridLayout(6, 1));

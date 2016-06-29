@@ -10,6 +10,8 @@ import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.*;
 
+import java.awt.event.KeyListener;
+
 
 public final class Application {
     public static final double SCALE = 45.0; //  The scale 45 pixels per meter
@@ -21,25 +23,25 @@ public final class Application {
     private final SoundsRepository sounds = new SoundsRepository();
     private final ImagesRepository images = new ImagesRepository();
 
-    public static void main(String[] args) {
-        System.out.println("Loading...");
-        new Application().start();
-    }
+    private final Spaceship playerLeft;
+    private final Spaceship playerRight;
 
-    private Application() {
+    Application(Spaceship playerLeft, Spaceship playerRight) {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 600));
 
         this.window = new Window(settings, closeEvent -> engine.stop());
         this.game = new Game(settings.getSize());
+
+        this.playerLeft = playerLeft;
+        this.playerRight = playerRight;
     }
 
-    private void start() {
+    void start() {
         sounds.load();
         images.load();
 
         initializeWorld();
 
-        sounds.addStopListener(sounds.lookAtMyHorse, game::restartGame);
         game.onGameStart(() -> {
             sounds.lookAtMyHorse.setFramePosition(0);
             sounds.lookAtMyHorse.start();
@@ -79,9 +81,8 @@ public final class Application {
         ball.applyForce(new Vector2(-150.0, 0.0));
 
         // players
-        Spaceship player1 = new Spaceship(new WsadControlKeys()), player2 = new Spaceship(new ArrowsControlKeys());
-        player1.translate(-9.0, 0.0);
-        player2.translate(9.0, 0.0);
+        playerLeft.translate(-9.0, 0.0);
+        playerRight.translate(9.0, 0.0);
 
         // Added bodies to the world
         world.addBody(topFloor);
@@ -93,15 +94,12 @@ public final class Application {
         world.addBody(leftWall);
         world.addBody(rightWall);
         world.addBody(ball);
-        world.addBody(player1);
-        world.addBody(player2);
+        world.addBody(playerLeft);
+        world.addBody(playerRight);
 
-        window.addKeyListener(player1);
-        window.addKeyListener(player2);
-
-        SpaceshipRenderer player1renderer = player1.getRenderer(images);
+        SpaceshipRenderer player1renderer = playerLeft.getRenderer(images);
         FireballRenderer fireballrenderer = ball.getRenderer(images);
-        SpaceshipRenderer player2renderer = player2.getRenderer(images);
+        SpaceshipRenderer player2renderer = playerRight.getRenderer(images);
 
         window.addRenderer(game.getRenderer(images));
         window.addRenderer(game.getPointsRenderer());
@@ -117,13 +115,17 @@ public final class Application {
         window.addRenderer(player2renderer);
         window.addRenderer(fireballrenderer);
 
-        engine.addUpdateListener(player1);
-        engine.addUpdateListener(player2);
+        engine.addUpdateListener(playerLeft);
+        engine.addUpdateListener(playerRight);
         engine.addUpdateListener(game);
         engine.addUpdateListener(fireballrenderer);
         engine.addUpdateListener(player1renderer);
         engine.addUpdateListener(player2renderer);
 
         world.addListener(new GamePointsCounter(game, sounds));
+    }
+
+    public void addWindowKeyListener(KeyListener listener) {
+        this.window.addKeyListener(listener);
     }
 }
