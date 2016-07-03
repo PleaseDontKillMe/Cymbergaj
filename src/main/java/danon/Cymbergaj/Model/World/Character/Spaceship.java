@@ -21,7 +21,11 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
     private final Keys keys;
 
     public Spaceship(ControlKeys controlKeys) {
-        this.keys = new Keys();
+        this(controlKeys, new Keys());
+    }
+
+    public Spaceship(ControlKeys controlKeys, Keys keys) {
+        this.keys = keys;
         this.controlKeys = controlKeys;
         this.controlKeys.useKeys(this.keys);
 
