@@ -85,6 +85,8 @@ public class Client {
                 }
                 Spaceship player1 = new Spaceship(leftControl), player2 = new Spaceship(rightControl);
                 Application application = new Application(player1, player2);
+                application.addWindowKeyListener(player1);
+                application.addWindowKeyListener(player2);
                 application.start();
             }
             while (true) {
