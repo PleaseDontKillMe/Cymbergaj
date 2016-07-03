@@ -21,7 +21,7 @@ public class Client {
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
-    private SocketControlKeys socketControlKeys = new SocketControlKeys();
+    private SocketControlKeys socketControlKeys;
 
     public static void main(String[] args) throws Exception {
         GetConfigListener listener = config -> {
@@ -63,6 +63,7 @@ public class Client {
         socket = new Socket(serverAddress, PORT);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
+        socketControlKeys = new SocketControlKeys();
     }
 
     private void play() throws Exception {
@@ -70,20 +71,20 @@ public class Client {
             System.out.println("Waiting for welcome message...");
             String response = in.readLine();
             if (response.startsWith("WELCOME")) {
-                ControlKeys leftControl, rightControl;
+                Spaceship player1, player2;
                 switch (response.charAt(8)) {
                     case 'L':
-                        leftControl = new WsadControlKeys();
-                        rightControl = socketControlKeys;
+                        player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(out));
+                        player2 = new Spaceship(socketControlKeys, new Keys());
                         break;
                     case 'R':
-                        leftControl = socketControlKeys;
-                        rightControl = new WsadControlKeys();
+                        player1 = new Spaceship(socketControlKeys, new Keys());
+                        player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(out));
                         break;
                     default:
                         throw new RuntimeException("Bieda");
                 }
-                Spaceship player1 = new Spaceship(leftControl), player2 = new Spaceship(rightControl);
+
                 Application application = new Application(player1, player2);
                 application.addWindowKeyListener(player1);
                 application.addWindowKeyListener(player2);
