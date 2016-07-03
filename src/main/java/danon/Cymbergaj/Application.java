@@ -3,8 +3,6 @@ package danon.Cymbergaj;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.*;
 import danon.Cymbergaj.Model.World.Character.*;
-import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
-import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 import danon.Cymbergaj.View.Renderer.*;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.World;
