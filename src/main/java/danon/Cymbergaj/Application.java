@@ -24,8 +24,8 @@ public final class Application {
     private final Spaceship playerLeft;
     private final Spaceship playerRight;
 
-    Application(Spaceship playerLeft, Spaceship playerRight) {
-        Settings settings = new Settings("Cymbergaj | Best 2D game jk", new Size(1080, 600));
+    Application(Spaceship playerLeft, Spaceship playerRight, String name) {
+        Settings settings = new Settings("Cymbergaj | Best 2D game jk " + name, new Size(1080, 600));
 
         this.window = new Window(settings, closeEvent -> engine.stop());
         this.game = new Game(settings.getSize());

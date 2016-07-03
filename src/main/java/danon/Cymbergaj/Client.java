@@ -41,7 +41,7 @@ public class Client {
     private static void startLocalGame() {
         Spaceship player1 = new Spaceship(new WsadControlKeys());
         Spaceship player2 = new Spaceship(new ArrowsControlKeys());
-        Application application = new Application(player1, player2);
+        Application application = new Application(player1, player2, "");
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
         application.start();
@@ -51,7 +51,7 @@ public class Client {
         try {
             Client client = new Client(config.getHost());
             System.out.println("I'm " + config.getUsername());
-            client.play();
+            client.play(config);
         } catch (Exception ignored) {
             System.out.println("Error connecting");
         }
@@ -64,7 +64,7 @@ public class Client {
         socketControlKeys = new SocketControlKeys();
     }
 
-    private void play() throws Exception {
+    private void play(RuntimeConfig config) throws Exception {
         try {
             System.out.println("Waiting for welcome message...");
             String response = in.readLine();
@@ -84,7 +84,7 @@ public class Client {
                         throw new RuntimeException("Bieda");
                 }
 
-                Application application = new Application(player1, player2);
+                Application application = new Application(player1, player2, config.getUsername());
                 application.addWindowKeyListener(player1);
                 application.addWindowKeyListener(player2);
 
