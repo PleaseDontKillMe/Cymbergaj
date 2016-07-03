@@ -4,10 +4,7 @@ import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
-import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
-import danon.Cymbergaj.Model.World.Control.ControlKeys;
-import danon.Cymbergaj.Model.World.Control.SocketControlKeys;
-import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
+import danon.Cymbergaj.Model.World.Control.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
