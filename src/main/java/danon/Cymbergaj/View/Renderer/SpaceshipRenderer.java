@@ -37,8 +37,7 @@ public class SpaceshipRenderer extends BodyRenderer implements Updatable {
         Size size = spriteSheet.getSpriteSize();
         spriteSheet.drawOn(canvas, new Point(-size.getWidth()/2, -size.getHeight()/2));
 
-        String keys = spaceship.getKeys().toString();
-        Vector2 trans = spaceship.getTransform().getTranslation();
-        canvas.drawString(keys, (int)(Application.SCALE * trans.x), (int)(Application.SCALE *trans.y));
+        canvas.setFont(new Font("Arial", Font.PLAIN, 15));
+        canvas.drawString(spaceship.getKeys().toString(), -40, -50);
     }
 }

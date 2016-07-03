@@ -44,11 +44,9 @@ public class Keys {
 
     @Override
     public String toString() {
-        return "Keys{" +
-                "isUp=" + isUp +
-                ", isDown=" + isDown +
-                ", isLeft=" + isLeft +
-                ", isRight=" + isRight +
-                '}';
+        return (isUp ? "X" : "_") +
+                (isDown ? "X" : "_") +
+                (isLeft ? "X" : "_") +
+                (isRight ? "X" : "_");
     }
 }
