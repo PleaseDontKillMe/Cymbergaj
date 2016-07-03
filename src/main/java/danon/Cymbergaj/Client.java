@@ -6,10 +6,9 @@ import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.ArrowsControlKeys;
 import danon.Cymbergaj.Model.World.Control.ControlKeys;
+import danon.Cymbergaj.Model.World.Control.SocketControlKeys;
 import danon.Cymbergaj.Model.World.Control.WsadControlKeys;
 
-import javax.swing.*;
-import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -130,27 +129,4 @@ public class Client {
         }
     }
 
-}
-
-class SocketControlKeys extends ControlKeys {
-
-    @Override
-    public boolean verifyUp(KeyEvent event) {
-        return false;
-    }
-
-    @Override
-    public boolean verifyDown(KeyEvent event) {
-        return false;
-    }
-
-    @Override
-    public boolean verifyLeft(KeyEvent event) {
-        return false;
-    }
-
-    @Override
-    public boolean verifyRight(KeyEvent event) {
-        return false;
-    }
 }
