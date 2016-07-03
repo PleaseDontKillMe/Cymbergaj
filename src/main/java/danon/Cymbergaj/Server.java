@@ -16,6 +16,9 @@ public class Server {
                 Player playerX = new Player(listener.accept(), 'L');
                 Player playerO = new Player(listener.accept(), 'R');
 
+                playerX.useEnemy(playerO);
+                playerO.useEnemy(playerX);
+
                 playerX.start();
                 playerO.start();
             }
@@ -27,6 +30,8 @@ public class Server {
         Socket socket;
         BufferedReader input;
         PrintWriter output;
+
+        PrintWriter enemyOutput;
 
         Player(Socket socket, char mark) {
             this.socket = socket;
@@ -41,6 +46,10 @@ public class Server {
             }
         }
 
+        public void useEnemy(Player enemy) {
+            this.enemyOutput = enemy.output;
+        }
+
         public void run() {
             try {
                 output.println("MESSAGE All players connected");
@@ -49,6 +58,7 @@ public class Server {
                     String command = input.readLine();
                     if (command.startsWith("KEYS")) {
                         output.println(command);
+                        System.out.println(command);
                     } else if (command.startsWith("MOVE")) {
 
                     } else if (command.startsWith("QUIT")) {
