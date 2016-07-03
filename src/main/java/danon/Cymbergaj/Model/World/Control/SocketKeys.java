@@ -35,7 +35,7 @@ public class SocketKeys extends Keys {
     }
 
     private void sendMove(String direction, boolean state) {
-        char charState = state ? '1' : '0';
-        out.println(direction + "_" + charState);
+        String charState = state ? "1" : "0";
+        out.println("KEYS " + direction + "_" + charState);
     }
 }

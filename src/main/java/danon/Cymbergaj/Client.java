@@ -90,6 +90,7 @@ public class Client {
             while (true) {
                 response = in.readLine();
                 if (response.startsWith("KEYS")) {
+                    System.out.println("Got keys.." + response);
                     String direction = response.substring(5, 11);
                     switch (direction) {
                         case "UP____0":
@@ -116,6 +117,8 @@ public class Client {
                         case "RIGHT_1":
                             socketControlKeys.keys.setRight(true);
                             break;
+                        default:
+                            System.out.println("Inny komunikat: " + direction);
                     }
                 }
                 if (response.startsWith("BALL")) {
