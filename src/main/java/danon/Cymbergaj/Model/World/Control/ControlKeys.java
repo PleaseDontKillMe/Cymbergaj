@@ -3,7 +3,7 @@ package danon.Cymbergaj.Model.World.Control;
 import java.awt.event.KeyEvent;
 
 public abstract class ControlKeys {
-    protected Keys keys;
+    public Keys keys;
 
     public void useKeys(Keys keys) {
         this.keys = keys;
@@ -39,11 +39,11 @@ public abstract class ControlKeys {
         }
     }
 
-    public abstract boolean verifyUp(KeyEvent event);
+    protected abstract boolean verifyUp(KeyEvent event);
 
-    public abstract boolean verifyDown(KeyEvent event);
+    protected abstract boolean verifyDown(KeyEvent event);
 
-    public abstract boolean verifyLeft(KeyEvent event);
+    protected abstract boolean verifyLeft(KeyEvent event);
 
-    public abstract boolean verifyRight(KeyEvent event);
+    protected abstract boolean verifyRight(KeyEvent event);
 }

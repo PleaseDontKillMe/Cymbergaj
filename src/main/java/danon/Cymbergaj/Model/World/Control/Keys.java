@@ -22,19 +22,19 @@ public class Keys {
         return isRight;
     }
 
-    void setUp(boolean up) {
+    public void setUp(boolean up) {
         isUp = up;
     }
 
-    void setDown(boolean down) {
+    public void setDown(boolean down) {
         isDown = down;
     }
 
-    void setLeft(boolean left) {
+    public void setLeft(boolean left) {
         isLeft = left;
     }
 
-    void setRight(boolean right) {
+    public void setRight(boolean right) {
         isRight = right;
     }
 

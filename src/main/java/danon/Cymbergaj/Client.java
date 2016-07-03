@@ -95,20 +95,28 @@ public class Client {
                     String direction = response.substring(5, 11);
                     switch (direction) {
                         case "UP____0":
+                            socketControlKeys.keys.setUp(false);
                             break;
                         case "DOWN__0":
+                            socketControlKeys.keys.setDown(false);
                             break;
                         case "LEFT__0":
+                            socketControlKeys.keys.setLeft(false);
                             break;
                         case "RIGHT_0":
+                            socketControlKeys.keys.setRight(false);
                             break;
                         case "UP____1":
+                            socketControlKeys.keys.setUp(true);
                             break;
                         case "DOWN__1":
+                            socketControlKeys.keys.setDown(true);
                             break;
                         case "LEFT__1":
+                            socketControlKeys.keys.setLeft(true);
                             break;
                         case "RIGHT_1":
+                            socketControlKeys.keys.setRight(true);
                             break;
                     }
                 }
