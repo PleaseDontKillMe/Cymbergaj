@@ -41,7 +41,7 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
 
     @Override
     public boolean isAsleep() {
-        return !keys.playerMoves();
+        return false;
     }
 
     public void update(double elapsedTime) {
