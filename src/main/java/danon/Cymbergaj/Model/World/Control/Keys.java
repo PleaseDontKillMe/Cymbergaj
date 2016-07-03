@@ -41,4 +41,14 @@ public class Keys {
     public boolean playerMoves() {
         return (isUp != isDown) || (isLeft != isRight);
     }
+
+    @Override
+    public String toString() {
+        return "Keys{" +
+                "isUp=" + isUp +
+                ", isDown=" + isDown +
+                ", isLeft=" + isLeft +
+                ", isRight=" + isRight +
+                '}';
+    }
 }
