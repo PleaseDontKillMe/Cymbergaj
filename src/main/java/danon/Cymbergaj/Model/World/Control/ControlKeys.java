@@ -3,7 +3,7 @@ package danon.Cymbergaj.Model.World.Control;
 import java.awt.event.KeyEvent;
 
 public abstract class ControlKeys {
-    public Keys keys;
+    Keys keys;
 
     public void useKeys(Keys keys) {
         this.keys = keys;

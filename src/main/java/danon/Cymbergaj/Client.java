@@ -50,6 +50,7 @@ public class Client {
     private static void startNetworkGame(RuntimeConfig config) {
         try {
             Client client = new Client(config.getHost());
+            System.out.println("I'm " + config.getUsername());
             client.play();
         } catch (Exception ignored) {
             System.out.println("Error connecting");
@@ -68,6 +69,7 @@ public class Client {
             System.out.println("Waiting for welcome message...");
             String response = in.readLine();
             if (response.startsWith("WELCOME")) {
+                System.out.println("Got welcome message");
                 Spaceship player1, player2;
                 switch (response.charAt(8)) {
                     case 'L':
@@ -85,12 +87,17 @@ public class Client {
                 Application application = new Application(player1, player2);
                 application.addWindowKeyListener(player1);
                 application.addWindowKeyListener(player2);
-                application.start();
+
+                response = in.readLine();
+                System.out.println(response);
+                if (response.startsWith("START")) {
+                    System.out.println("Got start message");
+                    application.start();
+                }
             }
             while (true) {
                 response = in.readLine();
                 if (response.startsWith("KEYS")) {
-                    System.out.println("Got keys.." + response);
                     socketControlKeys.acceptKeyChange(response);
                 }
                 if (response.startsWith("BALL")) {

@@ -19,6 +19,7 @@ public class Server {
                 playerX.useEnemy(playerO);
                 playerO.useEnemy(playerX);
 
+                System.out.println("Starting match");
                 playerX.start();
                 playerO.start();
             }
@@ -40,7 +41,7 @@ public class Server {
                 input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 output = new PrintWriter(socket.getOutputStream(), true);
                 output.println("WELCOME " + mark);
-                output.println("MESSAGE Waiting for opponent to connect");
+                System.out.println("Sent WELCOME message");
             } catch (IOException e) {
                 System.out.println("Player died: " + e);
             }
@@ -52,12 +53,13 @@ public class Server {
 
         public void run() {
             try {
-                output.println("MESSAGE All players connected");
+                output.println("START");
+                System.out.println("Sent START message " + mark);
 
                 while (true) {
                     String command = input.readLine();
                     if (command.startsWith("KEYS")) {
-                        output.println(command);
+                        enemyOutput.println(command);
                         System.out.println(command);
                     } else if (command.startsWith("MOVE")) {
 

@@ -24,6 +24,7 @@ public class SocketControlKeys extends ControlKeys {
     }
 
     public void acceptKeyChange(String response) {
+        System.out.println("Get key " + response);
         switch (response) {
             case "KEYS UP____0":
                 keys.setUp(false);
