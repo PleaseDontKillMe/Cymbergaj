@@ -42,7 +42,8 @@ public class Client {
     }
 
     private static void startLocalGame() {
-        Spaceship player1 = new Spaceship(new WsadControlKeys()), player2 = new Spaceship(new ArrowsControlKeys());
+        Spaceship player1 = new Spaceship(new WsadControlKeys());
+        Spaceship player2 = new Spaceship(new ArrowsControlKeys());
         Application application = new Application(player1, player2);
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
