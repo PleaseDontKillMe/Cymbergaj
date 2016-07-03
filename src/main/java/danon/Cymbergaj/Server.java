@@ -47,7 +47,9 @@ public class Server {
 
                 while (true) {
                     String command = input.readLine();
-                    if (command.startsWith("MOVE")) {
+                    if (command.startsWith("KEYS")) {
+                        output.println(command);
+                    } else if (command.startsWith("MOVE")) {
 
                     } else if (command.startsWith("QUIT")) {
                         return;
