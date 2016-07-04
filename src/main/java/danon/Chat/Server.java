@@ -15,12 +15,13 @@ public class Server implements Runnable {
             return;
         }
 
-        Server server = new Server(Integer.parseInt(args[0]));
+        int port = Integer.parseInt(args[0]);
+        System.out.println("Binding to port " + port + ", please wait  ...");
+        Server server = new Server(port);
         server.start();
     }
 
     private Server(int port) {
-        System.out.println("Binding to port " + port + ", please wait  ...");
         try {
             server = new ServerSocket(port);
             System.out.println("Server started: " + server);
