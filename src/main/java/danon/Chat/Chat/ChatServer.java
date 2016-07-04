@@ -41,21 +41,27 @@ public class ChatServer implements Runnable {
         }
     }
 
+    private void addThread(Socket socket) {
+        if (clientCount < clients.length) {
+            System.out.println("Client accepted: " + socket);
+            clients[clientCount] = new ChatServerThread(this, socket);
+            try {
+                clients[clientCount].open();
+                clients[clientCount].start();
+                clientCount++;
+            } catch (IOException ioe) {
+                System.out.println("Error opening thread: " + ioe);
+            }
+        } else
+            System.out.println("Client refused: maximum " + clients.length + " reached.");
+    }
+
     private void start() {
         thread.start();
     }
 
     private void stop() {
         thread.interrupt();
-    }
-
-    private int findClient(int ID) {
-        for (int i = 0; i < clientCount; i++) {
-            if (clients[i].getID() == ID) {
-                return i;
-            }
-        }
-        return -1;
     }
 
     synchronized void handle(int ID, String input) {
@@ -87,18 +93,12 @@ public class ChatServer implements Runnable {
         }
     }
 
-    private void addThread(Socket socket) {
-        if (clientCount < clients.length) {
-            System.out.println("Client accepted: " + socket);
-            clients[clientCount] = new ChatServerThread(this, socket);
-            try {
-                clients[clientCount].open();
-                clients[clientCount].start();
-                clientCount++;
-            } catch (IOException ioe) {
-                System.out.println("Error opening thread: " + ioe);
+    private int findClient(int ID) {
+        for (int i = 0; i < clientCount; i++) {
+            if (clients[i].getID() == ID) {
+                return i;
             }
-        } else
-            System.out.println("Client refused: maximum " + clients.length + " reached.");
+        }
+        return -1;
     }
 }
