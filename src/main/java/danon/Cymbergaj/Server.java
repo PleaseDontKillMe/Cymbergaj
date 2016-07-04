@@ -32,7 +32,7 @@ public class Server {
         BufferedReader input;
         PrintWriter output;
 
-        PrintWriter enemyOutput;
+        Player enemy;
 
         Player(Socket socket, char mark) {
             this.socket = socket;
