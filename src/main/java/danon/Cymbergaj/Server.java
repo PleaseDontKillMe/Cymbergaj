@@ -47,8 +47,13 @@ public class Server {
             }
         }
 
-        public void useEnemy(Player enemy) {
-            this.enemyOutput = enemy.output;
+        void useEnemy(Player enemy) {
+            this.enemy = enemy;
+        }
+
+        synchronized void printOutput(String input) {
+            this.output.println(input);
+            this.output.flush();
         }
 
         public void run() {
@@ -59,7 +64,7 @@ public class Server {
                 while (true) {
                     String command = input.readLine();
                     if (command.startsWith("KEYS")) {
-                        enemyOutput.println(command);
+                        enemy.printOutput(command);
                         System.out.println(command);
                     } else if (command.startsWith("MOVE")) {
 
