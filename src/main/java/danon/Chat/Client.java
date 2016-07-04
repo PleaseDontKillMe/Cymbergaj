@@ -16,12 +16,12 @@ public class Client implements Runnable {
             return;
         }
 
+        System.out.println("Establishing connection. Please wait ...");
         Client client = new Client(args[0], Integer.parseInt(args[1]));
         client.start();
     }
 
     private Client(String serverName, int serverPort) {
-        System.out.println("Establishing connection. Please wait ...");
         try {
             socket = new Socket(serverName, serverPort);
             System.out.println("Connected: " + socket);
@@ -61,7 +61,7 @@ public class Client implements Runnable {
     }
 
     void stop() {
-        thread.stop();
+        thread.interrupt();
 
         try {
             if (console != null) console.close();
@@ -71,6 +71,6 @@ public class Client implements Runnable {
             System.out.println("Error closing ...");
         }
         client.close();
-        client.stop();
+        client.interrupt();
     }
 }

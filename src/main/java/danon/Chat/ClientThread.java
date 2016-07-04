@@ -4,8 +4,8 @@ import java.net.*;
 import java.io.*;
 
 class ClientThread extends Thread {
-    private Socket socket = null;
-    private Client client = null;
+    private Socket socket;
+    private Client client;
     private DataInputStream streamIn = null;
 
     ClientThread(Client client, Socket socket) {
