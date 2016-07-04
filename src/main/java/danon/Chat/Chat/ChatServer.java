@@ -5,9 +5,19 @@ import java.io.*;
 
 public class ChatServer implements Runnable {
     private ChatServerThread clients[] = new ChatServerThread[50];
-    private ServerSocket server = null;
-    private Thread thread = null;
+    private ServerSocket server;
+    private Thread thread = new Thread(this);
     private int clientCount = 0;
+
+    public static void main(String args[]) {
+        if (args.length != 1) {
+            System.out.println("Usage: java ChatServer port");
+            return;
+        }
+
+        ChatServer server = new ChatServer(Integer.parseInt(args[0]));
+        server.start();
+    }
 
     private ChatServer(int port) {
         try {
@@ -32,23 +42,19 @@ public class ChatServer implements Runnable {
     }
 
     private void start() {
-        if (thread == null) {
-            thread = new Thread(this);
-            thread.start();
-        }
+        thread.start();
     }
 
     private void stop() {
-        if (thread != null) {
-            thread.stop();
-            thread = null;
-        }
+        thread.interrupt();
     }
 
     private int findClient(int ID) {
-        for (int i = 0; i < clientCount; i++)
-            if (clients[i].getID() == ID)
+        for (int i = 0; i < clientCount; i++) {
+            if (clients[i].getID() == ID) {
                 return i;
+            }
+        }
         return -1;
     }
 
@@ -94,15 +100,5 @@ public class ChatServer implements Runnable {
             }
         } else
             System.out.println("Client refused: maximum " + clients.length + " reached.");
-    }
-
-    public static void main(String args[]) {
-        if (args.length != 1) {
-            System.out.println("Usage: java ChatServer port");
-            return;
-        }
-
-        ChatServer server = new ChatServer(Integer.parseInt(args[0]));
-        server.start();
     }
 }
