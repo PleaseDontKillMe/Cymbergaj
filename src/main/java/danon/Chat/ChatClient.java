@@ -1,4 +1,4 @@
-package danon.Chat.Chat;
+package danon.Chat;
 
 import java.net.*;
 import java.io.*;
