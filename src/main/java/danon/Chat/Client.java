@@ -3,24 +3,24 @@ package danon.Chat;
 import java.net.*;
 import java.io.*;
 
-public class ChatClient implements Runnable {
+public class Client implements Runnable {
     private Socket socket;
     private Thread thread = new Thread(this);
     private DataInputStream console;
     private DataOutputStream streamOut;
-    private ChatClientThread client;
+    private ClientThread client;
 
     public static void main(String args[]) throws IOException {
         if (args.length != 2) {
-            System.out.println("Usage: java ChatClient host port");
+            System.out.println("Usage: java Client host port");
             return;
         }
 
-        ChatClient client = new ChatClient(args[0], Integer.parseInt(args[1]));
+        Client client = new Client(args[0], Integer.parseInt(args[1]));
         client.start();
     }
 
-    private ChatClient(String serverName, int serverPort) {
+    private Client(String serverName, int serverPort) {
         System.out.println("Establishing connection. Please wait ...");
         try {
             socket = new Socket(serverName, serverPort);
@@ -56,7 +56,7 @@ public class ChatClient implements Runnable {
         console = new DataInputStream(System.in);
         streamOut = new DataOutputStream(socket.getOutputStream());
 
-        client = new ChatClientThread(this, socket);
+        client = new ClientThread(this, socket);
         thread.start();
     }
 

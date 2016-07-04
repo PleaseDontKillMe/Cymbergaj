@@ -3,12 +3,12 @@ package danon.Chat;
 import java.net.*;
 import java.io.*;
 
-class ChatClientThread extends Thread {
+class ClientThread extends Thread {
     private Socket socket = null;
-    private ChatClient client = null;
+    private Client client = null;
     private DataInputStream streamIn = null;
 
-    ChatClientThread(ChatClient client, Socket socket) {
+    ClientThread(Client client, Socket socket) {
         this.client = client;
         this.socket = socket;
         open();

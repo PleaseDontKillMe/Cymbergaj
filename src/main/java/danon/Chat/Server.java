@@ -3,23 +3,23 @@ package danon.Chat;
 import java.net.*;
 import java.io.*;
 
-public class ChatServer implements Runnable {
-    private ChatServerThread clients[] = new ChatServerThread[50];
+public class Server implements Runnable {
+    private ServerThread clients[] = new ServerThread[50];
     private ServerSocket server;
     private Thread thread = new Thread(this);
     private int clientCount = 0;
 
     public static void main(String args[]) {
         if (args.length != 1) {
-            System.out.println("Usage: java ChatServer port");
+            System.out.println("Usage: java Server port");
             return;
         }
 
-        ChatServer server = new ChatServer(Integer.parseInt(args[0]));
+        Server server = new Server(Integer.parseInt(args[0]));
         server.start();
     }
 
-    private ChatServer(int port) {
+    private Server(int port) {
         System.out.println("Binding to port " + port + ", please wait  ...");
         try {
             server = new ServerSocket(port);
@@ -44,7 +44,7 @@ public class ChatServer implements Runnable {
     private void addThread(Socket socket) {
         if (clientCount < clients.length) {
             System.out.println("Client accepted: " + socket);
-            clients[clientCount] = new ChatServerThread(this, socket);
+            clients[clientCount] = new ServerThread(this, socket);
             try {
                 clients[clientCount].open();
                 clients[clientCount].start();
@@ -78,7 +78,7 @@ public class ChatServer implements Runnable {
     synchronized void remove(int ID) {
         int pos = findClient(ID);
         if (pos >= 0) {
-            ChatServerThread toTerminate = clients[pos];
+            ServerThread toTerminate = clients[pos];
             System.out.println("Removing client thread " + ID + " at " + pos);
             if (pos < clientCount - 1) {
                 System.arraycopy(clients, pos + 1, clients, pos + 1 - 1, clientCount - (pos + 1));

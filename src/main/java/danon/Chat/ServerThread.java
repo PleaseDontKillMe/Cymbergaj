@@ -3,14 +3,14 @@ package danon.Chat;
 import java.net.*;
 import java.io.*;
 
-class ChatServerThread extends Thread {
-    private ChatServer server = null;
+class ServerThread extends Thread {
+    private Server server = null;
     private Socket socket = null;
     private int ID = -1;
     private DataInputStream streamIn = null;
     private DataOutputStream streamOut = null;
 
-    ChatServerThread(ChatServer server, Socket socket) {
+    ServerThread(Server server, Socket socket) {
         super();
         this.server = server;
         this.socket = socket;
