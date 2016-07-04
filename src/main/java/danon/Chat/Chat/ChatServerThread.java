@@ -3,21 +3,21 @@ package danon.Chat.Chat;
 import java.net.*;
 import java.io.*;
 
-public class ChatServerThread extends Thread {
+class ChatServerThread extends Thread {
     private ChatServer server = null;
     private Socket socket = null;
     private int ID = -1;
     private DataInputStream streamIn = null;
     private DataOutputStream streamOut = null;
 
-    public ChatServerThread(ChatServer _server, Socket _socket) {
+    ChatServerThread(ChatServer server, Socket socket) {
         super();
-        server = _server;
-        socket = _socket;
+        this.server = server;
+        this.socket = socket;
         ID = socket.getPort();
     }
 
-    public void send(String msg) {
+    void send(String msg) {
         try {
             streamOut.writeUTF(msg);
             streamOut.flush();
@@ -28,7 +28,7 @@ public class ChatServerThread extends Thread {
         }
     }
 
-    public int getID() {
+    int getID() {
         return ID;
     }
 
@@ -45,12 +45,12 @@ public class ChatServerThread extends Thread {
         }
     }
 
-    public void open() throws IOException {
+    void open() throws IOException {
         streamIn = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
         streamOut = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
     }
 
-    public void close() throws IOException {
+    void close() throws IOException {
         if (socket != null) socket.close();
         if (streamIn != null) streamIn.close();
         if (streamOut != null) streamOut.close();

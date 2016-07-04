@@ -10,16 +10,15 @@ public class ChatClient implements Runnable {
     private DataOutputStream streamOut = null;
     private ChatClientThread client = null;
 
-    public ChatClient(String serverName, int serverPort) {
+    private ChatClient(String serverName, int serverPort) {
         System.out.println("Establishing connection. Please wait ...");
         try {
             socket = new Socket(serverName, serverPort);
             System.out.println("Connected: " + socket);
-            start();
         } catch (UnknownHostException uhe) {
             System.out.println("Host unknown: " + uhe.getMessage());
-        } catch (IOException ioe) {
-            System.out.println("Unexpected exception: " + ioe.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -35,7 +34,7 @@ public class ChatClient implements Runnable {
         }
     }
 
-    public void handle(String msg) {
+    void handle(String msg) {
         if (msg.equals(".bye")) {
             System.out.println("Good bye. Press RETURN to exit ...");
             stop();
@@ -43,7 +42,7 @@ public class ChatClient implements Runnable {
             System.out.println(msg);
     }
 
-    public void start() throws IOException {
+    private void start() throws IOException {
         console = new DataInputStream(System.in);
         streamOut = new DataOutputStream(socket.getOutputStream());
         if (thread == null) {
@@ -53,7 +52,7 @@ public class ChatClient implements Runnable {
         }
     }
 
-    public void stop() {
+    void stop() {
         if (thread != null) {
             thread.stop();
             thread = null;
@@ -69,11 +68,13 @@ public class ChatClient implements Runnable {
         client.stop();
     }
 
-    public static void main(String args[]) {
-        ChatClient client = null;
-        if (args.length != 2)
+    public static void main(String args[]) throws IOException {
+        if (args.length != 2) {
             System.out.println("Usage: java ChatClient host port");
-        else
-            client = new ChatClient(args[0], Integer.parseInt(args[1]));
+            return;
+        }
+
+        ChatClient client = new ChatClient(args[0], Integer.parseInt(args[1]));
+        client.start();
     }
 }
