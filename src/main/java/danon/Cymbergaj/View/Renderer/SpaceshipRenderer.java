@@ -1,13 +1,11 @@
 package danon.Cymbergaj.View.Renderer;
 
 
-import danon.Cymbergaj.Application;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Updatable;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.View.SpriteSheet;
-import org.dyn4j.geometry.Vector2;
 
 import java.awt.*;
 
