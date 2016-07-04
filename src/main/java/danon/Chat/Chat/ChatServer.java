@@ -20,8 +20,8 @@ public class ChatServer implements Runnable {
     }
 
     private ChatServer(int port) {
+        System.out.println("Binding to port " + port + ", please wait  ...");
         try {
-            System.out.println("Binding to port " + port + ", please wait  ...");
             server = new ServerSocket(port);
             System.out.println("Server started: " + server);
         } catch (IOException ioe) {
