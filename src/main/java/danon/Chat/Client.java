@@ -6,7 +6,7 @@ import java.io.*;
 public class Client implements Runnable {
     private Socket socket;
     private Thread thread = new Thread(this);
-    private DataInputStream console;
+    private BufferedReader console;
     private DataOutputStream streamOut;
     private ClientThread client;
 
@@ -32,6 +32,14 @@ public class Client implements Runnable {
         }
     }
 
+    private void start() throws IOException {
+        console = new BufferedReader(new InputStreamReader(System.in));
+        streamOut = new DataOutputStream(socket.getOutputStream());
+
+        client = new ClientThread(this, socket);
+        thread.start();
+    }
+
     public void run() {
         while (thread != null) {
             try {
@@ -50,14 +58,6 @@ public class Client implements Runnable {
             stop();
         } else
             System.out.println(msg);
-    }
-
-    private void start() throws IOException {
-        console = new DataInputStream(System.in);
-        streamOut = new DataOutputStream(socket.getOutputStream());
-
-        client = new ClientThread(this, socket);
-        thread.start();
     }
 
     void stop() {
