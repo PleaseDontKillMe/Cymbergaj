@@ -4,15 +4,15 @@ import java.net.*;
 import java.io.*;
 
 class ServerThread extends Thread {
-    private Server server;
+    private Server parentServer;
     private Socket socket;
     private int ID;
-    private DataInputStream streamIn = null;
-    private DataOutputStream streamOut = null;
+    private DataInputStream streamIn;
+    private DataOutputStream streamOut;
 
-    ServerThread(Server server, Socket socket) {
+    ServerThread(Server parentServer, Socket socket) {
         super();
-        this.server = server;
+        this.parentServer = parentServer;
         this.socket = socket;
         ID = socket.getPort();
     }
@@ -26,10 +26,10 @@ class ServerThread extends Thread {
         System.out.println("Server Thread " + ID + " running.");
         while (true) {
             try {
-                server.handle(ID, streamIn.readUTF());
+                parentServer.handle(ID, streamIn.readUTF());
             } catch (IOException ioe) {
                 System.out.println(ID + " ERROR reading: " + ioe.getMessage());
-                server.remove(ID);
+                parentServer.remove(ID);
                 interrupt();
             }
         }
@@ -41,7 +41,7 @@ class ServerThread extends Thread {
             streamOut.flush();
         } catch (IOException ioe) {
             System.out.println(ID + " ERROR sending: " + ioe.getMessage());
-            server.remove(ID);
+            parentServer.remove(ID);
             interrupt();
         }
     }
