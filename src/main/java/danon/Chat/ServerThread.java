@@ -30,7 +30,7 @@ class ServerThread extends Thread {
                 parentServer.handle(ID, streamIn.readUTF());
             } catch (IOException ioe) {
                 System.out.println(ID + " ERROR reading: " + ioe.getMessage());
-                parentServer.removeClient(ID);
+                parentServer.removeClient(this);
                 this.interrupt();
             }
         }
@@ -42,7 +42,7 @@ class ServerThread extends Thread {
             streamOut.flush();
         } catch (IOException ioe) {
             System.out.println(ID + " ERROR sending: " + ioe.getMessage());
-            parentServer.removeClient(ID);
+            parentServer.removeClient(this);
             interrupt();
         }
     }

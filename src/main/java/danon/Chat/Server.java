@@ -1,15 +1,19 @@
 package danon.Chat;
 
-import java.net.*;
-import java.io.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Server implements Runnable {
     static final int PORT = 9801;
 
-    private ServerThread clients[] = new ServerThread[50];
+    private List<ServerThread> clients = new ArrayList<>(MAX_CLIENTS);
     private ServerSocket server;
     private Thread thread;
-    private int clientCount = 0;
+    private static final int MAX_CLIENTS = 50;
 
     public static void main(String args[]) throws IOException {
         int port = PORT;
@@ -42,57 +46,51 @@ public class Server implements Runnable {
     }
 
     private void addThread(Socket socket) {
-        if (clientCount < clients.length) {
+        if (clients.size() < MAX_CLIENTS) {
             System.out.println("Client accepted: " + socket);
-            clients[clientCount] = new ServerThread(this, socket);
+            ServerThread client = new ServerThread(this, socket);
             try {
-                clients[clientCount].open();
-                clients[clientCount].start();
-                clientCount++;
+                client.open();
+                client.start();
+                clients.add(client);
             } catch (IOException ioe) {
                 System.out.println("Error opening thread: " + ioe);
             }
         } else {
-            System.out.println("Client refused: maximum " + clients.length + " reached.");
+            System.out.println("Client refused: maximum " + MAX_CLIENTS + " reached.");
         }
     }
 
     synchronized void handle(int ID, String input) {
         if (input.equals(".bye")) {
-            clients[clientIndexById(ID)].send(".bye");
-            removeClient(ID);
+            ServerThread thread = serverThreadById(ID);
+            thread.send(".bye");
+            removeClient(thread);
         } else {
-            for (int i = 0; i < clientCount; i++) {
-                clients[i].send(ID + ": " + input);
-            }
+            clients.forEach(serverThread -> serverThread.send(ID + ": " + input));
         }
     }
 
-    synchronized void removeClient(int ID) {
-        int pos = clientIndexById(ID);
-        if (pos >= 0) {
-            System.out.println("Removing client thread " + ID + " at " + pos);
-            ServerThread toTerminate = clients[pos];
-            if (pos < clientCount - 1) {
-                for (int i = pos + 1; i < clientCount; i++)
-                    clients[i - 1] = clients[i];
-            }
-            clientCount--;
-            try {
-                toTerminate.close();
-            } catch (IOException ioe) {
-                System.out.println("Error closing thread: " + ioe);
-            }
-            toTerminate.interrupt();
+    synchronized void removeClient(ServerThread toTerminate) {
+        System.out.println("Removing client thread " + toTerminate.getID());
+        clients.remove(toTerminate);
+        try {
+            toTerminate.close();
+        } catch (IOException ioe) {
+            System.out.println("Error closing thread: " + ioe);
         }
+        toTerminate.interrupt();
     }
 
-    private int clientIndexById(int ID) {
-        for (int i = 0; i < clientCount; i++) {
-            if (clients[i].getID() == ID) {
-                return i;
-            }
+    private ServerThread serverThreadById(int ID) {
+        Optional<ServerThread> found = clients.stream()
+                .filter(serverThread -> serverThread.getID() == ID)
+                .findFirst();
+
+        if (found.isPresent()) {
+            return found.get();
         }
-        return -1;
+
+        throw new RuntimeException("ServerThread not found");
     }
 }
