@@ -26,9 +26,7 @@ class ClientThread extends Thread {
 
     void close() {
         try {
-            if (streamIn != null) {
-                streamIn.close();
-            }
+            streamIn.close();
         } catch (IOException ioe) {
             System.out.println("Error closing input stream: " + ioe);
         }
