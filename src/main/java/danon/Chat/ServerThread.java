@@ -14,7 +14,7 @@ class ServerThread extends Thread {
         super();
         this.parentServer = parentServer;
         this.socket = socket;
-        ID = socket.getPort();
+        this.ID = socket.getPort();
     }
 
     void open() throws IOException {

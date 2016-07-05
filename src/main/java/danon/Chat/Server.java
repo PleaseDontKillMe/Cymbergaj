@@ -21,7 +21,7 @@ public class Server implements Runnable {
 
     private Server(ServerSocket serverSocket) {
         this.server = serverSocket;
-        thread = new Thread(this);
+        this.thread = new Thread(this);
     }
 
     private void start() {
@@ -52,8 +52,9 @@ public class Server implements Runnable {
             } catch (IOException ioe) {
                 System.out.println("Error opening thread: " + ioe);
             }
-        } else
+        } else {
             System.out.println("Client refused: maximum " + clients.length + " reached.");
+        }
     }
 
     synchronized void handle(int ID, String input) {
