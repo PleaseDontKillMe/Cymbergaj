@@ -8,7 +8,7 @@ public class Server implements Runnable {
 
     private ServerThread clients[] = new ServerThread[50];
     private ServerSocket server;
-    private Thread thread = new Thread(this);
+    private Thread thread;
     private int clientCount = 0;
 
     public static void main(String args[]) {
@@ -28,6 +28,7 @@ public class Server implements Runnable {
     }
 
     private void start() {
+        thread = new Thread(this);
         thread.start();
     }
 
