@@ -17,19 +17,12 @@ public class Client implements Runnable {
         }
 
         System.out.println("Establishing connection. Please wait ...");
-        Client client = new Client(args[0], Server.PORT);
+        Client client = new Client(new Socket(args[0], Server.PORT));
         client.start();
     }
 
-    private Client(String serverName, int serverPort) {
-        try {
-            socket = new Socket(serverName, serverPort);
-            System.out.println("Connected: " + socket);
-        } catch (UnknownHostException uhe) {
-            System.out.println("Host unknown: " + uhe.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private Client(Socket socket) {
+        this.socket = socket;
     }
 
     private void start() throws IOException {
@@ -41,8 +34,9 @@ public class Client implements Runnable {
         thread.start();
     }
 
+    @Override
     public void run() {
-        while (thread != null) {
+        while (!thread.isInterrupted()) {
             try {
                 streamOut.writeUTF(console.readLine());
                 streamOut.flush();
