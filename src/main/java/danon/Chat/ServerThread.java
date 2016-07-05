@@ -6,7 +6,7 @@ import java.io.*;
 class ServerThread extends Thread {
     private Server server = null;
     private Socket socket = null;
-    private int ID = -1;
+    private int ID;
     private DataInputStream streamIn = null;
     private DataOutputStream streamOut = null;
 
