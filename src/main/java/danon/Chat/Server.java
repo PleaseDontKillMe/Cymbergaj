@@ -4,18 +4,15 @@ import java.net.*;
 import java.io.*;
 
 public class Server implements Runnable {
+    public static final int PORT = 9801;
+
     private ServerThread clients[] = new ServerThread[50];
     private ServerSocket server;
     private Thread thread = new Thread(this);
     private int clientCount = 0;
 
     public static void main(String args[]) {
-        if (args.length != 1) {
-            System.out.println("Usage: java Server port");
-            return;
-        }
-
-        int port = Integer.parseInt(args[0]);
+        int port = PORT;
         System.out.println("Binding to port " + port + ", please wait  ...");
         Server server = new Server(port);
         server.start();

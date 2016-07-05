@@ -11,13 +11,13 @@ public class Client implements Runnable {
     private ClientThread client;
 
     public static void main(String args[]) throws IOException {
-        if (args.length != 2) {
-            System.out.println("Usage: java Client host port");
+        if (args.length != 1) {
+            System.out.println("Host needed");
             return;
         }
 
         System.out.println("Establishing connection. Please wait ...");
-        Client client = new Client(args[0], Integer.parseInt(args[1]));
+        Client client = new Client(args[0], Server.PORT);
         client.start();
     }
 
