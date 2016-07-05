@@ -11,15 +11,12 @@ public class Server implements Runnable {
     private Thread thread;
     private int clientCount = 0;
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         int port = PORT;
         System.out.println("Binding to port " + port + ", please wait  ...");
-        try {
-            Server server = new Server(new ServerSocket(port));
-            server.start();
-        } catch (IOException ioe) {
-            System.out.println("Can not bind to port " + port + ": " + ioe.getMessage());
-        }
+
+        Server server = new Server(new ServerSocket(port));
+        server.start();
     }
 
     private Server(ServerSocket serverSocket) {
