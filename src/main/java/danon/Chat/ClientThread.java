@@ -20,7 +20,7 @@ class ClientThread extends Thread {
             streamIn = new DataInputStream(socket.getInputStream());
         } catch (IOException exception) {
             System.out.println("Error getting input stream: " + exception);
-            client.stop();
+            client.finnish();
         }
     }
 
@@ -40,7 +40,7 @@ class ClientThread extends Thread {
                 client.handle(streamIn.readUTF());
             } catch (IOException ioe) {
                 System.out.println("Listening error: " + ioe.getMessage());
-                client.stop();
+                client.finnish();
             }
         }
     }

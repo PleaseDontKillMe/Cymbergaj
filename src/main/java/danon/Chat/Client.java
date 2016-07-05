@@ -42,7 +42,7 @@ public class Client implements Runnable {
                 streamOut.flush();
             } catch (IOException ioe) {
                 System.out.println("Sending error: " + ioe.getMessage());
-                stop();
+                finnish();
             }
         }
     }
@@ -50,12 +50,12 @@ public class Client implements Runnable {
     void handle(String msg) {
         if (msg.equals(".bye")) {
             System.out.println("Good bye. Press RETURN to exit ...");
-            stop();
+            finnish();
         } else
             System.out.println(msg);
     }
 
-    void stop() {
+    void finnish() {
         thread.interrupt();
 
         try {
