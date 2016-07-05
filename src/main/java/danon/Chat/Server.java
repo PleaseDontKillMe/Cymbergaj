@@ -62,7 +62,7 @@ public class Server implements Runnable {
     synchronized void handle(int ID, String input) {
         if (input.equals(".bye")) {
             clients[findClient(ID)].send(".bye");
-            remove(ID);
+            removeClient(ID);
         } else {
             for (int i = 0; i < clientCount; i++) {
                 clients[i].send(ID + ": " + input);
@@ -70,11 +70,11 @@ public class Server implements Runnable {
         }
     }
 
-    synchronized void remove(int ID) {
+    synchronized void removeClient(int ID) {
         int pos = findClient(ID);
         if (pos >= 0) {
-            ServerThread toTerminate = clients[pos];
             System.out.println("Removing client thread " + ID + " at " + pos);
+            ServerThread toTerminate = clients[pos];
             if (pos < clientCount - 1) {
                 System.arraycopy(clients, pos + 1, clients, pos + 1 - 1, clientCount - (pos + 1));
             }
