@@ -4,8 +4,8 @@ import java.net.*;
 import java.io.*;
 
 class ServerThread extends Thread {
-    private Server server = null;
-    private Socket socket = null;
+    private Server server;
+    private Socket socket;
     private int ID;
     private DataInputStream streamIn = null;
     private DataOutputStream streamOut = null;
@@ -15,6 +15,11 @@ class ServerThread extends Thread {
         this.server = server;
         this.socket = socket;
         ID = socket.getPort();
+    }
+
+    void open() throws IOException {
+        streamIn = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+        streamOut = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
     }
 
     void send(String msg) {
@@ -43,11 +48,6 @@ class ServerThread extends Thread {
                 stop();
             }
         }
-    }
-
-    void open() throws IOException {
-        streamIn = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-        streamOut = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
     }
 
     void close() throws IOException {
