@@ -27,6 +27,10 @@ public class Server implements Runnable {
         }
     }
 
+    private void start() {
+        thread.start();
+    }
+
     public void run() {
         while (thread != null) {
             try {
@@ -34,7 +38,7 @@ public class Server implements Runnable {
                 addThread(server.accept());
             } catch (IOException ioe) {
                 System.out.println("Server accept error: " + ioe);
-                stop();
+                thread.interrupt();
             }
         }
     }
@@ -52,14 +56,6 @@ public class Server implements Runnable {
             }
         } else
             System.out.println("Client refused: maximum " + clients.length + " reached.");
-    }
-
-    private void start() {
-        thread.start();
-    }
-
-    private void stop() {
-        thread.interrupt();
     }
 
     synchronized void handle(int ID, String input) {
