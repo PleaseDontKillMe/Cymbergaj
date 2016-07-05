@@ -24,7 +24,6 @@ class ServerThread extends Thread {
 
     @Override
     public void run() {
-        System.out.println("Server Thread " + ID + " running.");
         while (!this.isInterrupted()) {
             try {
                 parentServer.handle(ID, streamIn.readUTF());
