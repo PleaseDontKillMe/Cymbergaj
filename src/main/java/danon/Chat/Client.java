@@ -5,10 +5,10 @@ import java.io.*;
 
 public class Client implements Runnable {
     private Socket socket;
-    private Thread thread = new Thread(this);
+    private Thread thread;
     private BufferedReader console;
     private DataOutputStream streamOut;
-    private ClientThread client;
+    private ClientThread clientThread;
 
     public static void main(String args[]) throws IOException {
         if (args.length != 1) {
@@ -36,7 +36,8 @@ public class Client implements Runnable {
         console = new BufferedReader(new InputStreamReader(System.in));
         streamOut = new DataOutputStream(socket.getOutputStream());
 
-        client = new ClientThread(this, socket);
+        clientThread = new ClientThread(this, socket);
+        thread = new Thread(this);
         thread.start();
     }
 
@@ -70,7 +71,7 @@ public class Client implements Runnable {
         } catch (IOException ioe) {
             System.out.println("Error closing ...");
         }
-        client.close();
-        client.interrupt();
+        clientThread.close();
+        clientThread.interrupt();
     }
 }
