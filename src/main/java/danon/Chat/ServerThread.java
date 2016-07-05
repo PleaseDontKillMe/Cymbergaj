@@ -30,7 +30,7 @@ class ServerThread extends Thread {
             } catch (IOException ioe) {
                 System.out.println(ID + " ERROR reading: " + ioe.getMessage());
                 server.remove(ID);
-                stop();
+                interrupt();
             }
         }
     }
