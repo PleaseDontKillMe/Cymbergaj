@@ -84,7 +84,7 @@ public class Server implements Runnable {
             } catch (IOException ioe) {
                 System.out.println("Error closing thread: " + ioe);
             }
-            toTerminate.stop();
+            toTerminate.interrupt();
         }
     }
 
