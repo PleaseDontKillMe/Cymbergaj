@@ -10,7 +10,7 @@ import java.util.Optional;
 public class Server implements Runnable {
     static final int PORT = 9801;
 
-    private List<ServerThread> clients = new ArrayList<>(MAX_CLIENTS);
+    private List<ServerThread> serverThreads = new ArrayList<>(MAX_CLIENTS);
     private ServerSocket server;
     private Thread thread;
     private static final int MAX_CLIENTS = 50;
@@ -46,13 +46,13 @@ public class Server implements Runnable {
     }
 
     private void addThread(Socket socket) {
-        if (clients.size() < MAX_CLIENTS) {
+        if (serverThreads.size() < MAX_CLIENTS) {
             System.out.println("Client accepted: " + socket);
-            ServerThread client = new ServerThread(this, socket);
+            ServerThread serverThread = new ServerThread(this, socket);
             try {
-                client.open();
-                client.start();
-                clients.add(client);
+                serverThread.open();
+                serverThread.start();
+                serverThreads.add(serverThread);
             } catch (IOException ioe) {
                 System.out.println("Error opening thread: " + ioe);
             }
@@ -67,13 +67,13 @@ public class Server implements Runnable {
             thread.send(".bye");
             removeClient(thread);
         } else {
-            clients.forEach(serverThread -> serverThread.send(ID + ": " + input));
+            serverThreads.forEach(serverThread -> serverThread.send(ID + ": " + input));
         }
     }
 
     synchronized void removeClient(ServerThread toTerminate) {
         System.out.println("Removing client thread " + toTerminate.getID());
-        clients.remove(toTerminate);
+        serverThreads.remove(toTerminate);
         try {
             toTerminate.close();
         } catch (IOException ioe) {
@@ -83,7 +83,7 @@ public class Server implements Runnable {
     }
 
     private ServerThread serverThreadById(int ID) {
-        Optional<ServerThread> found = clients.stream()
+        Optional<ServerThread> found = serverThreads.stream()
                 .filter(serverThread -> serverThread.getID() == ID)
                 .findFirst();
 
