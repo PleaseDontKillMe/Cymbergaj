@@ -22,14 +22,16 @@ class ServerThread extends Thread {
         streamOut = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
     }
 
+    @Override
     public void run() {
         System.out.println("Server Thread " + ID + " running.");
-        while (true) {
+        while (!this.isInterrupted()) {
             try {
                 parentServer.handle(ID, streamIn.readUTF());
             } catch (IOException ioe) {
                 System.out.println(ID + " ERROR reading: " + ioe.getMessage());
                 parentServer.removeClient(ID);
+                this.interrupt();
             }
         }
     }
