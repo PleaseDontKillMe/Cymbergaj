@@ -22,6 +22,19 @@ class ServerThread extends Thread {
         streamOut = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
     }
 
+    public void run() {
+        System.out.println("Server Thread " + ID + " running.");
+        while (true) {
+            try {
+                server.handle(ID, streamIn.readUTF());
+            } catch (IOException ioe) {
+                System.out.println(ID + " ERROR reading: " + ioe.getMessage());
+                server.remove(ID);
+                stop();
+            }
+        }
+    }
+
     void send(String msg) {
         try {
             streamOut.writeUTF(msg);
@@ -35,19 +48,6 @@ class ServerThread extends Thread {
 
     int getID() {
         return ID;
-    }
-
-    public void run() {
-        System.out.println("Server Thread " + ID + " running.");
-        while (true) {
-            try {
-                server.handle(ID, streamIn.readUTF());
-            } catch (IOException ioe) {
-                System.out.println(ID + " ERROR reading: " + ioe.getMessage());
-                server.remove(ID);
-                stop();
-            }
-        }
     }
 
     void close() throws IOException {
