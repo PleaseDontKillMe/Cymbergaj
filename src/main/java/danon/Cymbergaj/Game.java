@@ -11,24 +11,24 @@ import org.dyn4j.geometry.*;
 import java.awt.event.KeyListener;
 
 
-public final class Application {
+public final class Game {
     public static final double SCALE = 45.0; //  The scale 45 pixels per meter
 
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
-    private final Game game;
+    private final danon.Cymbergaj.Model.Game game;
     private final SoundsRepository sounds = new SoundsRepository();
     private final ImagesRepository images = new ImagesRepository();
 
     private final Spaceship playerLeft;
     private final Spaceship playerRight;
 
-    Application(Spaceship playerLeft, Spaceship playerRight, String name) {
+    Game(Spaceship playerLeft, Spaceship playerRight, String name) {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk " + name, new Size(1080, 600));
 
         this.window = new Window(settings, closeEvent -> engine.stop());
-        this.game = new Game(settings.getSize());
+        this.game = new danon.Cymbergaj.Model.Game(settings.getSize());
 
         this.playerLeft = playerLeft;
         this.playerRight = playerRight;

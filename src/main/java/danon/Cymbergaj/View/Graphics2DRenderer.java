@@ -1,6 +1,6 @@
 package danon.Cymbergaj.View;
 
-import danon.Cymbergaj.Application;
+import danon.Cymbergaj.Game;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Shape;
@@ -26,10 +26,10 @@ public class Graphics2DRenderer {
 
         double radius2 = 2.0 * radius;
         Ellipse2D.Double c = new Ellipse2D.Double(
-                (center.x - radius) * Application.SCALE,
-                (center.y - radius) * Application.SCALE,
-                radius2 * Application.SCALE,
-                radius2 * Application.SCALE);
+                (center.x - radius) * Game.SCALE,
+                (center.y - radius) * Game.SCALE,
+                radius2 * Game.SCALE,
+                radius2 * Game.SCALE);
 
         // fill the shape
         g.setColor(Color.CYAN);
@@ -40,10 +40,10 @@ public class Graphics2DRenderer {
 
         // draw a line so that rotation is visible
         Line2D.Double l = new Line2D.Double(
-                center.x * Application.SCALE,
-                center.y * Application.SCALE,
-                (center.x + radius) * Application.SCALE,
-                center.y * Application.SCALE);
+                center.x * Game.SCALE,
+                center.y * Game.SCALE,
+                (center.x + radius) * Game.SCALE,
+                center.y * Game.SCALE);
         g.draw(l);
     }
 
@@ -53,9 +53,9 @@ public class Graphics2DRenderer {
 
         // create the awt polygon
         Path2D.Double p = new Path2D.Double();
-        p.moveTo(vertices[0].x * Application.SCALE, vertices[0].y * Application.SCALE);
+        p.moveTo(vertices[0].x * Game.SCALE, vertices[0].y * Game.SCALE);
         for (int i = 1; i < l; i++) {
-            p.lineTo(vertices[i].x * Application.SCALE, vertices[i].y * Application.SCALE);
+            p.lineTo(vertices[i].x * Game.SCALE, vertices[i].y * Game.SCALE);
         }
         p.closePath();
 
