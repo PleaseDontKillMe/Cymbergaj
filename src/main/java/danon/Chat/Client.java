@@ -68,7 +68,7 @@ public class Client implements Runnable {
         } catch (IOException ioe) {
             System.out.println("Error closing ...");
         }
-        clientThread.close();
         clientThread.interrupt();
+        clientThread.close();
     }
 }
