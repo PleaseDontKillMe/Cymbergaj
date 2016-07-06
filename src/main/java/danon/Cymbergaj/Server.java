@@ -61,7 +61,7 @@ public class Server {
                 output.println("START");
                 System.out.println("Sent START message " + mark);
 
-                while (true) {
+                while (!isInterrupted()) {
                     String command = input.readLine();
                     if (command.startsWith("KEYS")) {
                         enemy.printOutput(command);
