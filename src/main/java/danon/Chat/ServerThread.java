@@ -18,7 +18,7 @@ class ServerThread extends Thread {
     }
 
     void open() throws IOException {
-        streamIn = new ObjectInputStream(socket.getInputStream());
+        streamIn = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
         streamOut = new ObjectOutputStream(socket.getOutputStream());
     }
 

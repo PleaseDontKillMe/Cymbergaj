@@ -15,7 +15,7 @@ class ClientThread extends Thread {
 
     void open() {
         try {
-            streamIn = new ObjectInputStream(socket.getInputStream());
+            streamIn = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
         } catch (IOException exception) {
             System.out.println("Error getting input stream: " + exception);
             client.finnish();
