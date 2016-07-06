@@ -33,10 +33,13 @@ class ClientThread extends Thread {
     public void run() {
         while (!this.isInterrupted()) {
             try {
-                client.handle(streamIn.readUTF());
+                TextMessage textMessage = (TextMessage) streamIn.readObject();
+                client.handle(textMessage.getMessage());
             } catch (IOException ioe) {
                 System.out.println("Listening error: " + ioe.getMessage());
                 client.finnish();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }

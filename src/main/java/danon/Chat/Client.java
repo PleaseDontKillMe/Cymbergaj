@@ -41,7 +41,7 @@ public class Client implements Runnable {
     public void run() {
         while (!thread.isInterrupted()) {
             try {
-                streamOut.writeUTF(console.readLine());
+                streamOut.writeObject(new TextMessage(console.readLine()));
                 streamOut.flush();
             } catch (IOException ioe) {
                 System.out.println("Sending error: " + ioe.getMessage());

@@ -26,18 +26,21 @@ class ServerThread extends Thread {
     public void run() {
         while (!this.isInterrupted()) {
             try {
-                parentServer.handle(ID, streamIn.readUTF());
+                TextMessage textMessage = (TextMessage) streamIn.readObject();
+                parentServer.handle(ID, textMessage.getMessage());
             } catch (IOException ioe) {
                 System.out.println(ID + " ERROR reading: " + ioe.getMessage());
                 parentServer.removeClient(this);
                 this.interrupt();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
 
     void send(String msg) {
         try {
-            streamOut.writeUTF(msg);
+            streamOut.writeObject(new TextMessage(msg));
             streamOut.flush();
         } catch (IOException ioe) {
             System.out.println(ID + " ERROR sending: " + ioe.getMessage());
