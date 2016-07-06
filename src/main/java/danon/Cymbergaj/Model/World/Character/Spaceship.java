@@ -35,6 +35,7 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
         this.setMass(Type.NORMAL);
     }
 
+    @Override
     public SpaceshipRenderer getRenderer(ImagesRepository images) {
         return new SpaceshipRenderer(this, images);
     }

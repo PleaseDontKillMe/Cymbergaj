@@ -52,19 +52,19 @@ public class Client {
             Client client = new Client(config.getHost());
             System.out.println("I'm " + config.getUsername());
             client.play(config);
-        } catch (Exception ignored) {
+        } catch (IOException ignored) {
             System.out.println("Error connecting");
         }
     }
 
-    private Client(String serverAddress) throws Exception {
+    private Client(String serverAddress) throws IOException {
         socket = new Socket(serverAddress, PORT);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
         socketControlKeys = new SocketControlKeys();
     }
 
-    private void play(RuntimeConfig config) throws Exception {
+    private void play(RuntimeConfig config) throws IOException {
         try {
             System.out.println("Waiting for welcome message...");
             String response = in.readLine();
