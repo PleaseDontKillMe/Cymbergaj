@@ -11,11 +11,9 @@ class ClientThread extends Thread {
     ClientThread(Client client, Socket socket) {
         this.client = client;
         this.socket = socket;
-        open();
-        start();
     }
 
-    private void open() {
+    void open() {
         try {
             streamIn = new DataInputStream(socket.getInputStream());
         } catch (IOException exception) {

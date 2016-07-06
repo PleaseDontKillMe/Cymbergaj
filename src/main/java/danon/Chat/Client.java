@@ -30,6 +30,9 @@ public class Client implements Runnable {
         streamOut = new DataOutputStream(socket.getOutputStream());
 
         clientThread = new ClientThread(this, socket);
+        clientThread.open();
+        clientThread.start();
+
         thread = new Thread(this);
         thread.start();
     }
