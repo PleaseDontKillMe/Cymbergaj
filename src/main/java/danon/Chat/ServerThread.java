@@ -7,8 +7,8 @@ class ServerThread extends Thread {
     private Server parentServer;
     private Socket socket;
     private int ID;
-    private DataInputStream streamIn;
-    private DataOutputStream streamOut;
+    private ObjectInputStream streamIn;
+    private ObjectOutputStream streamOut;
 
     ServerThread(Server parentServer, Socket socket) {
         super();
@@ -18,8 +18,8 @@ class ServerThread extends Thread {
     }
 
     void open() throws IOException {
-        streamIn = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-        streamOut = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+        streamIn = new ObjectInputStream(socket.getInputStream());
+        streamOut = new ObjectOutputStream(socket.getOutputStream());
     }
 
     @Override

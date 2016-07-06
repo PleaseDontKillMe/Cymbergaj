@@ -7,7 +7,7 @@ public class Client implements Runnable {
     private Socket socket;
     private Thread thread;
     private BufferedReader console;
-    private DataOutputStream streamOut;
+    private ObjectOutputStream streamOut;
     private ClientThread clientThread;
 
     public static void main(String args[]) throws IOException {
@@ -27,7 +27,7 @@ public class Client implements Runnable {
 
     private void start() throws IOException {
         console = new BufferedReader(new InputStreamReader(System.in));
-        streamOut = new DataOutputStream(socket.getOutputStream());
+        streamOut = new ObjectOutputStream(socket.getOutputStream());
 
         clientThread = new ClientThread(this, socket);
         clientThread.open();

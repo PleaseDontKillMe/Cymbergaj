@@ -6,7 +6,7 @@ import java.io.*;
 class ClientThread extends Thread {
     private Socket socket;
     private Client client;
-    private DataInputStream streamIn = null;
+    private ObjectInputStream streamIn;
 
     ClientThread(Client client, Socket socket) {
         this.client = client;
@@ -15,7 +15,7 @@ class ClientThread extends Thread {
 
     void open() {
         try {
-            streamIn = new DataInputStream(socket.getInputStream());
+            streamIn = new ObjectInputStream(socket.getInputStream());
         } catch (IOException exception) {
             System.out.println("Error getting input stream: " + exception);
             client.finnish();
