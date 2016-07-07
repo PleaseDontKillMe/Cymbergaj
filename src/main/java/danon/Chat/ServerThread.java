@@ -4,8 +4,8 @@ import java.net.*;
 import java.io.*;
 
 class ServerThread extends Thread {
-    private Server parentServer;
-    private Socket socket;
+    private final Server parentServer;
+    private final Socket socket;
     private int ID;
     private ObjectInputStream streamIn;
     private ObjectOutputStream streamOut;
@@ -24,7 +24,7 @@ class ServerThread extends Thread {
 
     @Override
     public void run() {
-        while (!this.isInterrupted()) {
+        while (!isInterrupted()) {
             try {
                 TextMessage textMessage = (TextMessage) streamIn.readObject();
                 parentServer.handle(ID, textMessage.getMessage());
