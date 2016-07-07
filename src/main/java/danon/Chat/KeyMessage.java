@@ -2,9 +2,7 @@ package danon.Chat;
 
 import danon.Cymbergaj.Model.World.Control.Keys;
 
-import java.io.Serializable;
-
-public class KeyMessage implements Serializable {
+public class KeyMessage implements Message {
     private boolean keyUp;
     private boolean keyDown;
     private boolean keyLeft;
