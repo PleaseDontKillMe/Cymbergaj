@@ -1,7 +1,14 @@
-package danon.Chat;
+package danon.Cymbergaj;
 
-import java.net.*;
-import java.io.*;
+import danon.Chat.KeyMessage;
+import danon.Chat.Message;
+import danon.Chat.QuitMessage;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 class ServerThread extends Thread {
     private final Server parentServer;
@@ -24,23 +31,35 @@ class ServerThread extends Thread {
 
     @Override
     public void run() {
-        while (!isInterrupted()) {
+        try {
+            while (!isInterrupted()) {
+                Message message = (Message) streamIn.readObject();
+
+                if (message instanceof KeyMessage) {
+                    parentServer.handle(ID, message);
+                }
+
+                if (message instanceof QuitMessage) {
+                    socket.close();
+                    return;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("ServerThread died: " + e.getMessage() + " | " + e.getLocalizedMessage());
+            this.interrupt();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                TextMessage textMessage = (TextMessage) streamIn.readObject();
-                parentServer.handle(ID, textMessage.getMessage());
-            } catch (IOException ioe) {
-                System.out.println(ID + " ERROR reading: " + ioe.getMessage());
-                parentServer.removeClient(this);
-                this.interrupt();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                socket.close();
+            } catch (IOException ignored) {
             }
         }
     }
 
-    void send(String msg) {
+    void send(int ID, Message message) {
         try {
-            streamOut.writeObject(new TextMessage(msg));
+            streamOut.writeObject(message);
             streamOut.flush();
         } catch (IOException ioe) {
             System.out.println(ID + " ERROR sending: " + ioe.getMessage());

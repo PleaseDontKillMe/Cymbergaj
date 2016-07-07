@@ -15,7 +15,7 @@ public class Server implements Runnable {
     private Thread thread;
     private static final int MAX_CLIENTS = 50;
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         int port = PORT;
         System.out.println("Binding to port " + port + ", please wait  ...");
 
@@ -34,6 +34,7 @@ public class Server implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("Server is Running...");
         while (!thread.isInterrupted()) {
             try {
                 System.out.println("Waiting for a client ...");
@@ -67,7 +68,6 @@ public class Server implements Runnable {
             thread.send(".bye");
             removeClient(thread);
         } else {
-            System.out.println("Received " + ID + ": " + input);
             serverThreads.forEach(serverThread -> serverThread.send(ID + ": " + input));
         }
     }

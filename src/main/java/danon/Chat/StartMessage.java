@@ -1,6 +1,13 @@
 package danon.Chat;
 
-import java.io.Serializable;
+public class StartMessage implements Message {
+    private char playerTeam;
 
-public class StartMessage implements Serializable {
+    public StartMessage(char playerTeam) {
+        this.playerTeam = playerTeam;
+    }
+
+    public char getPlayerTeam() {
+        return playerTeam;
+    }
 }

@@ -1,15 +1,13 @@
 package danon.Chat;
 
-import java.io.Serializable;
-
-class TextMessage implements Serializable {
+public class TextMessage implements Message {
     private String message;
 
-    TextMessage(String message) {
+    public TextMessage(String message) {
         this.message = message;
     }
 
-    String getMessage() {
+    public String getMessage() {
         return message;
     }
 }

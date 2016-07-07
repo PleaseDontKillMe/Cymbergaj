@@ -1,9 +1,14 @@
-package danon.Chat;
+package danon.Cymbergaj;
 
-import java.net.*;
-import java.io.*;
 
-public class ClientThread extends Thread {
+import danon.Chat.*;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+
+class ClientThread extends Thread {
     private Socket socket;
     private Client client;
     private ObjectInputStream streamIn;
@@ -30,11 +35,12 @@ public class ClientThread extends Thread {
         }
     }
 
+    @Override
     public void run() {
         while (!this.isInterrupted()) {
             try {
-                TextMessage textMessage = (TextMessage) streamIn.readObject();
-                client.handle(textMessage.getMessage());
+                Message message = (Message) streamIn.readObject();
+                client.handle(message);
             } catch (IOException ioe) {
                 System.out.println("Listening error: " + ioe.getMessage());
                 client.finnish();
