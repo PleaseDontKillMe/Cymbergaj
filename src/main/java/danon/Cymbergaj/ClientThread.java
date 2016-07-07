@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class ClientThread extends Thread {
+class ClientThread extends Thread {
     private Socket socket;
     private Client client;
     private ObjectInputStream streamIn;
