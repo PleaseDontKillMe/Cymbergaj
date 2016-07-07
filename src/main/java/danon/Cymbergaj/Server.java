@@ -1,85 +1,76 @@
 package danon.Cymbergaj;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
+import danon.Chat.Message;
+import danon.Chat.StartMessage;
 
-public class Server {
+import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+import java.net.ServerSocket;
+
+public class Server implements Runnable {
+    static final int PORT = 9801;
+
+    private List<ServerThread> serverThreads = new ArrayList<>(MAX_CLIENTS);
+    private ServerSocket server;
+    private Thread thread;
+    private static final int MAX_CLIENTS = 50;
 
     public static void main(String[] args) throws IOException {
+        int port = PORT;
+        System.out.println("Binding to port " + port + ", please wait  ...");
+
+        Server server = new Server(new ServerSocket(port));
+        server.start();
+    }
+
+    private Server(ServerSocket serverSocket) {
+        this.server = serverSocket;
+        this.thread = new Thread(this);
+    }
+
+    private void start() {
+        thread.start();
+    }
+
+    synchronized void handle(int ID, Message message) {
+        serverThreads.forEach(playerThread -> playerThread.send(ID, message));
+    }
+
+    @Override
+    public void run() {
         System.out.println("Server is Running...");
-        try (ServerSocket listener = new ServerSocket(8901)) {
-            while (true) {
-                Player playerX = new Player(listener.accept(), 'L');
-                Player playerO = new Player(listener.accept(), 'R');
+        while (!thread.isInterrupted()) {
+            try {
+                ServerThread playerX = new ServerThread(this, server.accept());
+                playerX.open();
 
-                playerX.useEnemy(playerO);
-                playerO.useEnemy(playerX);
+                System.out.println("Accepted first");
 
-                System.out.println("Starting match");
+                ServerThread playerO = new ServerThread(this, server.accept());
+                playerO.open();
+                System.out.println("Accepted both");
+
+                playerX.send(0, new StartMessage('L'));
+                playerO.send(0, new StartMessage('R'));
+
                 playerX.start();
                 playerO.start();
+            } catch (IOException e) {
+                thread.interrupt();
+                e.printStackTrace();
             }
         }
     }
 
-    private static class Player extends Thread {
-        final char mark;
-        Socket socket;
-        BufferedReader input;
-        PrintWriter output;
-
-        Player enemy;
-
-        Player(Socket socket, char mark) {
-            this.socket = socket;
-            this.mark = mark;
-            try {
-                input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                output = new PrintWriter(socket.getOutputStream(), true);
-                output.println("WELCOME " + mark);
-                System.out.println("Sent WELCOME message");
-            } catch (IOException e) {
-                System.out.println("Player died: " + e);
-            }
+    synchronized void removeClient(ServerThread toTerminate) {
+        System.out.println("Removing client thread " + toTerminate.getID());
+        serverThreads.remove(toTerminate);
+        try {
+            toTerminate.close();
+        } catch (IOException ioe) {
+            System.out.println("Error closing thread: " + ioe);
         }
-
-        void useEnemy(Player enemy) {
-            this.enemy = enemy;
-        }
-
-        synchronized void printOutput(String input) {
-            this.output.println(input);
-            this.output.flush();
-        }
-
-        public void run() {
-            try {
-                output.println("START");
-                System.out.println("Sent START message " + mark);
-
-                while (true) {
-                    String command = input.readLine();
-                    if (command.startsWith("KEYS")) {
-                        enemy.printOutput(command);
-                        System.out.println(command);
-                    } else if (command.startsWith("MOVE")) {
-
-                    } else if (command.startsWith("QUIT")) {
-                        return;
-                    }
-                }
-            } catch (IOException e) {
-                System.out.println("Player died: " + e);
-            } finally {
-                try {
-                    socket.close();
-                } catch (IOException ignored) {
-                }
-            }
-        }
+        toTerminate.interrupt();
     }
 }

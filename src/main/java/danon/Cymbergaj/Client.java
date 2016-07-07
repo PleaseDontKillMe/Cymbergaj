@@ -1,24 +1,30 @@
 package danon.Cymbergaj;
 
+import danon.Chat.KeyMessage;
+import danon.Chat.Message;
+import danon.Chat.QuitMessage;
+import danon.Chat.StartMessage;
 import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Client {
-
-    private static final int PORT = 8901;
     private Socket socket;
-    private BufferedReader in;
-    private PrintWriter out;
+    private ObjectOutputStream streamOut;
+    private ObjectInputStream streamIn;
+    private ClientThread clientThread;
     private SocketControlKeys socketControlKeys;
+
+    private boolean shouldStopLoop = false;
+    private String serverAddress;
+    private RuntimeConfig config;
 
     public static void main(String[] args) throws Exception {
         GetConfigListener listener = config -> {
@@ -49,75 +55,78 @@ public class Client {
 
     private static void startNetworkGame(RuntimeConfig config) {
         try {
-            Client client = new Client(config.getHost());
             System.out.println("I'm " + config.getUsername());
-            client.play(config);
-        } catch (IOException ignored) {
+            Client client = new Client(config);
+            System.out.println("Going to open");
+            client.open();
+        } catch (IOException e) {
             System.out.println("Error connecting");
         }
     }
 
-    private Client(String serverAddress) throws IOException {
-        socket = new Socket(serverAddress, PORT);
-        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream(), true);
+    private Client(RuntimeConfig config) throws IOException {
+        this.config = config;
+        this.serverAddress = config.getHost();
         socketControlKeys = new SocketControlKeys();
     }
 
-    private void play(RuntimeConfig config) throws IOException {
-        try {
-            System.out.println("Waiting for welcome message...");
-            String response = in.readLine();
-            if (response.startsWith("WELCOME")) {
-                System.out.println("Got welcome message");
-                Spaceship player1, player2;
-                switch (response.charAt(8)) {
-                    case 'L':
-                        player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(out));
-                        player2 = new Spaceship(socketControlKeys, new Keys());
-                        break;
-                    case 'R':
-                        player1 = new Spaceship(socketControlKeys, new Keys());
-                        player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(out));
-                        break;
-                    default:
-                        throw new RuntimeException("Bieda");
-                }
+    private void open() throws IOException {
+        socket = new Socket(serverAddress, Server.PORT);
+        streamOut = new ObjectOutputStream(socket.getOutputStream());
 
-                Application application = new Application(player1, player2, config.getUsername());
-                application.addWindowKeyListener(player1);
-                application.addWindowKeyListener(player2);
+        clientThread = new ClientThread(this, socket);
+        clientThread.open();
+        clientThread.start();
+    }
 
-                response = in.readLine();
-                System.out.println(response);
-                if (response.startsWith("START")) {
-                    System.out.println("Got start message");
-                    application.start();
-                }
-            }
-            while (true) {
-                response = in.readLine();
-                if (response.startsWith("KEYS")) {
-                    socketControlKeys.acceptKeyChange(response);
-                }
-                if (response.startsWith("BALL")) {
-
-                }
-                if (response.startsWith("YOU")) {
-
-                }
-                if (response.startsWith("HIM")) {
-
-                }
-            }
-            // out.println("QUIT");
-            //System.out.println("Exiting...");
-        } finally {
-            try {
-                socket.close();
-            } catch (IOException ignored) {
-            }
+    void handle(Message message) {
+        if (message instanceof StartMessage) {
+            play((StartMessage) message);
+        } else if (message instanceof KeyMessage) {
+            socketControlKeys.acceptKeyChange((KeyMessage) message);
+        } else if (message instanceof QuitMessage) {
+            System.out.println("Good bye. Press RETURN to exit ...");
+            finnish();
+        } else {
+            System.out.println(message.toString());
         }
     }
 
+    private void play(StartMessage message) {
+        System.out.println("Got welcome message");
+        Spaceship player1, player2;
+        switch (message.getPlayerTeam()) {
+            case 'L':
+                player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut));
+                player2 = new Spaceship(socketControlKeys, new Keys());
+                break;
+            case 'R':
+                player1 = new Spaceship(socketControlKeys, new Keys());
+                player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut));
+                break;
+            default:
+                throw new RuntimeException("Bieda");
+        }
+
+        Application application = new Application(player1, player2, config.getUsername());
+        application.addWindowKeyListener(player1);
+        application.addWindowKeyListener(player2);
+
+        System.out.println("Got start message");
+        application.start();
+    }
+
+    void finnish() {
+        shouldStopLoop = true;
+
+        try {
+            if (streamIn != null) streamIn.close();
+            if (streamOut != null) streamOut.close();
+            if (socket != null) socket.close();
+        } catch (IOException ioe) {
+            System.out.println("Error closing ...");
+        }
+        clientThread.interrupt();
+        clientThread.close();
+    }
 }
