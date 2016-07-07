@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class SoundsRepository {
-
     public Clip lookAtMyHorse;
     public Clip bell;
 
@@ -27,7 +26,7 @@ public class SoundsRepository {
     }
 
     public void play(Clip clip) {
-        clip.start();
+       // clip.start();
     }
 
     private Clip loadClip(String filename) {

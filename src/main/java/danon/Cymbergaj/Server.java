@@ -44,7 +44,6 @@ public class Server implements Runnable {
             try {
                 ServerThread playerX = new ServerThread(this, server.accept());
                 playerX.open();
-
                 System.out.println("Accepted first");
 
                 ServerThread playerO = new ServerThread(this, server.accept());
