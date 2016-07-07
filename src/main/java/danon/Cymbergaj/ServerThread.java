@@ -31,8 +31,8 @@ class ServerThread extends Thread {
 
     @Override
     public void run() {
-        while (!isInterrupted()) {
-            try {
+        try {
+            while (!isInterrupted()) {
                 Message message = (Message) streamIn.readObject();
 
                 if (message instanceof KeyMessage) {
@@ -43,15 +43,16 @@ class ServerThread extends Thread {
                     socket.close();
                     return;
                 }
-            } catch (IOException e) {
-                System.out.println("ServerThread died: " + e);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    socket.close();
-                } catch (IOException ignored) {
-                }
+            }
+        } catch (IOException e) {
+            System.out.println("ServerThread died: " + e);
+            this.interrupt();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException ignored) {
             }
         }
     }

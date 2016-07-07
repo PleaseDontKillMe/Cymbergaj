@@ -89,13 +89,14 @@ public class Client implements Runnable {
                 throw new RuntimeException("Bieda");
         }
 
-        Application application = new Application(player1, player2, config.getUsername());
+        application = new Application(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
+        application.open();
     }
 
     void finnish() {
-        shouldStopLoop = true;
+        thread.interrupt();
 
         try {
             if (streamOut != null) streamOut.close();
