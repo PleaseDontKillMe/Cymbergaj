@@ -57,7 +57,11 @@ public class Client implements Runnable {
     void handle(Message message) {
         if (message instanceof StartMessage) {
             play((StartMessage) message);
-            thread.start();
+            if (!thread.isAlive()) {
+                thread.start();
+            } else {
+                throw new RuntimeException("Thread is already alive damn it");
+            }
         } else if (message instanceof KeyMessage) {
             socketControlKeys.acceptKeyChange((KeyMessage) message);
         } else if (message instanceof QuitMessage) {
