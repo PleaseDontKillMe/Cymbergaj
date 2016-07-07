@@ -8,7 +8,7 @@ public class KeyMessage implements Message {
     private boolean keyLeft;
     private boolean keyRight;
 
-    public KeyMessage(boolean keyUp, boolean keyDown, boolean keyLeft, boolean keyRight) {
+    private KeyMessage(boolean keyUp, boolean keyDown, boolean keyLeft, boolean keyRight) {
         this.keyUp = keyUp;
         this.keyDown = keyDown;
         this.keyLeft = keyLeft;

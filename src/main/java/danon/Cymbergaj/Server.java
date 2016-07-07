@@ -46,6 +46,9 @@ public class Server implements Runnable {
                 playerO.open();
                 System.out.println("Accepted both");
 
+                serverThreads.add(playerO);
+                serverThreads.add(playerX);
+
                 playerX.send(0, new StartMessage('L'));
                 playerO.send(0, new StartMessage('R'));
 

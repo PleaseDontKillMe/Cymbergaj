@@ -68,7 +68,6 @@ public class Server implements Runnable {
             thread.send(".bye");
             removeClient(thread);
         } else {
-            System.out.println("Received " + ID + ": " + input);
             serverThreads.forEach(serverThread -> serverThread.send(ID + ": " + input));
         }
     }

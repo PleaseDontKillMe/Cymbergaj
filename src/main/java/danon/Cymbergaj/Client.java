@@ -22,7 +22,6 @@ public class Client implements Runnable {
     private SocketControlKeys socketControlKeys;
 
     private Application application;
-    private boolean shouldStopLoop = false;
     private String serverAddress;
     private RuntimeConfig config;
 
