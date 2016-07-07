@@ -17,7 +17,7 @@ public final class Application {
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
-    private final danon.Cymbergaj.Model.Game game;
+    private final Game game;
     private final SoundsRepository sounds = new SoundsRepository();
     private final ImagesRepository images = new ImagesRepository();
 
@@ -28,13 +28,13 @@ public final class Application {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk " + name, new Size(1080, 600));
 
         this.window = new Window(settings, closeEvent -> engine.stop());
-        this.game = new danon.Cymbergaj.Model.Game(settings.getSize());
+        this.game = new Game(settings.getSize());
 
         this.playerLeft = playerLeft;
         this.playerRight = playerRight;
     }
 
-    void start() {
+    void open() {
         sounds.load();
         images.load();
 
@@ -47,7 +47,9 @@ public final class Application {
 
         engine.addUpdateListener(world::update);
         engine.addRenderListener(window::render);
+    }
 
+    void start() {
         window.show();
         sounds.play(sounds.lookAtMyHorse);
         engine.start();
