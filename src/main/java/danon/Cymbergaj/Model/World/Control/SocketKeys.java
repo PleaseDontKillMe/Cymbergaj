@@ -1,41 +1,48 @@
 package danon.Cymbergaj.Model.World.Control;
 
-import java.io.PrintWriter;
+import danon.Chat.KeyMessage;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class SocketKeys extends Keys {
 
-    private final PrintWriter out;
+    private final ObjectOutputStream out;
 
-    public SocketKeys(PrintWriter out) {
+    public SocketKeys(ObjectOutputStream out) {
         this.out = out;
     }
 
     @Override
     public void setUp(boolean up) {
         super.setUp(up);
-        sendMove("UP___", up);
+        updateMove();
     }
 
     @Override
     public void setDown(boolean down) {
         super.setDown(down);
-        sendMove("DOWN_", down);
+        updateMove();
     }
 
     @Override
     public void setLeft(boolean left) {
         super.setLeft(left);
-        sendMove("LEFT_", left);
+        updateMove();
     }
 
     @Override
     public void setRight(boolean right) {
         super.setRight(right);
-        sendMove("RIGHT", right);
+        updateMove();
     }
 
-    private void sendMove(String direction, boolean state) {
-        String charState = state ? "1" : "0";
-        out.println("KEYS " + direction + "_" + charState);
+    private void updateMove() {
+        try {
+            out.writeObject(KeyMessage.fromKeys(this));
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
