@@ -85,12 +85,12 @@ public class Client implements Runnable {
         Spaceship player1, player2;
         switch (message.getPlayerTeam()) {
             case 'L':
-                player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut));
+                player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut, 'L'));
                 player2 = new Spaceship(socketControlKeys, new Keys());
                 break;
             case 'R':
                 player1 = new Spaceship(socketControlKeys, new Keys());
-                player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut));
+                player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut, 'R'));
                 break;
             default:
                 throw new RuntimeException("Bieda");
