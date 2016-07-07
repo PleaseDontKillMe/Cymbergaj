@@ -33,10 +33,6 @@ public class Server implements Runnable {
         thread.start();
     }
 
-    synchronized void handle(int ID, Message message) {
-        serverThreads.forEach(playerThread -> playerThread.send(ID, message));
-    }
-
     @Override
     public void run() {
         System.out.println("Server is Running...");
@@ -60,6 +56,10 @@ public class Server implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    synchronized void handle(int ID, Message message) {
+        serverThreads.forEach(playerThread -> playerThread.send(ID, message));
     }
 
     synchronized void removeClient(ServerThread toTerminate) {
