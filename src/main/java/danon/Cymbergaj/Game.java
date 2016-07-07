@@ -123,7 +123,7 @@ public final class Game {
         world.addListener(new GamePointsCounter(game, sounds));
     }
 
-    public void addWindowKeyListener(KeyListener listener) {
+    void addWindowKeyListener(KeyListener listener) {
         this.window.addKeyListener(listener);
     }
 }
