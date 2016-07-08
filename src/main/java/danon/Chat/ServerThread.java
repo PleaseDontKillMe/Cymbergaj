@@ -24,6 +24,7 @@ class ServerThread extends Thread {
 
     @Override
     public void run() {
+        send("Welcome :)");
         while (!isInterrupted()) {
             try {
                 TextMessage textMessage = (TextMessage) streamIn.readObject();
