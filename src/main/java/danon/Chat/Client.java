@@ -10,13 +10,9 @@ public class Client implements Runnable {
     private ClientThread clientThread;
     private BufferedReader console;
 
-    public static void main(String args[]) throws IOException {
-        if (args.length != 1) {
-            System.out.println("Host needed");
-            return;
-        }
+    public static void main(String[] args) throws IOException {
         System.out.println("Establishing connection. Please wait ...");
-        Client client = new Client(new Socket(args[0], Server.PORT));
+        Client client = new Client(new Socket(InetAddress.getLocalHost(), Server.PORT));
         client.start();
     }
 
