@@ -22,6 +22,7 @@ public class Client implements Runnable {
     private SocketControlKeys socketControlKeys;
 
     private Application application;
+    private char myPlayer;
     private String serverAddress;
     private RuntimeConfig config;
 
@@ -58,11 +59,14 @@ public class Client implements Runnable {
             play((StartMessage) message);
             if (!thread.isAlive()) {
                 thread.start();
+                myPlayer = ((StartMessage) message).getPlayerTeam();
             } else {
                 throw new RuntimeException("Thread is already alive damn it");
             }
         } else if (message instanceof KeyMessage) {
-            socketControlKeys.acceptKeyChange((KeyMessage) message);
+            if (((KeyMessage) message).getPlayer() != myPlayer) {
+                socketControlKeys.acceptKeyChange((KeyMessage) message);
+            }
         } else if (message instanceof QuitMessage) {
             System.out.println("Good bye. Press RETURN to exit ...");
             finnish();
@@ -81,12 +85,12 @@ public class Client implements Runnable {
         Spaceship player1, player2;
         switch (message.getPlayerTeam()) {
             case 'L':
-                player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut));
+                player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut, 'L'));
                 player2 = new Spaceship(socketControlKeys, new Keys());
                 break;
             case 'R':
                 player1 = new Spaceship(socketControlKeys, new Keys());
-                player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut));
+                player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut, 'R'));
                 break;
             default:
                 throw new RuntimeException("Bieda");

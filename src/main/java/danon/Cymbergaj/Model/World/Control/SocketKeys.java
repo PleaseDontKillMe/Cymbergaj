@@ -8,9 +8,11 @@ import java.io.ObjectOutputStream;
 public class SocketKeys extends Keys {
 
     private final ObjectOutputStream out;
+    private final char player;
 
-    public SocketKeys(ObjectOutputStream out) {
+    public SocketKeys(ObjectOutputStream out, char player) {
         this.out = out;
+        this.player = player;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class SocketKeys extends Keys {
 
     private void updateMove() {
         try {
-            out.writeObject(KeyMessage.fromKeys(this));
+            out.writeObject(KeyMessage.fromKeys(player, this));
             out.flush();
         } catch (IOException e) {
             e.printStackTrace();
