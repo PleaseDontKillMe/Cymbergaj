@@ -5,16 +5,15 @@ import danon.Chat.StartMessage;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.ArrayList;
 import java.net.ServerSocket;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Server implements Runnable {
     static final int PORT = 9801;
 
-    private List<ServerThread> serverThreads = new ArrayList<>(MAX_CLIENTS);
+    private List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
     private ServerSocket server;
     private Thread thread;
-    private static final int MAX_CLIENTS = 50;
 
     public static void main(String[] args) throws IOException {
         int port = PORT;
