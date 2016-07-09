@@ -15,6 +15,7 @@ public class MultifileSpriteSheet implements SpriteSheet {
     private final List<BufferedImage> images = new LinkedList<>();
 
     private Size firstFrameSize;
+    private int currentIndex = 0;
 
     public MultifileSpriteSheet(String basePath, int filesCount) {
         this.basePath = basePath;
@@ -36,12 +37,12 @@ public class MultifileSpriteSheet implements SpriteSheet {
 
     @Override
     public void next() {
-
+        currentIndex = currentIndex+1 % filesCount;
     }
 
     @Override
     public void setFrame(int frame) {
-
+        currentIndex = frame % filesCount;
     }
 
     @Override
