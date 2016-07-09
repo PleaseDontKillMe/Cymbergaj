@@ -3,6 +3,10 @@ package danon.Cymbergaj;
 import danon.Chat.Message;
 import danon.Chat.StartMessage;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.List;
 import java.net.ServerSocket;
@@ -14,6 +18,8 @@ public class Server implements Runnable {
     private List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
     private ServerSocket server;
     private Thread thread;
+
+    private ServerPanel panel = new ServerPanel();
 
     public static void main(String[] args) throws IOException {
         int port = PORT;
@@ -29,6 +35,7 @@ public class Server implements Runnable {
     }
 
     private void start() {
+        panel.showWindow();
         thread.start();
     }
 
@@ -73,5 +80,43 @@ public class Server implements Runnable {
             System.out.println("Error closing thread: " + ioe);
         }
         toTerminate.interrupt();
+    }
+
+    private synchronized void closeServer() {
+        serverThreads.forEach(thread -> {
+            try {
+                thread.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private class ServerPanel extends JFrame {
+
+        public void showWindow() {
+            initializeWindow();
+            setVisible(true);
+        }
+
+        private void initializeWindow() {
+            setTitle("Server");
+            setSize(new Dimension(300, 400));
+            setLocationRelativeTo(null);
+            setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    closeServer();
+                    e.getWindow().dispose();
+                }
+            });
+
+            setLayout(new BorderLayout());
+
+        }
+
+
     }
 }
