@@ -55,6 +55,10 @@ public final class Application {
         engine.start();
     }
 
+    void stop() {
+        engine.stop();
+    }
+
     private void initializeWorld() {
         world.setGravity(World.ZERO_GRAVITY);
 
