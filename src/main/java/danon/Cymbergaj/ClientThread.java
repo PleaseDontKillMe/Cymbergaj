@@ -43,10 +43,9 @@ class ClientThread extends Thread {
                 client.handle(message);
             } catch (IOException ioe) {
                 System.out.println("Listening error: " + ioe.getMessage());
+                client.finnish();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-            } finally {
-                client.finnish();
             }
         }
     }
