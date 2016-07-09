@@ -46,20 +46,22 @@ public class Server implements Runnable {
             try {
                 ServerThread playerX = new ServerThread(this, server.accept());
                 playerX.open();
-                System.out.println("Accepted first");
+                System.out.println("Accepted first " + playerX.toString());
+                serverThreads.add(playerX);
+                panel.updateList(serverThreads);
 
                 ServerThread playerO = new ServerThread(this, server.accept());
                 playerO.open();
-                System.out.println("Accepted both");
-
+                System.out.println("Accepted both" + playerO.toString());
                 serverThreads.add(playerO);
-                serverThreads.add(playerX);
+                panel.updateList(serverThreads);
 
                 playerX.send(0, new StartMessage('L'));
                 playerO.send(0, new StartMessage('R'));
 
                 playerX.start();
                 playerO.start();
+                System.out.println("Started game");
             } catch (IOException e) {
                 thread.interrupt();
                 e.printStackTrace();
