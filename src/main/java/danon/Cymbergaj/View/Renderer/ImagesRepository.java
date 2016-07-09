@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ImagesRepository {
-
     BufferedImage background;
     SpriteSheet fireball;
     SpriteSheet spaceship;
