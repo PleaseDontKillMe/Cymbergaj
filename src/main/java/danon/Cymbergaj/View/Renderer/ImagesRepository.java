@@ -24,6 +24,10 @@ public class ImagesRepository {
     SpriteSheet knifeMelee;
     SpriteSheet knifeMove;
 
+    SpriteSheet flashlightIdle;
+    SpriteSheet flashlightMelee;
+    SpriteSheet flashlightMove;
+
     SpriteSheet rifleIdle;
     SpriteSheet rifleMelee;
     SpriteSheet rifleMove;
@@ -50,6 +54,10 @@ public class ImagesRepository {
         knifeIdle = new MultifileSpriteSheet("character/knife/idle/survivor-idle_knife_", 20).loadImages();
         knifeMelee = new MultifileSpriteSheet("character/knife/meleeattack/survivor-meleeattack_knife_", 15).loadImages();
         knifeMove = new MultifileSpriteSheet("character/knife/move/survivor-move_knife_", 20).loadImages();
+
+        flashlightIdle = new MultifileSpriteSheet("character/flashlight/idle/survivor-idle_flashlight_", 20).loadImages();
+        flashlightMelee = new MultifileSpriteSheet("character/flashlight/meleeattack/survivor-meleeattack_flashlight_", 15).loadImages();
+        flashlightMove = new MultifileSpriteSheet("character/flashlight/move/survivor-move_flashlight_", 20).loadImages();
 
         rifleIdle = new MultifileSpriteSheet("character/rifle/idle/survivor-idle_rifle_", 20).loadImages();
         rifleMelee = new MultifileSpriteSheet("character/rifle/meleeattack/survivor-meleeattack_rifle_", 15).loadImages();
