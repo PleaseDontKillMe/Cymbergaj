@@ -2,6 +2,7 @@ package danon.Cymbergaj.View.Renderer;
 
 
 import danon.Cymbergaj.Geometry.Size;
+import danon.Cymbergaj.View.PackedSpriteSheet;
 import danon.Cymbergaj.View.SpriteSheet;
 
 import javax.imageio.ImageIO;
@@ -17,8 +18,8 @@ public class ImagesRepository {
 
     public void load() {
         background = loadImage("space-background.png");
-        fireball = new SpriteSheet(loadImage("fireball.png"), new Size(64, 64), 8);
-        spaceship = new SpriteSheet(loadImage("spaceship2.png"), new Size(64, 64), 32);
+        fireball = new PackedSpriteSheet(loadImage("fireball.png"), new Size(64, 64), 8);
+        spaceship = new PackedSpriteSheet(loadImage("spaceship2.png"), new Size(64, 64), 32);
     }
 
     private BufferedImage loadImage(String filename) {
