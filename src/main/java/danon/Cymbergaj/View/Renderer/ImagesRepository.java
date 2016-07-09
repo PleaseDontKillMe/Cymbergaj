@@ -14,6 +14,12 @@ public class ImagesRepository {
     SpriteSheet fireball;
     SpriteSheet spaceship;
 
+    SpriteSheet feetIdle;
+    SpriteSheet feetRun;
+    SpriteSheet feetWalk;
+    SpriteSheet feetStrafeLeft;
+    SpriteSheet feetStrafeRight;
+
     SpriteSheet handgunIdle;
     SpriteSheet handgunMelee;
     SpriteSheet handgunMove;
@@ -44,6 +50,12 @@ public class ImagesRepository {
         background = Loader.image("space-background.png");
         fireball = new PackedSpriteSheet(Loader.image("fireball.png"), new Size(64, 64), 8);
         spaceship = new PackedSpriteSheet(Loader.image("spaceship2.png"), new Size(64, 64), 32);
+
+        feetIdle = new MultifileSpriteSheet("character/feet/idle/survivor-idle_", 1).loadImages();
+        feetRun = new MultifileSpriteSheet("character/feet/run/survivor-run_", 20).loadImages();
+        feetWalk = new MultifileSpriteSheet("character/feet/walk/survivor-walk_", 20).loadImages();
+        feetStrafeLeft = new MultifileSpriteSheet("character/feet/strafe_left/survivor-strafe_left_", 20).loadImages();
+        feetStrafeRight = new MultifileSpriteSheet("character/feet/strafe_right/survivor-strafe_right_", 20).loadImages();
 
         handgunIdle = new MultifileSpriteSheet("character/handgun/idle/survivor-idle_handgun_", 20).loadImages();
         handgunMelee = new MultifileSpriteSheet("character/handgun/meleeattack/survivor-meleeattack_handgun_", 15).loadImages();
