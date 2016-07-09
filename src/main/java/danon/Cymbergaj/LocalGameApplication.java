@@ -105,6 +105,8 @@ public final class LocalGameApplication implements Application {
         FireballRenderer fireballrenderer = ball.getRenderer(images);
         SpaceshipRenderer player2renderer = playerRight.getRenderer(images);
 
+        CharacterRenderer characterRenderer = new CharacterRenderer(images);
+
         window.addRenderer(game.getRenderer(images));
         window.addRenderer(game.getPointsRenderer());
         window.addRenderer(leftWall.getRenderer(images));
@@ -118,6 +120,7 @@ public final class LocalGameApplication implements Application {
         window.addRenderer(player1renderer);
         window.addRenderer(player2renderer);
         window.addRenderer(fireballrenderer);
+        window.addRenderer(characterRenderer);
 
         engine.addUpdateListener(playerLeft);
         engine.addUpdateListener(playerRight);
@@ -125,6 +128,7 @@ public final class LocalGameApplication implements Application {
         engine.addUpdateListener(fireballrenderer);
         engine.addUpdateListener(player1renderer);
         engine.addUpdateListener(player2renderer);
+        engine.addUpdateListener(characterRenderer);
 
         world.addListener(new GamePointsCounter(game, sounds));
     }

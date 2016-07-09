@@ -8,9 +8,7 @@ import danon.Cymbergaj.View.SpriteSheet;
 import java.awt.*;
 
 public class CharacterRenderer implements Renderer, Updatable {
-
     private final SpriteSheet spriteSheet;
-    private int refreshesToNextFrame = 0;
 
     private double totalElapsedTime = 0;
 
@@ -27,7 +25,7 @@ public class CharacterRenderer implements Renderer, Updatable {
     @Override
     public void update(double elapsedTime) {
         totalElapsedTime += elapsedTime;
-        int frame = (int) Math.round(totalElapsedTime * 40.0);
+        int frame = (int) Math.round(totalElapsedTime * 20.0);
         spriteSheet.setFrame(frame);
     }
 }
