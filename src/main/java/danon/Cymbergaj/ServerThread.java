@@ -47,6 +47,7 @@ class ServerThread extends Thread {
         } catch (IOException e) {
             System.out.println("ServerThread died: " + e.getMessage() + " | " + e.getLocalizedMessage());
             this.interrupt();
+            parentServer.removeClient(this);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {

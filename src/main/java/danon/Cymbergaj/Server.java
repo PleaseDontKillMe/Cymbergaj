@@ -76,6 +76,7 @@ public class Server implements Runnable {
     synchronized void removeClient(ServerThread toTerminate) {
         System.out.println("Removing client thread " + toTerminate.getID());
         serverThreads.remove(toTerminate);
+        panel.updateList(serverThreads);
         try {
             toTerminate.close();
         } catch (IOException ioe) {
