@@ -7,7 +7,7 @@ import danon.Cymbergaj.Geometry.Size;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class PackedSpriteSheet extends SpriteSheet {
+public class PackedSpriteSheet implements SpriteSheet {
 
     private final BufferedImage spriteSheet;
     private final Size spriteSize;
@@ -20,10 +20,12 @@ public class PackedSpriteSheet extends SpriteSheet {
         this.spritesAmount = spritesAmount;
     }
 
+    @Override
     public void drawOn(Graphics2D canvas, Point position) {
         drawOn(canvas, position, new Rotation());
     }
 
+    @Override
     public void drawOn(Graphics2D canvas, Point position, Rotation rotation) {
         Point rot = rotation.getCenter();
 
@@ -42,14 +44,17 @@ public class PackedSpriteSheet extends SpriteSheet {
         canvas.translate(-position.x, -position.y);
     }
 
+    @Override
     public Size getSpriteSize() {
         return spriteSize;
     }
 
+    @Override
     public void next() {
         currentSpriteIndex = (currentSpriteIndex + 1) % spritesAmount;
     }
 
+    @Override
     public void setFrame(int index) {
         currentSpriteIndex = (index+spritesAmount*10) % spritesAmount;
     }
