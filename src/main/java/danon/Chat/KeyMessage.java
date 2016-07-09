@@ -3,11 +3,11 @@ package danon.Chat;
 import danon.Cymbergaj.Model.World.Control.Keys;
 
 public class KeyMessage implements Message {
-    private char player;
-    private boolean keyUp;
-    private boolean keyDown;
-    private boolean keyLeft;
-    private boolean keyRight;
+    private final char player;
+    private final boolean keyUp;
+    private final boolean keyDown;
+    private final boolean keyLeft;
+    private final boolean keyRight;
 
     private KeyMessage(char player, boolean keyUp, boolean keyDown, boolean keyLeft, boolean keyRight) {
         this.player = player;

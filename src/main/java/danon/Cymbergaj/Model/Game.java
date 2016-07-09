@@ -22,11 +22,11 @@ public class Game implements Updatable {
         this.onGameStart = onGameStart;
     }
 
-    public void pointForLeft() {
+    void pointForLeft() {
         pointsLeft++;
     }
 
-    public void pointForRight() {
+    void pointForRight() {
         pointsRight++;
     }
 

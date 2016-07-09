@@ -19,12 +19,12 @@ public class Client implements Runnable {
     private Thread thread;
     private ObjectOutputStream streamOut;
     private ClientThread clientThread;
-    private SocketControlKeys socketControlKeys;
+    private final SocketControlKeys socketControlKeys;
 
     private LocalGameApplication application;
     private char myPlayer;
-    private String serverAddress;
-    private RuntimeConfig config;
+    private final String serverAddress;
+    private final RuntimeConfig config;
 
     private static void startNetworkGame(RuntimeConfig config) {
         try {
@@ -37,7 +37,7 @@ public class Client implements Runnable {
         }
     }
 
-    private Client(RuntimeConfig config) throws IOException {
+    private Client(RuntimeConfig config) {
         this.config = config;
         this.serverAddress = config.getHost();
         this.socketControlKeys = new SocketControlKeys();

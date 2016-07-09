@@ -7,6 +7,7 @@ import danon.Cymbergaj.View.SpriteSheet;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 public class ImagesRepository {
 
@@ -21,8 +22,14 @@ public class ImagesRepository {
     }
 
     private BufferedImage loadImage(String filename) {
+        URL resource = getClass().getClassLoader().getResource(filename);
+
+        if (resource == null) {
+            throw new RuntimeException("File " + filename + " not found");
+        }
+
         try {
-            return ImageIO.read(getClass().getClassLoader().getResource(filename));
+            return ImageIO.read(resource);
         } catch (IOException ignored) {
             throw new RuntimeException("File " + filename + " not found");
         }

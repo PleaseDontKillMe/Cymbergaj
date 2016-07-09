@@ -3,9 +3,9 @@ package danon.Chat;
 import java.net.*;
 import java.io.*;
 
-public class ClientThread extends Thread {
-    private Socket socket;
-    private Client client;
+class ClientThread extends Thread {
+    private final Socket socket;
+    private final Client client;
     private ObjectInputStream streamIn;
 
     ClientThread(Client client, Socket socket) {

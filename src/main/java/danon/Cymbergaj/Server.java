@@ -15,11 +15,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Server implements Runnable {
     static final int PORT = 9801;
 
-    private List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
-    private ServerSocket server;
-    private Thread thread;
+    private final List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
+    private final ServerSocket server;
+    private final Thread thread;
 
-    private ServerPanel panel = new ServerPanel();
+    private final ServerPanel panel = new ServerPanel();
 
     public static void main(String[] args) throws IOException {
         int port = PORT;
@@ -96,7 +96,7 @@ public class Server implements Runnable {
     }
 
     private class ServerPanel extends JFrame {
-        private java.awt.List list = new java.awt.List();
+        private final java.awt.List list = new java.awt.List();
 
         void updateList(List<ServerThread> threads) {
             list.removeAll();
