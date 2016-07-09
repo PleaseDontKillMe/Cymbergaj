@@ -40,7 +40,7 @@ public class Client implements Runnable {
     private Client(RuntimeConfig config) throws IOException {
         this.config = config;
         this.serverAddress = config.getHost();
-        socketControlKeys = new SocketControlKeys();
+        this.socketControlKeys = new SocketControlKeys();
     }
 
     private void start() throws IOException {
