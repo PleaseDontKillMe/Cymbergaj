@@ -22,12 +22,13 @@ public class MultifileSpriteSheet implements SpriteSheet {
         this.filesCount = filesCount;
     }
 
-    public void loadImages() {
+    public MultifileSpriteSheet loadImages() {
         for (int i = 0; i < filesCount; i++) {
             images.add(Loader.image(basePath + i + ".png"));
         }
         BufferedImage first = images.get(0);
         firstFrameSize = new Size(first.getWidth(), first.getHeight());
+        return this;
     }
 
     @Override
