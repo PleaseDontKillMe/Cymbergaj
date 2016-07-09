@@ -14,6 +14,8 @@ public class MultifileSpriteSheet implements SpriteSheet {
     private final int filesCount;
     private final List<BufferedImage> images = new LinkedList<>();
 
+    private Size firstFrameSize;
+
     public MultifileSpriteSheet(String basePath, int filesCount) {
         this.basePath = basePath;
         this.filesCount = filesCount;
@@ -23,11 +25,13 @@ public class MultifileSpriteSheet implements SpriteSheet {
         for (int i = 0; i < filesCount; i++) {
             images.add(Loader.image(basePath + i + ".png"));
         }
+        BufferedImage first = images.get(0);
+        firstFrameSize = new Size(first.getWidth(), first.getHeight());
     }
 
     @Override
     public Size getSpriteSize() {
-        return null;
+        return firstFrameSize;
     }
 
     @Override
