@@ -30,6 +30,12 @@ public class ImagesRepository {
     SpriteSheet rifleReload;
     SpriteSheet rifleShoot;
 
+    SpriteSheet shotgunIdle;
+    SpriteSheet shotgunMelee;
+    SpriteSheet shotgunMove;
+    SpriteSheet shotgunReload;
+    SpriteSheet shotgunShoot;
+
     public void load() {
         background = Loader.image("space-background.png");
         fireball = new PackedSpriteSheet(Loader.image("fireball.png"), new Size(64, 64), 8);
@@ -50,6 +56,12 @@ public class ImagesRepository {
         rifleMove = new MultifileSpriteSheet("character/rifle/move/survivor-move_rifle_", 20).loadImages();
         rifleReload = new MultifileSpriteSheet("character/rifle/reload/survivor-reload_rifle_", 20).loadImages();
         rifleShoot = new MultifileSpriteSheet("character/rifle/shoot/survivor-shoot_rifle_", 3).loadImages();
+
+        shotgunIdle = new MultifileSpriteSheet("character/shotgun/idle/survivor-idle_shotgun_", 20).loadImages();
+        shotgunMelee = new MultifileSpriteSheet("character/shotgun/meleeattack/survivor-meleeattack_shotgun_", 15).loadImages();
+        shotgunMove = new MultifileSpriteSheet("character/shotgun/move/survivor-move_shotgun_", 20).loadImages();
+        shotgunReload = new MultifileSpriteSheet("character/shotgun/reload/survivor-reload_shotgun_", 20).loadImages();
+        shotgunShoot = new MultifileSpriteSheet("character/shotgun/shoot/survivor-shoot_shotgun_", 3).loadImages();
     }
 
 }
