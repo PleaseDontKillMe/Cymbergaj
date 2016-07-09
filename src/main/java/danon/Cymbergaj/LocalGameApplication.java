@@ -11,7 +11,7 @@ import org.dyn4j.geometry.*;
 import java.awt.event.KeyListener;
 
 
-public final class LocalGameApplication {
+public final class LocalGameApplication implements Application {
     public static final double SCALE = 45.0; //  The scale 45 pixels per meter
 
     private final Engine engine = new Engine();
