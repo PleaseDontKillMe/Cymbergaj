@@ -21,7 +21,7 @@ public class Client implements Runnable {
     private ClientThread clientThread;
     private SocketControlKeys socketControlKeys;
 
-    private Application application;
+    private LocalGameApplication application;
     private char myPlayer;
     private String serverAddress;
     private RuntimeConfig config;
@@ -96,7 +96,7 @@ public class Client implements Runnable {
                 throw new RuntimeException("Bieda");
         }
 
-        application = new Application(player1, player2, config.getUsername());
+        application = new LocalGameApplication(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
         application.open();
@@ -136,9 +136,9 @@ public class Client implements Runnable {
     private static void startLocalGame() {
         Spaceship player1 = new Spaceship(new WsadControlKeys());
         Spaceship player2 = new Spaceship(new ArrowsControlKeys());
-        Application application = new Application(player1, player2, "");
-        application.addWindowKeyListener(player1);
-        application.addWindowKeyListener(player2);
-        application.start();
+        LocalGameApplication localGameApplication = new LocalGameApplication(player1, player2, "");
+        localGameApplication.addWindowKeyListener(player1);
+        localGameApplication.addWindowKeyListener(player2);
+        localGameApplication.start();
     }
 }
