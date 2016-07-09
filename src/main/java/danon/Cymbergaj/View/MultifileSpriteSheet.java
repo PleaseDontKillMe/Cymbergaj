@@ -46,12 +46,25 @@ public class MultifileSpriteSheet implements SpriteSheet {
     }
 
     @Override
-    public void drawOn(Graphics2D canvas, Point point) {
-
+    public void drawOn(Graphics2D canvas, Point position) {
+        drawOn(canvas, position, new Rotation());
     }
 
     @Override
-    public void drawOn(Graphics2D canvas, Point point, Rotation rotation) {
+    public void drawOn(Graphics2D canvas, Point position, Rotation rotation) {
+        Point rot = rotation.getCenter();
 
+        canvas.translate(position.x, position.y);
+        canvas.rotate(rotation.getAngle().getValue());
+
+        BufferedImage image = images.get(currentIndex);
+        canvas.drawImage(image,
+                -rot.getX(), -rot.getY(),
+                image.getWidth() - rot.getX(),
+                image.getHeight() - rot.getY(),
+                null);
+
+        canvas.rotate(-rotation.getAngle().getValue());
+        canvas.translate(-position.x, -position.y);
     }
 }
