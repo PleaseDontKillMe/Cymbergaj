@@ -93,8 +93,14 @@ public class Server implements Runnable {
     }
 
     private class ServerPanel extends JFrame {
+        private java.awt.List list = new java.awt.List();
 
-        public void showWindow() {
+        void updateList(List<ServerThread> threads) {
+            list.removeAll();
+            threads.forEach(thread -> list.add(thread.toString()));
+        }
+
+        void showWindow() {
             initializeWindow();
             setVisible(true);
         }
@@ -114,7 +120,8 @@ public class Server implements Runnable {
             });
 
             setLayout(new BorderLayout());
-
+            getContentPane().add(list, "Center");
+            list.setEnabled(false);
         }
 
 
