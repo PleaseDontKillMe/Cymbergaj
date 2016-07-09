@@ -77,4 +77,13 @@ class ServerThread extends Thread {
         if (streamIn != null) streamIn.close();
         if (streamOut != null) streamOut.close();
     }
+
+    @Override
+    public String toString() {
+        return "ServerThread{" +
+                "port=" + ID +
+                "/" + socket.getLocalPort() +
+                "  " + socket.getLocalAddress() +
+                "}";
+    }
 }
