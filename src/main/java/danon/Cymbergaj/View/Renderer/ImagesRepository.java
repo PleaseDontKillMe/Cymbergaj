@@ -24,6 +24,12 @@ public class ImagesRepository {
     SpriteSheet knifeMelee;
     SpriteSheet knifeMove;
 
+    SpriteSheet rifleIdle;
+    SpriteSheet rifleMelee;
+    SpriteSheet rifleMove;
+    SpriteSheet rifleReload;
+    SpriteSheet rifleShoot;
+
     public void load() {
         background = Loader.image("space-background.png");
         fireball = new PackedSpriteSheet(Loader.image("fireball.png"), new Size(64, 64), 8);
@@ -38,6 +44,12 @@ public class ImagesRepository {
         knifeIdle = new MultifileSpriteSheet("character/knife/idle/survivor-idle_knife_", 20).loadImages();
         knifeMelee = new MultifileSpriteSheet("character/knife/meleeattack/survivor-meleeattack_knife_", 15).loadImages();
         knifeMove = new MultifileSpriteSheet("character/knife/move/survivor-move_knife_", 20).loadImages();
+
+        rifleIdle = new MultifileSpriteSheet("character/rifle/idle/survivor-idle_rifle_", 20).loadImages();
+        rifleMelee = new MultifileSpriteSheet("character/rifle/meleeattack/survivor-meleeattack_rifle_", 15).loadImages();
+        rifleMove = new MultifileSpriteSheet("character/rifle/move/survivor-move_rifle_", 20).loadImages();
+        rifleReload = new MultifileSpriteSheet("character/rifle/reload/survivor-reload_rifle_", 20).loadImages();
+        rifleShoot = new MultifileSpriteSheet("character/rifle/shoot/survivor-shoot_rifle_", 3).loadImages();
     }
 
 }
