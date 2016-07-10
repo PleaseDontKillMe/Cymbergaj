@@ -34,7 +34,8 @@ public final class LocalGameApplication implements Application {
         this.playerRight = playerRight;
     }
 
-    void open() {
+    @Override
+    public void open() {
         sounds.load();
         images.load();
 
@@ -49,13 +50,15 @@ public final class LocalGameApplication implements Application {
         engine.addRenderListener(window::render);
     }
 
-    void start() {
+    @Override
+    public void start() {
         window.show();
         sounds.play(sounds.lookAtMyHorse);
         engine.start();
     }
 
-    void stop() {
+    @Override
+    public void stop() {
         engine.stop();
     }
 
