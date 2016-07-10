@@ -13,7 +13,7 @@ public class CharacterRenderer implements Renderer, Updatable {
     private double totalElapsedTime = 0;
 
     public CharacterRenderer(ImagesRepository imagesRepository) {
-        this.spriteSheet = imagesRepository.handgun;
+        this.spriteSheet = imagesRepository.handgunReload;
     }
 
     @Override
