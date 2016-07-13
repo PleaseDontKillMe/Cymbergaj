@@ -136,7 +136,7 @@ public final class LocalGameApplication implements Application {
         world.addListener(new GamePointsCounter(game, sounds));
     }
 
-    void addWindowKeyListener(KeyListener listener) {
+    public void addWindowKeyListener(KeyListener listener) {
         this.window.addKeyListener(listener);
     }
 }
