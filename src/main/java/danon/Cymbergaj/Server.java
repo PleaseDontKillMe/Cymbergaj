@@ -86,6 +86,7 @@ public class Server implements Runnable {
     }
 
     private synchronized void closeServer() {
+        thread.interrupt();
         serverThreads.forEach(thread -> {
             try {
                 thread.close();
