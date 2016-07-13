@@ -1,16 +1,13 @@
 package danon.Cymbergaj;
 
 import danon.Cymbergaj.Application.Application;
-import danon.Network.KeyMessage;
-import danon.Network.Message;
-import danon.Network.QuitMessage;
-import danon.Network.StartMessage;
 import danon.Cymbergaj.Application.LocalGameApplication;
 import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.*;
+import danon.Network.*;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -49,11 +46,18 @@ public class Client implements Runnable {
         socket = new Socket(serverAddress, Server.PORT);
         streamOut = new ObjectOutputStream(socket.getOutputStream());
 
+        sendIntroduceMessage();
+
         clientThread = new ClientThread(this, socket);
         clientThread.open();
         clientThread.start();
 
         thread = new Thread(this);
+    }
+
+    private void sendIntroduceMessage() throws IOException {
+        streamOut.writeObject(new IntroduceMessage(config.getUsername()));
+        streamOut.flush();
     }
 
     void handle(Message message) {
