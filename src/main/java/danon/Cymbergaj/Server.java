@@ -63,8 +63,10 @@ public class Server implements Runnable {
                 playerO.start();
                 System.out.println("Started game");
             } catch (IOException e) {
-                thread.interrupt();
-                e.printStackTrace();
+                if (!thread.isInterrupted()) {
+                    thread.interrupt();
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -94,6 +96,10 @@ public class Server implements Runnable {
                 e.printStackTrace();
             }
         });
+        try {
+            server.close();
+        } catch (IOException ignored) {
+        }
     }
 
     private class ServerPanel extends JFrame {
