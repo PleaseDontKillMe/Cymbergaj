@@ -1,7 +1,7 @@
 package danon.Network;
 
 public class IntroduceMessage implements Message {
-    private String name;
+    private final String name;
 
     public IntroduceMessage(String name) {
         this.name = name;
