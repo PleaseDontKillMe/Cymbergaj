@@ -1,4 +1,4 @@
-package danon.Chat;
+package danon.Network;
 
 public class TextMessage implements Message {
     private String message;

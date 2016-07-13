@@ -1,4 +1,4 @@
-package danon.Chat;
+package danon.Network;
 
 import danon.Cymbergaj.Model.World.Control.Keys;
 

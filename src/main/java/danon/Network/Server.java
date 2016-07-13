@@ -1,4 +1,4 @@
-package danon.Chat;
+package danon.Network;
 
 import java.io.IOException;
 import java.net.ServerSocket;

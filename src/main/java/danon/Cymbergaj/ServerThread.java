@@ -1,8 +1,8 @@
 package danon.Cymbergaj;
 
-import danon.Chat.KeyMessage;
-import danon.Chat.Message;
-import danon.Chat.QuitMessage;
+import danon.Network.KeyMessage;
+import danon.Network.Message;
+import danon.Network.QuitMessage;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package danon.Cymbergaj;
 
 
-import danon.Chat.*;
+import danon.Network.*;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

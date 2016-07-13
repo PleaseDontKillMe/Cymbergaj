@@ -1,9 +1,9 @@
 package danon.Cymbergaj;
 
-import danon.Chat.KeyMessage;
-import danon.Chat.Message;
-import danon.Chat.QuitMessage;
-import danon.Chat.StartMessage;
+import danon.Network.KeyMessage;
+import danon.Network.Message;
+import danon.Network.QuitMessage;
+import danon.Network.StartMessage;
 import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;

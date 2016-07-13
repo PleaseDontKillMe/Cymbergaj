@@ -1,7 +1,7 @@
 package danon.Cymbergaj;
 
-import danon.Chat.Message;
-import danon.Chat.StartMessage;
+import danon.Network.Message;
+import danon.Network.StartMessage;
 
 import java.io.IOException;
 import java.util.List;
