@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Cymbergaj.Application;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.*;

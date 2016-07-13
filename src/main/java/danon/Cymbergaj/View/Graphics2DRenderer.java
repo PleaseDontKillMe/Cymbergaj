@@ -1,6 +1,6 @@
 package danon.Cymbergaj.View;
 
-import danon.Cymbergaj.LocalGameApplication;
+import danon.Cymbergaj.Application.Application;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Shape;
@@ -26,10 +26,10 @@ public class Graphics2DRenderer {
 
         double radius2 = 2.0 * radius;
         Ellipse2D.Double c = new Ellipse2D.Double(
-                (center.x - radius) * LocalGameApplication.SCALE,
-                (center.y - radius) * LocalGameApplication.SCALE,
-                radius2 * LocalGameApplication.SCALE,
-                radius2 * LocalGameApplication.SCALE);
+                (center.x - radius) * Application.SCALE,
+                (center.y - radius) * Application.SCALE,
+                radius2 * Application.SCALE,
+                radius2 * Application.SCALE);
 
         // fill the shape
         g.setColor(Color.CYAN);
@@ -40,10 +40,10 @@ public class Graphics2DRenderer {
 
         // draw a line so that rotation is visible
         Line2D.Double l = new Line2D.Double(
-                center.x * LocalGameApplication.SCALE,
-                center.y * LocalGameApplication.SCALE,
-                (center.x + radius) * LocalGameApplication.SCALE,
-                center.y * LocalGameApplication.SCALE);
+                center.x * Application.SCALE,
+                center.y * Application.SCALE,
+                (center.x + radius) * Application.SCALE,
+                center.y * Application.SCALE);
         g.draw(l);
     }
 
@@ -53,9 +53,9 @@ public class Graphics2DRenderer {
 
         // create the awt polygon
         Path2D.Double p = new Path2D.Double();
-        p.moveTo(vertices[0].x * LocalGameApplication.SCALE, vertices[0].y * LocalGameApplication.SCALE);
+        p.moveTo(vertices[0].x * Application.SCALE, vertices[0].y * Application.SCALE);
         for (int i = 1; i < l; i++) {
-            p.lineTo(vertices[i].x * LocalGameApplication.SCALE, vertices[i].y * LocalGameApplication.SCALE);
+            p.lineTo(vertices[i].x * Application.SCALE, vertices[i].y * Application.SCALE);
         }
         p.closePath();
 

@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Cymbergaj.Application;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.*;
@@ -24,7 +24,7 @@ public final class LocalGameApplication implements Application {
     private final Spaceship playerLeft;
     private final Spaceship playerRight;
 
-    LocalGameApplication(Spaceship playerLeft, Spaceship playerRight, String name) {
+    public LocalGameApplication(Spaceship playerLeft, Spaceship playerRight, String name) {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk " + name, new Size(1080, 600));
 
         this.window = new Window(settings, closeEvent -> engine.stop());

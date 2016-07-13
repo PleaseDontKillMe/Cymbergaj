@@ -4,6 +4,7 @@ import danon.Network.KeyMessage;
 import danon.Network.Message;
 import danon.Network.QuitMessage;
 import danon.Network.StartMessage;
+import danon.Cymbergaj.Application.LocalGameApplication;
 import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
