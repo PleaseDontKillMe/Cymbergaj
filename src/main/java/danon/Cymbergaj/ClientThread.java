@@ -10,11 +10,11 @@ import java.net.Socket;
 
 class ClientThread extends Thread {
     private Socket socket;
-    private Client client;
+    private Client parentClient;
     private ObjectInputStream streamIn;
 
-    ClientThread(Client client, Socket socket) {
-        this.client = client;
+    ClientThread(Client parentClient, Socket socket) {
+        this.parentClient = parentClient;
         this.socket = socket;
     }
 
@@ -23,7 +23,7 @@ class ClientThread extends Thread {
             streamIn = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
         } catch (IOException exception) {
             System.out.println("Error getting input stream: " + exception);
-            client.finnish();
+            parentClient.finnish();
         }
     }
 
@@ -40,10 +40,10 @@ class ClientThread extends Thread {
         while (!this.isInterrupted()) {
             try {
                 Message message = (Message) streamIn.readObject();
-                client.handle(message);
+                parentClient.handle(message);
             } catch (IOException ioe) {
                 System.out.println("Listening error: " + ioe.getMessage());
-                client.finnish();
+                parentClient.finnish();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
