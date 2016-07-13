@@ -1,5 +1,6 @@
 package danon.Cymbergaj;
 
+import danon.Network.IntroduceMessage;
 import danon.Network.KeyMessage;
 import danon.Network.Message;
 import danon.Network.QuitMessage;
@@ -16,6 +17,7 @@ class ServerThread extends Thread {
     private int ID;
     private ObjectInputStream streamIn;
     private ObjectOutputStream streamOut;
+    private String clientName = "ServerThread";
 
     ServerThread(Server parentServer, Socket socket) {
         super();
@@ -42,6 +44,11 @@ class ServerThread extends Thread {
                 if (message instanceof QuitMessage) {
                     socket.close();
                     return;
+                }
+
+                if (message instanceof IntroduceMessage) {
+                    IntroduceMessage introMessage = (IntroduceMessage) message;
+                    clientName = introMessage.getName();
                 }
             }
         } catch (IOException e) {
@@ -81,7 +88,7 @@ class ServerThread extends Thread {
 
     @Override
     public String toString() {
-        return "ServerThread{" +
+        return clientName + " {" +
                 "port=" + ID +
                 "/" + socket.getLocalPort() +
                 "  " + socket.getLocalAddress() +
