@@ -12,8 +12,6 @@ import java.awt.event.KeyListener;
 
 
 public final class LocalGameApplication implements Application {
-    public static final double SCALE = 45.0; //  The scale 45 pixels per meter
-
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
