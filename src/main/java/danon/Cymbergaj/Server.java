@@ -98,7 +98,7 @@ public class Server implements Runnable {
     private class ServerPanel extends JFrame {
         private final java.awt.List list = new java.awt.List();
 
-        void updateList(List<ServerThread> threads) {
+        synchronized void updateList(List<ServerThread> threads) {
             list.removeAll();
             threads.forEach(thread -> list.add(thread.toString()));
         }
