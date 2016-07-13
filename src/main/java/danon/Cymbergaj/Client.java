@@ -99,13 +99,13 @@ public class Client implements Runnable {
         }
 
         application = createLocalGameApplication(player1, player2);
+        application.open();
     }
 
     private Application createLocalGameApplication(Spaceship player1, Spaceship player2) {
         LocalGameApplication application = new LocalGameApplication(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-        application.open();
         return application;
     }
 
