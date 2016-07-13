@@ -47,6 +47,7 @@ class ServerThread extends Thread {
         } catch (IOException e) {
             System.out.println("ServerThread died: " + e.getMessage() + " | " + e.getLocalizedMessage());
             this.interrupt();
+            parentServer.removeClient(this);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -76,5 +77,14 @@ class ServerThread extends Thread {
         if (socket != null) socket.close();
         if (streamIn != null) streamIn.close();
         if (streamOut != null) streamOut.close();
+    }
+
+    @Override
+    public String toString() {
+        return "ServerThread{" +
+                "port=" + ID +
+                "/" + socket.getLocalPort() +
+                "  " + socket.getLocalAddress() +
+                "}";
     }
 }

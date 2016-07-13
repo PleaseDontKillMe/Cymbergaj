@@ -1,6 +1,6 @@
 package danon.Cymbergaj.View.Renderer;
 
-import danon.Cymbergaj.Application;
+import danon.Cymbergaj.LocalGameApplication;
 import danon.Cymbergaj.Model.World.Character.GameObject;
 import org.dyn4j.geometry.Transform;
 
@@ -30,7 +30,7 @@ public abstract class BodyRenderer implements Renderer {
     private AffineTransform getLocalTransform() {
         Transform transform = gameObject.getTransform();
         AffineTransform localTransform = new AffineTransform();
-        localTransform.translate(transform.getTranslationX() * Application.SCALE, transform.getTranslationY() * Application.SCALE);
+        localTransform.translate(transform.getTranslationX() * LocalGameApplication.SCALE, transform.getTranslationY() * LocalGameApplication.SCALE);
         return localTransform;
     }
 }

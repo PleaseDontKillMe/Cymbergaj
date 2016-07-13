@@ -10,10 +10,10 @@ import java.util.Optional;
 public class Server implements Runnable {
     static final int PORT = 9801;
 
-    private List<ServerThread> serverThreads = new ArrayList<>(MAX_CLIENTS);
-    private ServerSocket server;
-    private Thread thread;
-    private static final int MAX_CLIENTS = 50;
+    private final List<ServerThread> serverThreads = new ArrayList<>(MAX_CLIENTS);
+    private final ServerSocket server;
+    private final Thread thread;
+    private final static int MAX_CLIENTS = 50;
 
     public static void main(String[] args) throws IOException {
         int port = PORT;

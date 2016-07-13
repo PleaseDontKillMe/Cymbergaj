@@ -1,9 +1,9 @@
 package danon.Network;
 
-public class TextMessage implements Message {
-    private String message;
+class TextMessage implements Message {
+    private final String message;
 
-    public TextMessage(String message) {
+    TextMessage(String message) {
         this.message = message;
     }
 

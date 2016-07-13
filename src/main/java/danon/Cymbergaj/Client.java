@@ -19,12 +19,12 @@ public class Client implements Runnable {
     private Thread thread;
     private ObjectOutputStream streamOut;
     private ClientThread clientThread;
-    private SocketControlKeys socketControlKeys;
+    private final SocketControlKeys socketControlKeys;
 
-    private Application application;
+    private LocalGameApplication application;
     private char myPlayer;
-    private String serverAddress;
-    private RuntimeConfig config;
+    private final String serverAddress;
+    private final RuntimeConfig config;
 
     private static void startNetworkGame(RuntimeConfig config) {
         try {
@@ -37,10 +37,10 @@ public class Client implements Runnable {
         }
     }
 
-    private Client(RuntimeConfig config) throws IOException {
+    private Client(RuntimeConfig config) {
         this.config = config;
         this.serverAddress = config.getHost();
-        socketControlKeys = new SocketControlKeys();
+        this.socketControlKeys = new SocketControlKeys();
     }
 
     private void start() throws IOException {
@@ -96,7 +96,7 @@ public class Client implements Runnable {
                 throw new RuntimeException("Bieda");
         }
 
-        application = new Application(player1, player2, config.getUsername());
+        application = new LocalGameApplication(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
         application.open();
@@ -136,9 +136,10 @@ public class Client implements Runnable {
     private static void startLocalGame() {
         Spaceship player1 = new Spaceship(new WsadControlKeys());
         Spaceship player2 = new Spaceship(new ArrowsControlKeys());
-        Application application = new Application(player1, player2, "");
+        LocalGameApplication application = new LocalGameApplication(player1, player2, "");
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
+        application.open();
         application.start();
     }
 }
