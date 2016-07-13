@@ -1,6 +1,7 @@
 package danon.Cymbergaj.View.Renderer;
 
 import danon.Cymbergaj.Model.Game;
+import danon.Cymbergaj.Model.PreviousWinner;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -34,7 +35,8 @@ public class GameRenderer implements Renderer {
     }
 
     private String getEndGameText() {
-        switch (game.getPreviousWinner()) {
+        PreviousWinner previousWinner = game.getPreviousWinner();
+        switch (previousWinner) {
             case WsadPlayer:
                 return "WSAD Player won! :)";
             case ArrowsPlayer:
