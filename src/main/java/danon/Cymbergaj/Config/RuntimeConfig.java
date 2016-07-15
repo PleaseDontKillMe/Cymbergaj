@@ -4,13 +4,11 @@ public class RuntimeConfig {
     private final String username;
     private final boolean isNetwork;
     private final String host;
-    private final boolean isClient;
 
-    public RuntimeConfig(String username, boolean isNetwork, String host, boolean isClient) {
+    RuntimeConfig(String username, boolean isNetwork, String host) {
         this.username = username;
         this.isNetwork = isNetwork;
         this.host = host;
-        this.isClient = isClient;
     }
 
     public String getHost() {
@@ -19,10 +17,6 @@ public class RuntimeConfig {
 
     public String getUsername() {
         return username;
-    }
-
-    public boolean isClient() {
-        return isClient;
     }
 
     public boolean isNetwork() {
