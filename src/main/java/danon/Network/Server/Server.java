@@ -1,5 +1,6 @@
 package danon.Network.Server;
 
+import com.google.common.collect.ImmutableList;
 import danon.Network.Message;
 import danon.Network.StartMessage;
 
@@ -45,13 +46,13 @@ public class Server implements Runnable {
                 playerX.open();
                 System.out.println("Accepted first " + playerX.toString());
                 serverThreads.add(playerX);
-                panel.updateList(serverThreads);
+                panel.updateList(ImmutableList.copyOf(serverThreads));
 
                 ServerThread playerO = new ServerThread(this, server.accept());
                 playerO.open();
                 System.out.println("Accepted both" + playerO.toString());
                 serverThreads.add(playerO);
-                panel.updateList(serverThreads);
+                panel.updateList(ImmutableList.copyOf(serverThreads));
 
                 playerX.send(0, new StartMessage('L'));
                 playerO.send(0, new StartMessage('R'));
@@ -75,7 +76,7 @@ public class Server implements Runnable {
     synchronized void removeClient(ServerThread toTerminate) {
         System.out.println("Removing client thread " + toTerminate.getID());
         serverThreads.remove(toTerminate);
-        panel.updateList(serverThreads);
+        panel.updateList(ImmutableList.copyOf(serverThreads));
         try {
             toTerminate.close();
         } catch (IOException ioe) {

@@ -1,11 +1,12 @@
 package danon.Network.Server;
 
 
+import com.google.common.collect.ImmutableList;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 
 class ServerPanel extends JFrame {
     private final java.awt.List list = new java.awt.List();
@@ -15,7 +16,7 @@ class ServerPanel extends JFrame {
         this.onClose = onClose;
     }
 
-    void updateList(List<ServerThread> threads) {
+    void updateList(ImmutableList<ServerThread> threads) {
         SwingUtilities.invokeLater(() -> {
             list.removeAll();
             threads.forEach(thread -> list.add(thread.toString()));
