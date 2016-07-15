@@ -1,7 +1,6 @@
 package danon.Network.Client;
 
 import danon.Cymbergaj.Application.Application;
-import danon.Cymbergaj.Application.LocalGameApplication;
 import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
@@ -103,15 +102,10 @@ public class Client implements Runnable {
                 throw new RuntimeException("Bieda");
         }
 
-        application = createLocalGameApplication(player1, player2);
-        application.load();
-    }
-
-    private Application createLocalGameApplication(Spaceship player1, Spaceship player2) {
-        LocalGameApplication application = new LocalGameApplication(player1, player2, config.getUsername());
+        application = new Application(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-        return application;
+        application.load();
     }
 
     void finnish() {
@@ -148,7 +142,7 @@ public class Client implements Runnable {
     private static void startLocalGame() {
         Spaceship player1 = new Spaceship(new WsadControlKeys());
         Spaceship player2 = new Spaceship(new ArrowsControlKeys());
-        LocalGameApplication application = new LocalGameApplication(player1, player2, "");
+        Application application = new Application(player1, player2, "");
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
         application.load();

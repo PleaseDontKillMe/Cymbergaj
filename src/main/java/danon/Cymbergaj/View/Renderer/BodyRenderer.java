@@ -1,6 +1,5 @@
 package danon.Cymbergaj.View.Renderer;
 
-import danon.Cymbergaj.Application.Application;
 import danon.Cymbergaj.Model.World.Character.GameObject;
 import org.dyn4j.geometry.Transform;
 
