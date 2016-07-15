@@ -16,6 +16,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Client implements Runnable {
+    public final static int SCALE = 45;
+
     private Socket socket;
     private Thread thread;
     private ObjectOutputStream streamOut;
