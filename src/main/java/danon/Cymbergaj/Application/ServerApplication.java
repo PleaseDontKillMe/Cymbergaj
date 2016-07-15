@@ -25,7 +25,7 @@ public class ServerApplication implements Application {
     }
 
     @Override
-    public void open() {
+    public void load() {
         initializeWorld();
         engine.addUpdateListener(world::update);
     }

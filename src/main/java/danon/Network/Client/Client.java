@@ -104,7 +104,7 @@ public class Client implements Runnable {
         }
 
         application = createLocalGameApplication(player1, player2);
-        application.open();
+        application.load();
     }
 
     private Application createLocalGameApplication(Spaceship player1, Spaceship player2) {
@@ -151,7 +151,7 @@ public class Client implements Runnable {
         LocalGameApplication application = new LocalGameApplication(player1, player2, "");
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-        application.open();
+        application.load();
         application.start();
     }
 }

@@ -33,7 +33,7 @@ public final class LocalGameApplication implements Application {
     }
 
     @Override
-    public void open() {
+    public void load() {
         sounds.load();
         images.load();
 
