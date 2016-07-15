@@ -106,8 +106,10 @@ public class Server implements Runnable {
         private final java.awt.List list = new java.awt.List();
 
         synchronized void updateList(List<ServerThread> threads) {
-            list.removeAll();
-            threads.forEach(thread -> list.add(thread.toString()));
+            SwingUtilities.invokeLater(() -> {
+                list.removeAll();
+                threads.forEach(thread -> list.add(thread.toString()));
+            });
         }
 
         void showWindow() {
