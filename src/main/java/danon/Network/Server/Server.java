@@ -9,12 +9,11 @@ import java.util.List;
 import java.net.ServerSocket;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Server implements Runnable {
+public class Server  {
     public static final int PORT = 9801;
 
     private final List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
     private final ServerSocket server;
-    private final Thread thread;
 
     private final ServerPanel panel;
 
@@ -28,44 +27,37 @@ public class Server implements Runnable {
 
     private Server(ServerSocket serverSocket) {
         this.server = serverSocket;
-        this.thread = new Thread(this);
         panel = new ServerPanel(this::closeServer);
     }
 
     private void start() {
         panel.showWindow();
-        thread.start();
+        listenForConnections();
     }
 
-    @Override
-    public void run() {
+    private void listenForConnections() {
         System.out.println("Server is Running...");
-        while (!thread.isInterrupted()) {
-            try {
-                ServerThread playerX = new ServerThread(this, server.accept());
-                playerX.open();
-                System.out.println("Accepted first " + playerX.toString());
-                serverThreads.add(playerX);
-                panel.updateList(ImmutableList.copyOf(serverThreads));
+        try {
+            ServerThread playerX = new ServerThread(this, server.accept());
+            playerX.open();
+            System.out.println("Accepted first " + playerX.toString());
+            serverThreads.add(playerX);
+            panel.updateList(ImmutableList.copyOf(serverThreads));
 
-                ServerThread playerO = new ServerThread(this, server.accept());
-                playerO.open();
-                System.out.println("Accepted both" + playerO.toString());
-                serverThreads.add(playerO);
-                panel.updateList(ImmutableList.copyOf(serverThreads));
+            ServerThread playerO = new ServerThread(this, server.accept());
+            playerO.open();
+            System.out.println("Accepted both" + playerO.toString());
+            serverThreads.add(playerO);
+            panel.updateList(ImmutableList.copyOf(serverThreads));
 
-                playerX.send(0, new StartMessage('L'));
-                playerO.send(0, new StartMessage('R'));
+            playerX.send(0, new StartMessage('L'));
+            playerO.send(0, new StartMessage('R'));
 
-                playerX.start();
-                playerO.start();
-                System.out.println("Started game");
-            } catch (IOException e) {
-                if (!thread.isInterrupted()) {
-                    thread.interrupt();
-                    e.printStackTrace();
-                }
-            }
+            playerX.start();
+            playerO.start();
+            System.out.println("Started game");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -86,7 +78,6 @@ public class Server implements Runnable {
     }
 
     private synchronized void closeServer() {
-        thread.interrupt();
         serverThreads.forEach(thread -> {
             try {
                 thread.close();
