@@ -1,6 +1,6 @@
 package danon.Network.Client;
 
-import danon.Cymbergaj.Application.Application;
+import danon.Cymbergaj.Application;
 import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;

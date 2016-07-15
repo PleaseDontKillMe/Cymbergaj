@@ -1,6 +1,6 @@
 package danon.Cymbergaj.View;
 
-import danon.Cymbergaj.Application.Application;
+import danon.Cymbergaj.Application;
 import org.dyn4j.geometry.*;
 import org.dyn4j.geometry.Polygon;
 import org.dyn4j.geometry.Shape;
