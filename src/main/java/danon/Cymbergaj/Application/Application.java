@@ -12,6 +12,8 @@ import java.awt.event.KeyListener;
 
 
 public final class Application {
+    public final static int SCALE = 45;
+
     private final Engine engine = new Engine();
     private final Window window;
     private final World world = new World();
