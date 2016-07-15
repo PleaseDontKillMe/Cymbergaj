@@ -3,10 +3,6 @@ package danon.Network.Server;
 import danon.Network.Message;
 import danon.Network.StartMessage;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.List;
 import java.net.ServerSocket;
@@ -19,7 +15,7 @@ public class Server implements Runnable {
     private final ServerSocket server;
     private final Thread thread;
 
-    private final ServerPanel panel = new ServerPanel();
+    private final ServerPanel panel;
 
     public static void main(String[] args) throws IOException {
         int port = PORT;
@@ -32,6 +28,7 @@ public class Server implements Runnable {
     private Server(ServerSocket serverSocket) {
         this.server = serverSocket;
         this.thread = new Thread(this);
+        panel = new ServerPanel(this::closeServer);
     }
 
     private void start() {
@@ -102,40 +99,4 @@ public class Server implements Runnable {
         }
     }
 
-    private class ServerPanel extends JFrame {
-        private final java.awt.List list = new java.awt.List();
-
-        synchronized void updateList(List<ServerThread> threads) {
-            SwingUtilities.invokeLater(() -> {
-                list.removeAll();
-                threads.forEach(thread -> list.add(thread.toString()));
-            });
-        }
-
-        void showWindow() {
-            initializeWindow();
-            setVisible(true);
-        }
-
-        private void initializeWindow() {
-            setTitle("Server");
-            setSize(new Dimension(300, 400));
-            setLocationRelativeTo(null);
-            setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
-            addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    closeServer();
-                    e.getWindow().dispose();
-                }
-            });
-
-            setLayout(new BorderLayout());
-            getContentPane().add(list, "Center");
-            list.setEnabled(false);
-        }
-
-
-    }
 }
