@@ -8,7 +8,7 @@ public class Engine {
 
     private final List<Updatable> onUpdate = new ArrayList<>();
     private final List<Runnable> onRender = new ArrayList<>();
-    private boolean shouldStop = false;
+    private volatile boolean shouldStop = false;
 
     public void start() {
         double previous = System.nanoTime();
