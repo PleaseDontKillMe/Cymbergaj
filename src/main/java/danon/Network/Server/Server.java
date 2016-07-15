@@ -24,7 +24,7 @@ public class Server  {
 
     private Server(ServerSocket serverSocket) {
         this.server = serverSocket;
-        panel = new ServerPanel(this::closeServer);
+        this.panel = new ServerPanel(this::closeServer);
     }
 
     private void start() {
