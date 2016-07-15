@@ -10,7 +10,9 @@ import danon.Cymbergaj.Model.World.Control.*;
 import danon.Network.Server.Server;
 import danon.Network.*;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -30,7 +32,6 @@ public class Client implements Runnable {
         try {
             System.out.println("I'm " + config.getUsername());
             Client client = new Client(config);
-            System.out.println("Going to open");
             client.start();
         } catch (IOException e) {
             System.out.println("Error connecting");
@@ -49,8 +50,7 @@ public class Client implements Runnable {
 
         sendIntroduceMessage();
 
-        clientThread = new ClientThread(this, socket);
-        clientThread.open();
+        clientThread = new ClientThread(this, new ObjectInputStream(new BufferedInputStream(socket.getInputStream())));
         clientThread.start();
 
         thread = new Thread(this);
