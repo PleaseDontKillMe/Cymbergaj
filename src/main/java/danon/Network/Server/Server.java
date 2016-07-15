@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Network.Server;
 
 import danon.Network.Message;
 import danon.Network.StartMessage;
@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Server implements Runnable {
-    static final int PORT = 9801;
+    public static final int PORT = 9801;
 
     private final List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
     private final ServerSocket server;

@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Network.Server;
 
 import danon.Network.IntroduceMessage;
 import danon.Network.KeyMessage;

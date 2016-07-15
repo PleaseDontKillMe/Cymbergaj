@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Network.Client;
 
 
 import danon.Network.*;
