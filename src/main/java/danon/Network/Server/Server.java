@@ -11,17 +11,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Server  {
     public static final int PORT = 9801;
-
     private final List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
     private final ServerSocket server;
-
     private final ServerPanel panel;
 
     public static void main(String[] args) throws IOException {
-        int port = PORT;
-        System.out.println("Binding to port " + port + ", please wait  ...");
+        System.out.println("Binding to port " + PORT + ", please wait  ...");
 
-        Server server = new Server(new ServerSocket(port));
+        Server server = new Server(new ServerSocket(PORT));
         server.start();
     }
 
