@@ -19,6 +19,10 @@ public class Engine {
             previous = current;
             updateAll(elapsed / 1.0e9);
             renderAll();
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException ignored) {
+            }
         }
     }
 
