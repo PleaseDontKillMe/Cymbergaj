@@ -6,7 +6,7 @@ import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Engine {
+public class EngineFactory {
     private final List<Updatable> onUpdate = new ArrayList<>();
     private final List<Runnable> onRender = new ArrayList<>();
 
