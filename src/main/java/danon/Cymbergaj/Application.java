@@ -3,10 +3,12 @@ package danon.Cymbergaj;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.*;
 import danon.Cymbergaj.Model.World.Character.*;
-import danon.Cymbergaj.View.Renderer.*;
+import danon.Cymbergaj.View.Renderer.FireballRenderer;
+import danon.Cymbergaj.View.Renderer.ImagesRepository;
+import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
 import danon.Cymbergaj.View.Window;
 import org.dyn4j.dynamics.World;
-import org.dyn4j.geometry.*;
+import org.dyn4j.geometry.Vector2;
 
 import java.awt.event.KeyListener;
 
@@ -14,7 +16,8 @@ import java.awt.event.KeyListener;
 public final class Application {
     public final static int SCALE = 45;
 
-    private final Engine engine = new Engine();
+    private final EngineFactory engineFactory;
+    private final EngineExecutor engineExecutor;
     private final Window window;
     private final World world = new World();
     private final Game game;
@@ -27,11 +30,20 @@ public final class Application {
     public Application(Spaceship playerLeft, Spaceship playerRight, String name) {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk " + name, new Size(1080, 600));
 
-        this.window = new Window(settings, closeEvent -> engine.stop());
+        this.window = new Window(settings);
         this.game = new Game(settings.getSize());
 
         this.playerLeft = playerLeft;
         this.playerRight = playerRight;
+
+        engineFactory = new EngineFactory();
+        engineFactory.addUpdateListener(world::update);
+        engineFactory.addRenderListener(window::render);
+
+        load();
+
+        engineExecutor = engineFactory.createExecutor();
+        window.addCloseEventListener(closeEvent -> engineExecutor.stop());
     }
 
     public void load() {
@@ -44,19 +56,16 @@ public final class Application {
             sounds.lookAtMyHorse.setFramePosition(0);
             sounds.lookAtMyHorse.start();
         });
-
-        engine.addUpdateListener(world::update);
-        engine.addRenderListener(window::render);
     }
 
     public void start() {
         window.show();
         sounds.play(sounds.lookAtMyHorse);
-        engine.start();
+        engineExecutor.start();
     }
 
     public void stop() {
-        engine.stop();
+        engineExecutor.stop();
     }
 
     private void initializeWorld() {
@@ -105,8 +114,6 @@ public final class Application {
         FireballRenderer fireballrenderer = ball.getRenderer(images);
         SpaceshipRenderer player2renderer = playerRight.getRenderer(images);
 
-//        CharacterRenderer characterRenderer = new CharacterRenderer(images);
-
         window.addRenderer(game.getRenderer(images));
         window.addRenderer(game.getPointsRenderer());
         window.addRenderer(leftWall.getRenderer(images));
@@ -120,15 +127,13 @@ public final class Application {
         window.addRenderer(player1renderer);
         window.addRenderer(player2renderer);
         window.addRenderer(fireballrenderer);
-//        window.addRenderer(characterRenderer);
 
-        engine.addUpdateListener(playerLeft);
-        engine.addUpdateListener(playerRight);
-        engine.addUpdateListener(game);
-        engine.addUpdateListener(fireballrenderer);
-        engine.addUpdateListener(player1renderer);
-        engine.addUpdateListener(player2renderer);
-//        engine.addUpdateListener(characterRenderer);
+        engineFactory.addUpdateListener(playerLeft);
+        engineFactory.addUpdateListener(playerRight);
+        engineFactory.addUpdateListener(game);
+        engineFactory.addUpdateListener(fireballrenderer);
+        engineFactory.addUpdateListener(player1renderer);
+        engineFactory.addUpdateListener(player2renderer);
 
         world.addListener(new GamePointsCounter(game, sounds));
     }
