@@ -105,7 +105,6 @@ public class Client implements Runnable {
         application = new Application(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-        application.load();
     }
 
     void finnish() {
@@ -145,7 +144,6 @@ public class Client implements Runnable {
         Application application = new Application(player1, player2, "");
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-        application.load();
         application.start();
     }
 }

@@ -46,7 +46,7 @@ public final class Application {
         window.addCloseEventListener(closeEvent -> engineExecutor.stop());
     }
 
-    public void load() {
+    private void load() {
         sounds.load();
         images.load();
 
