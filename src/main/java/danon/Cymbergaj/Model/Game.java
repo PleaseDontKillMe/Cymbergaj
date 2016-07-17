@@ -9,10 +9,10 @@ import danon.Cymbergaj.View.Renderer.Renderer;
 public class Game implements Updatable {
     private final Size size;
 
-    private int pointsLeft = 0, pointsRight = 0;
     private PreviousWinner previousWinner = PreviousWinner.None;
-    private double backgroundXSlide = 0;
     private Runnable onGameStart;
+    private int pointsLeft = 0, pointsRight = 0;
+    private double backgroundXSlide = 0;
 
     public Game(Size size) {
         this.size = size;
