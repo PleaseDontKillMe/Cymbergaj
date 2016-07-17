@@ -22,11 +22,15 @@ public class Window {
 
     private final List<Renderer> renderers = new LinkedList<>();
 
-    public Window(Settings settings, WindowClosingListener listener) {
-        this.frame = JFrameFactory.create(settings, listener);
+    public Window(Settings settings) {
+        this.frame = JFrameFactory.create(settings);
         Size size = settings.getSize();
         backBuffer = new BufferedImage(size.getWidth(), size.getHeight(), BufferedImage.TYPE_INT_ARGB);
         canvas = backBuffer.createGraphics();
+    }
+
+    public void addCloseEventListener(WindowClosingListener listener) {
+        frame.addWindowListener(listener);
     }
 
     public void addKeyListener(KeyListener listener) {

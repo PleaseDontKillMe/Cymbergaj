@@ -9,7 +9,7 @@ import java.awt.*;
 
 class JFrameFactory {
 
-    static JFrame create(Settings settings, WindowClosingListener listener)
+    static JFrame create(Settings settings)
     {
         JFrame frame = new JFrame();
         Size size = settings.getSize();
@@ -18,8 +18,6 @@ class JFrameFactory {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        frame.addWindowListener(listener);
 
         return frame;
     }
