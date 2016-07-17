@@ -7,10 +7,11 @@ import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;
 
 public class Game implements Updatable {
+    private final Size size;
+
     private int pointsLeft = 0, pointsRight = 0;
     private PreviousWinner previousWinner = PreviousWinner.None;
     private double backgroundXSlide = 0;
-    private final Size size;
     private Runnable onGameStart;
 
     public Game(Size size) {

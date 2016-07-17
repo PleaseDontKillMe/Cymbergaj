@@ -36,14 +36,14 @@ public final class Application {
         this.playerLeft = playerLeft;
         this.playerRight = playerRight;
 
-        engineFactory = new EngineFactory();
-        engineFactory.addUpdateListener(world::update);
-        engineFactory.addRenderListener(window::render);
+        this.engineFactory = new EngineFactory();
+        this.engineFactory.addUpdateListener(world::update);
+        this.engineFactory.addRenderListener(window::render);
 
         load();
 
-        engineExecutor = engineFactory.createExecutor();
-        window.addCloseEventListener(closeEvent -> engineExecutor.stop());
+        this.engineExecutor = engineFactory.createExecutor();
+        this.window.addCloseEventListener(closeEvent -> engineExecutor.stop());
     }
 
     private void load() {
