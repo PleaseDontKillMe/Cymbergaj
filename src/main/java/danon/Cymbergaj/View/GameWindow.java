@@ -51,10 +51,6 @@ public class GameWindow {
 
     public void render() {
         renderers.forEach(renderer -> renderer.renderOn(canvas));
-        drawToWindow();
-    }
-
-    private void drawToWindow() {
         windowGraphics.drawImage(backBuffer, 0, 0, null);
     }
 }
