@@ -10,7 +10,6 @@ import org.dyn4j.geometry.*;
 
 import java.awt.event.KeyListener;
 
-
 public final class LocalGameApplication implements Application {
     private final Engine engine = new Engine();
     private final Window window;

@@ -6,7 +6,6 @@ import danon.Cymbergaj.Model.World.Character.*;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.Vector2;
 
-
 public class ServerApplication implements Application {
     private final Engine engine = new Engine();
     private final World world = new World();
