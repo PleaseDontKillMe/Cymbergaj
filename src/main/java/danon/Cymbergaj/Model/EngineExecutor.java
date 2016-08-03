@@ -8,7 +8,7 @@ public class EngineExecutor {
     private final ImmutableList<Runnable> onRender;
     private volatile boolean shouldStop = false;
 
-    public EngineExecutor(ImmutableList<Updatable> onUpdate, ImmutableList<Runnable> onRender) {
+    EngineExecutor(ImmutableList<Updatable> onUpdate, ImmutableList<Runnable> onRender) {
         this.onUpdate = onUpdate;
         this.onRender = onRender;
     }

@@ -38,10 +38,6 @@ public class Keys {
         isRight = right;
     }
 
-    public boolean playerMoves() {
-        return (isUp != isDown) || (isLeft != isRight);
-    }
-
     @Override
     public String toString() {
         return (isUp ? "X" : "_") +
