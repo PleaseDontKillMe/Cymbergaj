@@ -11,13 +11,10 @@ import java.awt.*;
 
 
 public class SpaceshipRenderer extends BodyRenderer implements Updatable {
-
     private final SpriteSheet spriteSheet;
-    private final Spaceship spaceship;
 
     public SpaceshipRenderer(Spaceship spaceship, ImagesRepository images) {
         super(spaceship);
-        this.spaceship = spaceship;
         this.spriteSheet = images.spaceship;
     }
 

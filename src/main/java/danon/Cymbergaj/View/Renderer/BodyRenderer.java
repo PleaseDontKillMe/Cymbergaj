@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 abstract class BodyRenderer implements Renderer {
-
     final GameObject gameObject;
 
     BodyRenderer(GameObject gameObject) {
