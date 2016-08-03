@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Window {
+public class GameWindow {
     private final JFrame frame;
 
     private final BufferedImage backBuffer;
@@ -21,7 +21,7 @@ public class Window {
 
     private final List<Renderer> renderers = new LinkedList<>();
 
-    public Window(Settings settings) {
+    public GameWindow(Settings settings) {
         this.frame = JFrameFactory.create(settings);
         Size size = settings.getSize();
         backBuffer = new BufferedImage(size.getWidth(), size.getHeight(), BufferedImage.TYPE_INT_ARGB);

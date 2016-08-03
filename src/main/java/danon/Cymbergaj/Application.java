@@ -6,7 +6,7 @@ import danon.Cymbergaj.Model.World.Character.*;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
-import danon.Cymbergaj.View.Window;
+import danon.Cymbergaj.View.GameWindow;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.Vector2;
 
@@ -18,7 +18,7 @@ public final class Application {
 
     private final EngineFactory engineFactory;
     private final EngineExecutor engineExecutor;
-    private final Window window;
+    private final GameWindow gameWindow;
     private final World world = new World();
     private final Game game;
     private final SoundsRepository sounds = new SoundsRepository();
@@ -30,7 +30,7 @@ public final class Application {
     public Application(Spaceship playerLeft, Spaceship playerRight, String name) {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk " + name, new Size(1080, 600));
 
-        this.window = new Window(settings);
+        this.gameWindow = new GameWindow(settings);
         this.game = new Game(settings.getSize());
 
         this.playerLeft = playerLeft;
@@ -38,12 +38,12 @@ public final class Application {
 
         this.engineFactory = new EngineFactory();
         this.engineFactory.addUpdateListener(world::update);
-        this.engineFactory.addRenderListener(window::render);
+        this.engineFactory.addRenderListener(gameWindow::render);
 
         load();
 
         this.engineExecutor = engineFactory.createExecutor();
-        this.window.addCloseEventListener(closeEvent -> engineExecutor.stop());
+        this.gameWindow.addCloseEventListener(closeEvent -> engineExecutor.stop());
     }
 
     private void load() {
@@ -59,7 +59,7 @@ public final class Application {
     }
 
     public void start() {
-        window.show();
+        gameWindow.show();
         sounds.play(sounds.lookAtMyHorse);
         engineExecutor.start();
     }
@@ -114,19 +114,19 @@ public final class Application {
         FireballRenderer fireballrenderer = ball.getRenderer(images);
         SpaceshipRenderer player2renderer = playerRight.getRenderer(images);
 
-        window.addRenderer(game.getRenderer(images));
-        window.addRenderer(game.getPointsRenderer());
-        window.addRenderer(leftWall.getRenderer(images));
-        window.addRenderer(rightWall.getRenderer(images));
-        window.addRenderer(topFloor.getRenderer(images));
-        window.addRenderer(bottomFloor.getRenderer(images));
-        window.addRenderer(stopper1.getRenderer(images));
-        window.addRenderer(stopper2.getRenderer(images));
-        window.addRenderer(stopper3.getRenderer(images));
-        window.addRenderer(stopper4.getRenderer(images));
-        window.addRenderer(player1renderer);
-        window.addRenderer(player2renderer);
-        window.addRenderer(fireballrenderer);
+        gameWindow.addRenderer(game.getRenderer(images));
+        gameWindow.addRenderer(game.getPointsRenderer());
+        gameWindow.addRenderer(leftWall.getRenderer(images));
+        gameWindow.addRenderer(rightWall.getRenderer(images));
+        gameWindow.addRenderer(topFloor.getRenderer(images));
+        gameWindow.addRenderer(bottomFloor.getRenderer(images));
+        gameWindow.addRenderer(stopper1.getRenderer(images));
+        gameWindow.addRenderer(stopper2.getRenderer(images));
+        gameWindow.addRenderer(stopper3.getRenderer(images));
+        gameWindow.addRenderer(stopper4.getRenderer(images));
+        gameWindow.addRenderer(player1renderer);
+        gameWindow.addRenderer(player2renderer);
+        gameWindow.addRenderer(fireballrenderer);
 
         engineFactory.addUpdateListener(playerLeft);
         engineFactory.addUpdateListener(playerRight);
@@ -139,6 +139,6 @@ public final class Application {
     }
 
     public void addWindowKeyListener(KeyListener listener) {
-        this.window.addKeyListener(listener);
+        this.gameWindow.addKeyListener(listener);
     }
 }
