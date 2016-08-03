@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RuntimeConfigFrame extends JFrame {
-
-    private JCheckBox serverCheckBox;
     private JCheckBox networkCheckBox;
     private JTextField hostName;
     private JTextField userName;
@@ -32,17 +30,11 @@ public class RuntimeConfigFrame extends JFrame {
         JLabel userNameLabel = new JLabel("Username:");
         userName = new JTextField("Guest");
         networkCheckBox = new JCheckBox("Network Game");
-        serverCheckBox = new JCheckBox("I'm a server");
         JLabel hostNameLabel = new JLabel("Hostname:");
         hostName = new JTextField("localhost");
-        serverCheckBox.setEnabled(false);
         hostName.setEnabled(false);
 
-        networkCheckBox.addActionListener(event -> {
-            serverCheckBox.setEnabled(networkCheckBox.isSelected());
-            hostName.setEnabled(networkCheckBox.isSelected());
-        });
-        serverCheckBox.addActionListener(event -> hostName.setEnabled(!serverCheckBox.isSelected()));
+        networkCheckBox.addActionListener(event -> hostName.setEnabled(networkCheckBox.isSelected()));
 
         JButton okButton = new JButton("OK");
         okButton.addActionListener(event -> {
@@ -55,7 +47,6 @@ public class RuntimeConfigFrame extends JFrame {
         fieldsPane.add(userNameLabel);
         fieldsPane.add(userName);
         fieldsPane.add(networkCheckBox);
-        fieldsPane.add(serverCheckBox);
         fieldsPane.add(hostNameLabel);
         fieldsPane.add(hostName);
 
@@ -69,7 +60,6 @@ public class RuntimeConfigFrame extends JFrame {
     }
 
     private RuntimeConfig makeRuntimeConfig() {
-        return new RuntimeConfig(userName.getText(), networkCheckBox.isSelected(),
-                hostName.getText(), !serverCheckBox.isSelected());
+        return new RuntimeConfig(userName.getText(), networkCheckBox.isSelected(), hostName.getText());
     }
 }

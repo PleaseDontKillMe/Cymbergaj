@@ -1,4 +1,4 @@
-package danon.Cymbergaj;
+package danon.Network.Client;
 
 
 import danon.Network.*;
@@ -9,22 +9,12 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 
 class ClientThread extends Thread {
-    private Socket socket;
-    private Client parentClient;
-    private ObjectInputStream streamIn;
+    private final Client parentClient;
+    private final ObjectInputStream streamIn;
 
-    ClientThread(Client parentClient, Socket socket) {
+    ClientThread(Client parentClient, ObjectInputStream streamIn) {
         this.parentClient = parentClient;
-        this.socket = socket;
-    }
-
-    void open() {
-        try {
-            streamIn = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
-        } catch (IOException exception) {
-            System.out.println("Error getting input stream: " + exception);
-            parentClient.finnish();
-        }
+        this.streamIn = streamIn;
     }
 
     void close() {

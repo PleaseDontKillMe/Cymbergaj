@@ -1,9 +1,8 @@
-package danon.Cymbergaj.Application;
+package danon.Cymbergaj;
 
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.*;
 import danon.Cymbergaj.Model.World.Character.*;
-import danon.Cymbergaj.View.Renderer.CharacterRenderer;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
@@ -13,10 +12,12 @@ import org.dyn4j.geometry.Vector2;
 
 import java.awt.event.KeyListener;
 
-public class ClientApplication implements Application {
-    public static final double SCALE = 45.0; //  The scale 45 pixels per meter
 
-    private final Engine engine = new Engine();
+public final class Application {
+    public final static int SCALE = 45;
+
+    private final EngineFactory engineFactory;
+    private final EngineExecutor engineExecutor;
     private final Window window;
     private final World world = new World();
     private final Game game;
@@ -26,18 +27,26 @@ public class ClientApplication implements Application {
     private final Spaceship playerLeft;
     private final Spaceship playerRight;
 
-    ClientApplication(Spaceship playerLeft, Spaceship playerRight, String name) {
+    public Application(Spaceship playerLeft, Spaceship playerRight, String name) {
         Settings settings = new Settings("Cymbergaj | Best 2D game jk " + name, new Size(1080, 600));
 
-        this.window = new Window(settings, closeEvent -> engine.stop());
+        this.window = new Window(settings);
         this.game = new Game(settings.getSize());
 
         this.playerLeft = playerLeft;
         this.playerRight = playerRight;
+
+        this.engineFactory = new EngineFactory();
+        this.engineFactory.addUpdateListener(world::update);
+        this.engineFactory.addRenderListener(window::render);
+
+        load();
+
+        this.engineExecutor = engineFactory.createExecutor();
+        this.window.addCloseEventListener(closeEvent -> engineExecutor.stop());
     }
 
-    @Override
-    public void open() {
+    private void load() {
         sounds.load();
         images.load();
 
@@ -47,21 +56,16 @@ public class ClientApplication implements Application {
             sounds.lookAtMyHorse.setFramePosition(0);
             sounds.lookAtMyHorse.start();
         });
-
-        engine.addUpdateListener(world::update);
-        engine.addRenderListener(window::render);
     }
 
-    @Override
     public void start() {
         window.show();
         sounds.play(sounds.lookAtMyHorse);
-        engine.start();
+        engineExecutor.start();
     }
 
-    @Override
     public void stop() {
-        engine.stop();
+        engineExecutor.stop();
     }
 
     private void initializeWorld() {
@@ -110,8 +114,6 @@ public class ClientApplication implements Application {
         FireballRenderer fireballrenderer = ball.getRenderer(images);
         SpaceshipRenderer player2renderer = playerRight.getRenderer(images);
 
-        CharacterRenderer characterRenderer = new CharacterRenderer(images);
-
         window.addRenderer(game.getRenderer(images));
         window.addRenderer(game.getPointsRenderer());
         window.addRenderer(leftWall.getRenderer(images));
@@ -125,20 +127,18 @@ public class ClientApplication implements Application {
         window.addRenderer(player1renderer);
         window.addRenderer(player2renderer);
         window.addRenderer(fireballrenderer);
-        window.addRenderer(characterRenderer);
 
-        engine.addUpdateListener(playerLeft);
-        engine.addUpdateListener(playerRight);
-        engine.addUpdateListener(game);
-        engine.addUpdateListener(fireballrenderer);
-        engine.addUpdateListener(player1renderer);
-        engine.addUpdateListener(player2renderer);
-        engine.addUpdateListener(characterRenderer);
+        engineFactory.addUpdateListener(playerLeft);
+        engineFactory.addUpdateListener(playerRight);
+        engineFactory.addUpdateListener(game);
+        engineFactory.addUpdateListener(fireballrenderer);
+        engineFactory.addUpdateListener(player1renderer);
+        engineFactory.addUpdateListener(player2renderer);
 
         world.addListener(new GamePointsCounter(game, sounds));
     }
 
-    void addWindowKeyListener(KeyListener listener) {
+    public void addWindowKeyListener(KeyListener listener) {
         this.window.addKeyListener(listener);
     }
 }

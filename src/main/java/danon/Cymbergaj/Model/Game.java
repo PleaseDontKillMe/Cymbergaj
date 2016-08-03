@@ -7,12 +7,12 @@ import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;
 
 public class Game implements Updatable {
-
-    private int pointsLeft = 0, pointsRight = 0;
-    private PreviousWinner previousWinner = PreviousWinner.None;
-    private double backgroundXSlide = 0;
     private final Size size;
+
+    private PreviousWinner previousWinner = PreviousWinner.None;
     private Runnable onGameStart;
+    private int pointsLeft = 0, pointsRight = 0;
+    private double backgroundXSlide = 0;
 
     public Game(Size size) {
         this.size = size;
@@ -33,8 +33,7 @@ public class Game implements Updatable {
     public void restartGame() {
         if (pointsLeft == pointsRight) {
             previousWinner = PreviousWinner.Tie;
-        }
-        else {
+        } else {
             if (pointsLeft > pointsRight) {
                 previousWinner = PreviousWinner.WsadPlayer;
             } else {
@@ -48,7 +47,7 @@ public class Game implements Updatable {
 
     @Override
     public void update(double elapsedTime) {
-        backgroundXSlide += elapsedTime*50.0;
+        backgroundXSlide += elapsedTime * 50.0;
     }
 
     public int getBackgroundXSlide() {

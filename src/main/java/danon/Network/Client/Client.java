@@ -1,15 +1,17 @@
-package danon.Cymbergaj;
+package danon.Network.Client;
 
-import danon.Cymbergaj.Application.Application;
-import danon.Cymbergaj.Application.LocalGameApplication;
+import danon.Cymbergaj.Application;
 import danon.Cymbergaj.Config.GetConfigListener;
 import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.*;
+import danon.Network.Server.Server;
 import danon.Network.*;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -29,7 +31,6 @@ public class Client implements Runnable {
         try {
             System.out.println("I'm " + config.getUsername());
             Client client = new Client(config);
-            System.out.println("Going to open");
             client.start();
         } catch (IOException e) {
             System.out.println("Error connecting");
@@ -48,8 +49,7 @@ public class Client implements Runnable {
 
         sendIntroduceMessage();
 
-        clientThread = new ClientThread(this, socket);
-        clientThread.open();
+        clientThread = new ClientThread(this, new ObjectInputStream(new BufferedInputStream(socket.getInputStream())));
         clientThread.start();
 
         thread = new Thread(this);
@@ -102,15 +102,9 @@ public class Client implements Runnable {
                 throw new RuntimeException("Bieda");
         }
 
-        application = createLocalGameApplication(player1, player2);
-        application.open();
-    }
-
-    private Application createLocalGameApplication(Spaceship player1, Spaceship player2) {
-        LocalGameApplication application = new LocalGameApplication(player1, player2, config.getUsername());
+        application = new Application(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-        return application;
     }
 
     void finnish() {
@@ -147,10 +141,9 @@ public class Client implements Runnable {
     private static void startLocalGame() {
         Spaceship player1 = new Spaceship(new WsadControlKeys());
         Spaceship player2 = new Spaceship(new ArrowsControlKeys());
-        LocalGameApplication application = new LocalGameApplication(player1, player2, "");
+        Application application = new Application(player1, player2, "");
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-        application.open();
         application.start();
     }
 }

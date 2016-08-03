@@ -2,8 +2,10 @@ apply plugin: 'java'
 
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
     compile group: 'org.dyn4j', name: 'dyn4j', version: '3.1.5'
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
 }

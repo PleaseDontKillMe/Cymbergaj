@@ -4,11 +4,11 @@ package danon.Cymbergaj.Geometry;
 public final class Angle {
     private double value;
 
-    public Angle() {
+    Angle() {
         this(0);
     }
 
-    public Angle(double value) {
+    Angle(double value) {
         this.value = value;
     }
 
@@ -20,7 +20,7 @@ public final class Angle {
         return value;
     }
 
-    public void setValue(double value) {
+    void setValue(double value) {
         this.value = value;
     }
 }
