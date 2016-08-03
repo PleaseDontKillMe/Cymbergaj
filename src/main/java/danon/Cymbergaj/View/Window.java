@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Window {
-
     private final JFrame frame;
 
     private final BufferedImage backBuffer;
@@ -45,7 +44,7 @@ public class Window {
         frame.setVisible(true);
         windowGraphics = frame.getGraphics();
 
-        Dimension size = getDimension();
+        Dimension size = frame.getSize();
         AffineTransform move = AffineTransform.getTranslateInstance(size.getWidth() / 2, size.getHeight() / 2);
         canvas.transform(move);
     }
@@ -57,9 +56,5 @@ public class Window {
 
     private void drawToWindow() {
         windowGraphics.drawImage(backBuffer, 0, 0, null);
-    }
-
-    public Dimension getDimension() {
-        return frame.getSize();
     }
 }

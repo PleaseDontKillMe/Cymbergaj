@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class PackedSpriteSheet implements SpriteSheet {
-
     private final BufferedImage spriteSheet;
     private final Size spriteSize;
     private final int spritesAmount;
