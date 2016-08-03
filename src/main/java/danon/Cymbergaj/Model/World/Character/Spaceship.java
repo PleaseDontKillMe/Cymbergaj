@@ -45,10 +45,6 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
         return false;
     }
 
-    public Keys getKeys() {
-        return keys;
-    }
-
     public void update(double elapsedTime) {
         Vector2 velocity = new Vector2();
 
