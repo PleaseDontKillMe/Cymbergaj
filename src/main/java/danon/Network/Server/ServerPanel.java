@@ -9,7 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 class ServerPanel extends JFrame {
-    private final java.awt.List list = new java.awt.List();
+    private final java.awt.List threadsList = new java.awt.List();
+    private final java.awt.List logList = new java.awt.List();
     private final Runnable onClose;
 
     ServerPanel(Runnable onClose) {
@@ -18,8 +19,8 @@ class ServerPanel extends JFrame {
 
     void updateList(ImmutableList<ServerThread> threads) {
         SwingUtilities.invokeLater(() -> {
-            list.removeAll();
-            threads.forEach(thread -> list.add(thread.toString()));
+            threadsList.removeAll();
+            threads.forEach(thread -> threadsList.add(thread.toString()));
         });
     }
 
@@ -30,7 +31,7 @@ class ServerPanel extends JFrame {
 
     private void initializeWindow() {
         setTitle("Server");
-        setSize(new Dimension(300, 400));
+        setSize(new Dimension(700, 400));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -43,9 +44,9 @@ class ServerPanel extends JFrame {
         });
 
         setLayout(new BorderLayout());
-        getContentPane().add(list, "Center");
-        list.setEnabled(false);
+        getContentPane().add(threadsList, "West");
+        getContentPane().add(logList, "Center");
+        threadsList.setEnabled(false);
+        logList.setEnabled(false);
     }
-
-
 }
