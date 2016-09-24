@@ -76,6 +76,7 @@ public class Server  {
 
     private synchronized void closeServer() {
         serverThreads.forEach(thread -> {
+            thread.interrupt();
             try {
                 thread.close();
             } catch (IOException e) {
