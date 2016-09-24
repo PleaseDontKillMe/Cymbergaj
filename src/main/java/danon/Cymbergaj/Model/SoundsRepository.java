@@ -26,6 +26,7 @@ public class SoundsRepository {
     }
 
     public void play(Clip clip) {
+        System.out.println("Skipping sound");
        // clip.start();
     }
 

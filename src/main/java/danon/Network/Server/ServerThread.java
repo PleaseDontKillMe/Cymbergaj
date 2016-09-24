@@ -14,7 +14,7 @@ import java.net.Socket;
 class ServerThread extends Thread {
     private final Server parentServer;
     private final Socket socket;
-    private int ID;
+    private final int ID;
     private ObjectInputStream streamIn;
     private ObjectOutputStream streamOut;
     private String clientName = "ServerThread";

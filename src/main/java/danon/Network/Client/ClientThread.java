@@ -1,12 +1,10 @@
 package danon.Network.Client;
 
 
-import danon.Network.*;
+import danon.Network.Message;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.net.Socket;
 
 class ClientThread extends Thread {
     private final Client parentClient;
