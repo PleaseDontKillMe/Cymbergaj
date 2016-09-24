@@ -99,7 +99,7 @@ public class Client implements Runnable {
                 player2 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut, 'R'));
                 break;
             default:
-                throw new RuntimeException("Bieda");
+                throw new RuntimeException("Unexpected player name from server");
         }
 
         application = new Application(player1, player2, config.getUsername());

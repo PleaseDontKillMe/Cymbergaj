@@ -1,5 +1,5 @@
 # The game
-Cymbergej game written entirely in Java. It's going to be super awesome :DD
+Cymbergaj game written entirely in Java. It's going to be super awesome :DD
 
 ## Requirements
 Java 8

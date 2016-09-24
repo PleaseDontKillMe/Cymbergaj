@@ -17,7 +17,7 @@ public class RuntimeConfigFrame extends JFrame {
     private void initFrame() {
         addComponents();
 
-        this.setTitle("Konfiguracja");
+        this.setTitle("Configuration");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);

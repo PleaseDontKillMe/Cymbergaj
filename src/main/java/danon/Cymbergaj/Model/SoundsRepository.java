@@ -28,17 +28,18 @@ public class SoundsRepository {
     public void play(Clip clip) {
         System.out.println("Skipping sound");
        // clip.start();
+       // clip.stop();
     }
 
     private Clip loadClip(String filename) {
         try {
             return tryLoadClip(filename);
         } catch (LineUnavailableException e) {
-            throw new RuntimeException("Line Couldn't load file '" + filename + "'. " + e.getMessage());
+            throw new RuntimeException("Line | Couldn't load file '" + filename + "'. " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException("IO Couldn't load file '" + filename + "'. " + e.getMessage());
+            throw new RuntimeException("IO | Couldn't load file '" + filename + "'. " + e.getMessage());
         } catch (UnsupportedAudioFileException e) {
-            throw new RuntimeException("Unsup Couldn't load file '" + filename + "'. " + e.getMessage());
+            throw new RuntimeException("Unsupported | Couldn't load file '" + filename + "'. " + e.getMessage());
         }
     }
 

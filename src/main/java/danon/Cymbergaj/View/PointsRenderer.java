@@ -53,9 +53,7 @@ public class PointsRenderer implements Renderer {
 
         if (points > 0) {
             canvas.setFont(new Font("Arial", 0, fontSize));
-            canvas.drawString(String.valueOf(points), x - offsetX, offsetY );
+            canvas.drawString(String.valueOf(points), x - offsetX, offsetY);
         }
     }
-
-
 }

@@ -42,7 +42,7 @@ public class GamePointsCounter extends ContactAdapter {
         }
     }
 
-    protected void playBellSound() {
+    void playBellSound() {
         soundsRepository.bell.setFramePosition(0);
         soundsRepository.bell.start();
     }
