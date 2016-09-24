@@ -40,10 +40,10 @@ public final class Application {
         this.engineFactory.addUpdateListener(world::update);
         this.engineFactory.addRenderListener(gameWindow::render);
 
+        load();
+
         this.engineExecutor = engineFactory.createExecutor();
         this.gameWindow.addCloseEventListener(closeEvent -> engineExecutor.stop());
-
-        load();
     }
 
     private void load() {
