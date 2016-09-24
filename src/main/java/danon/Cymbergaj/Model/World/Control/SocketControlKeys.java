@@ -1,6 +1,6 @@
 package danon.Cymbergaj.Model.World.Control;
 
-import danon.Network.KeyMessage;
+import danon.Network.Message.KeyMessage;
 
 import java.awt.event.KeyEvent;
 

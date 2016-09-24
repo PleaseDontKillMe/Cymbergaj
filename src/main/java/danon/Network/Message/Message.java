@@ -1,4 +1,4 @@
-package danon.Network;
+package danon.Network.Message;
 
 
 import java.io.Serializable;

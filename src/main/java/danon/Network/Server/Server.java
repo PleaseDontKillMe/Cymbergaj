@@ -1,8 +1,8 @@
 package danon.Network.Server;
 
 import com.google.common.collect.ImmutableList;
-import danon.Network.Message;
-import danon.Network.StartMessage;
+import danon.Network.Message.Message;
+import danon.Network.Message.StartMessage;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,7 +1,7 @@
 package danon.Network.Client;
 
 
-import danon.Network.Message;
+import danon.Network.Message.Message;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

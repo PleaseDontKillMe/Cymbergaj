@@ -6,8 +6,8 @@ import danon.Cymbergaj.Config.RuntimeConfig;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.*;
+import danon.Network.Message.*;
 import danon.Network.Server.Server;
-import danon.Network.*;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

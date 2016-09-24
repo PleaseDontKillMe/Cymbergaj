@@ -1,4 +1,4 @@
-package danon.Network;
+package danon.Network.Message;
 
 public class StartMessage implements Message {
     private final char playerTeam;

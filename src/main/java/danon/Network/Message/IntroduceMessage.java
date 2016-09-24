@@ -1,4 +1,4 @@
-package danon.Network;
+package danon.Network.Message;
 
 public class IntroduceMessage implements Message {
     private final String name;

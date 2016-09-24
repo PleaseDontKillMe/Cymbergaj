@@ -1,9 +1,9 @@
 package danon.Network.Server;
 
-import danon.Network.IntroduceMessage;
-import danon.Network.KeyMessage;
-import danon.Network.Message;
-import danon.Network.QuitMessage;
+import danon.Network.Message.IntroduceMessage;
+import danon.Network.Message.KeyMessage;
+import danon.Network.Message.Message;
+import danon.Network.Message.QuitMessage;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
