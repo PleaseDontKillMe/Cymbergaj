@@ -1,8 +1,8 @@
 package danon.Cymbergaj.Model;
 
-public class QuiteGamePointsCounter extends GamePointsCounter {
+public class QuietGamePointsCounter extends GamePointsCounter {
 
-    public QuiteGamePointsCounter(Game game) {
+    public QuietGamePointsCounter(Game game) {
         super(game, null);
     }
 
