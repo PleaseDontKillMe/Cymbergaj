@@ -36,7 +36,7 @@ public class Point {
 
     public Angle angleTo(Point point) {
         if (this.equals(point)) {
-            throw new RuntimeException("Cannot calculate angleTo of the same points");
+            throw new RuntimeException("Cannot calculate angleTo() of the same points");
         }
 
         Angle angle = new Angle(Math.asin((point.y - this.y) / this.distanceTo(point)));
@@ -62,5 +62,4 @@ public class Point {
             return Double.compare(d1, d2) == 0 || Math.abs(d1 - d2) <= DELTA;
         }
     }
-
 }

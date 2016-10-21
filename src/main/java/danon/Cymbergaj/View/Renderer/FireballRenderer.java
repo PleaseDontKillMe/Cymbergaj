@@ -29,11 +29,15 @@ public class FireballRenderer extends BodyRenderer implements Updatable {
     public void renderBody(Graphics2D canvas) {
         Size size = spriteSheet.getSpriteSize();
         Vector2 vector = fireball.getLinearVelocity();
-        if (!vector.equals(0,0)) {
+        if (!vector.equals(0, 0)) {
             direction = new Point(vector).angleTo(new Point());
         }
 
-        spriteSheet.drawOn(canvas, new Point(-size.getWidth()/2 + 32, -size.getHeight()/2 + 32), new Rotation(direction, new Point(10,32)));
+        Point position = new Point(
+                -size.getWidth() / 2 + 32,
+                -size.getHeight() / 2 + 32
+        );
+        spriteSheet.drawOn(canvas, position, new Rotation(direction, new Point(10, 32)));
     }
 
     @Override
