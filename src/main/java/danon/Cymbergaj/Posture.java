@@ -1,6 +1,7 @@
 package danon.Cymbergaj;
 
 import danon.Cymbergaj.View.Renderer.Character.CharacterWeaponSheet;
+import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.SpriteSheet;
 
 public enum Posture {
@@ -9,22 +10,35 @@ public enum Posture {
         public SpriteSheet getSheetFor(CharacterWeaponSheet sheet) {
             return sheet.getIdle();
         }
-    }, Melee {
+    },
+
+    Melee {
         @Override
         public SpriteSheet getSheetFor(CharacterWeaponSheet sheet) {
             return sheet.getMelee();
         }
-    }, Move {
+    },
+
+    Move {
         @Override
         public SpriteSheet getSheetFor(CharacterWeaponSheet sheet) {
             return sheet.getMove();
         }
-    }, Reload {
+
+        @Override
+        public SpriteSheet getSheetForFeet(ImagesRepository images) {
+            return images.feetWalk;
+        }
+    },
+
+    Reload {
         @Override
         public SpriteSheet getSheetFor(CharacterWeaponSheet sheet) {
             return sheet.getReload();
         }
-    }, Shoot {
+    },
+
+    Shoot {
         @Override
         public SpriteSheet getSheetFor(CharacterWeaponSheet sheet) {
             return sheet.getShoot();
@@ -32,4 +46,8 @@ public enum Posture {
     };
 
     public abstract SpriteSheet getSheetFor(CharacterWeaponSheet sheet);
+
+    public SpriteSheet getSheetForFeet(ImagesRepository images) {
+        return images.feetIdle;
+    }
 }

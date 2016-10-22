@@ -19,7 +19,7 @@ public class MultifileSpriteSheet implements SpriteSheet {
     private int currentIndex = 0;
 
     public MultifileSpriteSheet(String basePath, int filesCount) {
-        this(basePath, filesCount, new Point(0, 0));
+        this(basePath, filesCount, new Point(116, 120));
     }
 
     public MultifileSpriteSheet(String basePath, int filesCount, Point anchorPoint) {

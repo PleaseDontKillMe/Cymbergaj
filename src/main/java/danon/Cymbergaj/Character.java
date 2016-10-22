@@ -76,10 +76,8 @@ public class Character extends GameObject implements KeyListener, Updatable {
         }
 
         Vector2 velocity = new Vector2();
-
         velocity.x = Math.cos(orientation) * speed;
         velocity.y = Math.sin(orientation) * speed;
-
         this.setLinearVelocity(velocity);
     }
 
