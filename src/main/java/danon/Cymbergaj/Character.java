@@ -23,8 +23,8 @@ public class Character extends GameObject implements KeyListener, Updatable {
 
     private float orientation = 0;
 
-    private WeaponType weaponType = WeaponType.Knife;
-    private Posture posture = Posture.Move;
+    private WeaponType weaponType = WeaponType.Shotgun;
+    private Posture posture = Posture.Idle;
 
     public Character(ControlKeys controlKeys) {
         this(controlKeys, new Keys());
@@ -69,6 +69,10 @@ public class Character extends GameObject implements KeyListener, Updatable {
         }
         if (keys.isRight()) {
             orientation += 2 * elapsedTime;
+        }
+
+        if (keys.isAction1()) {
+            this.posture = Posture.Melee;
         }
 
         Vector2 velocity = new Vector2();

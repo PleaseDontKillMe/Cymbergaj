@@ -22,12 +22,14 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
         this.images = imagesRepository;
     }
 
+    private SpriteSheet getCurrentSheet() {
+        CharacterWeaponSheet weaponSheet = images.weaponSheets.get(character.getWeaponType());
+        return character.getPosture().getSheetFor(weaponSheet);
+    }
+
     @Override
     protected void renderBody(Graphics2D canvas) {
-        CharacterWeaponSheet weaponSheet = images.weaponSheets.get(character.getWeaponType());
-        SpriteSheet sheet = character.getPosture().getSheetFor(weaponSheet);
-
-        sheet.drawOn(canvas,
+        getCurrentSheet().drawOn(canvas,
                 new Point(0, 0),
                 new Rotation(new Angle(character.getOrientation()), new Point(116, 120))
         );
@@ -37,6 +39,6 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
     public void update(double elapsedTime) {
         totalElapsedTime += elapsedTime;
         int frame = (int) Math.round(totalElapsedTime * 20.0);
-        images.handgunIdle.setFrame(frame);
+        getCurrentSheet().setFrame(frame);
     }
 }
