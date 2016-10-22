@@ -18,37 +18,37 @@ public class ImagesRepository {
     SpriteSheet fireball;
     SpriteSheet spaceship;
 
-    SpriteSheet feetIdle;
-    SpriteSheet feetRun;
-    SpriteSheet feetWalk;
-    SpriteSheet feetStrafeLeft;
-    SpriteSheet feetStrafeRight;
+    public SpriteSheet feetIdle;
+    public SpriteSheet feetRun;
+    public SpriteSheet feetWalk;
+    public SpriteSheet feetStrafeLeft;
+    public SpriteSheet feetStrafeRight;
 
-    SpriteSheet handgunIdle;
-    SpriteSheet handgunMelee;
-    SpriteSheet handgunMove;
-    SpriteSheet handgunReload;
-    SpriteSheet handgunShoot;
+    public SpriteSheet handgunIdle;
+    public SpriteSheet handgunMelee;
+    public SpriteSheet handgunMove;
+    public SpriteSheet handgunReload;
+    public SpriteSheet handgunShoot;
 
-    SpriteSheet knifeIdle;
-    SpriteSheet knifeMelee;
-    SpriteSheet knifeMove;
+    public SpriteSheet knifeIdle;
+    public SpriteSheet knifeMelee;
+    public SpriteSheet knifeMove;
 
-    SpriteSheet flashlightIdle;
-    SpriteSheet flashlightMelee;
-    SpriteSheet flashlightMove;
+    public SpriteSheet flashlightIdle;
+    public SpriteSheet flashlightMelee;
+    public SpriteSheet flashlightMove;
 
-    SpriteSheet rifleIdle;
-    SpriteSheet rifleMelee;
-    SpriteSheet rifleMove;
-    SpriteSheet rifleReload;
-    SpriteSheet rifleShoot;
+    public SpriteSheet rifleIdle;
+    public SpriteSheet rifleMelee;
+    public SpriteSheet rifleMove;
+    public SpriteSheet rifleReload;
+    public SpriteSheet rifleShoot;
 
-    SpriteSheet shotgunIdle;
-    SpriteSheet shotgunMelee;
-    SpriteSheet shotgunMove;
-    SpriteSheet shotgunReload;
-    SpriteSheet shotgunShoot;
+    public SpriteSheet shotgunIdle;
+    public SpriteSheet shotgunMelee;
+    public SpriteSheet shotgunMove;
+    public SpriteSheet shotgunReload;
+    public SpriteSheet shotgunShoot;
 
     public Map<WeaponType, CharacterWeaponSheet> weaponSheets = new HashMap<>();
 
@@ -89,10 +89,10 @@ public class ImagesRepository {
         shotgunReload = new MultifileSpriteSheet("character/shotgun/reload/survivor-reload_shotgun_", 20).loadImages();
         shotgunShoot = new MultifileSpriteSheet("character/shotgun/shoot/survivor-shoot_shotgun_", 3).loadImages();
 
-        weaponSheets.put(WeaponType.FlashLight, new FlashlightWeaponSheet());
-        weaponSheets.put(WeaponType.Knife, new KnifeWeaponSheet());
-        weaponSheets.put(WeaponType.HandGun, new HandgunWeaponSheet());
-        weaponSheets.put(WeaponType.Rifle, new RifleWeaponSheet());
-        weaponSheets.put(WeaponType.Shotgun, new ShotgunWeaponSheet());
+        weaponSheets.put(WeaponType.FlashLight, new FlashlightWeaponSheet(this));
+        weaponSheets.put(WeaponType.Knife, new KnifeWeaponSheet(this));
+        weaponSheets.put(WeaponType.HandGun, new HandgunWeaponSheet(this));
+        weaponSheets.put(WeaponType.Rifle, new RifleWeaponSheet(this));
+        weaponSheets.put(WeaponType.Shotgun, new ShotgunWeaponSheet(this));
     }
 }

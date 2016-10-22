@@ -1,30 +1,37 @@
 package danon.Cymbergaj.View.Renderer.Character;
 
+import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.SpriteSheet;
 
 public class ShotgunWeaponSheet implements CharacterWeaponSheet {
+    private final ImagesRepository imagesRepository;
+
+    public ShotgunWeaponSheet(ImagesRepository imagesRepository) {
+        this.imagesRepository = imagesRepository;
+    }
+
     @Override
     public SpriteSheet getIdle() {
-        return null;
+        return imagesRepository.shotgunIdle;
     }
 
     @Override
     public SpriteSheet getMelee() {
-        return null;
+        return imagesRepository.shotgunMelee;
     }
 
     @Override
     public SpriteSheet getMove() {
-        return null;
+        return imagesRepository.shotgunMove;
     }
 
     @Override
     public SpriteSheet getReload() {
-        return null;
+        return imagesRepository.shotgunReload;
     }
 
     @Override
     public SpriteSheet getShoot() {
-        return null;
+        return imagesRepository.shotgunShoot;
     }
 }
