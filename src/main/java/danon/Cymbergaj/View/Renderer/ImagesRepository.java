@@ -60,7 +60,7 @@ public class ImagesRepository {
 
         feetIdle = new MultifileSpriteSheet("character/feet/idle/survivor-idle_", 1).loadImages();
         feetRun = new MultifileSpriteSheet("character/feet/run/survivor-run_", 20).loadImages();
-        feetWalk = new MultifileSpriteSheet("character/feet/walk/survivor-walk_", 20, new Point(82, 50)).loadImages();
+        feetWalk = new MultifileSpriteSheet("character/feet/walk/survivor-walk_", 20, new Point(82, 73)).loadImages();
         feetStrafeLeft = new MultifileSpriteSheet("character/feet/strafe_left/survivor-strafe_left_", 20).loadImages();
         feetStrafeRight = new MultifileSpriteSheet("character/feet/strafe_right/survivor-strafe_right_", 20).loadImages();
 
@@ -75,8 +75,8 @@ public class ImagesRepository {
         knifeMove = new MultifileSpriteSheet("character/knife/move/survivor-move_knife_", 20).loadImages();
 
         flashlightIdle = new MultifileSpriteSheet("character/flashlight/idle/survivor-idle_flashlight_", 20).loadImages();
-        flashlightMelee = new MultifileSpriteSheet("character/flashlight/meleeattack/survivor-meleeattack_flashlight_", 15).loadImages();
-        flashlightMove = new MultifileSpriteSheet("character/flashlight/move/survivor-move_flashlight_", 20).loadImages();
+        flashlightMelee = new MultifileSpriteSheet("character/flashlight/meleeattack/survivor-meleeattack_flashlight_", 15, new Point(120, 142)).loadImages();
+        flashlightMove = new MultifileSpriteSheet("character/flashlight/move/survivor-move_flashlight_", 20, new Point(116, 127)).loadImages();
 
         rifleIdle = new MultifileSpriteSheet("character/rifle/idle/survivor-idle_rifle_", 20).loadImages();
         rifleMelee = new MultifileSpriteSheet("character/rifle/meleeattack/survivor-meleeattack_rifle_", 15).loadImages();
