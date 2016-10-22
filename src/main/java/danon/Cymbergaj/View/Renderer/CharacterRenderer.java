@@ -29,9 +29,10 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
 
     @Override
     protected void renderBody(Graphics2D canvas) {
-        getCurrentSheet().drawOn(canvas,
+        SpriteSheet sheet = getCurrentSheet();
+        sheet.drawOn(canvas,
                 new Point(0, 0),
-                new Rotation(new Angle(character.getOrientation()), new Point(116, 120))
+                new Rotation(new Angle(character.getOrientation()), sheet.getAnchorPoint())
         );
     }
 
