@@ -5,6 +5,8 @@ import danon.Cymbergaj.Geometry.Angle;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Model.Updatable;
+import danon.Cymbergaj.View.Renderer.Character.CharacterWeaponSheet;
+import danon.Cymbergaj.View.SpriteSheet;
 
 import java.awt.*;
 
@@ -22,7 +24,10 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
 
     @Override
     protected void renderBody(Graphics2D canvas) {
-        images.handgunIdle.drawOn(canvas,
+        CharacterWeaponSheet weaponSheet = images.weaponSheets.get(character.getWeaponType());
+        SpriteSheet sheet = character.getPosture().getSheetFor(weaponSheet);
+
+        sheet.drawOn(canvas,
                 new Point(0, 0),
                 new Rotation(new Angle(character.getOrientation()), new Point(116, 120))
         );
