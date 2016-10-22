@@ -54,18 +54,21 @@ public class Character extends GameObject implements KeyListener, Updatable {
     public void update(double elapsedTime) {
 
         int speed = 0;
+        this.posture = Posture.Idle;
         if (keys.isUp()) {
             speed += VELOCITY;
+            this.posture = Posture.Move;
         }
         if (keys.isDown()) {
             speed -= VELOCITY;
+            this.posture = Posture.Move;
         }
 
         if (keys.isLeft()) {
-            orientation -= 4 * elapsedTime;
+            orientation -= 2 * elapsedTime;
         }
         if (keys.isRight()) {
-            orientation += 4 * elapsedTime;
+            orientation += 2 * elapsedTime;
         }
 
         Vector2 velocity = new Vector2();
