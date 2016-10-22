@@ -80,6 +80,9 @@ public class Character extends GameObject implements KeyListener, Updatable {
             this.posture = Posture.Melee;
         }
 
+        if (keys.isAction2()) {
+            weaponType = weaponType.next();
+        }
 
         if (this.posture != previous) {
             changePosture(this.posture);

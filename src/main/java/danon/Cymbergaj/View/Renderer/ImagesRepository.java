@@ -66,7 +66,7 @@ public class ImagesRepository {
 
         handgunIdle = new MultifileSpriteSheet("character/handgun/idle/survivor-idle_handgun_", 20).loadImages();
         handgunMelee = new MultifileSpriteSheet("character/handgun/meleeattack/survivor-meleeattack_handgun_", 15).loadImages();
-        handgunMove = new MultifileSpriteSheet("character/handgun/move/survivor-move_handgun_", 20).loadImages();
+        handgunMove = new MultifileSpriteSheet("character/handgun/move/survivor-move_handgun_", 20, new Point(121, 120)).loadImages();
         handgunReload = new MultifileSpriteSheet("character/handgun/reload/survivor-reload_handgun_", 15).loadImages();
         handgunShoot = new MultifileSpriteSheet("character/handgun/shoot/survivor-shoot_handgun_", 3).loadImages();
 
@@ -79,7 +79,7 @@ public class ImagesRepository {
         flashlightMove = new MultifileSpriteSheet("character/flashlight/move/survivor-move_flashlight_", 20, new Point(116, 127)).loadImages();
 
         rifleIdle = new MultifileSpriteSheet("character/rifle/idle/survivor-idle_rifle_", 20).loadImages();
-        rifleMelee = new MultifileSpriteSheet("character/rifle/meleeattack/survivor-meleeattack_rifle_", 15).loadImages();
+        rifleMelee = new MultifileSpriteSheet("character/rifle/meleeattack/survivor-meleeattack_rifle_", 15, new Point(136, 200)).loadImages();
         rifleMove = new MultifileSpriteSheet("character/rifle/move/survivor-move_rifle_", 20).loadImages();
         rifleReload = new MultifileSpriteSheet("character/rifle/reload/survivor-reload_rifle_", 20).loadImages();
         rifleShoot = new MultifileSpriteSheet("character/rifle/shoot/survivor-shoot_rifle_", 3).loadImages();
