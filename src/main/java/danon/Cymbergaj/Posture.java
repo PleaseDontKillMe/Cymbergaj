@@ -26,8 +26,8 @@ public enum Posture {
         }
 
         @Override
-        public SpriteSheet getSheetForFeet(ImagesRepository images) {
-            return images.feetWalk;
+        public boolean shouldFeetProgress() {
+            return true;
         }
     },
 
@@ -48,6 +48,10 @@ public enum Posture {
     public abstract SpriteSheet getSheetFor(CharacterWeaponSheet sheet);
 
     public SpriteSheet getSheetForFeet(ImagesRepository images) {
-        return images.feetIdle;
+        return images.feetWalk;
+    }
+
+    public boolean shouldFeetProgress() {
+        return false;
     }
 }

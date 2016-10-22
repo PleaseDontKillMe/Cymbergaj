@@ -15,6 +15,7 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
     private final ImagesRepository images;
 
     private double totalElapsedTime = 0;
+    private double totalElapsedFeetTime = 0;
 
     public CharacterRenderer(Character character, ImagesRepository imagesRepository) {
         super(character);
@@ -57,8 +58,13 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
     @Override
     public void update(double elapsedTime) {
         totalElapsedTime += elapsedTime;
-        int frame = (int) Math.round(totalElapsedTime * 20.0);
+        int frame = (int) Math.floor(totalElapsedTime * 20.0);
         getCurrentSheet().setFrame(frame);
-        getSheetForFeet().setFrame(frame);
+
+        if (character.getPosture().shouldFeetProgress()) {
+            totalElapsedFeetTime += elapsedTime;
+            int feetFrame = (int) Math.floor(totalElapsedFeetTime * 20.0);
+            getSheetForFeet().setFrame(feetFrame);
+        }
     }
 }
