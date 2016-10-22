@@ -34,8 +34,8 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
 
     @Override
     protected void renderBody(Graphics2D canvas) {
-        drawBody(canvas);
         drawFeet(canvas);
+        drawBody(canvas);
         canvas.drawOval(-5, -5, 10, 10);
     }
 

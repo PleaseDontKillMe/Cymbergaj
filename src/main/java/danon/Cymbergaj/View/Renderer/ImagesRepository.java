@@ -1,6 +1,7 @@
 package danon.Cymbergaj.View.Renderer;
 
 
+import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.View.Loader;
 import danon.Cymbergaj.View.MultifileSpriteSheet;
@@ -59,7 +60,7 @@ public class ImagesRepository {
 
         feetIdle = new MultifileSpriteSheet("character/feet/idle/survivor-idle_", 1).loadImages();
         feetRun = new MultifileSpriteSheet("character/feet/run/survivor-run_", 20).loadImages();
-        feetWalk = new MultifileSpriteSheet("character/feet/walk/survivor-walk_", 20).loadImages();
+        feetWalk = new MultifileSpriteSheet("character/feet/walk/survivor-walk_", 20, new Point(82, 50)).loadImages();
         feetStrafeLeft = new MultifileSpriteSheet("character/feet/strafe_left/survivor-strafe_left_", 20).loadImages();
         feetStrafeRight = new MultifileSpriteSheet("character/feet/strafe_right/survivor-strafe_right_", 20).loadImages();
 
