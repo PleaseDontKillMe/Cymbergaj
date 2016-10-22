@@ -10,7 +10,7 @@ import danon.Cymbergaj.View.SpriteSheet;
 import danon.Cymbergaj.WeaponType;
 
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class ImagesRepository {
@@ -50,7 +50,7 @@ public class ImagesRepository {
     public SpriteSheet shotgunReload;
     public SpriteSheet shotgunShoot;
 
-    public Map<WeaponType, CharacterWeaponSheet> weaponSheets = new HashMap<>();
+    public Map<WeaponType, CharacterWeaponSheet> weaponSheets = new EnumMap<>(WeaponType.class);
 
     public void load() {
         background = Loader.image("space-background.png");
