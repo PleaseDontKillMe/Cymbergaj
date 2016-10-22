@@ -5,9 +5,13 @@ import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.View.Loader;
 import danon.Cymbergaj.View.MultifileSpriteSheet;
 import danon.Cymbergaj.View.PackedSpriteSheet;
+import danon.Cymbergaj.View.Renderer.Character.*;
 import danon.Cymbergaj.View.SpriteSheet;
+import danon.Cymbergaj.WeaponType;
 
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ImagesRepository {
     BufferedImage background;
@@ -46,6 +50,8 @@ public class ImagesRepository {
     SpriteSheet shotgunReload;
     SpriteSheet shotgunShoot;
 
+    public Map<WeaponType, CharacterWeaponSheet> weaponSheets = new HashMap<>();
+
     public void load() {
         background = Loader.image("space-background.png");
         fireball = new PackedSpriteSheet(Loader.image("fireball.png"), new Size(64, 64), 8);
@@ -82,6 +88,11 @@ public class ImagesRepository {
         shotgunMove = new MultifileSpriteSheet("character/shotgun/move/survivor-move_shotgun_", 20).loadImages();
         shotgunReload = new MultifileSpriteSheet("character/shotgun/reload/survivor-reload_shotgun_", 20).loadImages();
         shotgunShoot = new MultifileSpriteSheet("character/shotgun/shoot/survivor-shoot_shotgun_", 3).loadImages();
-    }
 
+        weaponSheets.put(WeaponType.FlashLight, new FlashlightWeaponSheet());
+        weaponSheets.put(WeaponType.Knife, new KnifeWeaponSheet());
+        weaponSheets.put(WeaponType.HandGun, new HandgunWeaponSheet());
+        weaponSheets.put(WeaponType.Rifle, new RifleWeaponSheet());
+        weaponSheets.put(WeaponType.Shotgun, new ShotgunWeaponSheet());
+    }
 }
