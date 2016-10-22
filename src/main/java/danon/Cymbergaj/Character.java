@@ -23,6 +23,9 @@ public class Character extends GameObject implements KeyListener, Updatable {
 
     private float orientation = 0;
 
+    private WeaponType weaponType = WeaponType.Knife;
+    private Posture posture = Posture.Idle;
+
     public Character(ControlKeys controlKeys) {
         this(controlKeys, new Keys());
     }
