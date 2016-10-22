@@ -6,6 +6,7 @@ import danon.Cymbergaj.Model.World.Control.ControlKeys;
 import danon.Cymbergaj.Model.World.Control.Keys;
 import danon.Cymbergaj.View.Renderer.CharacterRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
+import danon.Cymbergaj.View.Renderer.PostureChangedListener;
 import org.dyn4j.dynamics.BodyFixture;
 import org.dyn4j.geometry.Circle;
 import org.dyn4j.geometry.Mass;
@@ -24,6 +25,8 @@ public class Character extends GameObject implements KeyListener, Updatable {
     private Posture posture = Posture.Idle;
     private float orientation = 0;
 
+    PostureChangedListener listener;
+
     public Character(ControlKeys controlKeys) {
         this(controlKeys, new Keys());
     }
@@ -41,7 +44,9 @@ public class Character extends GameObject implements KeyListener, Updatable {
 
     @Override
     public CharacterRenderer getRenderer(ImagesRepository images) {
-        return new CharacterRenderer(this, images);
+        CharacterRenderer renderer = new CharacterRenderer(this, images);
+        listener = renderer;
+        return renderer;
     }
 
     @Override
@@ -50,6 +55,8 @@ public class Character extends GameObject implements KeyListener, Updatable {
     }
 
     public void update(double elapsedTime) {
+
+        Posture previous = this.posture;
 
         int speed = 0;
         this.posture = Posture.Idle;
@@ -73,10 +80,20 @@ public class Character extends GameObject implements KeyListener, Updatable {
             this.posture = Posture.Melee;
         }
 
+
+        if (this.posture != previous) {
+            changePosture(this.posture);
+        }
+
         Vector2 velocity = new Vector2();
         velocity.x = Math.cos(orientation) * speed;
         velocity.y = Math.sin(orientation) * speed;
-        this.setLinearVelocity(velocity);
+        // this.setLinearVelocity(velocity);
+    }
+
+    private void changePosture(Posture newPosture) {
+        listener.postureChanged(newPosture);
+        this.posture = newPosture;
     }
 
     @Override

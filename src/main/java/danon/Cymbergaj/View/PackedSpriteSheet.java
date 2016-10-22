@@ -62,4 +62,9 @@ public class PackedSpriteSheet implements SpriteSheet {
     public void setFrame(int index) {
         currentSpriteIndex = (index + spritesAmount * 10) % spritesAmount;
     }
+
+    @Override
+    public int getCurrentFrame() {
+        return currentSpriteIndex;
+    }
 }

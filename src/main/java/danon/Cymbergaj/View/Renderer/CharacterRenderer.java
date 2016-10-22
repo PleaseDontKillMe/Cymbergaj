@@ -5,12 +5,13 @@ import danon.Cymbergaj.Geometry.Angle;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Model.Updatable;
+import danon.Cymbergaj.Posture;
 import danon.Cymbergaj.View.Renderer.Character.CharacterWeaponSheet;
 import danon.Cymbergaj.View.SpriteSheet;
 
 import java.awt.*;
 
-public class CharacterRenderer extends BodyRenderer implements Updatable {
+public class CharacterRenderer extends BodyRenderer implements Updatable, PostureChangedListener {
     private Character character;
     private final ImagesRepository images;
 
@@ -66,5 +67,11 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
             int feetFrame = (int) Math.floor(totalElapsedFeetTime * 20.0);
             getSheetForFeet().setFrame(feetFrame);
         }
+    }
+
+    @Override
+    public void postureChanged(Posture newPosture) {
+        SpriteSheet sheet = newPosture.getSheetFor(images.weaponSheets.get(character.getWeaponType()));
+        sheet.reset();
     }
 }

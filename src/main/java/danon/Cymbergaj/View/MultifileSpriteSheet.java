@@ -53,6 +53,11 @@ public class MultifileSpriteSheet implements SpriteSheet {
     }
 
     @Override
+    public int getCurrentFrame() {
+        return currentIndex;
+    }
+
+    @Override
     public void drawOn(Graphics2D canvas, Point position) {
         drawOn(canvas, position, new Rotation());
     }

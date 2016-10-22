@@ -14,6 +14,12 @@ public interface SpriteSheet {
 
     void setFrame(int frame);
 
+    default void reset() {
+        setFrame(0);
+    }
+
+    int getCurrentFrame();
+
     void drawOn(Graphics2D canvas, Point point);
 
     void drawOn(Graphics2D canvas, Point point, Rotation rotation);
