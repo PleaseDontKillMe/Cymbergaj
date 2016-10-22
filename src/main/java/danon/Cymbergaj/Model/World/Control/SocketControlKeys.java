@@ -25,6 +25,16 @@ public class SocketControlKeys extends ControlKeys {
         return false;
     }
 
+    @Override
+    protected boolean verifyAction1(KeyEvent event) {
+        return false;
+    }
+
+    @Override
+    protected boolean verifyAction2(KeyEvent event) {
+        return false;
+    }
+
     public void acceptKeyChange(KeyMessage message) {
         keys.setUp(message.isKeyUp());
         keys.setDown(message.isKeyDown());

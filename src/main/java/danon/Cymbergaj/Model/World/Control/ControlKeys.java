@@ -22,6 +22,12 @@ public abstract class ControlKeys {
         if (verifyDown(event)) {
             keys.setDown(true);
         }
+        if (verifyAction1(event)) {
+            keys.setAction1(true);
+        }
+        if (verifyAction2(event)) {
+            keys.setAction2(true);
+        }
     }
 
     public void keyUp(KeyEvent event) {
@@ -37,6 +43,12 @@ public abstract class ControlKeys {
         if (verifyDown(event)) {
             keys.setDown(false);
         }
+        if (verifyAction1(event)) {
+            keys.setAction1(false);
+        }
+        if (verifyAction2(event)) {
+            keys.setAction2(false);
+        }
     }
 
     protected abstract boolean verifyUp(KeyEvent event);
@@ -46,4 +58,8 @@ public abstract class ControlKeys {
     protected abstract boolean verifyLeft(KeyEvent event);
 
     protected abstract boolean verifyRight(KeyEvent event);
+
+    protected abstract boolean verifyAction1(KeyEvent event);
+
+    protected abstract boolean verifyAction2(KeyEvent event);
 }

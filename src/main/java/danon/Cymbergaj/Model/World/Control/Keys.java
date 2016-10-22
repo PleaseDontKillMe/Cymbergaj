@@ -6,6 +6,9 @@ public class Keys {
     private boolean isLeft = false;
     private boolean isRight = false;
 
+    private boolean action1 = false;
+    private boolean action2 = false;
+
     public boolean isUp() {
         return isUp;
     }
@@ -22,6 +25,14 @@ public class Keys {
         return isRight;
     }
 
+    public boolean isAction1() {
+        return action1;
+    }
+
+    public boolean isAction2() {
+        return action2;
+    }
+
     public void setUp(boolean up) {
         isUp = up;
     }
@@ -36,6 +47,14 @@ public class Keys {
 
     public void setRight(boolean right) {
         isRight = right;
+    }
+
+    public void setAction1(boolean action1) {
+        this.action1 = action1;
+    }
+
+    public void setAction2(boolean action2) {
+        this.action2 = action2;
     }
 
     @Override
