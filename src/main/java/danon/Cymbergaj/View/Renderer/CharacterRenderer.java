@@ -4,7 +4,6 @@ import danon.Cymbergaj.Character;
 import danon.Cymbergaj.Geometry.Angle;
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Rotation;
-import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.Updatable;
 
 import java.awt.*;
@@ -21,10 +20,7 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
 
     @Override
     protected void renderBody(Graphics2D canvas) {
-        Size size = images.handgunIdle.getSpriteSize();
-        Point center = new Point(size.getWidth() / 2, size.getHeight() / 2);
-
-        canvas.draw(new Rectangle(-10, -10, 20, 20));
+        Point center = new Point(96, 120);
 
         images.handgunIdle.drawOn(canvas,
                 new Point(0, 0),
