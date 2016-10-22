@@ -16,10 +16,12 @@ import java.awt.event.KeyListener;
 
 public class Character extends GameObject implements KeyListener, Updatable {
 
-    private final static double VELOCITY = 9.0;
+    private final static double VELOCITY = 5.0;
 
     private final ControlKeys controlKeys;
     private final Keys keys;
+
+    private float orientation = 0;
 
     public Character(ControlKeys controlKeys) {
         this(controlKeys, new Keys());
@@ -30,7 +32,7 @@ public class Character extends GameObject implements KeyListener, Updatable {
         this.controlKeys = controlKeys;
         this.controlKeys.useKeys(this.keys);
 
-        BodyFixture fixture = new BodyFixture(new Circle(0.7));
+        BodyFixture fixture = new BodyFixture(new Circle(1.5));
         fixture.setFriction(0.0);
         this.addFixture(fixture);
         this.setMass(Mass.Type.NORMAL);
@@ -47,20 +49,26 @@ public class Character extends GameObject implements KeyListener, Updatable {
     }
 
     public void update(double elapsedTime) {
-        Vector2 velocity = new Vector2();
 
+        int speed = 0;
         if (keys.isUp()) {
-            velocity.add(0, -VELOCITY);
+            speed += VELOCITY;
         }
         if (keys.isDown()) {
-            velocity.add(0, VELOCITY);
+            speed -= VELOCITY;
         }
+
         if (keys.isLeft()) {
-            velocity.add(-VELOCITY, 0);
+            orientation -= 4 * elapsedTime;
         }
         if (keys.isRight()) {
-            velocity.add(VELOCITY, 0);
+            orientation += 4 * elapsedTime;
         }
+
+        Vector2 velocity = new Vector2();
+
+        velocity.x = Math.cos(orientation) * speed;
+        velocity.y = Math.sin(orientation) * speed;
 
         this.setLinearVelocity(velocity);
     }
@@ -78,5 +86,9 @@ public class Character extends GameObject implements KeyListener, Updatable {
     @Override
     public void keyTyped(KeyEvent event) {
         // ignored
+    }
+
+    public float getOrientation() {
+        return orientation;
     }
 }
