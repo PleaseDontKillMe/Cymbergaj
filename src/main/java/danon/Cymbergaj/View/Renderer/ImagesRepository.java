@@ -83,5 +83,4 @@ public class ImagesRepository {
         shotgunReload = new MultifileSpriteSheet("character/shotgun/reload/survivor-reload_shotgun_", 20).loadImages();
         shotgunShoot = new MultifileSpriteSheet("character/shotgun/shoot/survivor-shoot_shotgun_", 3).loadImages();
     }
-
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.net.ServerSocket;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Server  {
+public class Server {
     public static final int PORT = 9801;
     private final List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
     private final ServerSocket server;

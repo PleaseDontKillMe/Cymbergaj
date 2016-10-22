@@ -19,5 +19,4 @@ public class BasicRenderer extends BodyRenderer {
             Graphics2DRenderer.render(canvas, fix.getShape());
         }
     }
-
 }

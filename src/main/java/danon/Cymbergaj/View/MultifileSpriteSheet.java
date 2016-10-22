@@ -38,7 +38,7 @@ public class MultifileSpriteSheet implements SpriteSheet {
 
     @Override
     public void next() {
-        currentIndex = currentIndex+1 % filesCount;
+        currentIndex = currentIndex + 1 % filesCount;
     }
 
     @Override

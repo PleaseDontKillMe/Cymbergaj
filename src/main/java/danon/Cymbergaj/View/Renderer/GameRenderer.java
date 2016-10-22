@@ -28,7 +28,7 @@ public class GameRenderer implements Renderer {
         canvas.drawImage(background, -(x + halfWidth - width), -halfHeight, null);
         canvas.drawImage(background, -(x + halfWidth - width * 2), -halfHeight, null);
 
-        canvas.setColor(new Color(255,255,255, 120));
+        canvas.setColor(new Color(255, 255, 255, 120));
         String text = getEndGameText();
         canvas.setFont(new Font("Arial", 0, 80));
         canvas.drawString(text, -400, -200);

@@ -19,7 +19,7 @@ public class CharacterRenderer implements Renderer, Updatable {
     @Override
     public void renderOn(Graphics2D canvas) {
         Size size = spriteSheet.getSpriteSize();
-        spriteSheet.drawOn(canvas, new Point(-size.getWidth()/2, -size.getHeight()/2));
+        spriteSheet.drawOn(canvas, new Point(-size.getWidth() / 2, -size.getHeight() / 2));
     }
 
     @Override

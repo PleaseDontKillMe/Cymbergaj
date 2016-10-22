@@ -30,6 +30,6 @@ public class SpaceshipRenderer extends BodyRenderer implements Updatable {
     @Override
     public void renderBody(Graphics2D canvas) {
         Size size = spriteSheet.getSpriteSize();
-        spriteSheet.drawOn(canvas, new Point(-size.getWidth()/2, -size.getHeight()/2));
+        spriteSheet.drawOn(canvas, new Point(-size.getWidth() / 2, -size.getHeight() / 2));
     }
 }
