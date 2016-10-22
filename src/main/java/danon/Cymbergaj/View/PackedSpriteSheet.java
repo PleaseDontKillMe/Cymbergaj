@@ -44,6 +44,11 @@ public class PackedSpriteSheet implements SpriteSheet {
     }
 
     @Override
+    public Point getAnchorPoint() {
+        return new Point(0, 0);
+    }
+
+    @Override
     public Size getSpriteSize() {
         return spriteSize;
     }

@@ -17,4 +17,6 @@ public interface SpriteSheet {
     void drawOn(Graphics2D canvas, Point point);
 
     void drawOn(Graphics2D canvas, Point point, Rotation rotation);
+
+    Point getAnchorPoint();
 }

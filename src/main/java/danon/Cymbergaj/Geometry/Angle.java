@@ -8,7 +8,7 @@ public final class Angle {
         this(0);
     }
 
-    Angle(double value) {
+    public Angle(double value) {
         this.value = value;
     }
 

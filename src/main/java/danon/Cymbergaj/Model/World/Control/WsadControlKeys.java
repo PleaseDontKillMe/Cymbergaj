@@ -23,4 +23,14 @@ public class WsadControlKeys extends ControlKeys {
     public boolean verifyRight(KeyEvent event) {
         return event.getKeyChar() == 'd';
     }
+
+    @Override
+    protected boolean verifyAction1(KeyEvent event) {
+        return event.getKeyChar() == 32;
+    }
+
+    @Override
+    protected boolean verifyAction2(KeyEvent event) {
+        return event.getKeyChar() == 8;
+    }
 }

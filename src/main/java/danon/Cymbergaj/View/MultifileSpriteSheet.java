@@ -13,13 +13,19 @@ public class MultifileSpriteSheet implements SpriteSheet {
     private final String basePath;
     private final int filesCount;
     private final List<BufferedImage> images = new LinkedList<>();
+    private final Point anchorPoint;
 
     private Size firstFrameSize;
     private int currentIndex = 0;
 
     public MultifileSpriteSheet(String basePath, int filesCount) {
+        this(basePath, filesCount, new Point(116, 120));
+    }
+
+    public MultifileSpriteSheet(String basePath, int filesCount, Point anchorPoint) {
         this.basePath = basePath;
         this.filesCount = filesCount;
+        this.anchorPoint = anchorPoint;
     }
 
     public MultifileSpriteSheet loadImages() {
@@ -61,11 +67,16 @@ public class MultifileSpriteSheet implements SpriteSheet {
         BufferedImage image = images.get(currentIndex);
         canvas.drawImage(image,
                 -rot.getX(), -rot.getY(),
-                image.getWidth() - rot.getX(),
-                image.getHeight() - rot.getY(),
+                image.getWidth(),
+                image.getHeight(),
                 null);
 
         canvas.rotate(-rotation.getAngle().getValue());
         canvas.translate(-position.x, -position.y);
+    }
+
+    @Override
+    public Point getAnchorPoint() {
+        return anchorPoint;
     }
 }
