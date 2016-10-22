@@ -36,11 +36,16 @@ public class PackedSpriteSheet implements SpriteSheet {
                 spriteSize.getWidth() - rot.getX(),
                 spriteSize.getHeight() - rot.getY(),
                 currentSpriteIndex * spriteSize.getWidth(), 0,
-                (currentSpriteIndex + 1) * spriteSize.getWidth(),  spriteSize.getHeight(),
+                (currentSpriteIndex + 1) * spriteSize.getWidth(), spriteSize.getHeight(),
                 null);
 
         canvas.rotate(-rotation.getAngle().getValue());
         canvas.translate(-position.x, -position.y);
+    }
+
+    @Override
+    public Point getAnchorPoint() {
+        return new Point(0, 0);
     }
 
     @Override
@@ -55,6 +60,6 @@ public class PackedSpriteSheet implements SpriteSheet {
 
     @Override
     public void setFrame(int index) {
-        currentSpriteIndex = (index+spritesAmount*10) % spritesAmount;
+        currentSpriteIndex = (index + spritesAmount * 10) % spritesAmount;
     }
 }
