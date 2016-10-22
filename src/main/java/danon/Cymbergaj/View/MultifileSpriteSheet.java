@@ -61,8 +61,8 @@ public class MultifileSpriteSheet implements SpriteSheet {
         BufferedImage image = images.get(currentIndex);
         canvas.drawImage(image,
                 -rot.getX(), -rot.getY(),
-                image.getWidth() - rot.getX(),
-                image.getHeight() - rot.getY(),
+                image.getWidth(),
+                image.getHeight(),
                 null);
 
         canvas.rotate(-rotation.getAngle().getValue());
