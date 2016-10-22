@@ -15,16 +15,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Character extends GameObject implements KeyListener, Updatable {
-
     private final static double VELOCITY = 5.0;
 
     private final ControlKeys controlKeys;
     private final Keys keys;
 
-    private float orientation = 0;
-
     private WeaponType weaponType = WeaponType.Shotgun;
     private Posture posture = Posture.Idle;
+    private float orientation = 0;
 
     public Character(ControlKeys controlKeys) {
         this(controlKeys, new Keys());

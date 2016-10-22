@@ -28,27 +28,30 @@ public class CharacterRenderer extends BodyRenderer implements Updatable {
     }
 
     public SpriteSheet getSheetForFeet() {
-        CharacterWeaponSheet weaponSheet = images.weaponSheets.get(character.getWeaponType());
         return character.getPosture().getSheetForFeet(images);
     }
 
     @Override
     protected void renderBody(Graphics2D canvas) {
+        drawBody(canvas);
+        drawFeet(canvas);
+        canvas.drawOval(-5, -5, 10, 10);
+    }
 
+    private void drawFeet(Graphics2D canvas) {
         SpriteSheet feetSheet = getSheetForFeet();
         feetSheet.drawOn(canvas,
                 new Point(0, 0),
                 new Rotation(new Angle(character.getOrientation()), feetSheet.getAnchorPoint())
         );
+    }
 
+    private void drawBody(Graphics2D canvas) {
         SpriteSheet sheet = getCurrentSheet();
         sheet.drawOn(canvas,
                 new Point(0, 0),
                 new Rotation(new Angle(character.getOrientation()), sheet.getAnchorPoint())
         );
-
-
-        canvas.drawOval(-5, -5, 10, 10);
     }
 
     @Override
