@@ -16,8 +16,6 @@ import java.awt.event.KeyListener;
 
 
 public final class CharacterApplication {
-    public final static int SCALE = 45;
-
     private final EngineFactory engineFactory;
     private final EngineExecutor engineExecutor;
     private final GameWindow gameWindow;
