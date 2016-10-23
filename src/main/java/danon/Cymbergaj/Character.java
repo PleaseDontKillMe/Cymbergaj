@@ -25,7 +25,7 @@ public class Character extends GameObject implements KeyListener, Updatable {
     private Posture posture = Posture.Idle;
     private float orientation = 0;
 
-    PostureChangedListener listener;
+    private PostureChangedListener listener;
 
     public Character(ControlKeys controlKeys) {
         this(controlKeys, new Keys());
