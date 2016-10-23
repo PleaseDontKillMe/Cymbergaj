@@ -70,10 +70,10 @@ public class Character extends GameObject implements KeyListener, Updatable {
         }
 
         if (keys.isLeft()) {
-            orientation -= 2 * elapsedTime;
+            orientation -= 3 * elapsedTime;
         }
         if (keys.isRight()) {
-            orientation += 2 * elapsedTime;
+            orientation += 3 * elapsedTime;
         }
 
         if (keys.isAction1()) {
