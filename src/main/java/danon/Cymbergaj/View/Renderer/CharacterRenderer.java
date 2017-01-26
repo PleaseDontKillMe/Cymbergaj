@@ -12,7 +12,7 @@ import danon.Cymbergaj.View.SpriteSheet;
 import java.awt.*;
 
 public class CharacterRenderer extends BodyRenderer implements Updatable, PostureChangedListener {
-    private Character character;
+    private final Character character;
     private final ImagesRepository images;
 
     private double totalElapsedTime = 0;
@@ -29,7 +29,7 @@ public class CharacterRenderer extends BodyRenderer implements Updatable, Postur
         return character.getPosture().getSheetFor(weaponSheet);
     }
 
-    public SpriteSheet getSheetForFeet() {
+    private SpriteSheet getSheetForFeet() {
         return character.getPosture().getSheetForFeet(images);
     }
 

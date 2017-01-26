@@ -31,7 +31,7 @@ public class Character extends GameObject implements KeyListener, Updatable {
         this(controlKeys, new Keys());
     }
 
-    public Character(ControlKeys controlKeys, Keys keys) {
+    private Character(ControlKeys controlKeys, Keys keys) {
         this.keys = keys;
         this.controlKeys = controlKeys;
         this.controlKeys.useKeys(this.keys);

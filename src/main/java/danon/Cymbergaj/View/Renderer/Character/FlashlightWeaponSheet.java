@@ -4,7 +4,7 @@ import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.SpriteSheet;
 
 public class FlashlightWeaponSheet implements CharacterWeaponSheet {
-    private ImagesRepository imagesRepository;
+    private final ImagesRepository imagesRepository;
 
     public FlashlightWeaponSheet(ImagesRepository imagesRepository) {
 

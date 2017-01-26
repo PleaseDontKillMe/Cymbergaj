@@ -33,7 +33,7 @@ public final class CharacterApplication {
         app.start();
     }
 
-    public CharacterApplication(Character character) {
+    private CharacterApplication(Character character) {
         Settings settings = new Settings("Character test | Best 2D game jk ", new Size(1080, 600));
 
         this.gameWindow = new GameWindow(settings);
@@ -63,7 +63,7 @@ public final class CharacterApplication {
         });
     }
 
-    public void start() {
+    private void start() {
         gameWindow.show();
         sounds.play(sounds.lookAtMyHorse);
         engineExecutor.start();
@@ -130,7 +130,7 @@ public final class CharacterApplication {
         world.addListener(new GamePointsCounter(game, sounds));
     }
 
-    public void addWindowKeyListener(KeyListener listener) {
+    private void addWindowKeyListener(KeyListener listener) {
         this.gameWindow.addKeyListener(listener);
     }
 }

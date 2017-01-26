@@ -122,16 +122,13 @@ public class Client implements Runnable {
 
     public static void main(String[] args) throws Exception {
         GetConfigListener listener = config -> {
-            Thread thread = new Thread() {
-                @Override
-                public void run() {
-                    if (config.isNetwork()) {
-                        startNetworkGame(config);
-                    } else {
-                        startLocalGame();
-                    }
+            Thread thread = new Thread(() -> {
+                if (config.isNetwork()) {
+                    startNetworkGame(config);
+                } else {
+                    startLocalGame();
                 }
-            };
+            });
             thread.start();
         };
         RuntimeConfigFrame frame = new RuntimeConfigFrame();

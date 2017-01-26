@@ -51,7 +51,7 @@ public class ImagesRepository {
     public SpriteSheet shotgunReload;
     public SpriteSheet shotgunShoot;
 
-    public Map<WeaponType, CharacterWeaponSheet> weaponSheets = new EnumMap<>(WeaponType.class);
+    final Map<WeaponType, CharacterWeaponSheet> weaponSheets = new EnumMap<>(WeaponType.class);
 
     public void load() {
         background = Loader.image("space-background.png");
