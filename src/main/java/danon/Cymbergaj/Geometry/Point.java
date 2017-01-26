@@ -6,8 +6,7 @@ import org.dyn4j.geometry.Vector2;
 public class Point {
     private static final double DELTA = 1e-4;
 
-    public final double x;
-    public final double y;
+    public final double x, y;
 
     public Point() {
         this(0, 0);
@@ -30,8 +29,8 @@ public class Point {
         return (int) y;
     }
 
-    private double distanceTo(Point A) {
-        return Math.sqrt(Math.pow(this.x - A.x, 2) + Math.pow(this.y - A.y, 2));
+    private double distanceTo(Point point) {
+        return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2));
     }
 
     public Angle angleTo(Point point) {
@@ -39,7 +38,7 @@ public class Point {
             throw new RuntimeException("Cannot calculate angleTo() of the same points");
         }
 
-        Angle angle = new Angle(Math.asin((point.y - this.y) / this.distanceTo(point)));
+        Angle angle = new Angle(Math.asin((point.y - this.y) / distanceTo(point)));
 
         if (point.x < this.x) {
             angle.setValue(Math.PI - angle.getValue());
