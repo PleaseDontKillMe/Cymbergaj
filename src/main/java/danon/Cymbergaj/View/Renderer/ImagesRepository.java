@@ -3,7 +3,7 @@ package danon.Cymbergaj.View.Renderer;
 
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Size;
-import danon.Cymbergaj.View.Loader;
+import danon.Cymbergaj.View.Load;
 import danon.Cymbergaj.View.MultifileSpriteSheet;
 import danon.Cymbergaj.View.PackedSpriteSheet;
 import danon.Cymbergaj.View.Renderer.Character.*;
@@ -54,9 +54,9 @@ public class ImagesRepository {
     final Map<WeaponType, CharacterWeaponSheet> weaponSheets = new EnumMap<>(WeaponType.class);
 
     public void load() {
-        background = Loader.image("space-background.png");
-        fireball = new PackedSpriteSheet(Loader.image("fireball.png"), new Size(64, 64), 8);
-        spaceship = new PackedSpriteSheet(Loader.image("spaceship2.png"), new Size(64, 64), 32);
+        background = Load.image("space-background.png");
+        fireball = new PackedSpriteSheet(Load.image("fireball.png"), new Size(64, 64), 8);
+        spaceship = new PackedSpriteSheet(Load.image("spaceship2.png"), new Size(64, 64), 32);
 
         feetIdle = new MultifileSpriteSheet("character/feet/idle/survivor-idle_", 1).loadImages();
         feetRun = new MultifileSpriteSheet("character/feet/run/survivor-run_", 20).loadImages();

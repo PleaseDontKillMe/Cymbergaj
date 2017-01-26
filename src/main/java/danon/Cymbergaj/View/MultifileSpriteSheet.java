@@ -30,7 +30,7 @@ public class MultifileSpriteSheet implements SpriteSheet {
 
     public MultifileSpriteSheet loadImages() {
         for (int i = 0; i < filesCount; i++) {
-            images.add(Loader.image(basePath + i + ".png"));
+            images.add(Load.image(basePath + i + ".png"));
         }
         BufferedImage first = images.get(0);
         firstFrameSize = new Size(first.getWidth(), first.getHeight());

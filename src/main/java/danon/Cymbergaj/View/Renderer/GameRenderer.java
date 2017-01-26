@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GameRenderer implements Renderer {
-
     private final Game game;
     private final BufferedImage background;
 

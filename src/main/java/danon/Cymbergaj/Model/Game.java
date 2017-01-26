@@ -1,7 +1,7 @@
 package danon.Cymbergaj.Model;
 
 import danon.Cymbergaj.Geometry.Size;
-import danon.Cymbergaj.View.PointsRenderer;
+import danon.Cymbergaj.View.Renderer.PointsRenderer;
 import danon.Cymbergaj.View.Renderer.GameRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.Renderer;

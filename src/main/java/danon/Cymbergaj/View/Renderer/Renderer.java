@@ -1,6 +1,5 @@
 package danon.Cymbergaj.View.Renderer;
 
-
 import java.awt.*;
 
 public interface Renderer {

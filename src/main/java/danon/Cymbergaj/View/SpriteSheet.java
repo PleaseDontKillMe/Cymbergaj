@@ -1,6 +1,5 @@
 package danon.Cymbergaj.View;
 
-
 import danon.Cymbergaj.Geometry.Point;
 import danon.Cymbergaj.Geometry.Rotation;
 import danon.Cymbergaj.Geometry.Size;

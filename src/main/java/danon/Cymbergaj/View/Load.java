@@ -5,10 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-public class Loader {
-
+public class Load {
     public static BufferedImage image(final String filename) {
-        URL resource = Loader.class.getClassLoader().getResource(filename);
+        URL resource = Load.class.getClassLoader().getResource(filename);
 
         if (resource == null) {
             throw new RuntimeException("File " + filename + " not found");

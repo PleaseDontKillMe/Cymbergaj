@@ -11,9 +11,7 @@ import org.dyn4j.geometry.Vector2;
 
 import java.awt.*;
 
-
 public class FireballRenderer extends BodyRenderer implements Updatable {
-
     private final Fireball fireball;
     private final SpriteSheet spriteSheet;
     private int refreshesToNextFrame = 0;

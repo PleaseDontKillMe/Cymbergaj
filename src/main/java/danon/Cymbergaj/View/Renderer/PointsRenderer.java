@@ -1,4 +1,4 @@
-package danon.Cymbergaj.View;
+package danon.Cymbergaj.View.Renderer;
 
 import danon.Cymbergaj.Model.Game;
 import danon.Cymbergaj.View.Renderer.Renderer;
@@ -6,7 +6,6 @@ import danon.Cymbergaj.View.Renderer.Renderer;
 import java.awt.*;
 
 public class PointsRenderer implements Renderer {
-
     private final Game game;
 
     public PointsRenderer(Game game) {
