@@ -1,8 +1,7 @@
 package danon.Network.Client;
 
 import danon.Cymbergaj.Application;
-import danon.Cymbergaj.Config.GetConfigListener;
-import danon.Cymbergaj.Config.RuntimeConfig;
+import danon.Cymbergaj.Config.StartupConfiguration;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.*;
@@ -25,24 +24,21 @@ public class Client implements Runnable {
     private Application application;
     private char myPlayer;
     private final String serverAddress;
-    private final RuntimeConfig config;
+    private final StartupConfiguration config;
 
     public static void main(String[] args) throws Exception {
-        GetConfigListener listener = config -> {
-            Thread thread = new Thread(() -> {
-                if (config.isNetwork()) {
-                    startNetworkGame(config);
-                } else {
-                    startLocalGame();
-                }
-            });
-            thread.start();
-        };
         RuntimeConfigFrame frame = new RuntimeConfigFrame();
-        frame.getRuntimeConfig(listener);
+
+        frame.getRuntimeConfig(startupConfiguration -> new Thread(() -> {
+            if (startupConfiguration.isNetwork()) {
+                startNetworkGame(startupConfiguration);
+            } else {
+                startLocalGame();
+            }
+        }).start());
     }
 
-    private static void startNetworkGame(RuntimeConfig config) {
+    private static void startNetworkGame(StartupConfiguration config) {
         try {
             System.out.println("I'm " + config.getUsername());
             Client client = new Client(config);
@@ -52,7 +48,7 @@ public class Client implements Runnable {
         }
     }
 
-    private Client(RuntimeConfig config) {
+    private Client(StartupConfiguration config) {
         this.config = config;
         this.serverAddress = config.getHost();
         this.socketControlKeys = new SocketControlKeys();
