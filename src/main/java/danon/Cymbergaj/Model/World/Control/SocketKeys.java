@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class SocketKeys extends Keys {
-
     private final ObjectOutputStream out;
     private final char player;
 
