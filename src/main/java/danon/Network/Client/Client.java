@@ -7,6 +7,7 @@ import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.*;
 import danon.Network.Message.*;
 import danon.Network.Server.Server;
+import org.dyn4j.geometry.Transform;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class Client implements Runnable {
     private final SocketControlKeys socketControlKeys;
 
     private Application application;
+    private Spaceship player1, player2;
     private char myPlayer;
     private final String serverAddress;
     private final StartupConfiguration config;
@@ -86,6 +88,15 @@ public class Client implements Runnable {
         } else if (message instanceof QuitMessage) {
             System.out.println("Good bye. Press RETURN to exit ...");
             finnish();
+        } else if (message instanceof PositionMessage) {
+            PositionMessage positionMessage = (PositionMessage) message;
+            Transform transform = new Transform();
+            transform.setTranslation(positionMessage.getPositionX(), positionMessage.getPositionY());
+            if (positionMessage.getPlayer() == myPlayer) {
+                player1.setTransform(transform);
+            } else {
+                player2.setTransform(transform);
+            }
         } else {
             System.out.println(message.toString());
         }
@@ -98,7 +109,6 @@ public class Client implements Runnable {
 
     private void play(StartMessage message) {
         System.out.println("Got welcome message");
-        Spaceship player1, player2;
         switch (message.getPlayerTeam()) {
             case 'L':
                 player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut, 'L'));
