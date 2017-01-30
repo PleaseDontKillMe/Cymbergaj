@@ -4,10 +4,7 @@ import danon.Cymbergaj.Model.World.Control.Keys;
 
 public class KeyMessage implements Message {
     private final char player;
-    private final boolean keyUp;
-    private final boolean keyDown;
-    private final boolean keyLeft;
-    private final boolean keyRight;
+    private final boolean keyUp, keyDown, keyLeft, keyRight;
 
     private KeyMessage(char player, boolean keyUp, boolean keyDown, boolean keyLeft, boolean keyRight) {
         this.player = player;

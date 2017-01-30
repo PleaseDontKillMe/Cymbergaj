@@ -27,6 +27,21 @@ public class Client implements Runnable {
     private final String serverAddress;
     private final RuntimeConfig config;
 
+    public static void main(String[] args) throws Exception {
+        GetConfigListener listener = config -> {
+            Thread thread = new Thread(() -> {
+                if (config.isNetwork()) {
+                    startNetworkGame(config);
+                } else {
+                    startLocalGame();
+                }
+            });
+            thread.start();
+        };
+        RuntimeConfigFrame frame = new RuntimeConfigFrame();
+        frame.getRuntimeConfig(listener);
+    }
+
     private static void startNetworkGame(RuntimeConfig config) {
         try {
             System.out.println("I'm " + config.getUsername());
@@ -118,21 +133,6 @@ public class Client implements Runnable {
         }
         clientThread.interrupt();
         clientThread.close();
-    }
-
-    public static void main(String[] args) throws Exception {
-        GetConfigListener listener = config -> {
-            Thread thread = new Thread(() -> {
-                if (config.isNetwork()) {
-                    startNetworkGame(config);
-                } else {
-                    startLocalGame();
-                }
-            });
-            thread.start();
-        };
-        RuntimeConfigFrame frame = new RuntimeConfigFrame();
-        frame.getRuntimeConfig(listener);
     }
 
     private static void startLocalGame() {

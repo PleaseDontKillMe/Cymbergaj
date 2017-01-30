@@ -25,7 +25,7 @@ class ClientThread extends Thread {
 
     @Override
     public void run() {
-        while (!this.isInterrupted()) {
+        while (!isInterrupted()) {
             try {
                 Message message = (Message) streamIn.readObject();
                 parentClient.handle(message);
@@ -34,6 +34,7 @@ class ClientThread extends Thread {
                 parentClient.finnish();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+                parentClient.finnish();
             }
         }
     }
