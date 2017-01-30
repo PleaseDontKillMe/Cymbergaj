@@ -41,8 +41,7 @@ public class Client implements Runnable {
     private static void startNetworkGame(StartupConfiguration config) {
         try {
             System.out.println("I'm " + config.getUsername());
-            Client client = new Client(config);
-            client.start();
+            new Client(config).start();
         } catch (IOException e) {
             System.out.println("Error connecting");
         }
@@ -74,11 +73,11 @@ public class Client implements Runnable {
     void handle(Message message) {
         if (message instanceof StartMessage) {
             play((StartMessage) message);
-            if (!thread.isAlive()) {
+            if (thread.isAlive()) {
+                throw new RuntimeException("Thread is already alive damn it");
+            } else {
                 thread.start();
                 myPlayer = ((StartMessage) message).getPlayerTeam();
-            } else {
-                throw new RuntimeException("Thread is already alive damn it");
             }
         } else if (message instanceof KeyMessage) {
             if (((KeyMessage) message).getPlayer() != myPlayer) {
