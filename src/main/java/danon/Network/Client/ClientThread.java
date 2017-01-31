@@ -10,12 +10,24 @@ class ClientThread extends Thread {
     private final Client parentClient;
     private final ObjectInputStream streamIn;
 
+    private volatile boolean shouldStop = false;
+
     ClientThread(Client parentClient, ObjectInputStream streamIn) {
         this.parentClient = parentClient;
         this.streamIn = streamIn;
     }
 
-    void close() {
+    @Override
+    public void interrupt() {
+        super.interrupt();
+        throw new RuntimeException("Intertupted :/ Nah nah");
+    }
+
+    public void pleaseStop() {
+        shouldStop = true;
+    }
+
+    private void close() {
         try {
             streamIn.close();
         } catch (IOException ioe) {
@@ -25,7 +37,7 @@ class ClientThread extends Thread {
 
     @Override
     public void run() {
-        while (!isInterrupted()) {
+        while (!shouldStop) {
             try {
                 Message message = (Message) streamIn.readObject();
                 parentClient.handle(message);

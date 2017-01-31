@@ -17,7 +17,7 @@ import java.net.Socket;
 
 public class Client implements Runnable {
     private Socket socket;
-    private Thread thread;
+    private Thread applicationThread = new Thread(this);
     private ObjectOutputStream streamOut;
     private ClientThread clientThread;
     private final SocketControlKeys socketControlKeys;
@@ -61,10 +61,9 @@ public class Client implements Runnable {
 
         sendIntroduceMessage();
 
-        clientThread = new ClientThread(this, new ObjectInputStream(new BufferedInputStream(socket.getInputStream())));
+        clientThread = new ClientThread(this,
+                new ObjectInputStream(new BufferedInputStream(socket.getInputStream())));
         clientThread.start();
-
-        thread = new Thread(this);
     }
 
     private void sendIntroduceMessage() throws IOException {
@@ -72,13 +71,16 @@ public class Client implements Runnable {
         streamOut.flush();
     }
 
+    /*
+     * This is invoked from applicationThread
+     */
     void handle(Message message) {
         if (message instanceof StartMessage) {
             play((StartMessage) message);
-            if (thread.isAlive()) {
+            if (applicationThread.isAlive()) {
                 throw new RuntimeException("Thread is already alive damn it");
             } else {
-                thread.start();
+                applicationThread.start();
                 myPlayer = ((StartMessage) message).getPlayerTeam();
             }
         } else if (message instanceof KeyMessage) {
@@ -100,6 +102,21 @@ public class Client implements Runnable {
         } else {
             System.out.println(message.toString());
         }
+    }
+
+    /*
+     * This is invoked from applicationThread
+     */
+    void finnish() {
+        applicationThread.interrupt();
+
+        try {
+            streamOut.close();
+            socket.close();
+        } catch (IOException ioe) {
+            System.out.println("Error closing ...");
+        }
+        clientThread.pleaseStop();
     }
 
     @Override
@@ -125,19 +142,6 @@ public class Client implements Runnable {
         application = new Application(player1, player2, config.getUsername());
         application.addWindowKeyListener(player1);
         application.addWindowKeyListener(player2);
-    }
-
-    void finnish() {
-        thread.interrupt();
-
-        try {
-            if (streamOut != null) streamOut.close();
-            if (socket != null) socket.close();
-        } catch (IOException ioe) {
-            System.out.println("Error closing ...");
-        }
-        clientThread.interrupt();
-        clientThread.close();
     }
 
     private static void startLocalGame() {
