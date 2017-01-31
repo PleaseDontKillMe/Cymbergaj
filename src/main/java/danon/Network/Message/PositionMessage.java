@@ -1,7 +1,6 @@
 package danon.Network.Message;
 
 public class PositionMessage implements Message {
-
     private final char player;
     private final double positionX;
     private final double positionY;

@@ -5,25 +5,25 @@ import danon.Network.Message.Message;
 import danon.Network.Message.StartMessage;
 
 import java.io.IOException;
-import java.util.List;
 import java.net.ServerSocket;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Server {
     public static final int PORT = 9801;
+
     private final List<ServerThread> serverThreads = new CopyOnWriteArrayList<>();
-    private final ServerSocket server;
+    private final ServerSocket serverSocket;
     private final ServerPanel panel;
 
     public static void main(String[] args) throws IOException {
         System.out.println("Binding to port " + PORT + ", please wait  ...");
 
-        Server server = new Server(new ServerSocket(PORT));
-        server.start();
+        new Server(new ServerSocket(PORT)).start();
     }
 
     private Server(ServerSocket serverSocket) {
-        this.server = serverSocket;
+        this.serverSocket = serverSocket;
         this.panel = new ServerPanel(this::closeServer);
     }
 
@@ -35,13 +35,13 @@ public class Server {
     private void listenForConnections() {
         System.out.println("Server is Running...");
         try {
-            ServerThread playerX = new ServerThread(this, server.accept());
+            ServerThread playerX = new ServerThread(this, serverSocket.accept());
             playerX.open();
             System.out.println("Accepted first " + playerX.toString());
             serverThreads.add(playerX);
             panel.updateList(ImmutableList.copyOf(serverThreads));
 
-            ServerThread playerO = new ServerThread(this, server.accept());
+            ServerThread playerO = new ServerThread(this, serverSocket.accept());
             playerO.open();
             System.out.println("Accepted both" + playerO.toString());
             serverThreads.add(playerO);
@@ -84,7 +84,7 @@ public class Server {
             }
         });
         try {
-            server.close();
+            serverSocket.close();
         } catch (IOException ignored) {
         }
     }

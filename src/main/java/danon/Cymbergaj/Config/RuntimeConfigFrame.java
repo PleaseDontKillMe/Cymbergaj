@@ -59,7 +59,7 @@ public class RuntimeConfigFrame extends JFrame {
         this.pack();
     }
 
-    private RuntimeConfig makeRuntimeConfig() {
-        return new RuntimeConfig(userName.getText(), networkCheckBox.isSelected(), hostName.getText());
+    private StartupConfiguration makeRuntimeConfig() {
+        return new StartupConfiguration(userName.getText(), networkCheckBox.isSelected(), hostName.getText());
     }
 }

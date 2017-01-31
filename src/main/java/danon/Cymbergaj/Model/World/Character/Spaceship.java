@@ -61,7 +61,7 @@ public class Spaceship extends GameObject implements KeyListener, Updatable {
             velocity.add(VELOCITY, 0);
         }
 
-        this.setLinearVelocity(velocity);
+        setLinearVelocity(velocity);
     }
 
     @Override

@@ -14,6 +14,10 @@ public class EngineExecutor {
     }
 
     public void start() {
+        if (shouldStop) {
+            throw new RuntimeException("EngineExecutor restarted");
+        }
+
         double previous = System.nanoTime();
 
         while (!shouldStop) {

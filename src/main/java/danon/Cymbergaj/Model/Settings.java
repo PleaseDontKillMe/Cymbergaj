@@ -1,6 +1,5 @@
 package danon.Cymbergaj.Model;
 
-
 import danon.Cymbergaj.Geometry.Size;
 
 public class Settings {

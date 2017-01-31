@@ -1,13 +1,13 @@
 package danon.Network.Client;
 
 import danon.Cymbergaj.Application;
-import danon.Cymbergaj.Config.GetConfigListener;
-import danon.Cymbergaj.Config.RuntimeConfig;
+import danon.Cymbergaj.Config.StartupConfiguration;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Model.World.Character.Spaceship;
 import danon.Cymbergaj.Model.World.Control.*;
 import danon.Network.Message.*;
 import danon.Network.Server.Server;
+import org.dyn4j.geometry.Transform;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -23,21 +23,33 @@ public class Client implements Runnable {
     private final SocketControlKeys socketControlKeys;
 
     private Application application;
+    private Spaceship player1, player2;
     private char myPlayer;
     private final String serverAddress;
-    private final RuntimeConfig config;
+    private final StartupConfiguration config;
 
-    private static void startNetworkGame(RuntimeConfig config) {
+    public static void main(String[] args) throws Exception {
+        RuntimeConfigFrame frame = new RuntimeConfigFrame();
+
+        frame.getRuntimeConfig(startupConfiguration -> new Thread(() -> {
+            if (startupConfiguration.isNetwork()) {
+                startNetworkGame(startupConfiguration);
+            } else {
+                startLocalGame();
+            }
+        }).start());
+    }
+
+    private static void startNetworkGame(StartupConfiguration config) {
         try {
             System.out.println("I'm " + config.getUsername());
-            Client client = new Client(config);
-            client.start();
+            new Client(config).start();
         } catch (IOException e) {
             System.out.println("Error connecting");
         }
     }
 
-    private Client(RuntimeConfig config) {
+    private Client(StartupConfiguration config) {
         this.config = config;
         this.serverAddress = config.getHost();
         this.socketControlKeys = new SocketControlKeys();
@@ -63,11 +75,11 @@ public class Client implements Runnable {
     void handle(Message message) {
         if (message instanceof StartMessage) {
             play((StartMessage) message);
-            if (!thread.isAlive()) {
+            if (thread.isAlive()) {
+                throw new RuntimeException("Thread is already alive damn it");
+            } else {
                 thread.start();
                 myPlayer = ((StartMessage) message).getPlayerTeam();
-            } else {
-                throw new RuntimeException("Thread is already alive damn it");
             }
         } else if (message instanceof KeyMessage) {
             if (((KeyMessage) message).getPlayer() != myPlayer) {
@@ -76,6 +88,15 @@ public class Client implements Runnable {
         } else if (message instanceof QuitMessage) {
             System.out.println("Good bye. Press RETURN to exit ...");
             finnish();
+        } else if (message instanceof PositionMessage) {
+            PositionMessage positionMessage = (PositionMessage) message;
+            Transform transform = new Transform();
+            transform.setTranslation(positionMessage.getPositionX(), positionMessage.getPositionY());
+            if (positionMessage.getPlayer() == myPlayer) {
+                player1.setTransform(transform);
+            } else {
+                player2.setTransform(transform);
+            }
         } else {
             System.out.println(message.toString());
         }
@@ -88,7 +109,6 @@ public class Client implements Runnable {
 
     private void play(StartMessage message) {
         System.out.println("Got welcome message");
-        Spaceship player1, player2;
         switch (message.getPlayerTeam()) {
             case 'L':
                 player1 = new Spaceship(new WsadControlKeys(), new SocketKeys(streamOut, 'L'));
@@ -118,21 +138,6 @@ public class Client implements Runnable {
         }
         clientThread.interrupt();
         clientThread.close();
-    }
-
-    public static void main(String[] args) throws Exception {
-        GetConfigListener listener = config -> {
-            Thread thread = new Thread(() -> {
-                if (config.isNetwork()) {
-                    startNetworkGame(config);
-                } else {
-                    startLocalGame();
-                }
-            });
-            thread.start();
-        };
-        RuntimeConfigFrame frame = new RuntimeConfigFrame();
-        frame.getRuntimeConfig(listener);
     }
 
     private static void startLocalGame() {

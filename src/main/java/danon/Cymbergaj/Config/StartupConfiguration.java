@@ -1,11 +1,11 @@
 package danon.Cymbergaj.Config;
 
-public class RuntimeConfig {
+public class StartupConfiguration {
     private final String username;
     private final boolean isNetwork;
     private final String host;
 
-    RuntimeConfig(String username, boolean isNetwork, String host) {
+    StartupConfiguration(String username, boolean isNetwork, String host) {
         this.username = username;
         this.isNetwork = isNetwork;
         this.host = host;
