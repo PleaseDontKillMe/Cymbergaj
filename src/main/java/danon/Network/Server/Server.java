@@ -59,7 +59,7 @@ public class Server {
     }
 
     synchronized void handle(int ID, Message message) {
-        serverThreads.forEach(playerThread -> playerThread.send(ID, message));
+        serverThreads.forEach(serverThread -> serverThread.send(ID, message));
     }
 
     synchronized void removeClient(ServerThread toTerminate) {
@@ -68,7 +68,7 @@ public class Server {
         panel.updateList(ImmutableList.copyOf(serverThreads));
     }
 
-    private synchronized void closeServer() {
+    private void closeServer() {
         serverThreads.forEach(ServerThread::pleaseClose);
         try {
             serverSocket.close();
