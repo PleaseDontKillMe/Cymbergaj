@@ -66,23 +66,10 @@ public class Server {
         System.out.println("Removing client thread " + toTerminate.getID());
         serverThreads.remove(toTerminate);
         panel.updateList(ImmutableList.copyOf(serverThreads));
-        try {
-            toTerminate.close();
-        } catch (IOException ioe) {
-            System.out.println("Error closing thread: " + ioe);
-        }
-        toTerminate.interrupt();
     }
 
     private synchronized void closeServer() {
-        serverThreads.forEach(thread -> {
-            thread.interrupt();
-            try {
-                thread.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        serverThreads.forEach(ServerThread::pleaseClose);
         try {
             serverSocket.close();
         } catch (IOException ignored) {
