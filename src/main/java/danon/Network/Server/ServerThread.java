@@ -19,6 +19,8 @@ class ServerThread extends Thread {
     private ObjectOutputStream streamOut;
     private String clientName = "ServerThread";
 
+    private volatile boolean shouldStop = false;
+
     ServerThread(Server parentServer, Socket socket) {
         super();
         this.parentServer = parentServer;
@@ -34,7 +36,7 @@ class ServerThread extends Thread {
     @Override
     public void run() {
         try {
-            while (!isInterrupted()) {
+            while (!shouldStop) {
                 Message message = (Message) streamIn.readObject();
 
                 if (message instanceof KeyMessage) {
@@ -53,7 +55,7 @@ class ServerThread extends Thread {
             }
         } catch (IOException e) {
             System.out.println("ServerThread died: " + e.getMessage() + " | " + e.getLocalizedMessage());
-            this.interrupt();
+            pleaseClose();
             parentServer.removeClient(this);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -80,10 +82,18 @@ class ServerThread extends Thread {
         return ID;
     }
 
+    private void pleaseClose() {
+        shouldStop = true;
+        try {
+            close();
+        } catch (IOException ignored) {
+        }
+    }
+
     void close() throws IOException {
-        if (socket != null) socket.close();
-        if (streamIn != null) streamIn.close();
-        if (streamOut != null) streamOut.close();
+        socket.close();
+        streamIn.close();
+        streamOut.close();
     }
 
     @Override

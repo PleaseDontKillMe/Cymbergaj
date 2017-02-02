@@ -20,12 +20,11 @@ public class Client implements Runnable {
     private Thread applicationThread = new Thread(this);
     private ObjectOutputStream streamOut;
     private ClientThread clientThread;
-    private final SocketControlKeys socketControlKeys;
+    private final SocketControlKeys socketControlKeys = new SocketControlKeys();
 
     private Application application;
     private Spaceship player1, player2;
     private char myPlayer;
-    private final String serverAddress;
     private final StartupConfiguration config;
 
     public static void main(String[] args) throws Exception {
@@ -51,12 +50,10 @@ public class Client implements Runnable {
 
     private Client(StartupConfiguration config) {
         this.config = config;
-        this.serverAddress = config.getHost();
-        this.socketControlKeys = new SocketControlKeys();
     }
 
     private void start() throws IOException {
-        socket = new Socket(serverAddress, Server.PORT);
+        socket = new Socket(config.getHost(), Server.PORT);
         streamOut = new ObjectOutputStream(socket.getOutputStream());
 
         sendIntroduceMessage();
