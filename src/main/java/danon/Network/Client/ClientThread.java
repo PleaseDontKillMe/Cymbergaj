@@ -17,17 +17,8 @@ class ClientThread extends Thread {
         this.streamIn = streamIn;
     }
 
-    @Override
-    public void interrupt() {
-        super.interrupt();
-        throw new RuntimeException("Intertupted :/ Nah nah");
-    }
-
-    public void pleaseStop() {
+    void pleaseStop() {
         shouldStop = true;
-    }
-
-    private void close() {
         try {
             streamIn.close();
         } catch (IOException ioe) {
@@ -41,11 +32,7 @@ class ClientThread extends Thread {
             try {
                 Message message = (Message) streamIn.readObject();
                 parentClient.handle(message);
-            } catch (IOException ioe) {
-                System.out.println("Listening error: " + ioe.getMessage());
-                parentClient.finnish();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (IOException | ClassNotFoundException e) {
                 parentClient.finnish();
             }
         }

@@ -1,12 +1,14 @@
 package danon.Cymbergaj.Model;
 
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static javax.sound.sampled.AudioSystem.getAudioInputStream;
+import static javax.sound.sampled.AudioSystem.getClip;
 
 public class SoundsRepository {
     public Clip lookAtMyHorse;
@@ -44,9 +46,9 @@ public class SoundsRepository {
     }
 
     private Clip tryLoadClip(String filename) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-        Clip clip = AudioSystem.getClip();
+        Clip clip = getClip();
         InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
-        clip.open(AudioSystem.getAudioInputStream(new BufferedInputStream(is)));
+        clip.open(getAudioInputStream(new BufferedInputStream(is)));
         return clip;
     }
 }

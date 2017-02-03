@@ -3,15 +3,14 @@ package danon.Cymbergaj;
 import danon.Cymbergaj.Geometry.Size;
 import danon.Cymbergaj.Model.*;
 import danon.Cymbergaj.Model.World.Character.*;
+import danon.Cymbergaj.View.GameWindow;
 import danon.Cymbergaj.View.Renderer.FireballRenderer;
 import danon.Cymbergaj.View.Renderer.ImagesRepository;
 import danon.Cymbergaj.View.Renderer.SpaceshipRenderer;
-import danon.Cymbergaj.View.GameWindow;
 import org.dyn4j.dynamics.World;
 import org.dyn4j.geometry.Vector2;
 
 import java.awt.event.KeyListener;
-
 
 public final class Application {
     public final static int SCALE = 45;
@@ -111,8 +110,8 @@ public final class Application {
         world.addBody(playerRight);
 
         SpaceshipRenderer player1renderer = playerLeft.getRenderer(images);
-        FireballRenderer fireballrenderer = ball.getRenderer(images);
         SpaceshipRenderer player2renderer = playerRight.getRenderer(images);
+        FireballRenderer fireballrenderer = ball.getRenderer(images);
 
         gameWindow.addRenderer(game.getRenderer(images));
         gameWindow.addRenderer(game.getPointsRenderer());
@@ -131,14 +130,14 @@ public final class Application {
         engineFactory.addUpdateListener(playerLeft);
         engineFactory.addUpdateListener(playerRight);
         engineFactory.addUpdateListener(game);
-        engineFactory.addUpdateListener(fireballrenderer);
         engineFactory.addUpdateListener(player1renderer);
         engineFactory.addUpdateListener(player2renderer);
+        engineFactory.addUpdateListener(fireballrenderer);
 
         world.addListener(new GamePointsCounter(game, sounds));
     }
 
     public void addWindowKeyListener(KeyListener listener) {
-        this.gameWindow.addKeyListener(listener);
+        gameWindow.addKeyListener(listener);
     }
 }

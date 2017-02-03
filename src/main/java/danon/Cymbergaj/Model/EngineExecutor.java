@@ -1,7 +1,8 @@
 package danon.Cymbergaj.Model;
 
-
 import com.google.common.collect.ImmutableList;
+
+import static java.lang.Thread.sleep;
 
 public class EngineExecutor {
     private final ImmutableList<Updatable> onUpdate;
@@ -27,10 +28,14 @@ public class EngineExecutor {
             updateAll(elapsed / 1.0e9);
             renderAll();
             try {
-                Thread.sleep(2);
+                sleep(2);
             } catch (InterruptedException ignored) {
             }
         }
+    }
+
+    public void stop() {
+        shouldStop = true;
     }
 
     private void updateAll(double elapsedSeconds) {
@@ -39,9 +44,5 @@ public class EngineExecutor {
 
     private void renderAll() {
         onRender.forEach(Runnable::run);
-    }
-
-    public void stop() {
-        this.shouldStop = true;
     }
 }
