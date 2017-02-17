@@ -77,7 +77,6 @@ class ServerThread extends Thread {
 
     void pleaseClose() {
         shouldStop = true;
-        parentServer.removeClient(this);
         try {
             socket.close();
             streamIn.close();

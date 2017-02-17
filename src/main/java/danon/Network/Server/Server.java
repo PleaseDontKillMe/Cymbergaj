@@ -1,6 +1,5 @@
 package danon.Network.Server;
 
-import com.google.common.collect.ImmutableList;
 import danon.Network.Message.Message;
 import danon.Network.Message.StartMessage;
 
@@ -8,6 +7,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import static com.google.common.collect.ImmutableList.copyOf;
 
 public class Server {
     public static final int PORT = 9801;
@@ -39,13 +40,13 @@ public class Server {
             playerX.open();
             System.out.println("Accepted first " + playerX.toString());
             serverThreads.add(playerX);
-            panel.updateList(ImmutableList.copyOf(serverThreads));
+            panel.updateList(copyOf(serverThreads));
 
             ServerThread playerO = new ServerThread(this, serverSocket.accept());
             playerO.open();
             System.out.println("Accepted both" + playerO.toString());
             serverThreads.add(playerO);
-            panel.updateList(ImmutableList.copyOf(serverThreads));
+            panel.updateList(copyOf(serverThreads));
 
             playerX.send(0, new StartMessage('L'));
             playerO.send(0, new StartMessage('R'));
@@ -62,14 +63,20 @@ public class Server {
         serverThreads.forEach(serverThread -> serverThread.send(ID, message));
     }
 
-    synchronized void removeClient(ServerThread toTerminate) {
-        System.out.println("Removing client thread " + toTerminate.getID());
-        serverThreads.remove(toTerminate);
-        panel.updateList(ImmutableList.copyOf(serverThreads));
-    }
-
     private void closeServer() {
         serverThreads.forEach(ServerThread::pleaseClose);
+        serverThreads.forEach(this::removeClient);
+
+        closeServerSocket();
+    }
+
+    private void removeClient(ServerThread toTerminate) {
+        System.out.println("Removing client thread " + toTerminate.getID());
+        serverThreads.remove(toTerminate);
+        panel.updateList(copyOf(serverThreads));
+    }
+
+    private void closeServerSocket() {
         try {
             serverSocket.close();
         } catch (IOException ignored) {
