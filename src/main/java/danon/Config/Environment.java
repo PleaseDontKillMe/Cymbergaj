@@ -1,14 +1,14 @@
 package danon.Config;
 
+import danon.Config.log.FileLogger;
+import danon.Config.log.Logger;
+import danon.Config.log.StdOutLogger;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class Env {
-    private final static ConfigurationProperties properties;
-
-    static {
-        properties = new ConfigurationProperties();
-    }
+public class Environment {
+    private final static ConfigurationProperties properties = new ConfigurationProperties();
 
     public static Logger getLogger() {
         String logger = properties.getValue("logger");
@@ -19,6 +19,9 @@ public class Env {
         Map<String, Logger> loggers = new HashMap<>();
         loggers.put("stdOut", new StdOutLogger());
         loggers.put("file", new FileLogger());
-        return loggers.get(logger);
+        if (loggers.containsKey(logger)) {
+            return loggers.get(logger);
+        }
+        throw new RuntimeException("No logger specified");
     }
 }

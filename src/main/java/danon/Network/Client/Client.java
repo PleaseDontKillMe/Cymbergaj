@@ -1,5 +1,6 @@
 package danon.Network.Client;
 
+import danon.Config.log.Logger;
 import danon.Cymbergaj.Application;
 import danon.Cymbergaj.Config.RuntimeConfigFrame;
 import danon.Cymbergaj.Config.StartupConfiguration;
@@ -31,6 +32,8 @@ public class Client implements Runnable {
 
     public static void main(String[] args) throws Exception {
         RuntimeConfigFrame frame = new RuntimeConfigFrame();
+
+        Logger.log("siema");
 
         frame.getRuntimeConfig(startupConfiguration -> new Thread(() -> {
             if (startupConfiguration.isNetwork()) {
